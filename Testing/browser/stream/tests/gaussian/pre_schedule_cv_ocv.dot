@@ -1,0 +1,114 @@
+
+
+
+
+digraph structs {
+    bgcolor = "white"
+    node [shape=plaintext,color="black",fontcolor="black",fontname="Times-Roman"]
+    rankdir=LR
+    edge [arrowsize="0.5",color="black",fontcolor="black",fontname="Times-Roman"]
+
+
+
+camera [label=<
+<TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+  <TR>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">camera<BR/>(WebCamera)</FONT></TD>
+  </TR>
+</TABLE>>];
+
+to_gray8 [label=<
+<TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+  <TR>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_gray8<BR/>(RGBAToGray8)</FONT></TD>
+  </TR>
+</TABLE>>];
+
+gaussian [label=<
+<TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+  <TR>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">gaussian<BR/>(GaussianFilter)</FONT></TD>
+  </TR>
+</TABLE>>];
+
+to_rgba [label=<
+<TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+  <TR>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba<BR/>(Gray16ToRGBA)</FONT></TD>
+  </TR>
+</TABLE>>];
+
+display1 [label=<
+<TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+  <TR>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">display1<BR/>(WebDisplay)</FONT></TD>
+  </TR>
+</TABLE>>];
+
+gaussian_cv [label=<
+<TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+  <TR>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">gaussian_cv<BR/>(OpenCVGaussian)</FONT></TD>
+  </TR>
+</TABLE>>];
+
+to_rgba_cv [label=<
+<TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+  <TR>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba_cv<BR/>(Gray8ToRGBA)</FONT></TD>
+  </TR>
+</TABLE>>];
+
+display2 [label=<
+<TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+  <TR>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">display2<BR/>(WebDisplay)</FONT></TD>
+  </TR>
+</TABLE>>];
+
+
+
+camera:i -> to_gray8:i [style="solid",color="black",label=""
+,headlabel=<<TABLE BORDER="0" CELLPADDING="2"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >1228800</FONT>
+</TD></TR></TABLE>>
+,taillabel=<<TABLE BORDER="0" CELLPADDING="2"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >1228800</FONT>
+</TD></TR></TABLE>>]
+
+to_gray8:i -> gaussian:i [style="solid",color="black",label=""
+,headlabel=<<TABLE BORDER="0" CELLPADDING="2"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
+</TD></TR></TABLE>>
+,taillabel=<<TABLE BORDER="0" CELLPADDING="2"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
+</TD></TR></TABLE>>]
+
+gaussian:i -> to_rgba:i [style="solid",color="black",label=""
+,headlabel=<<TABLE BORDER="0" CELLPADDING="2"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >614400</FONT>
+</TD></TR></TABLE>>
+,taillabel=<<TABLE BORDER="0" CELLPADDING="2"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >614400</FONT>
+</TD></TR></TABLE>>]
+
+to_rgba:i -> display1:i [style="solid",color="black",label=""
+,headlabel=<<TABLE BORDER="0" CELLPADDING="2"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >1228800</FONT>
+</TD></TR></TABLE>>
+,taillabel=<<TABLE BORDER="0" CELLPADDING="2"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >1228800</FONT>
+</TD></TR></TABLE>>]
+
+to_gray8:i -> gaussian_cv:i [style="solid",color="black",label=""
+,headlabel=<<TABLE BORDER="0" CELLPADDING="2"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
+</TD></TR></TABLE>>
+,taillabel=<<TABLE BORDER="0" CELLPADDING="2"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
+</TD></TR></TABLE>>]
+
+gaussian_cv:i -> to_rgba_cv:i [style="solid",color="black",label=""
+,headlabel=<<TABLE BORDER="0" CELLPADDING="2"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
+</TD></TR></TABLE>>
+,taillabel=<<TABLE BORDER="0" CELLPADDING="2"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
+</TD></TR></TABLE>>]
+
+to_rgba_cv:i -> display2:i [style="solid",color="black",label=""
+,headlabel=<<TABLE BORDER="0" CELLPADDING="2"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >1228800</FONT>
+</TD></TR></TABLE>>
+,taillabel=<<TABLE BORDER="0" CELLPADDING="2"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >1228800</FONT>
+</TD></TR></TABLE>>]
+
+
+}

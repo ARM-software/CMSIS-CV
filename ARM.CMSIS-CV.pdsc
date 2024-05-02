@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.7.27" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.27/schema/PACK.xsd">
+  <name>CMSIS-CV</name>
+  <description>CMSIS Compute Vision Library</description>
+  <vendor>ARM</vendor>
+  <license>LICENSE</license>
+  <licenseSets>
+    <licenseSet id="all" default="true" gating="true">
+      <license name="LICENSE" title="Apache 2.0 open-source license" spdx="Apache-2.0"/>
+    </licenseSet>
+  </licenseSets>
+  <url>https://www.keil.com/pack/</url>
+  <repository type="git">https://github.com/ARM-software/CMSIS-CV.git</repository>
+
+  <releases>
+    <release version="0.0.0">
+      Active development ...
+    </release>
+  </releases>
+
+ 
+  <!-- conditions are dependency rules that can apply to a component or an individual file -->
+  <conditions>
+   
+   
+    <!-- CMSIS -->
+    <condition id="CMSISCORE">
+      <description>Components required for CMSIS Core</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- CMSIS-CV component -->
+    <component Cclass="CMSIS" Cgroup="CV" Cvariant="Source"  Cversion="0.0.0" isDefaultVariant="true" condition="CMSISCORE">
+      <description>CMSIS-CV Library for Cortex-M and Cortex-A</description>
+      <files>
+        <!-- CPU independent -->
+        <file category="doc"      name="Documentation/html/index.html"/>
+        <file category="header"   name="Include/arm_cv.h"/>
+        <file category="header"   name="Include/arm_cv_types.h"/>
+
+        <file category="include"  name="Include/"/>
+
+        <!-- CV sources (core) -->
+        <file category="source"   name="Source/cannysobel.c"/>
+        <file category="source"   name="Source/gaussian.c"/>
+      </files>
+    </component>
+
+  </components>
+
+
+</package>

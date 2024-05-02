@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title> Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        video {
+            position: absolute;
+            visibility: hidden;
+        }
+        
+        .section {
+            border: 0px;
+            padding-left: 10;
+            padding-right: 10;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: 660;
+        }
+
+        .algoTitle {
+            font-size:20px;
+            font-weight:bold;
+        }
+
+        .gui {
+            display: block;
+            padding-left: 10;
+            padding-right: 10;
+            margin-left: auto;
+            margin-right: auto;
+            min-width: 200px;
+            min-height: 100px;
+        }
+
+        
+        canvas {
+            border: 0px solid gray;
+        }
+        
+        button {
+            color: #fff;
+            background-color: #6496c8;
+            border: none;
+            border-radius: 5px;
+            display: inline-block;
+            min-width: 50px;
+            width: 80px;
+            padding: 5px 10px;
+        }
+
+        h1 {
+            background-color: #999999;
+        }
+
+        h2 {
+            background-color: #CCCCCC;
+        }
+
+        h3 {
+            background-color: #CCCCFF;
+        }
+
+        td {
+padding-right: 10px;
+        }
+
+    </style>
+    <script src="../smoothie.js"></script>
+    <script src="../dat.gui.min.js"></script>
+    <script src='uiconfig.js'></script>
+    <script src='../cv.js'></script>
+</head>
+
+<body>
+<h1>Computer Vision on Cortex-M </h1>
+
+    
+    <h2>Feature Detection</h2>
+    
+
+    
+    <h3>Canny Edge</h3>
+    <h4>Horizontal Layout<h4>
+    <ul>
+        <li><a href="canny_edge/index_horizontal.html">CMSIS-CV only</a></li>
+
+        <li><a href="canny_edge/index_horizontal_ocv.html">CMSIS-CV and OpenCV</a></li>
+
+    </ul>
+    <h4>Vertical Layout<h4>
+    <ul>
+        <li><a href="canny_edge/index.html">CMSIS-CV only</a></li>
+
+        <li><a href="canny_edge/index_ocv.html">CMSIS-CV and OpenCV</a></li>
+
+    </ul>
+    
+
+    
+    <h2>Linear Filter</h2>
+    
+
+    
+    <h3>Gaussian Filter</h3>
+    <h4>Horizontal Layout<h4>
+    <ul>
+        <li><a href="gaussian/index_horizontal.html">CMSIS-CV only</a></li>
+
+        <li><a href="gaussian/index_horizontal_ocv.html">CMSIS-CV and OpenCV</a></li>
+
+    </ul>
+    <h4>Vertical Layout<h4>
+    <ul>
+        <li><a href="gaussian/index.html">CMSIS-CV only</a></li>
+
+        <li><a href="gaussian/index_ocv.html">CMSIS-CV and OpenCV</a></li>
+
+    </ul>
+    
+
+
+</body>
+
+</html>

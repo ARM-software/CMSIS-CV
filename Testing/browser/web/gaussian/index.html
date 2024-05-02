@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Gaussian Filter Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        video {
+            position: absolute;
+            visibility: hidden;
+        }
+        
+        .section {
+            border: 0px;
+            padding-left: 10;
+            padding-right: 10;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: 320;
+        }
+
+        .algoTitle {
+            font-size:20px;
+            font-weight:bold;
+        }
+
+        .gui {
+            display: block;
+            padding-left: 10;
+            padding-right: 10;
+            margin-left: auto;
+            margin-right: auto;
+            min-width: 200px;
+            min-height: 100px;
+        }
+
+        
+        canvas {
+            border: 0px solid gray;
+        }
+        
+        button {
+            color: #fff;
+            background-color: #6496c8;
+            border: none;
+            border-radius: 5px;
+            display: inline-block;
+            min-width: 50px;
+            width: 80px;
+            padding: 5px 10px;
+        }
+
+        td {
+padding-right: 10px;
+        }
+
+    </style>
+    <script src="../smoothie.js"></script>
+    <script src="../dat.gui.min.js"></script>
+    <script src='uiconfig.js'></script>
+    <script src='../cv.js'></script>
+</head>
+
+<body>
+    <h1>Computer Vision on Cortex-M </h1>
+    <p><a href="https://github.com/ARM-software/CMSIS-Stream">CMSIS-Stream</a> + <a href="https://github.com/ARM-software/CMSIS-DSP">CMSIS-DSP</a> + some computer vision kernels running in the browser.</p>
+    <p>Computer visions kernels are the ones developed by the team and <a href="https://opencv.org">OpenCV</a> ones for testing and comparison.</p>
+
+    <p>The same <a href="https://github.com/ARM-software/CMSIS-Stream">CMSIS-Stream</a> graph (without OpenCV) can run on the Seeed Grove AI 2 board.</p>
+    <h2>CMSIS-Stream graph running in this demo</h2>
+    <a href="cv.svg"><img src="cv.svg" width="100%" /></a>
+    <h2>Live stream</h2>
+    <table cellpadding="0" cellspacing="0"  border="0">
+    <tr>
+        <td class="section"> 
+            <video id='vid'></video>
+            <canvas id='mycanvas1'></canvas>
+        </td>
+
+    </tr>
+    
+    <tr>
+        <td class="section"> 
+            <div>
+            <label>Frame composition time in ms: </label>
+             </div>
+            <output id='updatetime' name='updatetime'></output>
+            <canvas id="chart" width="320" height="100"></canvas>
+
+        </td>
+        <td></td>
+    </tr>
+</table>
+
+
+<!--
+    <script type='text/javascript'>
+        var Module = {};
+        fetch('build/stream.wasm')
+            .then(response => response.arrayBuffer())
+            .then(buffer => {
+                Module.wasmBinary = buffer;
+                var script = document.createElement('script');
+                script.src = "build/stream.js";
+                script.onload = function() {
+                    console.log("Emscripten boilerplate loaded.")
+
+                }
+                document.body.appendChild(script);
+            });
+    </script>
+-->
+
+<!-- 
+To load the javascript version when no compiled to wasm
+-->
+
+<script async src="../stream.js" ></script> 
+</body>
+
+</html>

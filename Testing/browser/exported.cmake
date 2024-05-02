@@ -1,0 +1,12 @@
+set(EXPORTED 
+_malloc
+_canny_edge_init_cv
+_canny_edge_stream
+_canny_edge_ocv_init_cv
+_canny_edge_ocv_stream
+_gaussian_init_cv
+_gaussian_stream
+_gaussian_ocv_init_cv
+_gaussian_ocv_stream
+)
+
