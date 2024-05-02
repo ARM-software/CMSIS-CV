@@ -24,7 +24,7 @@ Two kind of tests are provided:
 * web : You can test the scalar versions of the kernels in the browser and compare with OpenCV.
 * board: Test framework to run on a MPS3 board
 
-For the web version, just open `Testing/browser/web/index.html` with your browser.
+For the web version, clone the repository and just open `Testing/browser/web/index.html` with your browser.
 
 
 
