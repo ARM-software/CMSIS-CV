@@ -8,16 +8,15 @@ class YUVToGray16;
 
 template<int inputSize,int outputSize>
 class YUVToGray16<int8_t,inputSize,
-               int8_t,outputSize>: 
+                  int8_t,outputSize>: 
       public GenericNode<int8_t,inputSize,
                          int8_t,outputSize>
 {
 public:
     /* Constructor needs the input and output FIFOs */
     YUVToGray16(FIFOBase<int8_t> &src,
-             FIFOBase<int8_t> &dst,int w,int h):
-    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst),
-    mW(w),mH(h){};
+                FIFOBase<int8_t> &dst):
+    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst){};
 
     /* In asynchronous mode, node execution will be 
        skipped in case of underflow on the input 
@@ -44,15 +43,13 @@ public:
 
         q15_t *gray = (q15_t*)d;
 
-        for(int32_t k=0;k<mW*mH;k++)
+        for(int32_t k=0;k<this->inputWidth()*this->inputHeight();k++)
         {
            *gray++ = ((q15_t)*yuv++) << 7;
         }
         
         return(0);
     };
-protected:
-    int mW,mH;
 };
 
 template<typename IN, int inputSize,
@@ -69,9 +66,8 @@ class YUVToGray8<int8_t,inputSize,
 public:
     /* Constructor needs the input and output FIFOs */
     YUVToGray8(FIFOBase<int8_t> &src,
-             FIFOBase<int8_t> &dst,int w,int h):
-    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst),
-    mW(w),mH(h){};
+             FIFOBase<int8_t> &dst):
+    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst){};
 
     /* In asynchronous mode, node execution will be 
        skipped in case of underflow on the input 
@@ -96,13 +92,11 @@ public:
         int8_t *yuv=this->getReadBuffer();
         int8_t *gray=this->getWriteBuffer();
 
-        memcpy(gray,yuv,mW*mH);
+        memcpy(gray,yuv,this->inputWidth()*this->inputHeight());
        
         
         return(0);
     };
-protected:
-    int mW,mH;
 };
 
 template<typename IN, int inputSize,
@@ -119,9 +113,8 @@ class Gray16ToRGB<int8_t,inputSize,
 public:
     /* Constructor needs the input and output FIFOs */
     Gray16ToRGB(FIFOBase<int8_t> &src,
-             FIFOBase<int8_t> &dst,int w,int h):
-    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst),
-    mW(w),mH(h){};
+             FIFOBase<int8_t> &dst):
+    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst){};
 
     /* In asynchronous mode, node execution will be 
        skipped in case of underflow on the input 
@@ -148,7 +141,7 @@ public:
 
         q15_t *gray = (q15_t*)g;
 
-        for(int32_t k=0;k<mW*mH;k++)
+        for(int32_t k=0;k<this->inputWidth()*this->inputHeight();k++)
         {
            int8_t v = *gray++ >> 7;
            *rgb++ = v;
@@ -158,8 +151,6 @@ public:
         
         return(0);
     };
-protected:
-    int mW,mH;
 };
 
 template<typename IN, int inputSize,
@@ -176,9 +167,8 @@ class Gray8ToRGB<int8_t,inputSize,
 public:
     /* Constructor needs the input and output FIFOs */
     Gray8ToRGB(FIFOBase<int8_t> &src,
-             FIFOBase<int8_t> &dst,int w,int h):
-    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst),
-    mW(w),mH(h){};
+             FIFOBase<int8_t> &dst):
+    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst){};
 
     /* In asynchronous mode, node execution will be 
        skipped in case of underflow on the input 
@@ -204,7 +194,7 @@ public:
         uint8_t *rgb=(uint8_t*)this->getWriteBuffer();
 
 
-        for(int32_t k=0;k<mW*mH;k++)
+        for(int32_t k=0;k<this->inputWidth()*this->inputHeight();k++)
         {
            uint8_t v = *g++;
            *rgb++ = v;
@@ -214,8 +204,6 @@ public:
         
         return(0);
     };
-protected:
-    int mW,mH;
 };
 
 
@@ -233,9 +221,8 @@ class Gray8ToRGBA<int8_t,inputSize,
 public:
     /* Constructor needs the input and output FIFOs */
     Gray8ToRGBA(FIFOBase<int8_t> &src,
-             FIFOBase<int8_t> &dst,int w,int h):
-    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst),
-    mW(w),mH(h){};
+             FIFOBase<int8_t> &dst):
+    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst){};
 
     /* In asynchronous mode, node execution will be 
        skipped in case of underflow on the input 
@@ -261,7 +248,7 @@ public:
         uint8_t *rgb=(uint8_t*)this->getWriteBuffer();
 
 
-        for(int32_t k=0;k<mW*mH;k++)
+        for(int32_t k=0;k<this->inputWidth()*this->inputHeight();k++)
         {
            uint8_t v = *g++;
            *rgb++ = v;
@@ -272,8 +259,6 @@ public:
         
         return(0);
     };
-protected:
-    int mW,mH;
 };
 
 template<typename IN, int inputSize,
@@ -290,9 +275,8 @@ class RGBAToGray8<int8_t,inputSize,
 public:
     /* Constructor needs the input and output FIFOs */
     RGBAToGray8(FIFOBase<int8_t> &src,
-             FIFOBase<int8_t> &dst,int w,int h):
-    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst),
-    mW(w),mH(h){};
+             FIFOBase<int8_t> &dst):
+    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst){};
 
     /* In asynchronous mode, node execution will be 
        skipped in case of underflow on the input 
@@ -318,7 +302,7 @@ public:
         uint8_t *dst=(uint8_t*)this->getWriteBuffer();
 
 
-        for(int32_t k=0;k<mW*mH;k++)
+        for(int32_t k=0;k<this->inputWidth()*this->inputHeight();k++)
         {
            uint8_t r = *src++;
            uint8_t b = *src++;
@@ -332,8 +316,6 @@ public:
         
         return(0);
     };
-protected:
-    int mW,mH;
 };
 
 template<typename IN, int inputSize,
@@ -350,9 +332,8 @@ class Gray16ToRGBA<int8_t,inputSize,
 public:
     /* Constructor needs the input and output FIFOs */
     Gray16ToRGBA(FIFOBase<int8_t> &src,
-             FIFOBase<int8_t> &dst,int w,int h):
-    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst),
-    mW(w),mH(h){};
+             FIFOBase<int8_t> &dst):
+    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst){};
 
     /* In asynchronous mode, node execution will be 
        skipped in case of underflow on the input 
@@ -378,7 +359,7 @@ public:
         uint8_t *rgb=(uint8_t*)this->getWriteBuffer();
 
 
-        for(int32_t k=0;k<mW*mH;k++)
+        for(int32_t k=0;k<this->inputWidth()*this->inputHeight();k++)
         {
            uint8_t v = (*g++) >> 7;
            *rgb++ = v;
@@ -389,8 +370,6 @@ public:
         
         return(0);
     };
-protected:
-    int mW,mH;
 };
 
 template<typename IN, int inputSize,
@@ -407,9 +386,8 @@ class Gray8ToGray16<int8_t,inputSize,
 public:
     /* Constructor needs the input and output FIFOs */
     Gray8ToGray16(FIFOBase<int8_t> &src,
-             FIFOBase<int8_t> &dst,int w,int h):
-    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst),
-    mW(w),mH(h){};
+             FIFOBase<int8_t> &dst):
+    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst){};
 
     /* In asynchronous mode, node execution will be 
        skipped in case of underflow on the input 
@@ -435,15 +413,13 @@ public:
         uint16_t *dst=(uint16_t*)this->getWriteBuffer();
 
 
-        for(int32_t k=0;k<mW*mH;k++)
+        for(int32_t k=0;k<this->inputWidth()*this->inputHeight();k++)
         {
            *dst++ = (uint16_t)(*src++) << 7;
         }
         
         return(0);
     };
-protected:
-    int mW,mH;
 };
 
 template<typename IN, int inputSize,
@@ -460,9 +436,8 @@ class Gray16ToGray8<int8_t,inputSize,
 public:
     /* Constructor needs the input and output FIFOs */
     Gray16ToGray8(FIFOBase<int8_t> &src,
-             FIFOBase<int8_t> &dst,int w,int h):
-    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst),
-    mW(w),mH(h){};
+             FIFOBase<int8_t> &dst):
+    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst){};
 
     /* In asynchronous mode, node execution will be 
        skipped in case of underflow on the input 
@@ -488,13 +463,11 @@ public:
         uint8_t *dst=(uint8_t*)this->getWriteBuffer();
 
 
-        for(int32_t k=0;k<mW*mH;k++)
+        for(int32_t k=0;k<this->inputWidth()*this->inputHeight();k++)
         {
            *dst++ = *src++ >> 7;
         }
         
         return(0);
     };
-protected:
-    int mW,mH;
 };

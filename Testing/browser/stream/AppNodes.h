@@ -53,6 +53,12 @@ protected:
      IN2 * getReadBuffer2(int nb = inputSize2) {return mSrc2.getReadBuffer(nb);};
      bool willUnderflow2(int nb = inputSize2) const {return mSrc2.willUnderflowWith(nb);};
 
+     int input1Width()  const  {return mSrc1.width();};
+     int input1Height() const  {return mSrc1.height();};
+
+     int input2Width()  const  {return mSrc2.width();};
+     int input2Height() const  {return mSrc2.height();};
+
 private:
     FIFOBase<IN1> &mSrc1;
     FIFOBase<IN2> &mSrc2;
@@ -70,8 +76,8 @@ public:
     // the input FIFO (coming from the generated scheduler).
     // This FIFO is passed to the GenericSink contructor.
     // Implementation of this Sink constructor is doing nothing
-    WebDisplay(FIFOBase<int8_t> &src,uint32_t w,uint32_t h):
-    GenericSink<int8_t,inputSize>(src),mW(w),mH(h){};
+    WebDisplay(FIFOBase<int8_t> &src):
+    GenericSink<int8_t,inputSize>(src){};
 
     // Used in asynchronous mode. In case of underflow on
     // the input, the execution of this node will be skipped
@@ -92,8 +98,6 @@ public:
         
         return(0);
     };
-protected:
-     uint32_t mW,mH;
 };
 
 template<typename OUT,int outputSize>
@@ -103,8 +107,8 @@ template<int outputSize>
 class WebCamera<int8_t, outputSize>: public GenericSource<int8_t,outputSize>
 {
 public:
-    WebCamera(FIFOBase<int8_t> &dst,uint32_t w,uint32_t h):
-    GenericSource<int8_t,outputSize>(dst),mW(w),mH(h){};
+    WebCamera(FIFOBase<int8_t> &dst):
+    GenericSource<int8_t,outputSize>(dst){};
 
     int prepareForRunning() final
     {
@@ -126,8 +130,6 @@ public:
 
         return(0);
     };
-protected:
-     uint32_t mW,mH;
 };
 
 template<typename IN, int inputSize,
@@ -142,9 +144,9 @@ class Copy<IN,ioSize,
 public:
     /* Constructor needs the input and output FIFOs */
     Copy(FIFOBase<IN> &src,
-             FIFOBase<IN> &dst,uint32_t w,uint32_t h):
+             FIFOBase<IN> &dst):
     GenericNode<IN,ioSize,
-                IN,ioSize>(src,dst),mW(w),mH(h){};
+                IN,ioSize>(src,dst){};
 
     /* In asynchronous mode, node execution will be 
        skipped in case of underflow on the input 
@@ -169,11 +171,9 @@ public:
         IN *a=this->getReadBuffer();
         IN *b=this->getWriteBuffer();
 
-        memcpy(b,a,sizeof(IN)*mW*mH);
+        memcpy(b,a,sizeof(IN)*this->inputWidth()*this->inputHeight());
 
         return(0);
     };
-protected:
-     uint32_t mW,mH;
 };
 #endif

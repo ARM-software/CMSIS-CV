@@ -13,8 +13,6 @@ class GaussianFilter(GenericNode):
 
         self.addInput("i",src_t,src_t._nb_bytes)
         self.addOutput("o",dst_t,dst_t._nb_bytes)
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
 
         if not config:
             self._paramBlock = 0

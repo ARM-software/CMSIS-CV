@@ -33,6 +33,19 @@ extern "C"
 {
 #endif
 
+typedef uint8_t gray8_t;
+typedef uint16_t gray16_t;
+typedef uint8_t packed_rgb888_t;
+typedef uint32_t rgba_t;
+
+
+/**
+ * Generic CV image type
+ */
+typedef struct _arm_cv_image {
+  uint16_t width;
+  uint16_t height;
+} arm_cv_image_t;
 
 /**
  * @brief   Structure for a grayscale 8
@@ -43,10 +56,52 @@ extern "C"
  *
  */
 typedef struct _arm_cv_image_gray8 {
-  uint8_t* pData;
   uint16_t width;
   uint16_t height;
+  gray8_t* pData;
 } arm_cv_image_gray8_t;
+
+/**
+ * @brief   Structure for a grayscale 16
+ * @param   width     image width in pixels
+ * @param   height    image height in pixels
+ * @param   pData     pointer to the array containing the data for the pixels
+ * @return 
+ *
+ */
+typedef struct _arm_cv_image_gray16 {
+  uint16_t width;
+  uint16_t height;
+  gray16_t* pData;
+} arm_cv_image_gray16_t;
+
+/**
+ * @brief   Structure for a packed RGB888 image
+ * @param   width     image width in pixels
+ * @param   height    image height in pixels
+ * @param   pData     pointer to the array containing the data for the pixels
+ * @return 
+ *
+ */
+typedef struct _arm_cv_image_rgb888 {
+  uint16_t width;
+  uint16_t height;
+  packed_rgb888_t* pData;
+} arm_cv_image_rgb888_t;
+
+/**
+ * @brief   Structure for a RGBA image
+ * @param   width     image width in pixels
+ * @param   height    image height in pixels
+ * @param   pData     pointer to the array containing the data for the pixels
+ * @return 
+ *
+ */
+typedef struct _arm_cv_image_rgba {
+  uint16_t width;
+  uint16_t height;
+  rgba_t* pData;
+} arm_cv_image_rgba_t;
 
 /**
  * @brief   Structure for a q15 image
@@ -57,9 +112,9 @@ typedef struct _arm_cv_image_gray8 {
  *
  */
 typedef struct _arm_cv_image_q15 {
-  q15_t* pData;
   uint16_t width;
   uint16_t height;
+  q15_t* pData;
 } arm_cv_image_q15_t;
 
 /**
@@ -82,9 +137,9 @@ typedef struct _arm_cv_gradient_q15 {
  *
  */
 typedef struct _arm_cv_image_grad_q15 {
-  arm_cv_gradient_q15_t* pData;
   uint16_t width;
   uint16_t height;
+  arm_cv_gradient_q15_t* pData;
 } arm_cv_image_gradient_q15_t;
 
 

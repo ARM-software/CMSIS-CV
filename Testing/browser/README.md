@@ -38,5 +38,20 @@ OpenCV_DIR must point to the cmake folder inside the opencv that is inside this 
 
 You should have new `stream.js` generated in `build` and copied to `web`.
 
+## Creating new examples:
 
+Check latest version (at least `v.1.14.0`) of CMSIS-Stream is installed:
 
+```shell
+pip install cmsis-stream
+```
+
+Type
+
+```shell
+python create_web.py
+```
+
+to regenerate the examples. (You need to rebuild after this)
+
+To see how to add a new example, look at the `README` in `stream/tests/template`

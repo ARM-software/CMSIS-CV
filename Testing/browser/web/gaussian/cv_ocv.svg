@@ -30,9 +30,9 @@
 <title>camera:i&#45;&gt;to_gray8:i</title>
 <path fill="none" stroke="black" d="M96.6,-59.25C132.2,-59.25 183.04,-59.25 222.44,-59.25"/>
 <polygon fill="black" stroke="black" points="222.15,-61 227.15,-59.25 222.15,-57.5 222.15,-61"/>
-<text text-anchor="start" x="122.75" y="-62.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_640_480</text>
-<text text-anchor="start" x="180.66" y="-41.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">1228800</text>
-<text text-anchor="start" x="102.6" y="-41.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">1228800</text>
+<text text-anchor="start" x="122.75" y="-62.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_320_240</text>
+<text text-anchor="start" x="186.66" y="-41.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<text text-anchor="start" x="102.6" y="-41.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 </g>
 <!-- display1 -->
 <g id="node2" class="node">
@@ -68,8 +68,8 @@
 <title>dup0&#45;&gt;gaussian:i</title>
 <path fill="none" stroke="black" d="M471.31,-59.55C474.12,-60.38 482.24,-62.74 489.1,-64.25 527.98,-72.81 572.25,-80.5 606.05,-85.96"/>
 <polygon fill="black" stroke="black" points="605.53,-87.65 610.75,-86.71 606.09,-84.19 605.53,-87.65"/>
-<text text-anchor="start" x="489.1" y="-83.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_640_480</text>
-<text text-anchor="start" x="570.24" y="-69.55" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<text text-anchor="start" x="489.1" y="-83.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
+<text text-anchor="start" x="576.24" y="-69.55" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 </g>
 <!-- gaussian_cv -->
 <g id="node6" class="node">
@@ -84,8 +84,8 @@
 <title>dup0&#45;&gt;gaussian_cv:i</title>
 <path fill="none" stroke="black" d="M471.27,-58.63C473.98,-56.94 481.87,-52.22 489.1,-50 523.29,-39.52 562.75,-33.65 595.18,-30.37"/>
 <polygon fill="black" stroke="black" points="595.25,-32.12 600.06,-29.89 594.91,-28.64 595.25,-32.12"/>
-<text text-anchor="start" x="489.1" y="-53.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_640_480</text>
-<text text-anchor="start" x="559.57" y="-12.35" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<text text-anchor="start" x="489.1" y="-53.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
+<text text-anchor="start" x="565.57" y="-12.35" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 </g>
 <!-- to_rgba -->
 <g id="node8" class="node">
@@ -100,9 +100,9 @@
 <title>gaussian:i&#45;&gt;to_rgba:i</title>
 <path fill="none" stroke="black" d="M710.51,-94.25C752.45,-94.25 813.63,-94.25 859.53,-94.25"/>
 <polygon fill="black" stroke="black" points="859.39,-96 864.39,-94.25 859.39,-92.5 859.39,-96"/>
-<text text-anchor="start" x="747.6" y="-97.1" font-family="Times New Roman,serif" font-size="12.00">GRAY16_640_480</text>
-<text text-anchor="start" x="823.9" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">614400</text>
-<text text-anchor="start" x="716.51" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">614400</text>
+<text text-anchor="start" x="747.6" y="-97.1" font-family="Times New Roman,serif" font-size="12.00">GRAY16_320_240</text>
+<text text-anchor="start" x="823.9" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">153600</text>
+<text text-anchor="start" x="716.51" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">153600</text>
 </g>
 <!-- to_rgba_cv -->
 <g id="node9" class="node">
@@ -117,35 +117,35 @@
 <title>gaussian_cv:i&#45;&gt;to_rgba_cv:i</title>
 <path fill="none" stroke="black" d="M721.53,-26.25C763.9,-26.25 820.76,-26.25 863.23,-26.25"/>
 <polygon fill="black" stroke="black" points="863.14,-28 868.14,-26.25 863.14,-24.5 863.14,-28"/>
-<text text-anchor="start" x="750.6" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_640_480</text>
-<text text-anchor="start" x="827.65" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
-<text text-anchor="start" x="727.53" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<text text-anchor="start" x="750.6" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
+<text text-anchor="start" x="833.65" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<text text-anchor="start" x="727.53" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 </g>
 <!-- to_gray8&#45;&gt;dup0 -->
 <g id="edge6" class="edge">
 <title>to_gray8:i&#45;&gt;dup0</title>
 <path fill="none" stroke="black" d="M337.13,-59.25C381.47,-59.25 440.47,-59.25 460.94,-59.25"/>
 <polygon fill="black" stroke="black" points="460.68,-61 465.68,-59.25 460.68,-57.5 460.68,-61"/>
-<text text-anchor="start" x="363.25" y="-62.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_640_480</text>
-<text text-anchor="start" x="343.13" y="-41.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<text text-anchor="start" x="363.25" y="-62.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
+<text text-anchor="start" x="343.13" y="-41.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 </g>
 <!-- to_rgba&#45;&gt;display1 -->
 <g id="edge3" class="edge">
 <title>to_rgba:i&#45;&gt;display1:i</title>
 <path fill="none" stroke="black" d="M981.33,-94.25C1019.77,-94.25 1070.12,-94.25 1106.9,-94.25"/>
 <polygon fill="black" stroke="black" points="1106.63,-96 1111.63,-94.25 1106.63,-92.5 1106.63,-96"/>
-<text text-anchor="start" x="1007.6" y="-97.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_640_480</text>
-<text text-anchor="start" x="1065.14" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">1228800</text>
-<text text-anchor="start" x="987.33" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">1228800</text>
+<text text-anchor="start" x="1007.6" y="-97.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_320_240</text>
+<text text-anchor="start" x="1071.14" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<text text-anchor="start" x="987.33" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 </g>
 <!-- to_rgba_cv&#45;&gt;display2 -->
 <g id="edge5" class="edge">
 <title>to_rgba_cv:i&#45;&gt;display2:i</title>
 <path fill="none" stroke="black" d="M978.1,-26.25C1016.95,-26.25 1069.18,-26.25 1107.01,-26.25"/>
 <polygon fill="black" stroke="black" points="1106.91,-28 1111.91,-26.25 1106.91,-24.5 1106.91,-28"/>
-<text text-anchor="start" x="1007.6" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_640_480</text>
-<text text-anchor="start" x="1065.42" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">1228800</text>
-<text text-anchor="start" x="984.1" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">1228800</text>
+<text text-anchor="start" x="1007.6" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_320_240</text>
+<text text-anchor="start" x="1071.42" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<text text-anchor="start" x="984.1" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 </g>
 </g>
 </svg>

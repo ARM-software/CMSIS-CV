@@ -200,11 +200,11 @@ void free_buffer_cv_canny_edge_scheduler(unsigned char * src,
 
 
 typedef struct {
-FIFO<int8_t,FIFOSIZE0,1,0> *fifo0;
-FIFO<int8_t,FIFOSIZE1,1,0> *fifo1;
-FIFO<int8_t,FIFOSIZE2,1,0> *fifo2;
-FIFO<int8_t,FIFOSIZE3,1,0> *fifo3;
-FIFO<int8_t,FIFOSIZE4,1,0> *fifo4;
+ImageFIFO<int8_t,FIFOSIZE0,1,0> *fifo0;
+ImageFIFO<int8_t,FIFOSIZE1,1,0> *fifo1;
+ImageFIFO<int8_t,FIFOSIZE2,1,0> *fifo2;
+ImageFIFO<int8_t,FIFOSIZE3,1,0> *fifo3;
+ImageFIFO<int8_t,FIFOSIZE4,1,0> *fifo4;
 } fifos_t;
 
 typedef struct {
@@ -232,59 +232,59 @@ int init_cv_canny_edge_scheduler(unsigned char * src,
 init_cb_state();
 
     CG_BEFORE_FIFO_INIT;
-    fifos.fifo0 = new FIFO<int8_t,FIFOSIZE0,1,0>(src);
+    fifos.fifo0 = new ImageFIFO<int8_t,FIFOSIZE0,1,0>(src,0,320,240);
     if (fifos.fifo0==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    fifos.fifo1 = new FIFO<int8_t,FIFOSIZE1,1,0>(buffers.buf1);
+    fifos.fifo1 = new ImageFIFO<int8_t,FIFOSIZE1,1,0>(buffers.buf1,0,320,240);
     if (fifos.fifo1==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    fifos.fifo2 = new FIFO<int8_t,FIFOSIZE2,1,0>(buffers.buf0);
+    fifos.fifo2 = new ImageFIFO<int8_t,FIFOSIZE2,1,0>(buffers.buf0,0,320,240);
     if (fifos.fifo2==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    fifos.fifo3 = new FIFO<int8_t,FIFOSIZE3,1,0>(buffers.buf1);
+    fifos.fifo3 = new ImageFIFO<int8_t,FIFOSIZE3,1,0>(buffers.buf1,0,320,240);
     if (fifos.fifo3==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    fifos.fifo4 = new FIFO<int8_t,FIFOSIZE4,1,0>(dst1);
+    fifos.fifo4 = new ImageFIFO<int8_t,FIFOSIZE4,1,0>(dst1,0,320,240);
     if (fifos.fifo4==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
 
     CG_BEFORE_NODE_INIT;
-    nodes.camera = new WebCamera<int8_t,307200>(*(fifos.fifo0),320,240);
+    nodes.camera = new WebCamera<int8_t,307200>(*(fifos.fifo0));
     if (nodes.camera==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.canny = new CannyEdge<int8_t,153600,int8_t,153600>(*(fifos.fifo2),*(fifos.fifo3),320,240,params1);
+    nodes.canny = new CannyEdge<int8_t,153600,int8_t,153600>(*(fifos.fifo2),*(fifos.fifo3),params1);
     if (nodes.canny==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.display1 = new WebDisplay<int8_t,307200>(*(fifos.fifo4),320,240);
+    nodes.display1 = new WebDisplay<int8_t,307200>(*(fifos.fifo4));
     if (nodes.display1==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.gaussian = new GaussianFilter<int8_t,76800,int8_t,153600>(*(fifos.fifo1),*(fifos.fifo2),320,240);
+    nodes.gaussian = new GaussianFilter<int8_t,76800,int8_t,153600>(*(fifos.fifo1),*(fifos.fifo2));
     if (nodes.gaussian==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.to_gray8 = new RGBAToGray8<int8_t,307200,int8_t,76800>(*(fifos.fifo0),*(fifos.fifo1),320,240);
+    nodes.to_gray8 = new RGBAToGray8<int8_t,307200,int8_t,76800>(*(fifos.fifo0),*(fifos.fifo1));
     if (nodes.to_gray8==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.to_rgba = new Gray16ToRGBA<int8_t,153600,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4),320,240);
+    nodes.to_rgba = new Gray16ToRGBA<int8_t,153600,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
     if (nodes.to_rgba==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);

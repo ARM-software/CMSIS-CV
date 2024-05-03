@@ -12,8 +12,6 @@ class YUVToRGB(GenericNode):
 
         self.addInput("i",src_t,src_t._nb_bytes)
         self.addOutput("o",dst_t,dst_t._nb_bytes)
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
 
     def __call__(self, i):
         g,n = i 
@@ -35,8 +33,6 @@ class YUVToGray16(GenericNode):
 
         self.addInput("i",src_t,src_t._nb_bytes)
         self.addOutput("o",dst_t,dst_t._nb_bytes)
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
 
     def __call__(self, i):
         g,n = i 
@@ -58,8 +54,6 @@ class YUVToGray8(GenericNode):
 
         self.addInput("i",src_t,src_t._nb_bytes)
         self.addOutput("o",dst_t,dst_t._nb_bytes)
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
 
     def __call__(self, i):
         g,n = i 
@@ -82,8 +76,6 @@ class Gray16ToRGB(GenericNode):
 
         self.addInput("i",src_t,src_t._nb_bytes)
         self.addOutput("o",dst_t,dst_t._nb_bytes)
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
 
     def __call__(self, i):
         g,n = i 
@@ -105,8 +97,6 @@ class Gray8ToRGB(GenericNode):
 
         self.addInput("i",src_t,src_t._nb_bytes)
         self.addOutput("o",dst_t,dst_t._nb_bytes)
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
 
     def __call__(self, i):
         g,n = i 
@@ -128,8 +118,6 @@ class Gray8ToGray16(GenericNode):
 
         self.addInput("i",src_t,src_t._nb_bytes)
         self.addOutput("o",dst_t,dst_t._nb_bytes)
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
 
     def __call__(self, i):
         g,n = i 
@@ -151,8 +139,6 @@ class Gray16ToGray8(GenericNode):
 
         self.addInput("i",src_t,src_t._nb_bytes)
         self.addOutput("o",dst_t,dst_t._nb_bytes)
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
 
     def __call__(self, i):
         g,n = i 
@@ -174,8 +160,6 @@ class Gray8ToRGBA(GenericNode):
 
         self.addInput("i",src_t,src_t._nb_bytes)
         self.addOutput("o",dst_t,dst_t._nb_bytes)
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
 
     def __call__(self, i):
         g,n = i 
@@ -197,8 +181,6 @@ class Gray16ToRGBA(GenericNode):
 
         self.addInput("i",src_t,src_t._nb_bytes)
         self.addOutput("o",dst_t,dst_t._nb_bytes)
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
 
     def __call__(self, i):
         g,n = i 
@@ -220,8 +202,6 @@ class RGBAToGray8(GenericNode):
 
         self.addInput("i",src_t,src_t._nb_bytes)
         self.addOutput("o",dst_t,dst_t._nb_bytes)
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
 
     def __call__(self, i):
         g,n = i 

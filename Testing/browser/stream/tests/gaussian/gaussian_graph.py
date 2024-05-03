@@ -12,10 +12,8 @@ from ...appnodes import *
 def mk_gaussian(W=640,H=480,OPENCV=True):
 
     the_graph = Graph()
+    the_graph.defaultFIFOClass  = ImageFIFO
 
-    W=640 
-    H=480
-    
     image_t = CImageType(W,H,t=CImageType.RGBA)
     
     camera=WebCamera("camera",W,H)

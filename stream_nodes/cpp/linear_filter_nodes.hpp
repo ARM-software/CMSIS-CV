@@ -16,10 +16,8 @@ class GaussianFilter<int8_t,inputSize,
 public:
     /* Constructor needs the input and output FIFOs */
     GaussianFilter(FIFOBase<int8_t> &src,
-                FIFOBase<int8_t> &dst,
-                int w,int h):
-    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst),
-    mW(w),mH(h){};
+                FIFOBase<int8_t> &dst):
+    GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst){};
 
     /* In asynchronous mode, node execution will be 
        skipped in case of underflow on the input 
@@ -47,12 +45,12 @@ public:
         arm_cv_image_gray8_t src;
         arm_cv_image_q15_t dst;
 
-        src.height=mH;
-        src.width=mW;
+        src.height=this->inputHeight();
+        src.width=this->inputWidth();
         src.pData = (uint8_t*)i;
 
-        dst.height=mH;
-        dst.width=mW;
+        dst.height=this->inputHeight();
+        dst.width=this->inputWidth();
         dst.pData = (q15_t*)o;
         
         arm_gaussian_filter_3x3_fixp(&src,&dst);
@@ -60,7 +58,5 @@ public:
         
         return(0);
     };
-protected:
-    int mW,mH;
    
 };

@@ -6,14 +6,13 @@ from nodes import *
 
 from .opencv_nodes import *
 
+
 class WebDisplay(GenericSink):
     def __init__(self,name,w,h,buf="dst1"):
         GenericSink.__init__(self,name,identified=False)
         src_t = CImageType(w,h,CImageType.RGBA)
         self.addInput("i",src_t,src_t._nb_bytes)
 
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
         self.i.setBufferConstraint(name=f"{buf}",mustBeArray=True,assignedByNode=False)
 
     def __call__(self, i):
@@ -53,8 +52,6 @@ class WebCamera(GenericSource):
         self.addOutput("o",dst_t,dst_t._nb_bytes)
         self.o.setBufferConstraint(name="src",mustBeArray=True,assignedByNode=False)
 
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
 
     def __call__(self,g):
         return(g,self)
@@ -71,8 +68,6 @@ class Copy(GenericNode):
         self.addInput("i",dst_t,dst_t._nb_bytes)
         self.addOutput("o",dst_t,dst_t._nb_bytes)
 
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
 
     def __call__(self, i):
         g,n = i 

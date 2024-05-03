@@ -114,31 +114,53 @@ public:
     virtual int nbSamplesInFIFO() const = 0;
     virtual int nbOfFreeSamplesInFIFO() const = 0;
 
+    /*
+
+    New API for the vision use case. Those APIs are new
+    compared to the standard FIFOBase class.
+
+    */
+    virtual int width() const = 0;
+    virtual int height() const = 0;
+
 };
 
 template<typename T, int length, int isArray=0, int isAsync = 0>
-class FIFO;
+class ImageFIFO;
 
-/* Real FIFO, Synchronous */
+/* Real ImageFIFO, Synchronous */
 template<typename T, int length>
-class FIFO<T,length,0,0>: public FIFOBase<T> 
+class ImageFIFO<T,length,0,0>: public FIFOBase<T> 
 {
     public:
-        explicit FIFO(T *buffer,int delay=0):mBuffer(buffer),readPos(0),writePos(delay) {};
+        explicit ImageFIFO(T *buffer,int delay,const uint32_t w,const uint32_t h):
+        mBuffer(buffer),
+        readPos(0),
+        writePos(delay),
+        mWidth(w),
+        mHeight(h) {};
         
         /* Constructor used for memory sharing optimization.
            The buffer is a shared memory wrapper */
-        explicit FIFO(void *buffer,int delay=0):mBuffer((T*)buffer),readPos(0),writePos(delay) {};
+        explicit ImageFIFO(void *buffer,int delay,const uint32_t w,const uint32_t h):
+        mBuffer((T*)buffer),
+        readPos(0),
+        writePos(delay),
+        mWidth(w),
+        mHeight(h) {};
 
         void setBuffer(T *buffer){mBuffer = buffer;};
 
+        int width()  const final {return mWidth;};
+        int height() const final {return mHeight;};
+
         /* 
-        FIFO are fixed and not made to be copied or moved.
+        ImageFIFO are fixed and not made to be copied or moved.
         */
-        FIFO(const FIFO&) = delete;
-        FIFO(FIFO&&) = delete;
-        FIFO& operator=(const FIFO&) = delete;
-        FIFO& operator=(FIFO&&) = delete;
+        ImageFIFO(const ImageFIFO&) = delete;
+        ImageFIFO(ImageFIFO&&) = delete;
+        ImageFIFO& operator=(const ImageFIFO&) = delete;
+        ImageFIFO& operator=(ImageFIFO&&) = delete;
 
         bool willUnderflowWith(int nb) const final 
         {
@@ -206,32 +228,42 @@ class FIFO<T,length,0,0>: public FIFOBase<T>
     protected:
         T * mBuffer;
         int readPos,writePos;
+        const uint32_t mWidth,mHeight;
 };
 
 /* Buffer, Synchronous */
 template<typename T, int length>
-class FIFO<T,length,1,0>: public FIFOBase<T> 
+class ImageFIFO<T,length,1,0>: public FIFOBase<T> 
 {
     public:
-        /* No delay argument for this version of the FIFO.
-           This version will not be generated when there is a delay
+        /* 
+         Delay not used and always called with delay 0
         */
-        explicit FIFO(T *buffer):mBuffer(buffer) {};
-        explicit FIFO(void *buffer):mBuffer((T*)buffer) {};
+        explicit ImageFIFO(T *buffer,int, const uint32_t w,const uint32_t h):
+        mBuffer(buffer),
+        mWidth(w),
+        mHeight(h) {};
+        explicit ImageFIFO(void *buffer,int, const uint32_t w,const uint32_t h):
+        mBuffer((T*)buffer),
+        mWidth(w),
+        mHeight(h) {};
 
         void setBuffer(T *buffer){mBuffer = buffer;};
 
+        int width()  const final {return mWidth;};
+        int height() const final {return mHeight;};
+
         /* 
-        FIFO are fixed and not made to be copied or moved.
+        ImageFIFO are fixed and not made to be copied or moved.
         */
-        FIFO(const FIFO&) = delete;
-        FIFO(FIFO&&) = delete;
-        FIFO& operator=(const FIFO&) = delete;
-        FIFO& operator=(FIFO&&) = delete;
+        ImageFIFO(const ImageFIFO&) = delete;
+        ImageFIFO(ImageFIFO&&) = delete;
+        ImageFIFO& operator=(const ImageFIFO&) = delete;
+        ImageFIFO& operator=(ImageFIFO&&) = delete;
 
         /* 
            Not used in synchronous mode 
-           and this version of the FIFO is
+           and this version of the ImageFIFO is
            never used in asynchronous mode 
            so empty functions are provided.
         */
@@ -275,25 +307,39 @@ class FIFO<T,length,1,0>: public FIFOBase<T>
 
     protected:
         T * mBuffer;
+        const uint32_t mWidth,mHeight;
 };
 
-/* Real FIFO, Asynchronous */
+/* Real ImageFIFO, Asynchronous */
 template<typename T, int length>
-class FIFO<T,length,0,1>: public FIFOBase<T> 
+class ImageFIFO<T,length,0,1>: public FIFOBase<T> 
 {
     public:
-        explicit FIFO(T *buffer,int delay=0):mBuffer(buffer),readPos(0),writePos(delay) {};
-        explicit FIFO(void *buffer,int delay=0):mBuffer((T*)buffer),readPos(0),writePos(delay) {};
+        explicit ImageFIFO(T *buffer,int delay,const uint32_t w,const uint32_t h):
+        mBuffer(buffer),
+        readPos(0),
+        writePos(delay),
+        mWidth(w),
+        mHeight(h) {};
+        explicit ImageFIFO(void *buffer,int delay,const uint32_t w,const uint32_t h):
+        mBuffer((T*)buffer),
+        readPos(0),
+        writePos(delay),
+        mWidth(w),
+        mHeight(h) {};
 
         void setBuffer(T *buffer){mBuffer = buffer;};
 
+        int width()  const final {return mWidth;};
+        int height() const final {return mHeight;};
+
         /* 
-        FIFO are fixed and not made to be copied or moved.
+        ImageFIFO are fixed and not made to be copied or moved.
         */
-        FIFO(const FIFO&) = delete;
-        FIFO(FIFO&&) = delete;
-        FIFO& operator=(const FIFO&) = delete;
-        FIFO& operator=(FIFO&&) = delete;
+        ImageFIFO(const ImageFIFO&) = delete;
+        ImageFIFO(ImageFIFO&&) = delete;
+        ImageFIFO& operator=(const ImageFIFO&) = delete;
+        ImageFIFO& operator=(ImageFIFO&&) = delete;
 
         /* 
 
@@ -369,6 +415,7 @@ class FIFO<T,length,0,1>: public FIFOBase<T>
     protected:
         T * mBuffer;
         int readPos,writePos;
+        const uint32_t mWidth,mHeight;
 };
 
 /***************
@@ -418,6 +465,12 @@ protected:
      bool willOverflow(int nb = outputSize) const {return mDst.willOverflowWith(nb);};
      bool willUnderflow(int nb = inputSize) const {return mSrc.willUnderflowWith(nb);};
 
+     int inputWidth()  const  {return mSrc.width();};
+     int inputHeight() const  {return mSrc.height();};
+
+     int outputWidth()  const  {return mDst.width();};
+     int outputHeight() const  {return mDst.height();};
+
 private:
     FIFOBase<IN> &mSrc;
     FIFOBase<OUT> &mDst;
@@ -441,6 +494,12 @@ protected:
      bool willUnderflow(int nb = inputSize) const {return mSrc.willUnderflowWith(nb);};
      bool willOverflow(int id=0,int nb = outputSize) const {return mDstList[id]->willOverflowWith(nb);};
 
+     int inputWidth()  const  {return mSrc.width();};
+     int inputHeight() const  {return mSrc.height();};
+
+     int outputWidth(int id=0)  const  {return mDstList[id]->width();};
+     int outputHeight(int id=0) const  {return mDstList[id]->height();};
+
 private:
     FIFOBase<IN> &mSrc;
     const std::vector<FIFOBase<OUT>*> mDstList;
@@ -463,6 +522,12 @@ protected:
 
      bool willUnderflow(int id=0,int nb = inputSize) const {return mSrcList[id]->willUnderflowWith(nb);};
      bool willOverflow(int nb = outputSize) const {return mDst.willOverflowWith(nb);};
+
+     int inputWidth(int id=0)  const  {return mSrcList[id]->width();};
+     int inputHeight(int id=0) const  {return mSrcList[id]->height();};
+
+     int outputWidth()  const  {return mDst.width();};
+     int outputHeight() const  {return mDst.height();};
 
 private:
     const std::vector<FIFOBase<IN>*> mSrcList;
@@ -489,6 +554,12 @@ protected:
      bool willUnderflow(int id=0,int nb = inputSize) const {return mSrcList[id]->willUnderflowWith(nb);};
      bool willOverflow(int id=0,int nb = outputSize) const {return mDstList[id]->willOverflowWith(nb);};
 
+     int inputWidth(int id=0)  const  {return mSrcList[id]->width();};
+     int inputHeight(int id=0) const  {return mSrcList[id]->height();};
+
+     int outputWidth(int id=0)  const  {return mDstList[id]->width();};
+     int outputHeight(int id=0) const  {return mDstList[id]->height();};
+
 private:
     const std::vector<FIFOBase<IN>*> mSrcList;
     const std::vector<FIFOBase<OUT>*> mDstList;
@@ -510,6 +581,15 @@ protected:
      bool willOverflow2(int nb = output2Size) const {return mDst2.willOverflowWith(nb);};
 
      bool willUnderflow(int nb = inputSize) const {return mSrc.willUnderflowWith(nb);};
+
+     int inputWidth()  const  {return mSrc.width();};
+     int inputHeight() const  {return mSrc.height();};
+
+     int output1Width()  const  {return mDst1.width();};
+     int output1Height() const  {return mDst1.height();};
+
+     int output2Width()  const  {return mDst2.width();};
+     int output2Height() const  {return mDst2.height();};
 
 private:
     FIFOBase<IN> &mSrc;
@@ -544,6 +624,18 @@ protected:
 
      bool willUnderflow(int nb = inputSize) const {return mSrc.willUnderflowWith(nb);};
 
+     int inputWidth()  const  {return mSrc.width();};
+     int inputHeight() const  {return mSrc.height();};
+
+     int output1Width()  const  {return mDst1.width();};
+     int output1Height() const  {return mDst1.height();};
+
+     int output2Width()  const  {return mDst2.width();};
+     int output2Height() const  {return mDst2.height();};
+
+     int output3Width()  const  {return mDst3.width();};
+     int output3Height() const  {return mDst3.height();};
+
 private:
     FIFOBase<IN> &mSrc;
     FIFOBase<OUT1> &mDst1;
@@ -568,6 +660,15 @@ protected:
      bool willOverflow(int nb = outputSize) const {return mDst.willOverflowWith(nb);};
      bool willUnderflow1(int nb = input1Size) const {return mSrc1.willUnderflowWith(nb);};
      bool willUnderflow2(int nb = input2Size) const {return mSrc2.willUnderflowWith(nb);};
+
+     int input1Width()  const  {return mSrc1.width();};
+     int input1Height() const  {return mSrc1.height();};
+
+     int input2Width()  const  {return mSrc2.width();};
+     int input2Height() const  {return mSrc2.height();};
+
+     int outputWidth()  const  {return mDst.width();};
+     int outputHeight() const  {return mDst.height();};
 
 private:
     FIFOBase<IN1> &mSrc1;
@@ -601,6 +702,18 @@ protected:
      bool willUnderflow2(int nb = input2Size) const {return mSrc2.willUnderflowWith(nb);};
      bool willUnderflow3(int nb = input3Size) const {return mSrc3.willUnderflowWith(nb);};
 
+     int input1Width()  const  {return mSrc1.width();};
+     int input1Height() const  {return mSrc1.height();};
+
+     int input2Width()  const  {return mSrc2.width();};
+     int input2Height() const  {return mSrc2.height();};
+
+     int input3Width()  const  {return mSrc3.width();};
+     int input3Height() const  {return mSrc3.height();};
+
+     int outputWidth()  const  {return mDst.width();};
+     int outputHeight() const  {return mDst.height();};
+
 private:
     FIFOBase<IN1> &mSrc1;
     FIFOBase<IN2> &mSrc2;
@@ -622,6 +735,10 @@ protected:
 
      bool willOverflow(int nb = outputSize) const {return mDst.willOverflowWith(nb);};
 
+
+     int outputWidth()  const  {return mDst.width();};
+     int outputHeight() const  {return mDst.height();};
+
 private:
     FIFOBase<OUT> &mDst;
 };
@@ -636,6 +753,10 @@ protected:
      IN * getReadBuffer(int nb=inputSize) {return mSrc.getReadBuffer(nb);};
 
      bool willUnderflow(int nb = inputSize) const {return mSrc.willUnderflowWith(nb);};
+
+
+     int inputWidth()  const  {return mSrc.width();};
+     int inputHeight() const  {return mSrc.height();};
 
 private:
     FIFOBase<IN> &mSrc;

@@ -1,6 +1,8 @@
 #ifndef CV_APP_SETTINGS_H
 #define CV_APP_SETTINGS_H
 
+#include <stddef.h>
+
 #ifdef   __cplusplus
 extern "C"
 {
@@ -9,7 +11,6 @@ extern "C"
 extern uint32_t g_frame_available;
 
 #define CG_MALLOC(A) malloc((A));
-
 
 #define CG_FREE(A) free((A));
 

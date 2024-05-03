@@ -12,6 +12,8 @@ from ...appnodes import *
 def mk_canny_edge(W=640,H=480,OPENCV=True):
 
     the_graph = Graph()
+    the_graph.defaultFIFOClass  = ImageFIFO
+
     
     image_t = CImageType(W,H,t=CImageType.RGBA)
     

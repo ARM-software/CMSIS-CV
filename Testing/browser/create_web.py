@@ -35,7 +35,9 @@ parser.add_argument('--height', default=240,type=int)
 args = parser.parse_args()
 
 # GenericNodes.h is created in the folder "generated"
-generateGenericNodes(".")
+# Generic nodes was customized to use different FIFO class
+# so it must not be overidden by the default version.
+#generateGenericNodes(".")
     
 # cg_status.h is created in the folder "generated"
 generateCGStatus(".")

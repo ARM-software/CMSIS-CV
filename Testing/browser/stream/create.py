@@ -11,6 +11,8 @@ from cmsis_stream.cg.scheduler import *
 
 from subprocess import run
 
+
+
 class MyStyle(Style):
         def edge_label(self,fifo,typeName,length):
             #return f"{typeName}<BR/>({length})"
@@ -61,13 +63,15 @@ def create_cv_test(the_graph,env,name,title,OPENCV=True,W=640,H=480):
     conf.bufferAllocation = True
     conf.memoryOptimization = True 
     conf.horizontal = True 
+    #conf.disableDuplicateOptimization = True
     #conf.nodeIdentification=True
     
     # Compute a static scheduling of the graph 
     # The size of FIFO is also computed
     # 
+    # 
+    # 
     
-
     
     with open(f"stream/tests/{name}/pre_schedule_cv{suffix}.dot","w") as f:
         the_graph.graphviz(f)

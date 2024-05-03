@@ -69,27 +69,29 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
     To rework. Incorrect padding.
 
     */
+   
     int x = 0;
     int y = 0;
-    for( int y =0; y < ImageIn->width; y++)
+    for( int y =0; y < ImageIn->height; y++)
 	{
-		ImageOut->pData[x*ImageOut->width +y] = ImageIn->pData[x*ImageOut->width +y] <<7;
+		ImageOut->pData[y*ImageOut->width +x] = ImageIn->pData[y*ImageOut->width +x] <<7;
 	}
 	x = ImageIn->width-1;
-	for( int y =0; y < ImageIn->width; y++)
+	for( int y =0; y < ImageIn->height; y++)
 	{
-		ImageOut->pData[x*ImageOut->width +y] = ImageIn->pData[x*ImageOut->width +y] <<7;
+		ImageOut->pData[y*ImageOut->width +x] = ImageIn->pData[y*ImageOut->width +x] <<7;
 	}
 	y=0;
 	for( int x =1; x < ImageIn->width; x++)
 	{
-		ImageOut->pData[x*ImageOut->width +y] = ImageIn->pData[x*ImageOut->width +y] <<7;
+		ImageOut->pData[y*ImageOut->width +x] = ImageIn->pData[y*ImageOut->width +x] <<7;
 	}
-    y = ImageIn->width-1;
+    y = ImageIn->height-1;
 	for( int x =1; x < ImageIn->width; x++)
 	{
-		ImageOut->pData[x*ImageOut->width +y] = ImageIn->pData[x*ImageOut->width +y] <<7;
+		ImageOut->pData[y*ImageOut->width +x] = ImageIn->pData[y*ImageOut->width +x] <<7;
 	}
+    
 }
 
 

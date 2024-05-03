@@ -12,8 +12,6 @@ class CannyEdge(GenericNode):
 
         self.addInput("i",src_t,src_t._nb_bytes)
         self.addOutput("o",dst_t,dst_t._nb_bytes)
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
         if not config:
             self._paramBlock = 0
             self.addVariableArg("nullptr")
@@ -51,26 +49,3 @@ class CannyEdge(GenericNode):
                 }
 
 
-class MVCannyEdge(GenericNode):
-    def __init__(self,name,w,h):
-        GenericSink.__init__(self,name)
-        src_t = CImageType(w,h,CImageType.GRAY16)
-        dst_t = CImageType(w,h,CImageType.GRAY16)
-
-        self.addInput("i",src_t,src_t._nb_bytes)
-        self.addOutput("o",dst_t,dst_t._nb_bytes)
-        self.addLiteralArg(w)
-        self.addLiteralArg(h)
-        self.addVariableArg("params")
-
-    def __call__(self, i):
-        g,n = i 
-        k = next(iter(n._outputs))
-        o = n._outputs[k]
-        g.connect(o,self.i)
-        return(g,self)
-        
-    @property
-    def typeName(self):
-        """The name of the C++ class implementing this node"""
-        return "MVCannyEdge"

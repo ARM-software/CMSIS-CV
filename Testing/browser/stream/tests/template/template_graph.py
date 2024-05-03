@@ -12,6 +12,7 @@ from ...appnodes import *
 def mk_template(W=640,H=480,OPENCV=True):
 
     the_graph = Graph()
+    the_graph.defaultFIFOClass  = ImageFIFO
 
     W=640 
     H=480

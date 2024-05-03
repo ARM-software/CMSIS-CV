@@ -16,10 +16,10 @@ class OpenCVCanny<int8_t,inputOutputSize,
 public:
     /* Constructor needs the input and output FIFOs */
     OpenCVCanny(FIFOBase<int8_t> &src,
-             FIFOBase<int8_t> &dst,uint32_t w,uint32_t h,
+             FIFOBase<int8_t> &dst,
                 uint32_t *params):
     GenericNode<int8_t,inputOutputSize,
-                int8_t,inputOutputSize>(src,dst),mW(w),mH(h),mParams(params){};
+                int8_t,inputOutputSize>(src,dst),mParams(params){};
 
     /* In asynchronous mode, node execution will be 
        skipped in case of underflow on the input 
@@ -46,8 +46,8 @@ public:
 
         const int kernel_size = 3;
 
-        Mat src(mH,mW,CV_8UC1,(void*)a);
-        Mat dst(mH,mW,CV_8UC1,(void*)b);
+        Mat src(this->inputHeight(),this->inputWidth(),CV_8UC1,(void*)a);
+        Mat dst(this->inputHeight(),this->inputWidth(),CV_8UC1,(void*)b);
 
         uint32_t low,high;
         if (mParams == nullptr)
@@ -66,6 +66,5 @@ public:
         return(0);
     };
 protected:
-     uint32_t mW,mH;
      uint32_t *mParams;
 };

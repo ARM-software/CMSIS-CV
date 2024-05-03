@@ -1,7 +1,17 @@
-from cmsis_stream.cg.scheduler import CGStaticType,SINT8,UINT32,CType,CStructType,GenericNode,GenericSink,GenericSource
+from cmsis_stream.cg.scheduler import StreamFIFO,CGStaticType,SINT8,UINT32,CType,CStructType,GenericNode,GenericSink,GenericSource
 
 from html import escape
 
+class ImageFIFO(StreamFIFO):
+    @property
+    def cname(self):
+        return "ImageFIFO"
+
+    @property
+    def args(self):
+        # The type is an image type
+        return [f"{self._ctype.width}",
+                f"{self._ctype.height}"]
 
 #tfType = CStructType("TfLiteTensor",10)
 #posType = CStructType("struct_position",8)

@@ -30,9 +30,9 @@
 <title>camera:i&#45;&gt;to_gray8:i</title>
 <path fill="none" stroke="black" d="M96.6,-26.25C132.2,-26.25 183.04,-26.25 222.44,-26.25"/>
 <polygon fill="black" stroke="black" points="222.15,-28 227.15,-26.25 222.15,-24.5 222.15,-28"/>
-<text text-anchor="start" x="122.75" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_640_480</text>
-<text text-anchor="start" x="180.66" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">1228800</text>
-<text text-anchor="start" x="102.6" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">1228800</text>
+<text text-anchor="start" x="122.75" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_320_240</text>
+<text text-anchor="start" x="186.66" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<text text-anchor="start" x="102.6" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 </g>
 <!-- display1 -->
 <g id="node2" class="node">
@@ -63,27 +63,27 @@
 <title>gaussian:i&#45;&gt;to_rgba:i</title>
 <path fill="none" stroke="black" d="M573.83,-26.25C613.14,-26.25 669.04,-26.25 711.96,-26.25"/>
 <polygon fill="black" stroke="black" points="711.95,-28 716.95,-26.25 711.95,-24.5 711.95,-28"/>
-<text text-anchor="start" x="600" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">GRAY16_640_480</text>
-<text text-anchor="start" x="676.46" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">614400</text>
-<text text-anchor="start" x="579.83" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">614400</text>
+<text text-anchor="start" x="600" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">GRAY16_320_240</text>
+<text text-anchor="start" x="676.46" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">153600</text>
+<text text-anchor="start" x="579.83" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">153600</text>
 </g>
 <!-- to_gray8&#45;&gt;gaussian -->
 <g id="edge2" class="edge">
 <title>to_gray8:i&#45;&gt;gaussian:i</title>
 <path fill="none" stroke="black" d="M337.01,-26.25C376.34,-26.25 429.69,-26.25 469.29,-26.25"/>
 <polygon fill="black" stroke="black" points="469.01,-28 474.01,-26.25 469.01,-24.5 469.01,-28"/>
-<text text-anchor="start" x="363.25" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_640_480</text>
-<text text-anchor="start" x="433.53" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
-<text text-anchor="start" x="343.01" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<text text-anchor="start" x="363.25" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
+<text text-anchor="start" x="439.53" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<text text-anchor="start" x="343.01" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 </g>
 <!-- to_rgba&#45;&gt;display1 -->
 <g id="edge4" class="edge">
 <title>to_rgba:i&#45;&gt;display1:i</title>
 <path fill="none" stroke="black" d="M833.73,-26.25C872.17,-26.25 922.52,-26.25 959.3,-26.25"/>
 <polygon fill="black" stroke="black" points="959.03,-28 964.03,-26.25 959.03,-24.5 959.03,-28"/>
-<text text-anchor="start" x="860" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_640_480</text>
-<text text-anchor="start" x="917.54" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">1228800</text>
-<text text-anchor="start" x="839.73" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">1228800</text>
+<text text-anchor="start" x="860" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_320_240</text>
+<text text-anchor="start" x="923.54" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<text text-anchor="start" x="839.73" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 </g>
 </g>
 </svg>
