@@ -10,8 +10,8 @@ class CannyEdge(GenericNode):
         src_t = CImageType(w,h,CImageType.GRAY16)
         dst_t = CImageType(w,h,CImageType.GRAY16)
 
-        self.addInput("i",src_t,src_t._nb_bytes)
-        self.addOutput("o",dst_t,dst_t._nb_bytes)
+        self.addInput("i",src_t,src_t.nb_bytes)
+        self.addOutput("o",dst_t,dst_t.nb_bytes)
         if not config:
             self._paramBlock = 0
             self.addVariableArg("nullptr")

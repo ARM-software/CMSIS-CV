@@ -25,6 +25,8 @@ class CImageType(CGStaticType):
     GRAY16 = 3
     GRAY8 = 4
     RGBA = 5
+    Q15 = 6
+    GRADIENT_Q15 = 7
 
     def __init__(self,w,h,t=YUV):
         CGStaticType.__init__(self)
@@ -56,21 +58,28 @@ class CImageType(CGStaticType):
     def bytes(self):
         # The C code is using array of int8
         # This type is just used at Python / Graphviz level
+        # because in input / output creations in the node we give
+        # the number of bytes.
+        # So the sample size is 1 byte
+        # Having int8 FIFOs is more flexible since we can 
+        # do some casting without having to introduce casting nodes in the
+        # graph. But then it means compatibility check between IOs
+        # when no casting possible must be done at the Python level.
         return 1
-        #if self._pixel_type == CImageType.YUV:
-        #   return(int(1.5*self._w*self._h))
-        #if self._pixel_type == CImageType.RGB:
-        #   return(int(3*self._w*self._h))
-        # 
+        
           
     @property
-    def _nb_bytes(self):
+    def nb_bytes(self):
         if self._pixel_type == CImageType.YUV:
            return(int(1.5*self._w*self._h))
         if self._pixel_type == CImageType.RGB:
            return(int(3*self._w*self._h))
         if self._pixel_type == CImageType.GRAY16:
            return(int(2*self._w*self._h))
+        if self._pixel_type == CImageType.Q15:
+           return(int(2*self._w*self._h))
+        if self._pixel_type == CImageType.GRADIENT_Q15:
+           return(int(4*self._w*self._h))
         if self._pixel_type == CImageType.GRAY8:
            return(int(self._w*self._h))
         if self._pixel_type == CImageType.RGBA:
@@ -85,9 +94,13 @@ class CImageType(CGStaticType):
         if self.format == CImageType.YUV:
            return(escape(f"YUV_{self.width}_{self.height}"))
         if self.format == CImageType.RGB:
-           return(escape(f"RGB_{self.width}_{self.height}"))
+           return(escape(f"RGB888_{self.width}_{self.height}"))
         if self.format == CImageType.GRAY16:
            return(escape(f"GRAY16_{self.width}_{self.height}"))
+        if self.format == CImageType.Q15:
+           return(escape(f"Q15_{self.width}_{self.height}"))
+        if self.format == CImageType.GRADIENT_Q15:
+           return(escape(f"GRAD_Q15_{self.width}_{self.height}"))
         if self.format == CImageType.GRAY8:
            return(escape(f"GRAY8_{self.width}_{self.height}"))
         if self.format == CImageType.RGBA:

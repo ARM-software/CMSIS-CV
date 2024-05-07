@@ -10,11 +10,12 @@ add_subdirectory(${CMSISDSP}/Source bin_dsp)
 find_package(OpenCV)
 
 
-set(NODESHEADER ${CMAKE_SOURCE_DIR}/../../stream_nodes/cpp)
+set(NODESHEADER ${CMAKE_SOURCE_DIR}/../../cmsiscv_nodes/cpp)
 
 set(CVLIBSRC ${CMAKE_SOURCE_DIR}/../../Source)
 
 add_executable(stream)
+
 
 target_sources(stream PUBLIC
     stream/common.c

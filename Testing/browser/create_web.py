@@ -3,7 +3,7 @@ import shutil
 import os
 import sys
 
-parent_directory = os.path.abspath('../../stream_nodes')
+parent_directory = os.path.abspath('../../cmsiscv_nodes')
 sys.path.append(parent_directory)
 
 

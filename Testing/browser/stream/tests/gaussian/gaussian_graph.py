@@ -31,13 +31,11 @@ def mk_gaussian(W=640,H=480,OPENCV=True):
        to_rgba_cv = Gray8ToRGBA("to_rgba_cv",W,H)
        display2=WebDisplay2("display2",W,H)
         
-    gray = to_gray8(camera(the_graph))
-    gauss = gaussian(gray)
-    display1(to_rgba(gauss))
-
+    gray=(to_gray8(camera(the_graph)))
+    display1(to_rgba(gaussian(gray)))
+   
     if OPENCV:
-       gausscv = gaussianCV(gray)
-       display2(to_rgba_cv(gausscv))
+       display2(to_rgba_cv(gaussianCV(gray)))
 
     return(the_graph)
 

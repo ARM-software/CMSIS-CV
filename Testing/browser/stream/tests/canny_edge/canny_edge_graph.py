@@ -38,13 +38,11 @@ def mk_canny_edge(W=640,H=480,OPENCV=True):
         
     gauss = gaussian(to_gray8(camera(the_graph)))
     
-    cv = canny_edge(gauss)
+    display1(to_rgba(canny_edge(gauss)))
     
-    display1(to_rgba(cv))
 
     if OPENCV:
-       ocv = canny_edge_cv(g16_to_g8(gauss))
-       display2(cv_to_rgba(ocv))
+       display2(cv_to_rgba(canny_edge_cv(g16_to_g8(gauss))))
 
     return(the_graph)
 

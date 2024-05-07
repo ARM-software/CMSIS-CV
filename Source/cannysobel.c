@@ -568,9 +568,9 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_q15_t* ImageIn,
 
 void arm_canny_edge_sobel_fixp(const arm_cv_image_q15_t* ImageIn, 
                                      arm_cv_image_q15_t* ImageOut, 
-                                     arm_cv_gradient_q15_t* Img_tmp_grad1/*4*/, 
-                                     arm_cv_image_q15_t* Img_tmp_mag/*3*/, 
-                                     arm_cv_gradient_q15_t* Img_tmp_grad2/*3*/,
+                                     arm_cv_image_gradient_q15_t* Img_tmp_grad1, 
+                                     arm_cv_image_q15_t* Img_tmp_mag, 
+                                     arm_cv_image_gradient_q15_t* Img_tmp_grad2,
                                      int low_threshold,
                                      int high_threshold)
 {

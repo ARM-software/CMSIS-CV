@@ -11,7 +11,7 @@ class WebDisplay(GenericSink):
     def __init__(self,name,w,h,buf="dst1"):
         GenericSink.__init__(self,name,identified=False)
         src_t = CImageType(w,h,CImageType.RGBA)
-        self.addInput("i",src_t,src_t._nb_bytes)
+        self.addInput("i",src_t,src_t.nb_bytes)
 
         self.i.setBufferConstraint(name=f"{buf}",mustBeArray=True,assignedByNode=False)
 
@@ -49,7 +49,7 @@ class WebCamera(GenericSource):
     def __init__(self,name,w,h):
         GenericSink.__init__(self,name,identified=False)
         dst_t = CImageType(w,h,CImageType.RGBA)
-        self.addOutput("o",dst_t,dst_t._nb_bytes)
+        self.addOutput("o",dst_t,dst_t.nb_bytes)
         self.o.setBufferConstraint(name="src",mustBeArray=True,assignedByNode=False)
 
 
@@ -65,8 +65,8 @@ class Copy(GenericNode):
     def __init__(self,name,w,h):
         GenericNode.__init__(self,name,identified=False)
         dst_t = CImageType(w,h,CImageType.RGBA)
-        self.addInput("i",dst_t,dst_t._nb_bytes)
-        self.addOutput("o",dst_t,dst_t._nb_bytes)
+        self.addInput("i",dst_t,dst_t.nb_bytes)
+        self.addOutput("o",dst_t,dst_t.nb_bytes)
 
 
     def __call__(self, i):
