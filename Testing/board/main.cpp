@@ -75,13 +75,13 @@ void run_test_group()
           end = time_in_cycles();
           printf("Cycles = %ld\r\n",end-start);
    
-#if !defined(NOOUTPUT)   
           if (outputs)
           {
+#if !defined(NOOUTPUT)
              std::ostringstream out;
              out << "results/output_" << id << ".dat";
              save_mem(out.str().c_str(),outputs,total_bytes);
-    
+#endif
              aligned_free((void*)outputs);
     
           }
@@ -89,7 +89,6 @@ void run_test_group()
           {
              printf("No output generated for %d\r\n",id);
           }
-#endif
           printf("\r\n");
       }
     }

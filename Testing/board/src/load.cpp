@@ -55,6 +55,10 @@ void save_mem(const char* filepath,const unsigned char*buf,std::size_t size)
   std::ofstream outfile (filepath,std::ofstream::binary);
   outfile.write (reinterpret_cast<const char*>(buf),size);
   outfile.close();
+#else
+  (void)filepath;
+  (void)buf;
+  (void)size;
 #endif
   //FILE *f;
   //f=fopen(filepath,"wb");
@@ -96,9 +100,7 @@ unsigned char* create_write_buffer(const std::vector<BufferDescription> &bufs,
     total_bytes += bufs.size() * (1+5+1+1)*sizeof(uint32_t);
 
     uint32_t* buf;
-#if defined(MPS3) 
-    buf = (uint32_t*)OUTPUT_ADDR;
-#else
+
     buf =  (uint32_t*)aligned_malloc(total_bytes,BUFFER_ALIGNMENT);
 
     if (buf == nullptr)
@@ -106,7 +108,7 @@ unsigned char* create_write_buffer(const std::vector<BufferDescription> &bufs,
         printf("Not enough memory\r\n");
         return(nullptr);
     }
-#endif
+
     uint32_t pos=0;
     buf[0] = bufs.size();
     pos += sizeof(uint32_t);
