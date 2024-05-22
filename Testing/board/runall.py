@@ -3,7 +3,6 @@ import pickle
 import sys
 import subprocess 
 import os 
-import colorama
 import glob
 import sys 
 
