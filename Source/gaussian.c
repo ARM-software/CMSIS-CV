@@ -26,10 +26,11 @@
 #include "cv/linear_filters.h"
 #include "dsp/basic_math_functions.h"
 
-static const q15_t grad[9] = {   0x0800, 0x1000, 0x0800,
-                                 0x1000, 0x2000, 0x1000,
-                                 0x0800, 0x1000, 0x0800
-                             };
+static const q15_t gaussian_kernel[9] = {   0x0800, 0x1000, 0x0800,
+                                            0x1000, 0x2000, 0x1000,
+                                            0x0800, 0x1000, 0x0800
+                                        };
+
 
 
 /**
@@ -56,7 +57,7 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
             q63_t res;
             q15_t matrix_in[9] = { ImageIn->pData[indice-w-1], ImageIn->pData[indice-w], ImageIn->pData[indice-w+1], ImageIn->pData[indice - 1], ImageIn->pData[indice], ImageIn->pData[indice + 1], ImageIn->pData[indice +w -1], ImageIn->pData[ indice + w], ImageIn->pData[indice + w+1]};
             //this dot product output on 34.30, so a shift of 15 is enought to bring us back into q15 but because we didn't convert our input Image previously, we have to do a shift to the left by 7, this is possible due to the increase of precisionn of the multiplication/dotproduct, so we only need a shif of 15-7 8
-            arm_dot_prod_q15(&grad[0], &matrix_in[0], 9, &res);
+            arm_dot_prod_q15(&gaussian_kernel[0], &matrix_in[0], 9, &res);
             res = res>>8;
             ImageOut->pData[indice] =(q15_t)(res);
         }
@@ -72,7 +73,9 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
    
     int x = 0;
     int y = 0;
-    for( int y =0; y < ImageIn->height; y++)
+    
+
+    for( int y = 0; y < ImageIn->height; y++)
 	{
 		ImageOut->pData[y*ImageOut->width +x] = ImageIn->pData[y*ImageOut->width +x] <<7;
 	}

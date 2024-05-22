@@ -28,4 +28,4 @@ release/
 *.zip
 Documentation/html
 output/
-
+*.bat
