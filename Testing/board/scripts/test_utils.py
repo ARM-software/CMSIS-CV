@@ -1,5 +1,3 @@
-from PIL import ImageOps
-import PIL
 import numpy as np 
 from pathlib import Path
 import glob
@@ -10,90 +8,8 @@ TENSOR_START = 2
 from .export import *
 from .convert_to_c import convert
 
-class Format:
-    GRAY8 = 0
-    RGB = 1
 
-class Image:
-    def __init__(self,dims,format=Format.GRAY8,path=None):
-        self._path = path
-        self._dims = dims
-        self._format = format
-
-
-    def __call__(self):
-        res = []
-        img = PIL.Image.open(self._path)
-        if self._format == Format.GRAY8:
-            img = img.convert("L")
-        elif self._format == Format.RGB:
-            img = img.convert("RGB")
-
-        for d in self._dims:
-            img = ImageOps.pad(img, d, color="#fff")
-
-            res.append(AlgoImage(img))
-
-        return res
-
-
-    @property
-    def nb_images(self):
-         return len(self._dims)
-
-
-
-
-class Comparison:
-
-  def __init__(self):
-     self._errors = ""
-
-  @property
-  def errors(self):
-      return self._errors
-
-  def add_error(self,err):
-      self._errors += err + "\n";
-  
-
-  def check(self,src,dst):
-      return True
-
-# Assume the AlgoImage is containing an image
-# and not a numpy
-# 
-def _same_img_type(self,src,dst):
-    if (src.img.mode != dst.img.mode):
-        self.add_error("Different image types")
-        return False
-
-    if (src.img.width != dst.img.width):
-        self.add_error("Different image widths")
-        return False
-
-    if (src.img.height != dst.img.height):
-        self.add_error("Different image heights")
-        return False
-
-    return(True)
-
-# Assume AlgoImage aare containing PIL images
-def same_images(self,src,dst):
-    if len(src) != len(dst):
-        self.add_error("Different image list lengths")
-        return False
-
-    for s,d in zip(src,dst):
-        if not _same_img_type(self,s,d):
-            return False
-        if list(s.img.getdata()) != list(d.img.getdata()):
-            self.add_error("Different image content")
-            return False 
-
-    return True
-
-def check_tiff_or_npy(path):
+def _check_tiff_or_npy(path):
     if Path(path + ".tiff").is_file():
         path += ".tiff"
     else:
@@ -107,7 +23,7 @@ def get_input_img(args,group_id,image_id):
     else:
        path = f"inputs/group_{group_id}/img_{image_id}"
 
-    path = check_tiff_or_npy(path)
+    path = _check_tiff_or_npy(path)
     return (AlgoImage.open(path))
 
 def clean_input_images(args,group_id):
@@ -137,7 +53,7 @@ def record_input_img(args,group_id,image_id,image):
     else:
       Path(f"inputs/group_{group_id}").mkdir(parents=True, exist_ok=True)
       path = f"inputs/group_{group_id}/img_{image_id}"
-    path = check_tiff_or_npy(path)
+    path = _check_tiff_or_npy(path)
     image.save(path)
 
 # References
@@ -171,7 +87,7 @@ def record_reference_img(args,group_id,test_id,image_id,image):
        Path(f"references/group_{group_id}").mkdir(parents=True, exist_ok=True)
        path = f"references/group_{group_id}/test_{test_id}_img_{image_id}"
 
-    path = check_tiff_or_npy(path)
+    path = _check_tiff_or_npy(path)
     image.save(path)
 
 def get_reference_img(args,group_id,test_id,image_id):
@@ -180,7 +96,7 @@ def get_reference_img(args,group_id,test_id,image_id):
     else:
        path = f"references/group_{group_id}/test_{test_id}_img_{image_id}"
 
-    path = check_tiff_or_npy(path)
+    path = _check_tiff_or_npy(path)
     return (AlgoImage.open(path))
 
 # Results
@@ -192,7 +108,7 @@ def record_result_img(args,compiler,target,group_id,test_id,image_id,image):
     else:
        Path(f"results/img/{compiler}/{target}/group_{group_id}").mkdir(parents=True, exist_ok=True)
        path = Path(f"results/img/{compiler}/{target}/group_{group_id}/test_{test_id}_img_{image_id}")
-    path = check_tiff_or_npy(str(path))
+    path = _check_tiff_or_npy(str(path))
     image.save(path)
 
 

@@ -12,8 +12,10 @@ extern "C" {
 
 void test_dev(const unsigned char* inputs,
                  unsigned char* &outputs,
-                 uint32_t &total_bytes)
+                 uint32_t &total_bytes,
+                 long &cycles)
 {
+    long start,end;
     uint32_t width,height;
     int bufid = TENSOR_START + 0;
 
@@ -34,20 +36,25 @@ void test_dev(const unsigned char* inputs,
     output.height=height;
     output.pData=dst;
     
+    // The test to run is executed with some timing code.
+    start = time_in_cycles();
     arm_gaussian_filter_3x3_fixp(&input,&output);
+    end = time_in_cycles();
+    cycles = end - start;
 }
 
 void run_test(const unsigned char* inputs,
               const uint32_t testid,
               const uint32_t funcid,
               unsigned char* &wbuf,
-              uint32_t &total_bytes)
+              uint32_t &total_bytes,
+              long &cycles)
 {
 
     wbuf = nullptr;
     (void)testid;
     (void)funcid;
-    test_dev(inputs,wbuf,total_bytes);
+    test_dev(inputs,wbuf,total_bytes,cycles);
 }
 
 #endif

@@ -1,7 +1,7 @@
 import numpy as np
 import struct 
-from PIL import Image
 import PIL
+import PIL.Image
 import numpy as np
 import os
 
@@ -256,9 +256,9 @@ def unserialize(file,dt,nbbytes,dims):
     elif dt == AlgoImage.IMG_NUMPY_TYPE_F64:
        res = np.frombuffer(a,dtype=np.double).reshape(dims)
     elif dt == AlgoImage.IMG_RGB_TYPE:
-        res = Image.frombytes('RGB',(dims[1],dims[0]),a)
+        res = PIL.Image.frombytes('RGB',(dims[1],dims[0]),a)
     elif dt == AlgoImage.IMG_GRAY8_TYPE:
-        res = Image.frombytes('L',(dims[1],dims[0]),a)
+        res = PIL.Image.frombytes('L',(dims[1],dims[0]),a)
     else:
         raise NameError(f"Unsupported NumPy datatype for unserialization {dt}")
 
@@ -386,11 +386,11 @@ if __name__ == "__main__":
 
     Path("references").mkdir(parents=True, exist_ok=True)
 
-    imga = Image.open("Patterns/Mandrill_cropped.tiff")
+    imga = PIL.Image.open("Patterns/Mandrill_cropped.tiff")
     #NB = 50
     #imga = imga.crop((NB,0,512-NB,512))
     #imga.save("Patterns/Mandrill_cropped.tiff")
-    imgb = Image.open("Patterns/JellyBeans.tiff")
+    imgb = PIL.Image.open("Patterns/JellyBeans.tiff")
     imgb = imgb.convert("L")
 
     imga.save("results/img/input_0.tiff")
