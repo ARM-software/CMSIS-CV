@@ -17,6 +17,14 @@ extern "C"
 {
 #endif
 
+// Number of images defined in Python
+// STANDARD_GRAY_IMGS and STANDARD_RBG_IMGS
+// It must be coherent with the Python
+// May be used to compute the image number from the testid
+// when writing the tests
+#define STANDARD_GRAY_NB_IMGS 22 
+#define STANDARD_RGB_NB_IMGS 22 
+
 // Where input tensor buffers are starting in the buffer set
 // Before input tensors there are tensors used to describe
 // the test
@@ -33,6 +41,8 @@ extern "C"
 #ifndef OUTPUT_ADDR
 #define OUTPUT_ADDR 0x90000000
 #endif
+
+extern long time_in_cycles();
 
 extern byte_length_t get_buffer_length(const unsigned char *,
                                        const int buffer_nb);
