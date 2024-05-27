@@ -43,7 +43,7 @@ public:
         int8_t *o=this->getWriteBuffer();
 
         arm_cv_image_gray8_t src;
-        arm_cv_image_q15_t dst;
+        arm_cv_image_gray8_t dst;
 
         src.height=this->inputHeight();
         src.width=this->inputWidth();
@@ -51,7 +51,7 @@ public:
 
         dst.height=this->inputHeight();
         dst.width=this->inputWidth();
-        dst.pData = (q15_t*)o;
+        dst.pData = (uint8_t*)o;
         
         arm_gaussian_filter_3x3_fixp(&src,&dst);
 

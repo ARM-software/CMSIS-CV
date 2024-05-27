@@ -48,7 +48,7 @@ extern "C"
  * @param[in]     high_threshold  The high threshold
  *
  */
-extern void arm_canny_edge_sobel_fixp(const arm_cv_image_q15_t* ImageIn, 
+extern void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn, 
                                             arm_cv_image_q15_t* ImageOut, 
                                             arm_cv_image_gradient_q15_t* Img_tmp_grad1, 
                                             arm_cv_image_q15_t* Img_tmp_mag, 
