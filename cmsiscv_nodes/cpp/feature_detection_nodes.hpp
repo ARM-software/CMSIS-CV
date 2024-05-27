@@ -83,7 +83,11 @@ public:
         }
 
         arm_cv_image_gray8_t input;
+<<<<<<< HEAD
         arm_cv_image_gray8_t output;
+=======
+        arm_cv_image_q15_t output;
+>>>>>>> ba8fda0 (update type for gaussian and cannyedge)
 
         input.height=this->inputHeight();
         input.width=this->inputWidth();
