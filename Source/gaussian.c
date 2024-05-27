@@ -44,7 +44,7 @@ static const q15_t gaussian_kernel[9] = {   0x0800, 0x1000, 0x0800,
  * @param      ImageOut  The output image
  */
 void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn, 
-                                        arm_cv_image_q15_t* ImageOut)
+                                        arm_cv_image_gray8_t* ImageOut)
 {
     /* To be optimized */
     const int w =ImageIn->width;
@@ -56,10 +56,10 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
             indice = y*ImageIn->width+x;
             q63_t res;
             q15_t matrix_in[9] = { ImageIn->pData[indice-w-1], ImageIn->pData[indice-w], ImageIn->pData[indice-w+1], ImageIn->pData[indice - 1], ImageIn->pData[indice], ImageIn->pData[indice + 1], ImageIn->pData[indice +w -1], ImageIn->pData[ indice + w], ImageIn->pData[indice + w+1]};
-            //this dot product output on 34.30, so a shift of 15 is enought to bring us back into q15 but because we didn't convert our input Image previously, we have to do a shift to the left by 7, this is possible due to the increase of precisionn of the multiplication/dotproduct, so we only need a shif of 15-7 8
+            //this dot product output on 34.30, so a shift of 15 is enought to bring us back into q15 but because we didn't convert our input Image previously, we have to do a shift to the left by 7, this is possible due to the increase of precision of the multiplication/dotproduct, so we only need a shif of 15-7 8
             arm_dot_prod_q15(&gaussian_kernel[0], &matrix_in[0], 9, &res);
-            res = res>>8;
-            ImageOut->pData[indice] =(q15_t)(res);
+            res = res>>(8+7);
+            ImageOut->pData[indice] =(gray8_t)(res);
         }
         
         
@@ -73,26 +73,24 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
    
     int x = 0;
     int y = 0;
-    
-
-    for( int y = 0; y < ImageIn->height; y++)
+    for( int y =0; y < ImageIn->height; y++)
 	{
-		ImageOut->pData[y*ImageOut->width +x] = ImageIn->pData[y*ImageOut->width +x] <<7;
+		ImageOut->pData[y*ImageOut->width +x] = ImageIn->pData[y*ImageOut->width +x];
 	}
 	x = ImageIn->width-1;
 	for( int y =0; y < ImageIn->height; y++)
 	{
-		ImageOut->pData[y*ImageOut->width +x] = ImageIn->pData[y*ImageOut->width +x] <<7;
+		ImageOut->pData[y*ImageOut->width +x] = ImageIn->pData[y*ImageOut->width +x];
 	}
 	y=0;
 	for( int x =1; x < ImageIn->width; x++)
 	{
-		ImageOut->pData[y*ImageOut->width +x] = ImageIn->pData[y*ImageOut->width +x] <<7;
+		ImageOut->pData[y*ImageOut->width +x] = ImageIn->pData[y*ImageOut->width +x];
 	}
     y = ImageIn->height-1;
 	for( int x =1; x < ImageIn->width; x++)
 	{
-		ImageOut->pData[y*ImageOut->width +x] = ImageIn->pData[y*ImageOut->width +x] <<7;
+		ImageOut->pData[y*ImageOut->width +x] = ImageIn->pData[y*ImageOut->width +x];
 	}
     
 }

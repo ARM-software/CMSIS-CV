@@ -45,7 +45,7 @@ extern "C"
  * @param      ImageOut  The output image
  */
  extern void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
-                                                arm_cv_image_q15_t* ImageOut);
+                                                arm_cv_image_gray8_t* ImageOut);
 
 
 
