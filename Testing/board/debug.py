@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import cv2 as cv
 import numpy as np 
 from PIL import ImageOps
@@ -142,6 +143,17 @@ print(yuv2)
 #    print(i.tensor)
 
 
+=======
+#from scripts.export import *
+#
+#with open("results/output_0.dat","rb") as f:
+#         r = read_tensors(f)
+#
+#for i in r:
+#    print(i.tensor)
+
+
+>>>>>>> ab9c6f0 (commit before merging with update)
 import cv2 as cv
 import numpy as np 
 from PIL import ImageOps
@@ -157,12 +169,17 @@ from scripts.export import AlgoImage,serialize_tensors,read_tensors
 #    r = read_tensors(f)
  
 #print(r[0].dim)
+<<<<<<< HEAD
 input =   AlgoImage.open("inputs/dev/img_0.tiff").tensor
+=======
+ 
+>>>>>>> ab9c6f0 (commit before merging with update)
 ref = AlgoImage.open("references/dev/test_0_img_0.tiff").tensor
 out = AlgoImage.open("results/img/AC6/VHT-Corstone-300/dev/test_0_img_0.tiff").tensor
  
 print(ref-out)
  
+<<<<<<< HEAD
 <<<<<<< HEAD
 print(out[0,0])
 print(ref[0,0])
@@ -194,3 +211,7 @@ print("kernel", kernel)
 print(input[0,0], input[0,1], input[1,0], input[1,1])
 print(ref[0,0])
 >>>>>>> 814543b (bug issue white image)
+=======
+print(out[0,0])
+print(ref[0,0])
+>>>>>>> ab9c6f0 (commit before merging with update)

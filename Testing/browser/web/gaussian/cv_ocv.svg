@@ -6,6 +6,7 @@
 <!-- Title: structs Pages: 1 -->
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <svg width="1268pt" height="127pt"
  viewBox="0.00 0.00 1268.10 127.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 123)">
@@ -25,6 +26,13 @@
 <title>structs</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-123 1251.35,-123 1251.35,4 -4,4"/>
 >>>>>>> caadad4 (test browser)
+=======
+<svg width="1204pt" height="127pt"
+ viewBox="0.00 0.00 1204.35 127.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 123)">
+<title>structs</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-123 1200.35,-123 1200.35,4 -4,4"/>
+>>>>>>> ab9c6f0 (commit before merging with update)
 <!-- camera -->
 <g id="node1" class="node">
 <title>camera</title>
@@ -55,15 +63,19 @@
 <title>display1</title>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <polygon fill="none" stroke="none" points="1164.1,-73.5 1164.1,-115 1252.1,-115 1252.1,-73.5 1164.1,-73.5"/>
 <polygon fill="none" stroke="black" points="1164.1,-73.5 1164.1,-115 1252.1,-115 1252.1,-73.5 1164.1,-73.5"/>
 <text text-anchor="start" x="1184.85" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">display1</text>
 <text text-anchor="start" x="1169.1" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
 =======
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 <polygon fill="none" stroke="none" points="1100.35,-73.5 1100.35,-115 1188.35,-115 1188.35,-73.5 1100.35,-73.5"/>
 <polygon fill="none" stroke="black" points="1100.35,-73.5 1100.35,-115 1188.35,-115 1188.35,-73.5 1100.35,-73.5"/>
 <text text-anchor="start" x="1121.1" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">display1</text>
 <text text-anchor="start" x="1105.35" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
+<<<<<<< HEAD
 >>>>>>> c84958d (commit before merging with update)
 =======
 <polygon fill="none" stroke="none" points="1151.35,-73.5 1151.35,-115 1239.35,-115 1239.35,-73.5 1151.35,-73.5"/>
@@ -71,10 +83,13 @@
 <text text-anchor="start" x="1172.1" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">display1</text>
 <text text-anchor="start" x="1156.35" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 <!-- display2 -->
 <g id="node3" class="node">
 <title>display2</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <polygon fill="none" stroke="none" points="1164.1,-5.5 1164.1,-47 1252.1,-47 1252.1,-5.5 1164.1,-5.5"/>
@@ -82,10 +97,13 @@
 <text text-anchor="start" x="1184.85" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">display2</text>
 <text text-anchor="start" x="1169.1" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
 =======
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 <polygon fill="none" stroke="none" points="1100.35,-5.5 1100.35,-47 1188.35,-47 1188.35,-5.5 1100.35,-5.5"/>
 <polygon fill="none" stroke="black" points="1100.35,-5.5 1100.35,-47 1188.35,-47 1188.35,-5.5 1100.35,-5.5"/>
 <text text-anchor="start" x="1121.1" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">display2</text>
 <text text-anchor="start" x="1105.35" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
+<<<<<<< HEAD
 >>>>>>> c84958d (commit before merging with update)
 =======
 <polygon fill="none" stroke="none" points="1151.35,-5.5 1151.35,-47 1239.35,-47 1239.35,-5.5 1151.35,-5.5"/>
@@ -93,6 +111,8 @@
 <text text-anchor="start" x="1172.1" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">display2</text>
 <text text-anchor="start" x="1156.35" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 <!-- dup0 -->
 <g id="node4" class="node">
@@ -205,6 +225,7 @@
 <text text-anchor="start" x="747.6" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="824.03" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 <text text-anchor="start" x="727.29" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 >>>>>>> c84958d (commit before merging with update)
 =======
 <title>gaussian_cv:i&#45;&gt;to_rgba_cv2:i</title>
@@ -214,6 +235,8 @@
 <text text-anchor="start" x="849.43" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 <text text-anchor="start" x="753.08" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 <!-- to_gray8&#45;&gt;dup0 -->
 <g id="edge6" class="edge">
@@ -225,6 +248,7 @@
 </g>
 <!-- to_rgba_cv1&#45;&gt;display1 -->
 <g id="edge3" class="edge">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <title>to_rgba:i&#45;&gt;display1:i</title>
@@ -252,12 +276,24 @@
 </g>
 <!-- to_rgba_cv2&#45;&gt;display2 -->
 <g id="edge5" class="edge">
+=======
+<title>to_rgba_cv1:i&#45;&gt;display1:i</title>
+<path fill="none" stroke="black" d="M968.81,-94.25C1006.75,-94.25 1057.31,-94.25 1094.25,-94.25"/>
+<polygon fill="black" stroke="black" points="1094,-96 1099,-94.25 1094,-92.5 1094,-96"/>
+<text text-anchor="start" x="994.85" y="-97.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_320_240</text>
+<text text-anchor="start" x="1058.51" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<text text-anchor="start" x="974.81" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+</g>
+<!-- to_rgba_cv2&#45;&gt;display2 -->
+<g id="edge5" class="edge">
+>>>>>>> ab9c6f0 (commit before merging with update)
 <title>to_rgba_cv2:i&#45;&gt;display2:i</title>
 <path fill="none" stroke="black" d="M968.81,-26.25C1006.75,-26.25 1057.31,-26.25 1094.25,-26.25"/>
 <polygon fill="black" stroke="black" points="1094,-28 1099,-26.25 1094,-24.5 1094,-28"/>
 <text text-anchor="start" x="994.85" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_320_240</text>
 <text text-anchor="start" x="1058.51" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="974.81" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<<<<<<< HEAD
 >>>>>>> c84958d (commit before merging with update)
 =======
 <title>to_rgba_cv1:i&#45;&gt;display1:i</title>
@@ -276,6 +312,8 @@
 <text text-anchor="start" x="1109.51" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="1013.65" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 </g>
 </svg>

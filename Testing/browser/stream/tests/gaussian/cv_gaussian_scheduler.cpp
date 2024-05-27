@@ -212,6 +212,7 @@ typedef struct {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     GaussianFilter<int8_t,76800,int8_t,153600> *gaussian;
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
     Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
@@ -240,6 +241,11 @@ typedef struct {
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv1;
 >>>>>>> caadad4 (test browser)
+=======
+    GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
+    RGBAToGray8<int8_t,307200,int8_t,76800> *to_gray8;
+    Gray8ToRGBA<int8_t,76800,int8_t,307200> *to_rgba_cv1;
+>>>>>>> ab9c6f0 (commit before merging with update)
 } nodes_t;
 
 CG_BEFORE_BUFFER
@@ -304,6 +310,7 @@ init_cb_state();
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     nodes.to_rgba_cv1 = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo2),*(fifos.fifo3));
 =======
     nodes.to_rgba_cv1 = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo2),*(fifos.fifo3));
@@ -317,6 +324,9 @@ init_cb_state();
 =======
     nodes.to_rgba_cv1 = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo2),*(fifos.fifo3));
 >>>>>>> caadad4 (test browser)
+=======
+    nodes.to_rgba_cv1 = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo2),*(fifos.fifo3));
+>>>>>>> ab9c6f0 (commit before merging with update)
     if (nodes.to_rgba_cv1==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);

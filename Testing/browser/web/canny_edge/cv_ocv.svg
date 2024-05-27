@@ -10,6 +10,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <svg width="1774pt" height="127pt"
  viewBox="0.00 0.00 1773.85 127.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 123)">
@@ -57,6 +58,13 @@
 <title>structs</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-123 1473.1,-123 1473.1,4 -4,4"/>
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+<svg width="1439pt" height="127pt"
+ viewBox="0.00 0.00 1438.85 127.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 123)">
+<title>structs</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-123 1434.85,-123 1434.85,4 -4,4"/>
+>>>>>>> ab9c6f0 (commit before merging with update)
 <!-- camera -->
 <g id="node1" class="node">
 <title>camera</title>
@@ -90,6 +98,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <polygon fill="none" stroke="none" points="889.47,-73.5 889.47,-115 972.97,-115 972.97,-73.5 889.47,-73.5"/>
 <polygon fill="none" stroke="black" points="889.47,-73.5 889.47,-115 972.97,-115 972.97,-73.5 889.47,-73.5"/>
 <text text-anchor="start" x="914.72" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">canny</text>
@@ -101,10 +110,13 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 <polygon fill="none" stroke="none" points="848.97,-73.5 848.97,-115 932.47,-115 932.47,-73.5 848.97,-73.5"/>
 <polygon fill="none" stroke="black" points="848.97,-73.5 848.97,-115 932.47,-115 932.47,-73.5 848.97,-73.5"/>
 <text text-anchor="start" x="874.22" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">canny</text>
 <text text-anchor="start" x="853.97" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(CannyEdge)</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -142,10 +154,17 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+</g>
+<!-- to_rgba -->
+<g id="node10" class="node">
+<title>to_rgba</title>
+>>>>>>> ab9c6f0 (commit before merging with update)
 <polygon fill="none" stroke="none" points="1087.6,-73.5 1087.6,-115 1203.35,-115 1203.35,-73.5 1087.6,-73.5"/>
 <polygon fill="none" stroke="black" points="1087.6,-73.5 1087.6,-115 1203.35,-115 1203.35,-73.5 1087.6,-73.5"/>
 <text text-anchor="start" x="1123.72" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">to_rgba</text>
 <text text-anchor="start" x="1092.6" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(Gray16ToRGBA)</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -169,11 +188,14 @@
 <text text-anchor="start" x="1136.1" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">u8_to_rgba</text>
 <text text-anchor="start" x="1112.1" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(Gray8ToRGBA32)</text>
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 <!-- canny&#45;&gt;u8_to_rgba -->
 <g id="edge3" class="edge">
 <<<<<<< HEAD
 <title>canny:i&#45;&gt;to_rgba:i</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -191,11 +213,14 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 <path fill="none" stroke="black" d="M932.33,-94.25C972.58,-94.25 1034.81,-94.25 1081.48,-94.25"/>
 <polygon fill="black" stroke="black" points="1081.44,-96 1086.44,-94.25 1081.44,-92.5 1081.44,-96"/>
 <text text-anchor="start" x="969.35" y="-97.1" font-family="Times New Roman,serif" font-size="12.00">GRAY16_320_240</text>
 <text text-anchor="start" x="1045.95" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">153600</text>
 <text text-anchor="start" x="938.33" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">153600</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -221,10 +246,13 @@
 <text text-anchor="start" x="1071.46" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 <text text-anchor="start" x="963.97" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 <!-- canny_cv -->
 <g id="node3" class="node">
 <title>canny_cv</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -241,10 +269,13 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 <polygon fill="none" stroke="none" points="838.1,-5.5 838.1,-47 943.35,-47 943.35,-5.5 838.1,-5.5"/>
 <polygon fill="none" stroke="black" points="838.1,-5.5 838.1,-47 943.35,-47 943.35,-5.5 838.1,-5.5"/>
 <text text-anchor="start" x="863.72" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">canny_cv</text>
 <text text-anchor="start" x="843.1" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(OpenCVCanny)</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -261,10 +292,13 @@
 <text text-anchor="start" x="889.22" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">canny_cv</text>
 <text text-anchor="start" x="868.6" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(OpenCVCanny)</text>
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 <!-- cv_to_rgba -->
 <g id="node4" class="node">
 <title>cv_to_rgba</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -282,10 +316,13 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 <polygon fill="none" stroke="none" points="1090.97,-5.5 1090.97,-47 1199.97,-47 1199.97,-5.5 1090.97,-5.5"/>
 <polygon fill="none" stroke="black" points="1090.97,-5.5 1090.97,-47 1199.97,-47 1199.97,-5.5 1090.97,-5.5"/>
 <text text-anchor="start" x="1113.22" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">cv_to_rgba</text>
 <text text-anchor="start" x="1095.97" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(Gray8ToRGBA)</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -308,10 +345,13 @@
 <text text-anchor="start" x="1136.1" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">cv_to_rgba</text>
 <text text-anchor="start" x="1112.1" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(Gray8ToRGBA32)</text>
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 <!-- canny_cv&#45;&gt;cv_to_rgba -->
 <g id="edge5" class="edge">
 <title>canny_cv:i&#45;&gt;cv_to_rgba:i</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -330,11 +370,14 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 <path fill="none" stroke="black" d="M943.18,-26.25C984.23,-26.25 1041.78,-26.25 1084.84,-26.25"/>
 <polygon fill="black" stroke="black" points="1084.84,-28 1089.84,-26.25 1084.84,-24.5 1084.84,-28"/>
 <text text-anchor="start" x="972.35" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="1055.35" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 <text text-anchor="start" x="949.18" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -359,10 +402,13 @@
 <text text-anchor="start" x="1071.54" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 <text text-anchor="start" x="974.75" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 <!-- display2 -->
 <g id="node6" class="node">
 <title>display2</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -380,10 +426,13 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 <polygon fill="none" stroke="none" points="1334.85,-5.5 1334.85,-47 1422.85,-47 1422.85,-5.5 1334.85,-5.5"/>
 <polygon fill="none" stroke="black" points="1334.85,-5.5 1334.85,-47 1422.85,-47 1422.85,-5.5 1334.85,-5.5"/>
 <text text-anchor="start" x="1355.6" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">display2</text>
 <text text-anchor="start" x="1339.85" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -406,10 +455,13 @@
 <text text-anchor="start" x="1393.85" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">display2</text>
 <text text-anchor="start" x="1378.1" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 <!-- cv_to_rgba&#45;&gt;display2 -->
 <g id="edge6" class="edge">
 <title>cv_to_rgba:i&#45;&gt;display2:i</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -428,11 +480,14 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 <path fill="none" stroke="black" d="M1199.85,-26.25C1238.7,-26.25 1290.93,-26.25 1328.76,-26.25"/>
 <polygon fill="black" stroke="black" points="1328.66,-28 1333.66,-26.25 1328.66,-24.5 1328.66,-28"/>
 <text text-anchor="start" x="1229.35" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_320_240</text>
 <text text-anchor="start" x="1293.17" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="1205.85" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -457,10 +512,13 @@
 <text text-anchor="start" x="1331.26" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="1235.4" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 <!-- display1 -->
 <g id="node5" class="node">
 <title>display1</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -478,10 +536,13 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 <polygon fill="none" stroke="none" points="1334.85,-73.5 1334.85,-115 1422.85,-115 1422.85,-73.5 1334.85,-73.5"/>
 <polygon fill="none" stroke="black" points="1334.85,-73.5 1334.85,-115 1422.85,-115 1422.85,-73.5 1334.85,-73.5"/>
 <text text-anchor="start" x="1355.6" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">display1</text>
 <text text-anchor="start" x="1339.85" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -504,10 +565,13 @@
 <text text-anchor="start" x="1393.85" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">display1</text>
 <text text-anchor="start" x="1378.1" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 <!-- dup0 -->
 <g id="node7" class="node">
 <title>dup0</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -529,10 +593,14 @@
 =======
 <ellipse fill="black" stroke="black" cx="731.55" cy="-59.25" rx="1.8" ry="1.8"/>
 >>>>>>> caadad4 (test browser)
+=======
+<ellipse fill="black" stroke="black" cx="706.05" cy="-59.25" rx="1.8" ry="1.8"/>
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 <!-- dup0&#45;&gt;canny -->
 <g id="edge8" class="edge">
 <title>dup0&#45;&gt;canny:i</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -594,6 +662,13 @@
 <text text-anchor="start" x="813.14" y="-70.34" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 </g>
 >>>>>>> c84958d (commit before merging with update)
+=======
+<path fill="none" stroke="black" d="M708.06,-59.55C710.87,-60.37 719,-62.71 725.85,-64.25 765.01,-73.03 809.86,-81.1 842.73,-86.66"/>
+<polygon fill="black" stroke="black" points="842.42,-88.38 847.65,-87.49 843,-84.93 842.42,-88.38"/>
+<text text-anchor="start" x="725.85" y="-83.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
+<text text-anchor="start" x="813.14" y="-70.34" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+</g>
+>>>>>>> ab9c6f0 (commit before merging with update)
 <!-- dup0&#45;&gt;canny_cv -->
 <g id="edge9" class="edge">
 <title>dup0&#45;&gt;canny_cv:i</title>
@@ -601,6 +676,7 @@
 <polygon fill="black" stroke="black" points="831.94,-31.94 836.74,-29.7 831.59,-28.45 831.94,-31.94"/>
 <text text-anchor="start" x="725.85" y="-52.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="802.25" y="-12.15" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -625,6 +701,8 @@
 <text text-anchor="start" x="751.35" y="-52.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="827.75" y="-12.15" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 <!-- gaussian -->
 <g id="node8" class="node">
@@ -642,6 +720,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <path fill="none" stroke="black" d="M599.45,-59.25C644.31,-59.25 707.4,-59.25 728.97,-59.25"/>
 <polygon fill="black" stroke="black" points="728.86,-61 733.86,-59.25 728.86,-57.5 728.86,-61"/>
 <text text-anchor="start" x="625.5" y="-62.1" font-family="Times New Roman,serif" font-size="12.00">GRAY16_320_240</text>
@@ -653,10 +732,13 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 <path fill="none" stroke="black" d="M573.8,-59.25C617,-59.25 676.77,-59.25 697.56,-59.25"/>
 <polygon fill="black" stroke="black" points="697.41,-61 702.41,-59.25 697.41,-57.5 697.41,-61"/>
 <text text-anchor="start" x="600" y="-62.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="579.8" y="-41.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -673,6 +755,8 @@
 <text text-anchor="start" x="625.5" y="-62.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="605.3" y="-41.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 <!-- to_gray8&#45;&gt;gaussian -->
 <g id="edge2" class="edge">
@@ -692,6 +776,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <path fill="none" stroke="black" d="M1260.09,-94.25C1307.48,-94.25 1371.36,-94.25 1414.93,-94.25"/>
 <polygon fill="black" stroke="black" points="1414.7,-96 1419.7,-94.25 1414.7,-92.5 1414.7,-96"/>
 <text text-anchor="start" x="1286.35" y="-97.1" font-family="Times New Roman,serif" font-size="12.00">RGBA32_320_240</text>
@@ -704,11 +789,14 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 <path fill="none" stroke="black" d="M1203.08,-94.25C1241.52,-94.25 1291.87,-94.25 1328.65,-94.25"/>
 <polygon fill="black" stroke="black" points="1328.38,-96 1333.38,-94.25 1328.38,-92.5 1328.38,-96"/>
 <text text-anchor="start" x="1229.35" y="-97.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_320_240</text>
 <text text-anchor="start" x="1292.89" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="1209.08" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -734,6 +822,8 @@
 <text text-anchor="start" x="1331.26" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="1235.4" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+>>>>>>> ab9c6f0 (commit before merging with update)
 </g>
 </g>
 </svg>
