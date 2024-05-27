@@ -567,7 +567,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 
 #else
 
-void arm_canny_edge_sobel_fixp(const arm_cv_image_q15_t* ImageIn, 
+void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn, 
                                      arm_cv_image_q15_t* ImageOut, 
                                      arm_cv_image_gradient_q15_t* Img_tmp_grad1, 
                                      arm_cv_image_q15_t* Img_tmp_mag, 
@@ -619,7 +619,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_q15_t* ImageIn,
 		vect_1x4.val[1] = vect_void;
 		vect_1x4.val[2] = vect_2x2.val[1];
 		vect_1x4.val[3] = vect_void;
-		vst4q((&Img_tmp_temporary->pData[indice].x), vect_1x4);
+		vst4q((&Img_tmp_grad1->pData[indice].x), vect_1x4);
 	}
 	//tail of the first line for partial sum for the gradient
 	int numtail = (w-1)%8;
@@ -628,8 +628,8 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_q15_t* ImageIn,
 		for(int j=0; j<numtail+1; j++)
 		{
 			int y = ((ImageIn -> width)-numtail-1);
-			Img_tmp_temporary->pData[y+j].x = (ImageIn->pData[(y-1)+j] + (ImageIn->pData[(y)+j]<<1) + ImageIn->pData[(y+1)+j])<<5;
-			Img_tmp_temporary->pData[y+j].y = 0;
+			Img_tmp_grad1->pData[y+j].x = (ImageIn->pData[(y-1)+j] + (ImageIn->pData[(y)+j]<<1) + ImageIn->pData[(y+1)+j])<<5;
+			Img_tmp_grad1->pData[y+j].y = 0;
 		}
 	}
 	//Computation of the second line of the partial sum for the gradient computation
@@ -679,7 +679,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_q15_t* ImageIn,
 		vect_1x4.val[1] = vect_2x2.val[0];
 		vect_1x4.val[2] = vect_1x2.val[1];
 		vect_1x4.val[3] = vect_2x2.val[1];
-		vst4q((&Img_tmp_temporary->pData[indice].x), vect_1x4);
+		vst4q((&Img_tmp_grad1->pData[indice].x), vect_1x4);
 	}
 	//Tail of the second line of the partial sum for the gradient computation
 	if(numtail>0)
@@ -688,8 +688,8 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_q15_t* ImageIn,
 		{
 			int x=1;
 			int y = ((w)-numtail-1);
-			Img_tmp_temporary->pData[x*Img_tmp_temporary->numCols +y+j].y = (ImageIn->pData[(x-1)*ImageIn->numCols+y+j] + (ImageIn->pData[x*ImageIn->numCols+y+j]<<1) + ImageIn->pData[(x+1)*ImageIn->numCols+y+j])<<5;//possibility to >>2/3 to reduce buffer size to int8 //6value in the buffer aren't used the six on the dorder vertical to painful to adapt code for it
-			Img_tmp_temporary->pData[x*Img_tmp_temporary->numCols +y+j].x = (ImageIn->pData[x*ImageIn->numCols+(y-1)+j] + (ImageIn->pData[x*ImageIn->numCols+(y)+j]<<1) + ImageIn->pData[x*ImageIn->numCols+(y+1)+j])<<5;
+			Img_tmp_grad1->pData[x*Img_tmp_grad1->width +y+j].y = (ImageIn->pData[(x-1)*w+y+j] + (ImageIn->pData[x*w+y+j]<<1) + ImageIn->pData[(x+1)*w+y+j])<<5;//possibility to >>2/3 to reduce buffer size to int8 //6value in the buffer aren't used the six on the dorder vertical to painful to adapt code for it
+			Img_tmp_grad1->pData[x*Img_tmp_grad1->width +y+j].x = (ImageIn->pData[x*w+(y-1)+j] + (ImageIn->pData[x*w+(y)+j]<<1) + ImageIn->pData[x*w+(y+1)+j])<<5;
 		}
 	}
 	Img_tmp_grad2->pData[w+w-1].x =0;
@@ -744,13 +744,13 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_q15_t* ImageIn,
 			vect_1x4.val[1] = vect_2x2.val[0];
 			vect_1x4.val[2] = vect_1x2.val[1];
 			vect_1x4.val[3] = vect_2x2.val[1];
-			vst4q((&Img_tmp_temporary->pData[indice3].x), vect_1x4);
+			vst4q((&Img_tmp_grad1->pData[indice3].x), vect_1x4);
 			for(int p = 0; p<2; p++)
 			{
 				y += p*8;
 				indice += p*8;
 				indice3 += p*8;
-				q15x8x2_t vect_buff_di = vld2q_s16(&Img_tmp_temporary->pData[indice3].x);
+				q15x8x2_t vect_buff_di = vld2q_s16(&Img_tmp_grad1->pData[indice3].x);
 
 				q15x8x2_t vec_x_y_1 = vld2q_s16(&Img_tmp_grad2->pData[((x-2)%3)*w + y].x);
 
@@ -875,6 +875,9 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_q15_t* ImageIn,
 		Img_tmp_grad2->pData[x3*w].y = (ImageIn->pData[(x-1)*w] + (ImageIn->pData[x*w]<<1) + ImageIn->pData[(x+1)*w])<<5;
 		for(int y =1; y< w-15;y+=16)
 		{
+			int indice = x*w + y;
+			int indice3 = x3*w + y;
+			
 			q15x8x2_t vect_2x2;
 			q15x8x2_t vect_1x2;
 			q15x8x2_t vect_3x2;
@@ -914,7 +917,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_q15_t* ImageIn,
 			vect_1x4.val[1] = vect_2x2.val[0];
 			vect_1x4.val[2] = vect_1x2.val[1];
 			vect_1x4.val[3] = vect_2x2.val[1];
-			vst4q((&Img_tmp_temporary->pData[indice3].x), vect_1x4);
+			vst4q((&Img_tmp_grad1->pData[indice3].x), vect_1x4);
 
 			for(int p = 0; p<2; p++)
 			{
@@ -922,7 +925,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_q15_t* ImageIn,
 				indice = x*w + y;
 				indice3 = x3*w + y;	
 
-				q15x8x2_t vect_buff_di = vld2q_s16(&Img_tmp_temporary->pData[indice3].x);
+				q15x8x2_t vect_buff_di = vld2q_s16(&Img_tmp_grad1->pData[indice3].x);
 
 				q15x8x2_t vec_x_y_1 = vld2q_s16(&Img_tmp_grad2->pData[((x-2)%3)*w + y].x);
 				q15x8x2_t vec_y_1 = vld2q_s16(&Img_tmp_grad2->pData[((x-1)%3)*w + y-1].x);
