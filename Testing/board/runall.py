@@ -117,7 +117,8 @@ def run(*args,mustPrint=False,dumpStdErr=True,live=None):
             live.console.print(result.stdout)
         return(Result(result.stdout))
     except Exception as e:
-        printError(live,"Exception occured")
+        if DEBUG:
+           printError(live,"Exception occured")
         ERROR_OCCURED = True
         return(Result(str(e),error=True))
 
@@ -333,7 +334,7 @@ with Live(gen_table([]), refresh_per_second=4) as live:
                                latest[-1][-1]="[red]Error running AVH"
                                live.update(renderable=gen_table(latest))
                                #printError(live,"Error running AVH")
-                               print("<p><font color=\"red\">Error running %s</font></p><PRE>" % s,file=f)
+                               print(f'<p><font color="red">Error running {testSuite["name"]} with {avhExe[core]}</font></p><PRE>',file=f)
                                print(res.msg,file=f)
                                print("</PRE>",file=f)
                                continue
