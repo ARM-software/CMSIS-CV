@@ -21,20 +21,16 @@ void test_dev(const unsigned char* inputs,
 
     get_img_dims(inputs,bufid,&width,&height);
     std::vector<BufferDescription> desc = {BufferDescription(Shape(height,width)
-                                                            ,kIMG_NUMPY_TYPE_SINT16)
+                                                            ,kIMG_GRAY8_TYPE)
                                           };
 
     outputs = create_write_buffer(desc,total_bytes);
 
     const uint8_t *src = Buffer<uint8_t>::read(inputs,bufid);
-    int16_t *dst = Buffer<int16_t>::write(outputs,0);
+    uint8_t *dst = Buffer<uint8_t>::write(outputs,0);
 
     const arm_cv_image_gray8_t input={(uint16_t)width,(uint16_t)height,(uint8_t*)src};
-
-    arm_cv_image_q15_t output;
-    output.width=width;
-    output.height=height;
-    output.pData=dst;
+    arm_cv_image_gray8_t output={(uint16_t)width,(uint16_t)height,(uint8_t*)dst};
     
     // The test to run is executed with some timing code.
     start = time_in_cycles();
