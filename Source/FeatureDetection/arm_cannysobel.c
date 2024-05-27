@@ -752,9 +752,13 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 				indice += p*8;
 				indice3 += p*8;
 <<<<<<< HEAD:Source/FeatureDetection/arm_cannysobel.c
+<<<<<<< HEAD:Source/FeatureDetection/arm_cannysobel.c
 				q15x8x2_t vect_buff_di = vld2q_s16(&Img_tmp_grad1->pData[indice3].x);
 =======
 				q15x8x2_t vect_buff_di = vld2q_s16(&Img_tmp_temporary->pData[indice3].x);
+=======
+				q15x8x2_t vect_buff_di = vld2q_s16(&Img_tmp_grad1->pData[indice3].x);
+>>>>>>> 80d0433 (bug fix for cannyedge vect):Source/cannysobel.c
 
 				q15x8x2_t vect_grad_1;
 				q15x8_t vectgradx = vsubq_s16(vec_x_y_1.val[0], vect_buff_di.val[0]);
@@ -876,11 +880,17 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 		for(int y =1; y< w-15;y+=16)
 		{
 <<<<<<< HEAD:Source/FeatureDetection/arm_cannysobel.c
+<<<<<<< HEAD:Source/FeatureDetection/arm_cannysobel.c
 			int indice = x*w + y;
 			int indice3 = x3*w + y;
 			
 =======
 >>>>>>> 0eb2bec (update type for gaussian and cannyedge):Source/cannysobel.c
+=======
+			int indice = x*w + y;
+			int indice3 = x3*w + y;
+			
+>>>>>>> 80d0433 (bug fix for cannyedge vect):Source/cannysobel.c
 			q15x8x2_t vect_2x2;
 			q15x8x2_t vect_1x2;
 			q15x8x2_t vect_3x2;
@@ -921,10 +931,14 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 			vect_1x4.val[2] = vect_1x2.val[1];
 			vect_1x4.val[3] = vect_2x2.val[1];
 <<<<<<< HEAD:Source/FeatureDetection/arm_cannysobel.c
+<<<<<<< HEAD:Source/FeatureDetection/arm_cannysobel.c
 			vst4q((&Img_tmp_grad1->pData[indice3].x), vect_1x4);
 =======
 			vst4q((&Img_tmp_temporary->pData[indice3].x), vect_1x4);
 >>>>>>> 0eb2bec (update type for gaussian and cannyedge):Source/cannysobel.c
+=======
+			vst4q((&Img_tmp_grad1->pData[indice3].x), vect_1x4);
+>>>>>>> 80d0433 (bug fix for cannyedge vect):Source/cannysobel.c
 
 			for(int p = 0; p<2; p++)
 			{
@@ -933,10 +947,14 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 				indice3 = x3*w + y;	
 
 <<<<<<< HEAD:Source/FeatureDetection/arm_cannysobel.c
+<<<<<<< HEAD:Source/FeatureDetection/arm_cannysobel.c
 				q15x8x2_t vect_buff_di = vld2q_s16(&Img_tmp_grad1->pData[indice3].x);
 =======
 				q15x8x2_t vect_buff_di = vld2q_s16(&Img_tmp_temporary->pData[indice3].x);
 >>>>>>> 0eb2bec (update type for gaussian and cannyedge):Source/cannysobel.c
+=======
+				q15x8x2_t vect_buff_di = vld2q_s16(&Img_tmp_grad1->pData[indice3].x);
+>>>>>>> 80d0433 (bug fix for cannyedge vect):Source/cannysobel.c
 
 				q15x8x2_t vec_x_y_1 = vld2q_s16(&Img_tmp_grad2->pData[((x-2)%3)*w + y].x);
 				q15x8x2_t vec_y_1 = vld2q_s16(&Img_tmp_grad2->pData[((x-1)%3)*w + y-1].x);
