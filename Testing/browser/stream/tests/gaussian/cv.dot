@@ -41,10 +41,14 @@ to_rgba_cv1 [label=<
 <TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
   <TR>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba<BR/>(Gray16ToRGBA32)</FONT></TD>
 =======
     <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba_cv1<BR/>(Gray8ToRGBA)</FONT></TD>
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba_cv1<BR/>(Gray8ToRGBA)</FONT></TD>
+>>>>>>> c84958d (commit before merging with update)
   </TR>
 </TABLE>>];
 
@@ -69,10 +73,14 @@ gaussian:i -> to_rgba_cv1:i [style="solid",color="black",fontsize="12.0",fontcol
 </TD></TR></TABLE>>]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 to_rgba:i -> display1:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA32_320_240>
 =======
 to_rgba_cv1:i -> display1:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA_320_240>
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+to_rgba_cv1:i -> display1:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA_320_240>
+>>>>>>> c84958d (commit before merging with update)
 ,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
 </TD></TR></TABLE>>
 ,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>

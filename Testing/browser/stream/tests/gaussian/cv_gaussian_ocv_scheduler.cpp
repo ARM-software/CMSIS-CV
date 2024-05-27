@@ -231,7 +231,10 @@ typedef struct {
     RGBAToGray8<int8_t,307200,int8_t,76800> *to_gray8;
     Gray8ToRGBA<int8_t,76800,int8_t,307200> *to_rgba_cv1;
     Gray8ToRGBA<int8_t,76800,int8_t,307200> *to_rgba_cv2;
+<<<<<<< HEAD
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+>>>>>>> c84958d (commit before merging with update)
 } nodes_t;
 
 CG_BEFORE_BUFFER
@@ -328,19 +331,27 @@ init_cb_state();
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     nodes.to_rgba_cv1 = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo1),*(fifos.fifo2));
 =======
     nodes.to_rgba_cv1 = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo1),*(fifos.fifo2));
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+    nodes.to_rgba_cv1 = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo1),*(fifos.fifo2));
+>>>>>>> c84958d (commit before merging with update)
     if (nodes.to_rgba_cv1==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     nodes.to_rgba_cv2 = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
 =======
     nodes.to_rgba_cv2 = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+    nodes.to_rgba_cv2 = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
+>>>>>>> c84958d (commit before merging with update)
     if (nodes.to_rgba_cv2==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);

@@ -6,6 +6,7 @@
 <!-- Title: structs Pages: 1 -->
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <svg width="1121pt" height="59pt"
  viewBox="0.00 0.00 1120.50 59.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 55)">
@@ -25,6 +26,13 @@
 <title>structs</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-55 1052.75,-55 1052.75,4 -4,4"/>
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+<svg width="1057pt" height="59pt"
+ viewBox="0.00 0.00 1056.75 59.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 55)">
+<title>structs</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-55 1052.75,-55 1052.75,4 -4,4"/>
+>>>>>>> c84958d (commit before merging with update)
 <!-- camera -->
 <g id="node1" class="node">
 <title>camera</title>
@@ -55,6 +63,7 @@
 <title>display1</title>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <polygon fill="none" stroke="none" points="1016.5,-5.5 1016.5,-47 1104.5,-47 1104.5,-5.5 1016.5,-5.5"/>
 <polygon fill="none" stroke="black" points="1016.5,-5.5 1016.5,-47 1104.5,-47 1104.5,-5.5 1016.5,-5.5"/>
 <text text-anchor="start" x="1037.25" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">display1</text>
@@ -62,14 +71,19 @@
 =======
 =======
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+>>>>>>> c84958d (commit before merging with update)
 <polygon fill="none" stroke="none" points="952.75,-5.5 952.75,-47 1040.75,-47 1040.75,-5.5 952.75,-5.5"/>
 <polygon fill="none" stroke="black" points="952.75,-5.5 952.75,-47 1040.75,-47 1040.75,-5.5 952.75,-5.5"/>
 <text text-anchor="start" x="973.5" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">display1</text>
 <text text-anchor="start" x="957.75" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> c84958d (commit before merging with update)
 =======
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+>>>>>>> c84958d (commit before merging with update)
 </g>
 <!-- gaussian -->
 <g id="node3" class="node">
@@ -81,6 +95,7 @@
 </g>
 <!-- to_rgba_cv1 -->
 <g id="node5" class="node">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <title>to_rgba</title>
 <polygon fill="none" stroke="none" points="743.75,-5.5 743.75,-47 873,-47 873,-5.5 743.75,-5.5"/>
@@ -105,13 +120,26 @@
 </g>
 <!-- gaussian&#45;&gt;to_rgba_cv1 -->
 <g id="edge3" class="edge">
+=======
+<title>to_rgba_cv1</title>
+<polygon fill="none" stroke="none" points="712.25,-5.5 712.25,-47 821.25,-47 821.25,-5.5 712.25,-5.5"/>
+<polygon fill="none" stroke="black" points="712.25,-5.5 712.25,-47 821.25,-47 821.25,-5.5 712.25,-5.5"/>
+<text text-anchor="start" x="731.12" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">to_rgba_cv1</text>
+<text text-anchor="start" x="717.25" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(Gray8ToRGBA)</text>
+</g>
+<!-- gaussian&#45;&gt;to_rgba_cv1 -->
+<g id="edge3" class="edge">
+>>>>>>> c84958d (commit before merging with update)
 <title>gaussian:i&#45;&gt;to_rgba_cv1:i</title>
 <path fill="none" stroke="black" d="M573.74,-26.25C611.79,-26.25 665.15,-26.25 705.97,-26.25"/>
 <polygon fill="black" stroke="black" points="705.9,-28 710.9,-26.25 705.9,-24.5 705.9,-28"/>
 <text text-anchor="start" x="600" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="676.41" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 <text text-anchor="start" x="579.74" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+>>>>>>> c84958d (commit before merging with update)
 </g>
 <!-- to_gray8&#45;&gt;gaussian -->
 <g id="edge2" class="edge">
@@ -125,6 +153,7 @@
 <!-- to_rgba_cv1&#45;&gt;display1 -->
 <g id="edge4" class="edge">
 <<<<<<< HEAD
+<<<<<<< HEAD
 <title>to_rgba:i&#45;&gt;display1:i</title>
 <path fill="none" stroke="black" d="M872.82,-26.25C915.54,-26.25 971.06,-26.25 1010.41,-26.25"/>
 <polygon fill="black" stroke="black" points="1010.07,-28 1015.07,-26.25 1010.07,-24.5 1010.07,-28"/>
@@ -132,13 +161,18 @@
 <text text-anchor="start" x="974.59" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="878.82" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 =======
+=======
+>>>>>>> c84958d (commit before merging with update)
 <title>to_rgba_cv1:i&#45;&gt;display1:i</title>
 <path fill="none" stroke="black" d="M821.21,-26.25C859.15,-26.25 909.71,-26.25 946.65,-26.25"/>
 <polygon fill="black" stroke="black" points="946.4,-28 951.4,-26.25 946.4,-24.5 946.4,-28"/>
 <text text-anchor="start" x="847.25" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">RGBA_320_240</text>
 <text text-anchor="start" x="910.91" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="827.21" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<<<<<<< HEAD
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+>>>>>>> c84958d (commit before merging with update)
 </g>
 </g>
 </svg>
