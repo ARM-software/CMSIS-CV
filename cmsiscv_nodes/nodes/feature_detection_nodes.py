@@ -8,7 +8,11 @@ class CannyEdge(GenericNode):
     def __init__(self,name,w,h,firstAlgo=True,config=False):
         GenericSink.__init__(self,name)
         src_t = CImageType(w,h,CImageType.GRAY8)
+<<<<<<< HEAD
         dst_t = CImageType(w,h,CImageType.GRAY8)
+=======
+        dst_t = CImageType(w,h,CImageType.GRAY16)
+>>>>>>> 0eb2bec (update type for gaussian and cannyedge)
 
         self.addInput("i",src_t,src_t.nb_bytes)
         self.addOutput("o",dst_t,dst_t.nb_bytes)
@@ -43,8 +47,13 @@ class CannyEdge(GenericNode):
     def params(self):
         return {"name":"CMSIS-CV Canny Edge", 
                 "values":
+<<<<<<< HEAD
                   [{"value":78,"name":"low","min":0,"max":255,"step":1},
                    {"value":33,"name":"high","min":0,"max":255,"step":1}
+=======
+                  [{"value":108,"name":"low","min":0,"max":255,"step":1},
+                   {"value":95,"name":"high","min":0,"max":255,"step":1}
+>>>>>>> 0eb2bec (update type for gaussian and cannyedge)
                   ]
                 }
 

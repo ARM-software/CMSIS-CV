@@ -84,8 +84,11 @@ public:
 
         arm_cv_image_gray8_t input;
 <<<<<<< HEAD
+<<<<<<< HEAD
         arm_cv_image_gray8_t output;
 =======
+=======
+>>>>>>> 0eb2bec (update type for gaussian and cannyedge)
         arm_cv_image_q15_t output;
 >>>>>>> ba8fda0 (update type for gaussian and cannyedge)
 
