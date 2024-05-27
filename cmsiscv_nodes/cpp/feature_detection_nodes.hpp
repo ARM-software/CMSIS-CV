@@ -82,12 +82,12 @@ public:
             return(CG_MEMORY_ALLOCATION_FAILURE);
         }
 
-        arm_cv_image_q15_t input;
+        arm_cv_image_gray8_t input;
         arm_cv_image_q15_t output;
 
         input.height=this->inputHeight();
         input.width=this->inputWidth();
-        input.pData = (q15_t*)i;
+        input.pData = (uint8_t*)i;
 
         output.height=this->inputHeight();
         output.width=this->inputWidth();
