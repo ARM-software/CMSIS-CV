@@ -96,7 +96,21 @@ class SimilarTensorFixp(Comparison):
 
     def __call__(self,ref,result):
         for s,d in zip(ref,result):
-            diff = np.abs(s.tensor-d.tensor)
+            st = s.tensor
+            dt = d.tensor
+            # Cast to signed so that the difference below is giving
+            # the right value
+            if st.dtype == np.uint8:
+                st = st.astype(dtype=np.int16)
+                dt = dt.astype(dtype=np.int16)
+            if st.dtype == np.uint16:
+                st = st.astype(dtype=np.int32)
+                dt = dt.astype(dtype=np.int32)
+            if st.dtype == np.uint32:
+                st = st.astype(dtype=np.int64)
+                dt = dt.astype(dtype=np.int64)
+
+            diff = np.abs(st-dt)
             errorVal = np.max(diff)
             if errorVal > self._t:
                self.add_error(f"Different tensors. Max error = {errorVal}")
