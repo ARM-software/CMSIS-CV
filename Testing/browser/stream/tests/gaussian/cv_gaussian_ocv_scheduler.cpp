@@ -117,8 +117,8 @@ Internal ID identification for the nodes
 #define GAUSSIAN_INTERNAL_ID 4
 #define GAUSSIAN_CV_INTERNAL_ID 5
 #define TO_GRAY8_INTERNAL_ID 6
-#define TO_RGBA_INTERNAL_ID 7
-#define TO_RGBA_CV_INTERNAL_ID 8
+#define TO_RGBA_CV1_INTERNAL_ID 7
+#define TO_RGBA_CV2_INTERNAL_ID 8
 
 /* For callback management */
 
@@ -153,7 +153,7 @@ FIFO buffers
 
 ************/
 #define FIFOSIZE0 307200
-#define FIFOSIZE1 153600
+#define FIFOSIZE1 76800
 #define FIFOSIZE2 307200
 #define FIFOSIZE3 76800
 #define FIFOSIZE4 307200
@@ -175,7 +175,7 @@ int init_buffer_cv_gaussian_ocv_scheduler(unsigned char * src,
                               uint32_t* params1,
                               uint32_t* params2)
 {
-    buffers.buf0 = (uint8_t *)CG_MALLOC(153600 * sizeof(uint8_t));
+    buffers.buf0 = (uint8_t *)CG_MALLOC(76800 * sizeof(uint8_t));
     if (buffers.buf0==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
@@ -221,7 +221,7 @@ typedef struct {
     WebDisplay<int8_t,307200> *display1;
     WebDisplay<int8_t,307200> *display2;
     Duplicate<int8_t,76800,int8_t,76800> *dup0;
-    GaussianFilter<int8_t,76800,int8_t,153600> *gaussian;
+    GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
     OpenCVGaussian<int8_t,76800,int8_t,76800> *gaussian_cv;
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
     Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
@@ -306,7 +306,7 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.gaussian = new GaussianFilter<int8_t,76800,int8_t,153600>(*(fifos.fifo6),*(fifos.fifo1));
+    nodes.gaussian = new GaussianFilter<int8_t,76800,int8_t,76800>(*(fifos.fifo6),*(fifos.fifo1));
     if (nodes.gaussian==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
@@ -321,13 +321,13 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.to_rgba = new Gray16ToRGBA32<int8_t,153600,int8_t,307200>(*(fifos.fifo1),*(fifos.fifo2));
-    if (nodes.to_rgba==NULL)
+    nodes.to_rgba_cv1 = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo1),*(fifos.fifo2));
+    if (nodes.to_rgba_cv1==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.to_rgba_cv = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
-    if (nodes.to_rgba_cv==NULL)
+    nodes.to_rgba_cv2 = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
+    if (nodes.to_rgba_cv2==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
@@ -403,13 +403,13 @@ void free_cv_gaussian_ocv_scheduler(unsigned char * src,
     {
         delete nodes.to_gray8;
     }
-    if (nodes.to_rgba!=NULL)
+    if (nodes.to_rgba_cv1!=NULL)
     {
-        delete nodes.to_rgba;
+        delete nodes.to_rgba_cv1;
     }
-    if (nodes.to_rgba_cv!=NULL)
+    if (nodes.to_rgba_cv2!=NULL)
     {
-        delete nodes.to_rgba_cv;
+        delete nodes.to_rgba_cv2;
     }
 }
 
@@ -500,15 +500,15 @@ CG_RESTORE_STATE_MACHINE_STATE;
 
                 case 7:
                 {
-                    nodes.to_rgba->setExecutionStatus(cb_state.running);
-                   cgStaticError = nodes.to_rgba->run();
+                    nodes.to_rgba_cv1->setExecutionStatus(cb_state.running);
+                   cgStaticError = nodes.to_rgba_cv1->run();
                 }
                 break;
 
                 case 8:
                 {
-                    nodes.to_rgba_cv->setExecutionStatus(cb_state.running);
-                   cgStaticError = nodes.to_rgba_cv->run();
+                    nodes.to_rgba_cv2->setExecutionStatus(cb_state.running);
+                   cgStaticError = nodes.to_rgba_cv2->run();
                 }
                 break;
 
