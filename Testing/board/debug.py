@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import cv2 as cv
 import numpy as np 
 from PIL import ImageOps
@@ -154,6 +155,17 @@ print(yuv2)
 
 
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+#from scripts.export import *
+#
+#with open("results/output_0.dat","rb") as f:
+#         r = read_tensors(f)
+#
+#for i in r:
+#    print(i.tensor)
+
+
+>>>>>>> c84958d (commit before merging with update)
 import cv2 as cv
 import numpy as np 
 from PIL import ImageOps
@@ -170,15 +182,20 @@ from scripts.export import AlgoImage,serialize_tensors,read_tensors
  
 #print(r[0].dim)
 <<<<<<< HEAD
+<<<<<<< HEAD
 input =   AlgoImage.open("inputs/dev/img_0.tiff").tensor
 =======
  
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+ 
+>>>>>>> c84958d (commit before merging with update)
 ref = AlgoImage.open("references/dev/test_0_img_0.tiff").tensor
 out = AlgoImage.open("results/img/AC6/VHT-Corstone-300/dev/test_0_img_0.tiff").tensor
  
 print(ref-out)
  
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 print(out[0,0])
@@ -215,3 +232,7 @@ print(ref[0,0])
 print(out[0,0])
 print(ref[0,0])
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+print(out[0,0])
+print(ref[0,0])
+>>>>>>> c84958d (commit before merging with update)

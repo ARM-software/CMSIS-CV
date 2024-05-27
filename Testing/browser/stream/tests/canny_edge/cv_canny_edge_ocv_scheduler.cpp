@@ -119,7 +119,11 @@ Internal ID identification for the nodes
 #define DUP0_INTERNAL_ID 6
 #define GAUSSIAN_INTERNAL_ID 7
 #define TO_GRAY8_INTERNAL_ID 8
+<<<<<<< HEAD
 #define U8_TO_RGBA_INTERNAL_ID 9
+=======
+#define TO_RGBA_INTERNAL_ID 9
+>>>>>>> c84958d (commit before merging with update)
 
 /* For callback management */
 
@@ -221,11 +225,16 @@ ImageFIFO<int8_t,FIFOSIZE8,1,0> *fifo8;
 
 typedef struct {
     WebCamera<int8_t,307200> *camera;
+<<<<<<< HEAD
     CannyEdge<int8_t,76800,int8_t,76800> *canny;
+=======
+    CannyEdge<int8_t,76800,int8_t,153600> *canny;
+>>>>>>> c84958d (commit before merging with update)
     OpenCVCanny<int8_t,76800,int8_t,76800> *canny_cv;
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *cv_to_rgba;
     WebDisplay<int8_t,307200> *display1;
     WebDisplay<int8_t,307200> *display2;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -248,6 +257,8 @@ typedef struct {
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *u8_to_rgba;
 =======
+=======
+>>>>>>> c84958d (commit before merging with update)
     Duplicate<int8_t,76800,int8_t,76800> *dup0;
     GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
     RGBAToGray8<int8_t,307200,int8_t,76800> *to_gray8;
@@ -324,10 +335,14 @@ init_cb_state();
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo7),*(fifos.fifo2),params1);
 =======
     nodes.canny = new CannyEdge<int8_t,76800,int8_t,153600>(*(fifos.fifo7),*(fifos.fifo2),params1);
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+    nodes.canny = new CannyEdge<int8_t,76800,int8_t,153600>(*(fifos.fifo7),*(fifos.fifo2),params1);
+>>>>>>> c84958d (commit before merging with update)
     if (nodes.canny==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
@@ -337,6 +352,7 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -358,6 +374,9 @@ init_cb_state();
 =======
     nodes.cv_to_rgba = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo4),*(fifos.fifo5));
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+    nodes.cv_to_rgba = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo4),*(fifos.fifo5));
+>>>>>>> c84958d (commit before merging with update)
     if (nodes.cv_to_rgba==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);

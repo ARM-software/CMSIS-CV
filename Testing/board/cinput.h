@@ -17,6 +17,7 @@ extern "C"
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define NB_CINPUT 65768
 =======
 <<<<<<< HEAD
@@ -60,6 +61,9 @@ extern "C"
 =======
 #define NB_CINPUT 4216
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+#define NB_CINPUT 4216
+>>>>>>> c84958d (commit before merging with update)
 extern const uint8_t cinput[NB_CINPUT];
 
 #endif

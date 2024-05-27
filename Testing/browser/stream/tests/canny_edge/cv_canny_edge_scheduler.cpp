@@ -153,8 +153,11 @@ FIFO buffers
 #define FIFOSIZE1 76800
 #define FIFOSIZE2 76800
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FIFOSIZE3 76800
 =======
+=======
+>>>>>>> c84958d (commit before merging with update)
 #define FIFOSIZE3 153600
 >>>>>>> ab9c6f0 (commit before merging with update)
 #define FIFOSIZE4 307200
@@ -214,6 +217,7 @@ ImageFIFO<int8_t,FIFOSIZE4,1,0> *fifo4;
 typedef struct {
     WebCamera<int8_t,307200> *camera;
 <<<<<<< HEAD
+<<<<<<< HEAD
     CannyEdge<int8_t,76800,int8_t,76800> *canny;
     WebDisplay<int8_t,307200> *display1;
 <<<<<<< HEAD
@@ -232,6 +236,10 @@ typedef struct {
     CannyEdge<int8_t,76800,int8_t,153600> *canny;
     WebDisplay<int8_t,307200> *display1;
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+    CannyEdge<int8_t,76800,int8_t,153600> *canny;
+    WebDisplay<int8_t,307200> *display1;
+>>>>>>> c84958d (commit before merging with update)
     GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
     RGBAToGray8<int8_t,307200,int8_t,76800> *to_gray8;
     Gray16ToRGBA<int8_t,153600,int8_t,307200> *to_rgba;
@@ -296,10 +304,14 @@ init_cb_state();
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo2),*(fifos.fifo3),params1);
 =======
     nodes.canny = new CannyEdge<int8_t,76800,int8_t,153600>(*(fifos.fifo2),*(fifos.fifo3),params1);
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+    nodes.canny = new CannyEdge<int8_t,76800,int8_t,153600>(*(fifos.fifo2),*(fifos.fifo3),params1);
+>>>>>>> c84958d (commit before merging with update)
     if (nodes.canny==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
