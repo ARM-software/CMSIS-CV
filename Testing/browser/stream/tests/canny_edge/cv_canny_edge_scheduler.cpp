@@ -213,12 +213,15 @@ typedef struct {
     WebDisplay<int8_t,307200> *display1;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     GaussianFilter<int8_t,76800,int8_t,153600> *gaussian;
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
     Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
 =======
 =======
 >>>>>>> ab9c6f0 (commit before merging with update)
+=======
+>>>>>>> c84958d (commit before merging with update)
     GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
     RGBAToGray8<int8_t,307200,int8_t,76800> *to_gray8;
     Gray16ToRGBA<int8_t,153600,int8_t,307200> *to_rgba;
