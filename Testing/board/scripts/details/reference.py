@@ -129,7 +129,9 @@ class GaussianFilter:
         for i in srcs:
             # Extract the image from the AlgoImage and blur it
             # OpenCv can work with NumPy array but not with Pillow image
-            blur = cv.GaussianBlur(i.tensor,(3,3),0,0,cv.BORDER_REPLICATE)
+            #blur = cv.GaussianBlur(i.tensor,(3,3),0,0,cv.BORDER_REPLICATE)
+            kernel = np.array([[1/16,2/16,1/16],[2/16,4/16,2/16],[1/16,2/16,1/16]])
+            blur = cv.filter2D(i.tensor, -1, kernel,cv.BORDER_REPLICATE)
             # Pack the image in an AlgoImage and add it to the reference patterns
             # If we get the blur as it is, it will be recorded as an .npy file
             # It would be simpler with a gray8 as tiff image 
