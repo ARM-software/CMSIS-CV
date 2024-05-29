@@ -16,14 +16,62 @@ allSuites = [
     {
         "name" : "Linear Filters",
         "define": "TESTGROUP1",
-        "inputs": [ImageGen(STANDARD_GRAY_IMGS,format=Format.GRAY8,
+        "inputs": [ImageGen(STANDARD_GRAY_IMGS,
+                   format=Format.GRAY8,
                    path="Patterns/Mandrill.tiff"),
                    ImageGen(STANDARD_RBG_IMGS,
                    format=Format.RGB,
-                   path="Patterns/Mandrill.tiff")],
+                   path="Patterns/Mandrill.tiff"),
+                   ImageGen([(64,64)],
+                   format=Format.GRAY8,
+                   path="Patterns/Mandrill.tiff"),
+                   ImageGen([(128,128)],
+                   format=Format.GRAY8,
+                   path="Patterns/Mandrill.tiff"),
+                   ImageGen([(65,65)],
+                   format=Format.GRAY8,
+                   path="Patterns/Mandrill.tiff"),
+                   ImageGen([(127,127)],
+                   format=Format.GRAY8,
+                   path="Patterns/House.tiff"),
+                   ImageGen(STANDARD_GRAY_IMGS,
+                   format=Format.GRAY8,
+                   path="Patterns/House.tiff"),
+                   ],
         "tests":
           ([linear_copy_test(imgid,imgdim,funcid=1) for imgid,imgdim in enumerate(STANDARD_GRAY_IMGS)] +
-           [linear_copy_test(imgid+len(STANDARD_GRAY_IMGS),imgdim,funcid=0,img_type="rgb") for imgid,imgdim in enumerate(STANDARD_RBG_IMGS)])
+           [linear_copy_test(imgid+len(STANDARD_GRAY_IMGS),imgdim,funcid=0,img_type="rgb") for imgid,imgdim in enumerate(STANDARD_RBG_IMGS)])+
+            [
+                {
+                "desc":"Test linear filter 64",
+                "funcid": 2,
+                "useimg": [len(STANDARD_GRAY_IMGS)+len(STANDARD_RBG_IMGS)],
+                "reference": GaussianFilter(),
+                "check" : SimilarTensorFixp(1)
+                },
+                {
+                "desc":"Test linear filter 128",
+                "funcid": 2,
+                "useimg": [len(STANDARD_GRAY_IMGS)+len(STANDARD_RBG_IMGS)+1],
+                "reference": GaussianFilter(),
+                "check" : SimilarTensorFixp(1)
+                },
+                {
+                "desc":"Test linear filter 65",
+                "funcid": 2,
+                "useimg": [len(STANDARD_GRAY_IMGS)+len(STANDARD_RBG_IMGS)+2],
+                "reference": GaussianFilter(),
+                "check" : SimilarTensorFixp(1)
+                },
+                {
+                "desc":"Test linear filter 127",
+                "funcid": 2,
+                "useimg": [len(STANDARD_GRAY_IMGS)+len(STANDARD_RBG_IMGS)+3],
+                "reference": GaussianFilter(),
+                "check" : SimilarTensorFixp(1)
+                }
+            ]+
+            [linear_gaussian_test(imgid+len(STANDARD_GRAY_IMGS)+len(STANDARD_RBG_IMGS)+4, imgdim, funcid=2) for imgid,imgdim in enumerate(STANDARD_GRAY_IMGS)]
     },
     {
         "name" : "Tensor tests",
@@ -48,5 +96,5 @@ devTest = {
                    format=Format.GRAY8,
                    path="Patterns/Mandrill.tiff")],
         "reference": GaussianFilter(),
-        "check" : SimilarTensorFixp()
+        "check" : SimilarTensorFixp(1)
 }
