@@ -3,6 +3,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TESTGROUP1
 =======
 #define TESTDEV
@@ -10,6 +11,9 @@
 =======
 #define TESTDEV
 >>>>>>> c84958d (commit before merging with update)
+=======
+#define TESTGROUP1
+>>>>>>> 814543b (bug issue white image)
 
 #endif
 
