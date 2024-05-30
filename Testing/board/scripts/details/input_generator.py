@@ -65,9 +65,9 @@ class ImageGen:
             img = img.convert("RGB")
 
         for d in self._dims:
-            img = ImageOps.pad(img, d, color="#fff")
+            nimg = ImageOps.pad(img, d, color="#fff")
 
-            res.append(AlgoImage(img))
+            res.append(AlgoImage(nimg))
 
         return res
 
