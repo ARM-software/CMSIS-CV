@@ -113,6 +113,27 @@ class SimilarTensorFixp(Comparison):
             diff = np.abs(st-dt)
             errorVal = np.max(diff)
             if errorVal > self._t:
+               MAXNB = 10
                self.add_error(f"Different tensors. Max error = {errorVal}")
+               tooBig = diff > self._t
+               # Remove the channel to get the indice of the pixel
+               # and remove duplicates in case there may be errors for
+               # several channels of the same pixel
+               indices = list(set([tuple(x)[:-1] for x in list(np.argwhere(tooBig))]))
+               allErrors = [diff[x] for x in indices] 
+               nb_errors = len(allErrors)
+               indices = indices[:MAXNB]
+               allErrors = allErrors[:MAXNB]
+               
+               ref = [list(st[x]) for x in indices] 
+               result = [list(dt[x]) for x in indices] 
+              
+               ref=ref[:MAXNB]
+               result=result[:MAXNB]
+               self.add_error(f"Latest {MAXNB} error indices: {indices}")
+               self.add_error(f"References : {ref}")
+               self.add_error(f"Results : {result}")
+               self.add_error(f"Number of errors : {nb_errors}")
+
                return False 
         return(True)

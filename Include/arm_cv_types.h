@@ -33,10 +33,8 @@ extern "C"
 {
 #endif
 
-typedef uint8_t gray8_t;
-typedef uint16_t gray16_t;
-typedef uint8_t packed_rgb888_t;
-typedef uint32_t rgba_t;
+typedef uint8_t channel_uint8_t;
+typedef uint8_t channel_uint16_t;
 
 
 /**
@@ -58,7 +56,7 @@ typedef struct _arm_cv_image {
 typedef struct _arm_cv_image_gray8 {
   uint16_t width;
   uint16_t height;
-  gray8_t* pData;
+  channel_uint8_t* pData;
 } arm_cv_image_gray8_t;
 
 /**
@@ -72,7 +70,7 @@ typedef struct _arm_cv_image_gray8 {
 typedef struct _arm_cv_image_gray16 {
   uint16_t width;
   uint16_t height;
-  gray16_t* pData;
+  channel_uint16_t* pData;
 } arm_cv_image_gray16_t;
 
 /**
@@ -83,11 +81,11 @@ typedef struct _arm_cv_image_gray16 {
  * @return 
  *
  */
-typedef struct _arm_cv_image_rgb888 {
+typedef struct _arm_cv_image_rgb24 {
   uint16_t width;
   uint16_t height;
-  packed_rgb888_t* pData;
-} arm_cv_image_rgb888_t;
+  channel_uint8_t* pData;
+} arm_cv_image_rgb24_t;
 
 /**
  * @brief   Structure for a RGBA image
@@ -100,8 +98,52 @@ typedef struct _arm_cv_image_rgb888 {
 typedef struct _arm_cv_image_rgba {
   uint16_t width;
   uint16_t height;
-  rgba_t* pData;
+  channel_uint8_t* pData;
 } arm_cv_image_rgba_t;
+
+/**
+ * @brief   Structure for a unpacked YUV420 image
+ * @param   width     image width in pixels
+ * @param   height    image height in pixels
+ * @param   pData     pointer to the array containing the data for the pixels
+ * @return 
+ * 
+ * @par The image is unpacked
+ *      There are 3 planes : Y, U and V
+ *      width and height are the dimensions of the image and not of the 
+ *      tensor (different from OpenCV for instance)
+ * @par Format details
+ *      - YUV = YCbCr
+ *      - ITU-R BT.601 full format.
+ * @par Resulting output range is 
+ *      - Y=[16...235]
+ *      - Cb (U) =[16...240]
+ *      - Cr (V) =[16...240]
+ *
+ */
+typedef struct _arm_cv_image_yuv420 {
+  uint16_t width;
+  uint16_t height;
+  channel_uint8_t* pData;
+} arm_cv_image_yuv420_t;
+
+/**
+ * @brief   Structure for a unpacked BGR image
+ * @param   width     image width in pixels
+ * @param   height    image height in pixels
+ * @param   pData     pointer to the array containing the data for the pixels
+ * @return 
+ * 
+ * @par The image is unpacked
+ *      There are 3 planes : B,G,R
+ *      width and height are the dimensions of the image and not of the 
+ *
+ */
+typedef struct _arm_cv_image_bgr_8U3C {
+  uint16_t width;
+  uint16_t height;
+  channel_uint8_t* pData;
+} arm_cv_image_bgr_8U3C_t;
 
 /**
  * @brief   Structure for a q15 image

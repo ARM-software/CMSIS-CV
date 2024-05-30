@@ -212,8 +212,8 @@ typedef struct {
     CannyEdge<int8_t,153600,int8_t,153600> *canny;
     WebDisplay<int8_t,307200> *display1;
     GaussianFilter<int8_t,76800,int8_t,153600> *gaussian;
-    RGBAToGray8<int8_t,307200,int8_t,76800> *to_gray8;
-    Gray16ToRGBA<int8_t,153600,int8_t,307200> *to_rgba;
+    RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
+    Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
 } nodes_t;
 
 CG_BEFORE_BUFFER
@@ -279,12 +279,12 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.to_gray8 = new RGBAToGray8<int8_t,307200,int8_t,76800>(*(fifos.fifo0),*(fifos.fifo1));
+    nodes.to_gray8 = new RGBA32ToGray8<int8_t,307200,int8_t,76800>(*(fifos.fifo0),*(fifos.fifo1));
     if (nodes.to_gray8==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.to_rgba = new Gray16ToRGBA<int8_t,153600,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
+    nodes.to_rgba = new Gray16ToRGBA32<int8_t,153600,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
     if (nodes.to_rgba==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);

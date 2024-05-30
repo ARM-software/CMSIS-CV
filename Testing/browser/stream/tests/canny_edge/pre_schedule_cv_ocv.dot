@@ -20,7 +20,7 @@ camera [label=<
 to_gray8 [label=<
 <TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
   <TR>
-    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_gray8<BR/>(RGBAToGray8)</FONT></TD>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_gray8<BR/>(RGBA32ToGray8)</FONT></TD>
   </TR>
 </TABLE>>];
 
@@ -41,7 +41,7 @@ canny [label=<
 to_rgba [label=<
 <TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
   <TR>
-    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba<BR/>(Gray16ToRGBA)</FONT></TD>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba<BR/>(Gray16ToRGBA32)</FONT></TD>
   </TR>
 </TABLE>>];
 
@@ -69,7 +69,7 @@ canny_cv [label=<
 cv_to_rgba [label=<
 <TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
   <TR>
-    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">cv_to_rgba<BR/>(Gray8ToRGBA)</FONT></TD>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">cv_to_rgba<BR/>(Gray8ToRGBA32)</FONT></TD>
   </TR>
 </TABLE>>];
 

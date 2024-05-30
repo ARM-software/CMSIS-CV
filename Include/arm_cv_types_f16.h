@@ -27,6 +27,7 @@
 #define ARM_CV_TYPES_F16_H
 
 #include "arm_math_types_f16.h"
+#include "arm_cv_types_f16.h"
 
 #ifdef   __cplusplus
 extern "C"

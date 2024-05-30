@@ -53,6 +53,14 @@
         <!-- CV sources (core) -->
         <file category="source"   name="Source/cannysobel.c"/>
         <file category="source"   name="Source/gaussian.c"/>
+        <file category="source"   name="Source/arm_yuv420_to_gray8.c"/>
+        <file category="source"   name="Source/arm_bgr_8U3C_to_gray8.c"/>
+        <file category="source"   name="Source/arm_gray8_to_rgb24.c"/>
+        <file category="source"   name="Source/arm_bgr_8U3C_to_rgb24.c"/>
+        <file category="source"   name="Source/arm_cv_common.c"/>
+        <file category="source"   name="Source/arm_yuv420_to_rgb24.c"/>
+        <file category="source"   name="Source/arm_rgb24_to_gray8.c"/>
+        
       </files>
     </component>
 

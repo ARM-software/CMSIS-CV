@@ -49,27 +49,27 @@ gaussian_cv [label=<
 to_gray8 [label=<
 <TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
   <TR>
-    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_gray8<BR/>(RGBAToGray8)</FONT></TD>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_gray8<BR/>(RGBA32ToGray8)</FONT></TD>
   </TR>
 </TABLE>>];
 
 to_rgba [label=<
 <TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
   <TR>
-    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba<BR/>(Gray16ToRGBA)</FONT></TD>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba<BR/>(Gray16ToRGBA32)</FONT></TD>
   </TR>
 </TABLE>>];
 
 to_rgba_cv [label=<
 <TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
   <TR>
-    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba_cv<BR/>(Gray8ToRGBA)</FONT></TD>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba_cv<BR/>(Gray8ToRGBA32)</FONT></TD>
   </TR>
 </TABLE>>];
 
 
 
-camera:i -> to_gray8:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA_320_240>
+camera:i -> to_gray8:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA32_320_240>
 ,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
 </TD></TR></TABLE>>
 ,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
@@ -81,7 +81,7 @@ gaussian:i -> to_rgba:i [style="solid",color="black",fontsize="12.0",fontcolor="
 ,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >153600</FONT>
 </TD></TR></TABLE>>]
 
-to_rgba:i -> display1:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA_320_240>
+to_rgba:i -> display1:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA32_320_240>
 ,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
 </TD></TR></TABLE>>
 ,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
@@ -93,7 +93,7 @@ gaussian_cv:i -> to_rgba_cv:i [style="solid",color="black",fontsize="12.0",fontc
 ,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >76800</FONT>
 </TD></TR></TABLE>>]
 
-to_rgba_cv:i -> display2:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA_320_240>
+to_rgba_cv:i -> display2:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA32_320_240>
 ,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
 </TD></TR></TABLE>>
 ,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>

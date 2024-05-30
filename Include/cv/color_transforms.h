@@ -23,3 +23,83 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+#ifndef ARM_CV_COLOR_TRANSFORM_H
+#define ARM_CV_COLOR_TRANSFORM_H
+
+
+//this include contain the specific types of the library
+#include "arm_cv_types.h"
+
+#ifdef   __cplusplus
+extern "C"
+{
+#endif
+
+
+
+
+/**     
+ * @brief      Unpacked YUV420 to Grayscale
+ *
+ * @param[in]  ImageIn   The input image
+ * @param      ImageOut  The output image
+ */
+extern void arm_yuv420_to_gray8(const arm_cv_image_yuv420_t* ImageIn,
+                                      arm_cv_image_gray8_t* ImageOut);
+
+/**     
+ * @brief      Unpacked YUV420 to packed RGB24
+ *
+ * @param[in]  ImageIn   The input image
+ * @param      ImageOut  The output image
+ */
+extern void arm_yuv420_to_rgb24(const arm_cv_image_yuv420_t* ImageIn,
+                                      arm_cv_image_rgb24_t* ImageOut);
+
+
+/**     
+ * @brief      Unpacked BGR 8U3C to Grayscale
+ *
+ * @param[in]  ImageIn   The input image
+ * @param      ImageOut  The output image
+ */
+extern void arm_bgr_8U3C_to_gray8(const arm_cv_image_bgr_8U3C_t* ImageIn,
+                                        arm_cv_image_gray8_t* ImageOut);
+
+
+/**     
+ * @brief      Unpacked BGR 8U3C to RGB24
+ *
+ * @param[in]  ImageIn   The input image
+ * @param      ImageOut  The output image
+ */
+extern void arm_bgr_8U3C_to_rgb24(const arm_cv_image_bgr_8U3C_t* ImageIn,
+                                        arm_cv_image_rgb24_t* ImageOut);
+
+/**     
+ * @brief      Grayscale to RGB24
+ *
+ * @param[in]  ImageIn   The input image
+ * @param      ImageOut  The output image
+ */
+extern void arm_gray8_to_rgb24(const arm_cv_image_gray8_t* ImageIn,
+                                     arm_cv_image_rgb24_t* ImageOut);
+
+
+
+/**     
+ * @brief      Packed RGB24 to Grayscale
+ *
+ * @param[in]  ImageIn   The input image
+ * @param      ImageOut  The output image
+ */
+extern void arm_rgb24_to_gray8(const arm_cv_image_rgb24_t* ImageIn,
+                                     arm_cv_image_gray8_t* ImageOut);
+
+#ifdef   __cplusplus
+}
+#endif
+
+
+#endif

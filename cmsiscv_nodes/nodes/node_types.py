@@ -20,15 +20,16 @@ class ImageFIFO(StreamFIFO):
 activateType = CType(UINT32)
 
 class CImageType(CGStaticType):
-    YUV = 1
-    RGB = 2
+    YUV420 = 1 # Unpacked
+    RGB24 = 2
     GRAY16 = 3
     GRAY8 = 4
-    RGBA = 5
+    RGBA32 = 5
     Q15 = 6
     GRADIENT_Q15 = 7
+    BGR_8U3C = 8 # Unpacked
 
-    def __init__(self,w,h,t=YUV):
+    def __init__(self,w,h,t=YUV420):
         CGStaticType.__init__(self)
         self._w = w 
         self._h = h
@@ -70,9 +71,9 @@ class CImageType(CGStaticType):
           
     @property
     def nb_bytes(self):
-        if self._pixel_type == CImageType.YUV:
+        if self._pixel_type == CImageType.YUV420:
            return(int(1.5*self._w*self._h))
-        if self._pixel_type == CImageType.RGB:
+        if self._pixel_type == CImageType.RGB24:
            return(int(3*self._w*self._h))
         if self._pixel_type == CImageType.GRAY16:
            return(int(2*self._w*self._h))
@@ -82,8 +83,10 @@ class CImageType(CGStaticType):
            return(int(4*self._w*self._h))
         if self._pixel_type == CImageType.GRAY8:
            return(int(self._w*self._h))
-        if self._pixel_type == CImageType.RGBA:
+        if self._pixel_type == CImageType.RGBA32:
            return(int(4*self._w*self._h))
+        if self._pixel_type == CImageType.BGR_8U3C:
+           return(int(3*self._w*self._h))
 
     @property
     def ctype(self):
@@ -91,10 +94,10 @@ class CImageType(CGStaticType):
 
     @property
     def graphViztype(self):
-        if self.format == CImageType.YUV:
-           return(escape(f"YUV_{self.width}_{self.height}"))
-        if self.format == CImageType.RGB:
-           return(escape(f"RGB888_{self.width}_{self.height}"))
+        if self.format == CImageType.YUV420:
+           return(escape(f"YUV420_{self.width}_{self.height}"))
+        if self.format == CImageType.RGB24:
+           return(escape(f"RGB24_{self.width}_{self.height}"))
         if self.format == CImageType.GRAY16:
            return(escape(f"GRAY16_{self.width}_{self.height}"))
         if self.format == CImageType.Q15:
@@ -103,5 +106,7 @@ class CImageType(CGStaticType):
            return(escape(f"GRAD_Q15_{self.width}_{self.height}"))
         if self.format == CImageType.GRAY8:
            return(escape(f"GRAY8_{self.width}_{self.height}"))
-        if self.format == CImageType.RGBA:
-           return(escape(f"RGBA_{self.width}_{self.height}"))
+        if self.format == CImageType.RGBA32:
+           return(escape(f"RGBA32_{self.width}_{self.height}"))
+        if self.format == CImageType.BGR_8U3C:
+           return(escape(f"BGR_8U3C{self.width}_{self.height}"))

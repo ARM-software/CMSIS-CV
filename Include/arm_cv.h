@@ -29,7 +29,7 @@
 #include "arm_cv_types.h"
 
 /**
- * @defgroup colorTransform Color Transform
+ * @defgroup colorTransform Color Transformations
  */
 #include "cv/color_transforms.h"
 

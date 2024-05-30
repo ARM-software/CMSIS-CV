@@ -36,6 +36,7 @@ enum buffer_type {
    kIMG_NUMPY_TYPE_F16  = 8,
    kIMG_NUMPY_TYPE_F32 = 9,
    kIMG_NUMPY_TYPE_F64 = 10,
+   kIMG_YUV420_TYPE = 11,
 
 };
 
@@ -82,6 +83,11 @@ struct BufferDescription
           mShape.nb = 3;
           mShape.dims[2] = 3;
        }
+       if (type == kIMG_YUV420_TYPE)
+       {
+          // Force channel to 2
+          mShape.nb = 2;
+       }
    };
 
   
@@ -112,6 +118,9 @@ struct BufferDescription
       return (4*mShape.nb_elems());
      case kIMG_NUMPY_TYPE_F64:
         return (8*mShape.nb_elems());
+     case kIMG_YUV420_TYPE:
+        // Shape is h,w
+        return(mShape.nb_elems() + (mShape.nb_elems()>>1));
      default:
        return(0);
      }

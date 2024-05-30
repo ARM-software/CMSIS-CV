@@ -4,11 +4,11 @@ from html import escape
 
 from .node_types import *
 
-class YUVToRGB(GenericNode):
+class YUV420ToRGB24(GenericNode):
     def __init__(self,name,w,h):
         GenericSink.__init__(self,name,identified=False)
-        src_t = CImageType(w,h,CImageType.YUV)
-        dst_t = CImageType(w,h,CImageType.RGB)
+        src_t = CImageType(w,h,CImageType.YUV420)
+        dst_t = CImageType(w,h,CImageType.RGB24)
 
         self.addInput("i",src_t,src_t.nb_bytes)
         self.addOutput("o",dst_t,dst_t.nb_bytes)
@@ -23,12 +23,12 @@ class YUVToRGB(GenericNode):
     @property
     def typeName(self):
         """The name of the C++ class implementing this node"""
-        return "YUVToRGB"
+        return "YUV420ToRGB24"
 
-class YUVToGray16(GenericNode):
+class YUV420ToGray16(GenericNode):
     def __init__(self,name,w,h):
         GenericSink.__init__(self,name,identified=False)
-        src_t = CImageType(w,h,CImageType.YUV)
+        src_t = CImageType(w,h,CImageType.YUV420)
         dst_t = CImageType(w,h,CImageType.GRAY16)
 
         self.addInput("i",src_t,src_t.nb_bytes)
@@ -44,12 +44,12 @@ class YUVToGray16(GenericNode):
     @property
     def typeName(self):
         """The name of the C++ class implementing this node"""
-        return "YUVToGray16"
+        return "YUV420ToGray16"
 
-class YUVToGray8(GenericNode):
+class YUV420ToGray8(GenericNode):
     def __init__(self,name,w,h):
         GenericSink.__init__(self,name,identified=False)
-        src_t = CImageType(w,h,CImageType.YUV)
+        src_t = CImageType(w,h,CImageType.YUV420)
         dst_t = CImageType(w,h,CImageType.GRAY8)
 
         self.addInput("i",src_t,src_t.nb_bytes)
@@ -65,14 +65,14 @@ class YUVToGray8(GenericNode):
     @property
     def typeName(self):
         """The name of the C++ class implementing this node"""
-        return "YUVToGray8"
+        return "YUV420ToGray8"
 
 
-class Gray16ToRGB(GenericNode):
+class Gray16ToRGB24(GenericNode):
     def __init__(self,name,w,h):
         GenericSink.__init__(self,name,identified=False)
         src_t = CImageType(w,h,CImageType.GRAY16)
-        dst_t = CImageType(w,h,CImageType.RGB)
+        dst_t = CImageType(w,h,CImageType.RGB24)
 
         self.addInput("i",src_t,src_t.nb_bytes)
         self.addOutput("o",dst_t,dst_t.nb_bytes)
@@ -87,13 +87,13 @@ class Gray16ToRGB(GenericNode):
     @property
     def typeName(self):
         """The name of the C++ class implementing this node"""
-        return "Gray16ToRGB"
+        return "Gray16ToRGB24"
 
-class Gray8ToRGB(GenericNode):
+class Gray8ToRGB24(GenericNode):
     def __init__(self,name,w,h):
         GenericSink.__init__(self,name,identified=False)
         src_t = CImageType(w,h,CImageType.GRAY8)
-        dst_t = CImageType(w,h,CImageType.RGB)
+        dst_t = CImageType(w,h,CImageType.RGB24)
 
         self.addInput("i",src_t,src_t.nb_bytes)
         self.addOutput("o",dst_t,dst_t.nb_bytes)
@@ -108,7 +108,7 @@ class Gray8ToRGB(GenericNode):
     @property
     def typeName(self):
         """The name of the C++ class implementing this node"""
-        return "Gray8ToRGB"
+        return "Gray8ToRGB24"
 
 class Gray8ToGray16(GenericNode):
     def __init__(self,name,w,h):
@@ -152,11 +152,11 @@ class Gray16ToGray8(GenericNode):
         """The name of the C++ class implementing this node"""
         return "Gray16ToGray8"
 
-class Gray8ToRGBA(GenericNode):
+class Gray8ToRGBA32(GenericNode):
     def __init__(self,name,w,h):
         GenericSink.__init__(self,name,identified=False)
         src_t = CImageType(w,h,CImageType.GRAY8)
-        dst_t = CImageType(w,h,CImageType.RGBA)
+        dst_t = CImageType(w,h,CImageType.RGBA32)
 
         self.addInput("i",src_t,src_t.nb_bytes)
         self.addOutput("o",dst_t,dst_t.nb_bytes)
@@ -171,13 +171,13 @@ class Gray8ToRGBA(GenericNode):
     @property
     def typeName(self):
         """The name of the C++ class implementing this node"""
-        return "Gray8ToRGBA"
+        return "Gray8ToRGBA32"
 
-class Gray16ToRGBA(GenericNode):
+class Gray16ToRGBA32(GenericNode):
     def __init__(self,name,w,h):
         GenericSink.__init__(self,name,identified=False)
         src_t = CImageType(w,h,CImageType.GRAY16)
-        dst_t = CImageType(w,h,CImageType.RGBA)
+        dst_t = CImageType(w,h,CImageType.RGBA32)
 
         self.addInput("i",src_t,src_t.nb_bytes)
         self.addOutput("o",dst_t,dst_t.nb_bytes)
@@ -192,12 +192,12 @@ class Gray16ToRGBA(GenericNode):
     @property
     def typeName(self):
         """The name of the C++ class implementing this node"""
-        return "Gray16ToRGBA"
+        return "Gray16ToRGBA32"
 
-class RGBAToGray8(GenericNode):
+class RGBA32ToGray8(GenericNode):
     def __init__(self,name,w,h):
         GenericSink.__init__(self,name,identified=False)
-        src_t = CImageType(w,h,CImageType.RGBA)
+        src_t = CImageType(w,h,CImageType.RGBA32)
         dst_t = CImageType(w,h,CImageType.GRAY8)
 
         self.addInput("i",src_t,src_t.nb_bytes)
@@ -213,4 +213,67 @@ class RGBAToGray8(GenericNode):
     @property
     def typeName(self):
         """The name of the C++ class implementing this node"""
-        return "RGBAToGray8"
+        return "RGBA32ToGray8"
+
+class RGB24ToGray8(GenericNode):
+    def __init__(self,name,w,h):
+        GenericSink.__init__(self,name,identified=False)
+        src_t = CImageType(w,h,CImageType.RGB24)
+        dst_t = CImageType(w,h,CImageType.GRAY8)
+
+        self.addInput("i",src_t,src_t.nb_bytes)
+        self.addOutput("o",dst_t,dst_t.nb_bytes)
+
+    def __call__(self, i):
+        g,n = i 
+        k = next(iter(n._outputs))
+        o = n._outputs[k]
+        g.connect(o,self.i)
+        return(g,self)
+        
+    @property
+    def typeName(self):
+        """The name of the C++ class implementing this node"""
+        return "RGB24ToGray8"
+
+class BGR_8U3CToRGB24(GenericNode):
+    def __init__(self,name,w,h):
+        GenericSink.__init__(self,name,identified=False)
+        src_t = CImageType(w,h,CImageType.BGR_8U3C)
+        dst_t = CImageType(w,h,CImageType.RGB24)
+
+        self.addInput("i",src_t,src_t.nb_bytes)
+        self.addOutput("o",dst_t,dst_t.nb_bytes)
+
+    def __call__(self, i):
+        g,n = i 
+        k = next(iter(n._outputs))
+        o = n._outputs[k]
+        g.connect(o,self.i)
+        return(g,self)
+        
+    @property
+    def typeName(self):
+        """The name of the C++ class implementing this node"""
+        return "BGR_8U3CToRGB24"
+
+class BGR_8U3CToGray8(GenericNode):
+    def __init__(self,name,w,h):
+        GenericSink.__init__(self,name,identified=False)
+        src_t = CImageType(w,h,CImageType.BGR_8U3C)
+        dst_t = CImageType(w,h,CImageType.GRAY8)
+
+        self.addInput("i",src_t,src_t.nb_bytes)
+        self.addOutput("o",dst_t,dst_t.nb_bytes)
+
+    def __call__(self, i):
+        g,n = i 
+        k = next(iter(n._outputs))
+        o = n._outputs[k]
+        g.connect(o,self.i)
+        return(g,self)
+        
+    @property
+    def typeName(self):
+        """The name of the C++ class implementing this node"""
+        return "BGR_8U3CToGray8"

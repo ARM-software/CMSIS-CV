@@ -4,6 +4,8 @@ import PIL
 import PIL.Image
 import numpy as np
 import os
+import io
+import re
 
 def _serialize_u32(file, tensor):
     """ writes one uint32 tensor to file that is open in wb mode """
@@ -114,9 +116,69 @@ def _read_f16_array(file,nb):
     a = struct.unpack(f'{nb}e', b)
     return(list(a))
 
-# This iw the general image type used for the test
+# Class representing an YUV420 unpacked image
+# Plane have different dimensions so it cannot be represented
+# as a tensor without mixing u and v planes together
+class YUV420:
+    # Create object from the 3 y,u,v planes
+    def __init__(self,*l):
+        self._planes = l 
+
+    # Create object from a byte stream.
+    # The dimension of the bytstream is (h*1.5,w) where
+    # (w,h) is the image dimensions
+    @classmethod
+    def FromBytes(cls,b,dims):
+        f = io.BytesIO(b)
+        f.seek(0)
+        #print(dims)
+        height = dims[0] * 2 // 3
+        width = dims[1]
+        ysize = height * width
+        y = f.read(ysize)
+        u = f.read(ysize//4)
+        v = f.read(ysize//4)
+
+        halfdim=(height//2,width//2)
+        y = np.frombuffer(y, dtype=np.uint8).reshape((height,width))
+        u = np.frombuffer(u, dtype=np.uint8).reshape(halfdim)
+        v = np.frombuffer(v, dtype=np.uint8).reshape(halfdim)
+
+        return YUV420(y,u,v)
+
+
+    @property
+    def planes(self):
+        return self._planes
+
+    @property
+    def dims(self):
+        return self.planes[0].shape
+
+    # Create an uint8 tensor
+    # If image has dimension (width,height) the tensor has dimensions
+    # (height*1.5, width)
+    @property
+    def tensor(self):
+        shape = self.dims
+
+        f = io.BytesIO()
+        for l in self.planes:
+            f.write(l.tobytes())
+        f.seek(0)
+        res = np.frombuffer(f.read(),dtype=np.uint8)
+        res = res.reshape((shape[0]+shape[0]//2,shape[1]))
+
+        return(res)
+
+    
+
+# This is the general image type used for the test
 # It can contain a Pillow RGB or GRAY8 image
 # or a numpy tensor (shape must have at most 4 dimensions)
+# or a Planar object.
+# A Planar object is a list of tensor of different shapes
+# It is required to represent YUV420 for instance
 class AlgoImage:
     IMG_RGB_TYPE = 0
     IMG_GRAY8_TYPE = 1
@@ -129,22 +191,38 @@ class AlgoImage:
     IMG_NUMPY_TYPE_F16  = 8
     IMG_NUMPY_TYPE_F32 = 9
     IMG_NUMPY_TYPE_F64 = 10
+    IMG_YUV420_TYPE = 11
 
     @classmethod
     def open(cls, path):
         file_name, file_extension = os.path.splitext(path)
+        # Detect if the file is an image than can be read with Pillow
+        # or a numpy tensor
+        # or a numpy tensor representing an yuv420
+        # In the case of yuv420, we save the tensor into object YUV420
         if file_extension == ".npy":
-            return AlgoImage(np.load(path))
+            if re.match(r'.*_yuv420',file_name):
+                t = np.load(path)
+                img = YUV420.FromBytes(t.tobytes(),t.shape)
+                return(AlgoImage(img))
+            else:
+               return AlgoImage(np.load(path))
         else:
             return AlgoImage(PIL.Image.open(path))
 
     def __init__(self,img):
         self._img = img
 
+    # Save image or tensor
+    # YUV420 is managed in special way
+    # The tensor must be interpreted in a special way.
+    # It is tracked in the filename
     def save(self,path):
         file_name, file_extension = os.path.splitext(path)
         if self.is_image:
             self.img.save(file_name + ".tiff")
+        elif self.is_yuv420:
+            np.save(file_name + "_yuv420.npy",self.tensor)
         else:
             np.save(file_name + ".npy",self.tensor)
 
@@ -152,7 +230,13 @@ class AlgoImage:
 
     @property 
     def is_image(self):
-        return not isinstance(self._img,np.ndarray)
+        return not isinstance(self._img,np.ndarray) and not isinstance(self._img,YUV420)
+
+    # Planar images are exported as tensor of int8 for C code
+    @property 
+    def is_yuv420(self):
+        return isinstance(self._img,YUV420)
+
 
     @property 
     def dtype(self):
@@ -182,6 +266,9 @@ class AlgoImage:
                 return AlgoImage.IMG_NUMPY_TYPE_F32
             if self._img.dtype == np.double:
                 return AlgoImage.IMG_NUMPY_TYPE_F64
+        elif self.is_yuv420:
+                return AlgoImage.IMG_YUV420_TYPE
+            
     
         raise NameError(f"Unsupported datatype {self._img}")
 
@@ -201,6 +288,8 @@ class AlgoImage:
         if self.is_image:
            buf = np.array(self._img)
            return(buf)
+        elif self.is_yuv420:
+           return self._img.tensor
         else:
             return(self._img)
 
@@ -259,6 +348,8 @@ def unserialize(file,dt,nbbytes,dims):
         res = PIL.Image.frombytes('RGB',(dims[1],dims[0]),a)
     elif dt == AlgoImage.IMG_GRAY8_TYPE:
         res = PIL.Image.frombytes('L',(dims[1],dims[0]),a)
+    elif dt == AlgoImage.IMG_YUV420_TYPE:
+        res = YUV420.FromBytes(a,dims)
     else:
         raise NameError(f"Unsupported NumPy datatype for unserialization {dt}")
 

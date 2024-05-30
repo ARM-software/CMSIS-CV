@@ -15,6 +15,114 @@ class CopyInput:
     def nb_references(self,srcs):
         return len(srcs)
 
+
+class Gray8ToRGB:
+    def __call__(self,args,group_id,test_id,srcs):
+        filtered = []
+        for i in srcs:
+            #print(i.tensor.shape)
+            rgb = cv.cvtColor(i.tensor,cv.COLOR_GRAY2RGB)
+            dims = rgb.shape
+            img = PIL.Image.frombytes('RGB',(dims[1],dims[0]),rgb)
+            filtered.append(AlgoImage(img))
+
+        # Record the filtered images
+        for image_id,img in enumerate(filtered):
+            record_reference_img(args,group_id,test_id,image_id,img)
+
+    def nb_references(self,srcs):
+        return len(srcs)
+
+class BGR8U3CToRGB:
+    def __call__(self,args,group_id,test_id,srcs):
+        filtered = []
+        for i in srcs:
+            #print(i.tensor.shape)
+            # Pack BGR components
+            nimg = np.transpose(i.tensor,(1,2,0))
+            rgb = cv.cvtColor(nimg,cv.COLOR_BGR2RGB)
+            dims = rgb.shape
+            img = PIL.Image.fromarray(rgb).convert('RGB')
+            filtered.append(AlgoImage(img))
+
+        # Record the filtered images
+        for image_id,img in enumerate(filtered):
+            record_reference_img(args,group_id,test_id,image_id,img)
+
+    def nb_references(self,srcs):
+        return len(srcs)
+
+class BGR8U3CToGray8:
+    def __call__(self,args,group_id,test_id,srcs):
+        filtered = []
+        for i in srcs:
+            #print(i.tensor.shape)
+            # Pack BGR componenets
+            nimg = np.transpose(i.tensor,(1,2,0))
+            gray = cv.cvtColor(nimg,cv.COLOR_BGR2GRAY)
+            dims = gray.shape
+            img = PIL.Image.frombytes('L',(dims[1],dims[0]),gray)
+            filtered.append(AlgoImage(img))
+
+        # Record the filtered images
+        for image_id,img in enumerate(filtered):
+            record_reference_img(args,group_id,test_id,image_id,img)
+
+    def nb_references(self,srcs):
+        return len(srcs)
+
+class RGBToGray:
+    def __call__(self,args,group_id,test_id,srcs):
+        filtered = []
+        for i in srcs:
+            gray = cv.cvtColor(i.tensor,cv.COLOR_RGB2GRAY)
+            dims = gray.shape
+            img = PIL.Image.frombytes('L',(dims[1],dims[0]),gray)
+            filtered.append(AlgoImage(img))
+
+        # Record the filtered images
+        for image_id,img in enumerate(filtered):
+            record_reference_img(args,group_id,test_id,image_id,img)
+
+    def nb_references(self,srcs):
+        return len(srcs)
+
+class YUV420ToGray8:
+    def __call__(self,args,group_id,test_id,srcs):
+        filtered = []
+        for i in srcs:
+            #print(i.tensor.shape)
+            gray = cv.cvtColor(i.tensor,cv.COLOR_YUV2GRAY_420)
+            dims = gray.shape
+            img = PIL.Image.frombytes('L',(dims[1],dims[0]),gray)
+            filtered.append(AlgoImage(img))
+
+        # Record the filtered images
+        for image_id,img in enumerate(filtered):
+            record_reference_img(args,group_id,test_id,image_id,img)
+
+    def nb_references(self,srcs):
+        return len(srcs)
+
+class YUV420ToRGB:
+    def __call__(self,args,group_id,test_id,srcs):
+        filtered = []
+        for i in srcs:
+            #print(i.tensor.shape)
+            rgb = cv.cvtColor(i.tensor,cv.COLOR_YUV2RGB_I420)
+            dims = rgb.shape
+            img = PIL.Image.fromarray(rgb).convert('RGB')
+            filtered.append(AlgoImage(img))
+
+        # Record the filtered images
+        for image_id,img in enumerate(filtered):
+            record_reference_img(args,group_id,test_id,image_id,img)
+
+    def nb_references(self,srcs):
+        return len(srcs)
+
+
+
 class GaussianFilter:
     def __call__(self,args,group_id,test_id,srcs):
         filtered = []

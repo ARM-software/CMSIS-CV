@@ -12,6 +12,8 @@ from .convert_to_c import convert
 def _check_tiff_or_npy(path):
     if Path(path + ".tiff").is_file():
         path += ".tiff"
+    elif Path(path + "_yuv420.npy").is_file():
+        path += "_yuv420.npy"
     else:
         path += ".npy"
     return(path)
@@ -139,14 +141,22 @@ def generate_input_images(args,group_id,test):
             image_id = image_id + 1
 
 
-def _mk_group_input(args,group_id,test):
-    inputs = test["inputs"]
+def list_of_enabled_tests(args,group_id,test):
     nb_tests = len(test["tests"])
     if (args.group is None) or (args.test is None):
        enabled = np.ones(nb_tests,dtype=np.uint32)
     else:
        enabled = np.zeros(nb_tests,dtype=np.uint32)
-       enabled[args.test] = 1
+       for i in args.test:
+           enabled[i] = 1
+    return enabled
+
+
+def _mk_group_input(args,group_id,test):
+    inputs = test["inputs"]
+    
+    enabled = list_of_enabled_tests(args,group_id,test)
+    
     imgs = [] 
 
     funcid = []
@@ -201,33 +211,40 @@ def validate_test_group(args,compiler,target,group_id,test,imgs,report_file):
     print(f'<h3>{test["name"]}</h3>',file=report_file)
     resultsSaved = False
     results = None
+
+    enabled = list_of_enabled_tests(args,group_id,test)
+
     for test_id,t in enumerate(test["tests"]):
-        result_path = f"results/output_{test_id}.dat"
-        try:
-            with open(result_path,"rb") as f:
-                 results = read_tensors(f)
-
-            if args.results:
-               save_results(args,compiler,target,group_id,test_id,results)
-               resultsSaved = True
-
-            refs = get_reference_imgs(args,group_id,test_id,t,t["useimg"])
-            if not _validate_test(refs,results,t):
-                print(f'''<p><font color=\"red\">Error running {t["desc"]}</font></p><PRE>
+        if enabled[test_id] == 1:
+           result_path = f"results/output_{test_id}.dat"
+           try:
+               with open(result_path,"rb") as f:
+                    results = read_tensors(f)
+   
+               if args.results:
+                  save_results(args,compiler,target,group_id,test_id,results)
+                  resultsSaved = True
+   
+               refs = get_reference_imgs(args,group_id,test_id,t,t["useimg"])
+               if not _validate_test(refs,results,t):
+                   print(f'''<p><font color=\"red\">Error running : {t["desc"]} (Test ID = {test_id})</font></p><PRE>
 {t["check"].errors}
                 </PRE>
 ''',file=report_file)
-                had_error = True
-        except Exception as e:
-            print(f'''<p><font color=\"red\">Exception running {t["desc"]}</font> </p><p>Exception raised</p><PRE>
+                   had_error = True
+               elif args.passed:
+                   print(f'<p>Passed : {t["desc"]} (Test ID = {test_id})</p>',file=report_file)
+
+           except Exception as e:
+                print(f'''<p><font color=\"red\">Exception running {t["desc"]}</font> </p><p>Exception raised</p><PRE>
 {str(e)}
 </PRE>
 ''',file=report_file)
-            had_error = True
+                had_error = True
 
-    if had_error and not resultsSaved:
-        if not (results is None):
-           save_results(args,compiler,target,group_id,test_id,results)
+        if had_error and not resultsSaved:
+            if not (results is None):
+               save_results(args,compiler,target,group_id,test_id,results)
     return had_error
 
 def mk_test_suite_from_dev(d):

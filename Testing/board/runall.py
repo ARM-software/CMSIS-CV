@@ -38,11 +38,14 @@ parser.add_argument('--dev', action='store_true', help="Kernel development mode"
 # In norun, the .dat is generated and the project build
 # but no AVH is run
 parser.add_argument('--norun', action='store_true', help="Don't run in dev mode")
+parser.add_argument('--nobuild', action='store_true', help="Don't rebuild")
 
 parser.add_argument('--group', nargs='?',type = int, default=None, help="Only test group to run")
-parser.add_argument('--test', nargs='?',type = int, default=None, help="Only test to run in a test group")
+parser.add_argument('--test', nargs='+',type = int, default=None, help="Only test to run in a test group")
+parser.add_argument('--passed', action='store_true', help="Display also passing test in test report")
 
 args = parser.parse_args()
+
 
 
 DEBUG=False 
@@ -232,6 +235,9 @@ if args.n:
 if args.norun:
    printMessage("Tests won't be executed")
 
+if args.nobuild:
+   printMessage("Tests won't be built")
+
 if not args.group is None:
     printMessage(f"Only group {args.group} will be built/run")
     if not args.test is None:
@@ -288,42 +294,43 @@ with Live(gen_table([]), refresh_per_second=4) as live:
 
                        imgs = prepare_tests_group(args,group_id,testSuite)
                        #live.console.print("Building ...")
-                       msg = "Building..."
-                       latest[-1][-1]=msg
-                       if (not args.group is None or group_id==0):
-                          # -r is needed for first
-                          # build when we switch
-                          # between different solutions
-                          # (Like one using AC6 and the other
-                          # using gcc)
-                          if args.n:
+                       if not args.nobuild:
+                          msg = "Building..."
+                          latest[-1][-1]=msg
+                          if (not args.group is None or group_id==0):
+                             # -r is needed for first
+                             # build when we switch
+                             # between different solutions
+                             # (Like one using AC6 and the other
+                             # using gcc)
+                             if args.n:
+                                #live.console.print("Incremental build")
+                                msg += " Incremental build"
+                                latest[-1][-1]=msg
+                                live.update(renderable=gen_table(latest))
+                                res=run("cbuild","-O" ,"cprj",'cmsiscv.csolution.yml',"--toolchain" ,c,"-c",buildFile,live=live)
+                             else:
+                                #live.console.print("Rebuild all (and RTE update)")
+                                msg += " Rebuild all (and RTE update)"
+                                latest[-1][-1]=msg
+                                live.update(renderable=gen_table(latest))
+                                res=run("cbuild","-O" ,"cprj",'cmsiscv.csolution.yml',"--update-rte","-r","--toolchain" ,c,"-c",buildFile,live=live)
+                          else:
                              #live.console.print("Incremental build")
                              msg += " Incremental build"
                              latest[-1][-1]=msg
                              live.update(renderable=gen_table(latest))
                              res=run("cbuild","-O" ,"cprj",'cmsiscv.csolution.yml',"--toolchain" ,c,"-c",buildFile,live=live)
-                          else:
-                             #live.console.print("Rebuild all (and RTE update)")
-                             msg += " Rebuild all (and RTE update)"
-                             latest[-1][-1]=msg
-                             live.update(renderable=gen_table(latest))
-                             res=run("cbuild","-O" ,"cprj",'cmsiscv.csolution.yml',"--update-rte","-r","--toolchain" ,c,"-c",buildFile,live=live)
-                       else:
-                          #live.console.print("Incremental build")
-                          msg += " Incremental build"
-                          latest[-1][-1]=msg
-                          live.update(renderable=gen_table(latest))
-                          res=run("cbuild","-O" ,"cprj",'cmsiscv.csolution.yml',"--toolchain" ,c,"-c",buildFile,live=live)
                        
                        
-                       if res.error:
-                           latest[-1][-1]="[red]Error cbuild"
-                           live.update(renderable=gen_table(latest))
-                           #printError(live,"Error cbuild")
-                           print(f'<p><font color="red">Error building {testSuite["name"]}</font></p><PRE>',file=f)
-                           print(res.msg,file=f)
-                           print("</PRE>",file=f)
-                           continue
+                          if res.error:
+                              latest[-1][-1]="[red]Error cbuild"
+                              live.update(renderable=gen_table(latest))
+                              #printError(live,"Error cbuild")
+                              print(f'<p><font color="red">Error building {testSuite["name"]}</font></p><PRE>',file=f)
+                              print(res.msg,file=f)
+                              print("</PRE>",file=f)
+                              continue
                        if not args.norun and (not core is None):
                            latest[-1][-1]="Run AVH"
                            live.update(renderable=gen_table(latest))

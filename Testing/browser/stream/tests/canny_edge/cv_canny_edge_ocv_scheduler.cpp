@@ -226,14 +226,14 @@ typedef struct {
     WebCamera<int8_t,307200> *camera;
     CannyEdge<int8_t,153600,int8_t,153600> *canny;
     OpenCVCanny<int8_t,76800,int8_t,76800> *canny_cv;
-    Gray8ToRGBA<int8_t,76800,int8_t,307200> *cv_to_rgba;
+    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *cv_to_rgba;
     WebDisplay<int8_t,307200> *display1;
     WebDisplay<int8_t,307200> *display2;
     Duplicate<int8_t,153600,int8_t,153600> *dup0;
     Gray16ToGray8<int8_t,153600,int8_t,76800> *g16_to_g8;
     GaussianFilter<int8_t,76800,int8_t,153600> *gaussian;
-    RGBAToGray8<int8_t,307200,int8_t,76800> *to_gray8;
-    Gray16ToRGBA<int8_t,153600,int8_t,307200> *to_rgba;
+    RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
+    Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
 } nodes_t;
 
 CG_BEFORE_BUFFER
@@ -319,7 +319,7 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.cv_to_rgba = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo5),*(fifos.fifo6));
+    nodes.cv_to_rgba = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo5),*(fifos.fifo6));
     if (nodes.cv_to_rgba==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
@@ -349,12 +349,12 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.to_gray8 = new RGBAToGray8<int8_t,307200,int8_t,76800>(*(fifos.fifo0),*(fifos.fifo1));
+    nodes.to_gray8 = new RGBA32ToGray8<int8_t,307200,int8_t,76800>(*(fifos.fifo0),*(fifos.fifo1));
     if (nodes.to_gray8==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.to_rgba = new Gray16ToRGBA<int8_t,153600,int8_t,307200>(*(fifos.fifo2),*(fifos.fifo3));
+    nodes.to_rgba = new Gray16ToRGBA32<int8_t,153600,int8_t,307200>(*(fifos.fifo2),*(fifos.fifo3));
     if (nodes.to_rgba==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
