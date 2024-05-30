@@ -15,14 +15,12 @@ CMSIS-CV is licensed under [Apache License 2.0](LICENSE).
 
 **It is a work in progress and has just started. API is not yet stable and will evolve for a few versions.**
 
-**The current kernels need some tuning for accuracy.**
-
 # Testing
 
 Two kind of tests are provided:
 
 * web : You can test the scalar versions of the kernels in the browser and compare with OpenCV.
-* board: Test framework to run on a MPS3 board
+* board: Test framework to run on a FVP or MPS3 board
 
 For the web version, clone the repository and just open `Testing/browser/web/index.html` with your browser.
 
