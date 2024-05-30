@@ -1,4 +1,5 @@
-camera 307200  to_gray8  76800  gaussian 153600  canny 153600  to_rgba  307200  display1
+camera 307200  to_gray8  76800  gaussian 76800  canny 153600  to_rgba  307200  display1
 
 (WebCamera) 307200 (RGBA32ToGray8) 76800 (GaussianFilter) 153600 (CannyEdge) 153600 (Gray16ToRGBA32) 307200 (WebDisplay)
+(WebCamera) 307200 (RGBAToGray8) 76800 (GaussianFilter) 76800 (CannyEdge) 153600 (Gray16ToRGBA) 307200 (WebDisplay)
 

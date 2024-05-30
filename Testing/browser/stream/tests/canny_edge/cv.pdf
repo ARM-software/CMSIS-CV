@@ -1,4 +1,6 @@
 camera  RGBA32_320_240  to_gray8  GRAY8_320_240   gaussian  GRAY16_320_240       canny  GRAY16_320_240      to_rgba  RGBA32_320_240         display1
+camera  RGBA_320_240  to_gray8  GRAY8_320_240   gaussian  GRAY8_320_240       canny  GRAY16_320_240     to_rgba  RGBA_320_240         display1
 
 (WebCamera) 307200  307200 (RGBA32ToGray8) 76800  76800 (GaussianFilter) 153600  153600 (CannyEdge) 153600  153600 (Gray16ToRGBA32) 307200  307200 (WebDisplay)
+(WebCamera) 307200  307200 (RGBAToGray8) 76800  76800 (GaussianFilter) 76800  76800 (CannyEdge) 153600  153600 (Gray16ToRGBA) 307200  307200 (WebDisplay)
 

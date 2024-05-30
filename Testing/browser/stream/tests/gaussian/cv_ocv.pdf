@@ -6,6 +6,15 @@ camera  RGBA32_320_240  to_gray8  GRAY8_320_240
                                                   GRAY8_320_240
 (WebCamera) 307200  307200 (RGBA32ToGray8) 76800
                                                                                gaussian_cv       GRAY8_320_240   to_rgba_cv        RGBA32_320_240  display2
+                                                                             gaussian                 GRAY8_320_240  to_rgba_cv1  RGBA_320_240  display1
+
+                                                GRAY8_320_240                (GaussianFilter)  76800  76800 (Gray8ToRGBA) 307200  307200 (WebDisplay)
+                                                                      76800
+camera  RGBA_320_240  to_gray8  GRAY8_320_240
+                                                GRAY8_320_240
+(WebCamera) 307200  307200 (RGBAToGray8) 76800
+                                                                             gaussian_cv              GRAY8_320_240  to_rgba_cv2  RGBA_320_240  display2
 
                                                   76800 (OpenCVGaussian) 76800                           76800 (Gray8ToRGBA32) 307200      307200 (WebDisplay)
+                                                76800 (OpenCVGaussian) 76800                          76800 (Gray8ToRGBA) 307200  307200 (WebDisplay)
 

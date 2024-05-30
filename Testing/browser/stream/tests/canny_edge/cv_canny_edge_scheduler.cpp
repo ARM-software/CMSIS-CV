@@ -212,10 +212,13 @@ typedef struct {
     CannyEdge<int8_t,76800,int8_t,153600> *canny;
     WebDisplay<int8_t,307200> *display1;
 <<<<<<< HEAD
+<<<<<<< HEAD
     GaussianFilter<int8_t,76800,int8_t,153600> *gaussian;
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
     Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
 =======
+=======
+>>>>>>> b6dcc048cf255b882b2e93faa3648ec9512cf12d
     GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
     RGBAToGray8<int8_t,307200,int8_t,76800> *to_gray8;
     Gray16ToRGBA<int8_t,153600,int8_t,307200> *to_rgba;

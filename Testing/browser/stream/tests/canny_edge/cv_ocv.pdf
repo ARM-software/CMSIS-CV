@@ -5,6 +5,15 @@
 camera  RGBA32_320_240  to_gray8  GRAY8_320_240   gaussian  GRAY16_320_240
 
 (WebCamera) 307200  307200 (RGBA32ToGray8) 76800  76800 (GaussianFilter) 153600                                g16_to_g8            GRAY8_320_240  canny_cv                   GRAY8_320_240           cv_to_rgba    RGBA32_320_240  display2
+                                                                                                           canny        GRAY16_320_240  to_rgba     RGBA_320_240  display1
+
+                                                                              GRAY8_320_240                (CannyEdge)  153600  153600 (Gray16ToRGBA) 307200  307200 (WebDisplay)
+                                                                                                    76800
+camera  RGBA_320_240  to_gray8  GRAY8_320_240   gaussian  GRAY8_320_240
+                                                                              GRAY8_320_240
+(WebCamera) 307200  307200 (RGBAToGray8) 76800  76800 (GaussianFilter) 76800
+                                                                                                           canny_cv     GRAY8_320_240   cv_to_rgba  RGBA_320_240  display2
 
                                                                                  153600 (Gray16ToGray8) 76800                                      76800 (OpenCVCanny) 76800  76800 (Gray8ToRGBA32) 307200          307200 (WebDisplay)
+                                                                              76800 (OpenCVCanny) 76800                         76800 (Gray8ToRGBA) 307200    307200 (WebDisplay)
 

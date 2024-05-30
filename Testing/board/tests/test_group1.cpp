@@ -8,10 +8,6 @@ extern "C" {
     #include "cv/color_transforms.h"
 }
 
-
-extern "C" {
-    #include "cv/linear_filters.h"
-}
 #if defined(TESTGROUP1)
 
 // arm_yuv420_to_gray8
