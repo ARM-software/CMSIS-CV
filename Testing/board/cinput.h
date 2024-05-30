@@ -19,6 +19,7 @@ extern "C"
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define NB_CINPUT 65768
 =======
 <<<<<<< HEAD
@@ -68,6 +69,9 @@ extern "C"
 =======
 #define NB_CINPUT 34891
 >>>>>>> 814543b (bug issue white image)
+=======
+#define NB_CINPUT 85065
+>>>>>>> b6dcc04 (remaining files before merge)
 extern const uint8_t cinput[NB_CINPUT];
 
 #endif
