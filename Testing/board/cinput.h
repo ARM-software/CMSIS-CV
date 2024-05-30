@@ -10,7 +10,7 @@ extern "C"
     
 #if defined(CINPUT)
     
-#define NB_CINPUT 34891
+#define NB_CINPUT 85065
 extern const uint8_t cinput[NB_CINPUT];
 
 #endif
