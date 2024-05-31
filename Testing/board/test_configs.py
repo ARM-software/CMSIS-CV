@@ -16,9 +16,9 @@ compiler={
     #'CLANG':[
     #  ("VHT-Corstone-300","CS300"),
     #],
-    #'GCC':[
-    #  ("VHT-Corstone-300","CS300"),
-    #]
+    'GCC':[
+      ("VHT-Corstone-300","CS300"),
+    ]
 }
 
 #compiler={
