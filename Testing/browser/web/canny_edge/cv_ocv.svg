@@ -13,6 +13,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <svg width="1774pt" height="127pt"
  viewBox="0.00 0.00 1773.85 127.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 123)">
@@ -81,6 +82,13 @@
 <title>structs</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-123 1485.85,-123 1485.85,4 -4,4"/>
 >>>>>>> caadad4 (test browser)
+=======
+<svg width="1477pt" height="127pt"
+ viewBox="0.00 0.00 1477.10 127.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 123)">
+<title>structs</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-123 1473.1,-123 1473.1,4 -4,4"/>
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 <!-- camera -->
 <g id="node1" class="node">
 <title>camera</title>
@@ -185,8 +193,9 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 </g>
-<!-- to_rgba -->
+<!-- u8_to_rgba -->
 <g id="node10" class="node">
+<<<<<<< HEAD
 <title>to_rgba</title>
 <<<<<<< HEAD
 >>>>>>> ab9c6f0 (commit before merging with update)
@@ -218,11 +227,14 @@
 <<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 <title>u8_to_rgba</title>
 <polygon fill="none" stroke="none" points="1107.1,-73.5 1107.1,-115 1229.6,-115 1229.6,-73.5 1107.1,-73.5"/>
 <polygon fill="none" stroke="black" points="1107.1,-73.5 1107.1,-115 1229.6,-115 1229.6,-73.5 1107.1,-73.5"/>
 <text text-anchor="start" x="1136.1" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">u8_to_rgba</text>
 <text text-anchor="start" x="1112.1" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(Gray8ToRGBA32)</text>
+<<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> ab9c6f0 (commit before merging with update)
@@ -287,12 +299,18 @@
 <<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
+=======
+</g>
+<!-- canny&#45;&gt;u8_to_rgba -->
+<g id="edge3" class="edge">
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 <title>canny:i&#45;&gt;u8_to_rgba:i</title>
 <path fill="none" stroke="black" d="M957.97,-94.25C996.71,-94.25 1055.65,-94.25 1101.13,-94.25"/>
 <polygon fill="black" stroke="black" points="1100.95,-96 1105.95,-94.25 1100.95,-92.5 1100.95,-96"/>
 <text text-anchor="start" x="994.85" y="-97.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="1071.46" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 <text text-anchor="start" x="963.97" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> ab9c6f0 (commit before merging with update)
@@ -300,6 +318,8 @@
 >>>>>>> c84958d (commit before merging with update)
 =======
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 </g>
 <!-- canny_cv -->
 <g id="node3" class="node">
@@ -371,6 +391,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <polygon fill="none" stroke="none" points="1403.85,-5.5 1403.85,-47 1526.35,-47 1526.35,-5.5 1403.85,-5.5"/>
 <polygon fill="none" stroke="black" points="1403.85,-5.5 1403.85,-47 1526.35,-47 1526.35,-5.5 1403.85,-5.5"/>
 <text text-anchor="start" x="1432.85" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">cv_to_rgba</text>
@@ -412,10 +433,13 @@
 <<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 <polygon fill="none" stroke="none" points="1107.1,-5.5 1107.1,-47 1229.6,-47 1229.6,-5.5 1107.1,-5.5"/>
 <polygon fill="none" stroke="black" points="1107.1,-5.5 1107.1,-47 1229.6,-47 1229.6,-5.5 1107.1,-5.5"/>
 <text text-anchor="start" x="1136.1" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">cv_to_rgba</text>
 <text text-anchor="start" x="1112.1" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(Gray8ToRGBA32)</text>
+<<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> ab9c6f0 (commit before merging with update)
@@ -423,10 +447,13 @@
 >>>>>>> c84958d (commit before merging with update)
 =======
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 </g>
 <!-- canny_cv&#45;&gt;cv_to_rgba -->
 <g id="edge5" class="edge">
 <title>canny_cv:i&#45;&gt;cv_to_rgba:i</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -480,11 +507,14 @@
 <<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 <path fill="none" stroke="black" d="M968.75,-26.25C1007.11,-26.25 1059.78,-26.25 1101.25,-26.25"/>
 <polygon fill="black" stroke="black" points="1101.03,-28 1106.03,-26.25 1101.03,-24.5 1101.03,-28"/>
 <text text-anchor="start" x="994.85" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="1071.54" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 <text text-anchor="start" x="974.75" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> ab9c6f0 (commit before merging with update)
@@ -492,10 +522,13 @@
 >>>>>>> c84958d (commit before merging with update)
 =======
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 </g>
 <!-- display2 -->
 <g id="node6" class="node">
 <title>display2</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -546,10 +579,13 @@
 <<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 <polygon fill="none" stroke="none" points="1373.1,-5.5 1373.1,-47 1461.1,-47 1461.1,-5.5 1373.1,-5.5"/>
 <polygon fill="none" stroke="black" points="1373.1,-5.5 1373.1,-47 1461.1,-47 1461.1,-5.5 1373.1,-5.5"/>
 <text text-anchor="start" x="1393.85" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">display2</text>
 <text text-anchor="start" x="1378.1" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
+<<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> ab9c6f0 (commit before merging with update)
@@ -557,10 +593,13 @@
 >>>>>>> c84958d (commit before merging with update)
 =======
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 </g>
 <!-- cv_to_rgba&#45;&gt;display2 -->
 <g id="edge6" class="edge">
 <title>cv_to_rgba:i&#45;&gt;display2:i</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -614,11 +653,14 @@
 <<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 <path fill="none" stroke="black" d="M1229.4,-26.25C1271.64,-26.25 1327.48,-26.25 1367.06,-26.25"/>
 <polygon fill="black" stroke="black" points="1366.75,-28 1371.75,-26.25 1366.75,-24.5 1366.75,-28"/>
 <text text-anchor="start" x="1255.6" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">RGBA32_320_240</text>
 <text text-anchor="start" x="1331.26" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="1235.4" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> ab9c6f0 (commit before merging with update)
@@ -626,10 +668,13 @@
 >>>>>>> c84958d (commit before merging with update)
 =======
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 </g>
 <!-- display1 -->
 <g id="node5" class="node">
 <title>display1</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -680,10 +725,13 @@
 <<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 <polygon fill="none" stroke="none" points="1373.1,-73.5 1373.1,-115 1461.1,-115 1461.1,-73.5 1373.1,-73.5"/>
 <polygon fill="none" stroke="black" points="1373.1,-73.5 1373.1,-115 1461.1,-115 1461.1,-73.5 1373.1,-73.5"/>
 <text text-anchor="start" x="1393.85" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">display1</text>
 <text text-anchor="start" x="1378.1" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
+<<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> ab9c6f0 (commit before merging with update)
@@ -691,6 +739,8 @@
 >>>>>>> c84958d (commit before merging with update)
 =======
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 </g>
 <!-- dup0 -->
 <g id="node7" class="node">
@@ -939,6 +989,7 @@
 <!-- u8_to_rgba&#45;&gt;display1 -->
 <g id="edge4" class="edge">
 <<<<<<< HEAD
+<<<<<<< HEAD
 <title>to_rgba:i&#45;&gt;display1:i</title>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -992,12 +1043,15 @@
 <<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 <title>u8_to_rgba:i&#45;&gt;display1:i</title>
 <path fill="none" stroke="black" d="M1229.4,-94.25C1271.64,-94.25 1327.48,-94.25 1367.06,-94.25"/>
 <polygon fill="black" stroke="black" points="1366.75,-96 1371.75,-94.25 1366.75,-92.5 1366.75,-96"/>
 <text text-anchor="start" x="1255.6" y="-97.1" font-family="Times New Roman,serif" font-size="12.00">RGBA32_320_240</text>
 <text text-anchor="start" x="1331.26" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="1235.4" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> ab9c6f0 (commit before merging with update)
@@ -1005,6 +1059,8 @@
 >>>>>>> c84958d (commit before merging with update)
 =======
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 </g>
 </g>
 </svg>

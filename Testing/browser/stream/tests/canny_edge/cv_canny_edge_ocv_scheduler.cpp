@@ -120,10 +120,14 @@ Internal ID identification for the nodes
 #define GAUSSIAN_INTERNAL_ID 7
 #define TO_GRAY8_INTERNAL_ID 8
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define U8_TO_RGBA_INTERNAL_ID 9
 =======
 #define TO_RGBA_INTERNAL_ID 9
 >>>>>>> c84958d (commit before merging with update)
+=======
+#define U8_TO_RGBA_INTERNAL_ID 9
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 
 /* For callback management */
 
@@ -226,10 +230,14 @@ ImageFIFO<int8_t,FIFOSIZE8,1,0> *fifo8;
 typedef struct {
     WebCamera<int8_t,307200> *camera;
 <<<<<<< HEAD
+<<<<<<< HEAD
     CannyEdge<int8_t,76800,int8_t,76800> *canny;
 =======
     CannyEdge<int8_t,76800,int8_t,153600> *canny;
 >>>>>>> c84958d (commit before merging with update)
+=======
+    CannyEdge<int8_t,76800,int8_t,76800> *canny;
+>>>>>>> 62e9e18 (changed output datatype for sobel)
     OpenCVCanny<int8_t,76800,int8_t,76800> *canny_cv;
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *cv_to_rgba;
     WebDisplay<int8_t,307200> *display1;
@@ -269,8 +277,12 @@ typedef struct {
     Duplicate<int8_t,76800,int8_t,76800> *dup0;
     GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
+<<<<<<< HEAD
     Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
 >>>>>>> caadad4 (test browser)
+=======
+    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *u8_to_rgba;
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 } nodes_t;
 
 CG_BEFORE_BUFFER
@@ -343,6 +355,7 @@ init_cb_state();
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo7),*(fifos.fifo2),params1);
 =======
     nodes.canny = new CannyEdge<int8_t,76800,int8_t,153600>(*(fifos.fifo7),*(fifos.fifo2),params1);
@@ -350,6 +363,9 @@ init_cb_state();
 =======
     nodes.canny = new CannyEdge<int8_t,76800,int8_t,153600>(*(fifos.fifo7),*(fifos.fifo2),params1);
 >>>>>>> c84958d (commit before merging with update)
+=======
+    nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo7),*(fifos.fifo2),params1);
+>>>>>>> 62e9e18 (changed output datatype for sobel)
     if (nodes.canny==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);

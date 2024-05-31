@@ -9,10 +9,14 @@ class CannyEdge(GenericNode):
         GenericSink.__init__(self,name)
         src_t = CImageType(w,h,CImageType.GRAY8)
 <<<<<<< HEAD
+<<<<<<< HEAD
         dst_t = CImageType(w,h,CImageType.GRAY8)
 =======
         dst_t = CImageType(w,h,CImageType.GRAY16)
 >>>>>>> 0eb2bec (update type for gaussian and cannyedge)
+=======
+        dst_t = CImageType(w,h,CImageType.GRAY8)
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 
         self.addInput("i",src_t,src_t.nb_bytes)
         self.addOutput("o",dst_t,dst_t.nb_bytes)
