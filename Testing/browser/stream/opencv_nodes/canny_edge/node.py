@@ -42,8 +42,8 @@ class OpenCVCanny(GenericNode):
     def params(self):
         return {"name":"OpenCV Canny Edge", 
                 "values":
-                  [{"value":78,"name":"low","min":0,"max":200,"step":1},
-                   {"value":33,"name":"high","min":0,"max":200,"step":1}
+                  [{"value":108,"name":"low","min":0,"max":200,"step":1},
+                   {"value":73,"name":"high","min":0,"max":200,"step":1}
                   ]
                 }
     

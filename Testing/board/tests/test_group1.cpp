@@ -8,12 +8,16 @@ extern "C" {
     #include "cv/color_transforms.h"
 }
 
+<<<<<<< HEAD
 
 extern "C" {
     #include "cv/linear_filters.h"
 }
 #if defined(TESTGROUP1)
+=======
+>>>>>>> 62e9e18 (changed output datatype for sobel)
 
+#if defined(TESTGROUP1)
 
 // arm_yuv420_to_gray8
 void test0(const unsigned char* inputs,

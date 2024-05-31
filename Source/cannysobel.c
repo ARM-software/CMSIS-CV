@@ -28,7 +28,7 @@
 #include "dsp/fast_math_functions.h"
 
 #define Q15_ONE 0x7FFF
-
+#define Q8_ONE 0xFF
 //function performing canny edge on an image where a gaussian filter has been applied
 //this function uses three buffers, one for storing intermediate values for computing the gradient, one for storing the gradient and one for storing the magnitude conputed with the gradient
 //exept the buffer for the magnitude, the buffer have two component
@@ -62,7 +62,7 @@
  */
 #if ((!defined(ARM_MATH_MVEI)) ||(defined(FORCE_SCALAR)))
 void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn, 
-                                     arm_cv_image_q15_t* ImageOut, 
+                                     arm_cv_image_gray8_t* ImageOut, 
                                      arm_cv_image_gradient_q15_t* Img_tmp_grad1, 
                                      arm_cv_image_q15_t* Img_tmp_mag, 
                                      arm_cv_image_gradient_q15_t* Img_tmp_grad2,
@@ -234,7 +234,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 						{
 							if(Img_tmp_mag->pData[((x-3)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-3)%3) * (ImageIn->width)+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-3)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold)||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold))
 							{
-								ImageOut->pData[indice] = Q15_ONE;
+								ImageOut->pData[indice] = Q8_ONE;
 								continue;
 							}
 							else
@@ -245,7 +245,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 						}
 						else
 						{
-							ImageOut->pData[indice] = Q15_ONE;
+							ImageOut->pData[indice] = Q8_ONE;
 							continue;
 						}
 					}
@@ -270,7 +270,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 							{
 								if (Img_tmp_mag->pData[((x-3)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-3)%3) * (ImageIn->width)+y]>=(int)(high_threshold)||Img_tmp_mag->pData[((x-2)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-2)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold)||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold))
 								{
-									ImageOut->pData[indice] = Q15_ONE;
+									ImageOut->pData[indice] = Q8_ONE;
 									continue;
 								}
 								else
@@ -281,7 +281,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 							}
 							else
 							{
-								ImageOut->pData[indice] = Q15_ONE;
+								ImageOut->pData[indice] = Q8_ONE;
 								continue;
 							}
 						}
@@ -300,7 +300,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 						{
 							if (Img_tmp_mag->pData[((x-3)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold)||Img_tmp_mag->pData[((x-3)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-2)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-2)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold)||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold))
 							{
-								ImageOut->pData[indice] = Q15_ONE;
+								ImageOut->pData[indice] = Q8_ONE;
 								continue;
 							}
 							else
@@ -311,7 +311,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 						}
 						else
 						{
-							ImageOut->pData[indice] = Q15_ONE;
+							ImageOut->pData[indice] = Q8_ONE;
 							continue;
 						}
 					}
@@ -331,7 +331,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 							{
 								if (Img_tmp_mag->pData[((x-3)%3) * (ImageIn->width)+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-3)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-2)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-2)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold))
 								{
-									ImageOut->pData[indice] = Q15_ONE;
+									ImageOut->pData[indice] = Q8_ONE;
 									continue;
 								}
 								else
@@ -342,7 +342,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 							}
 							else
 							{
-								ImageOut->pData[indice] = Q15_ONE;
+								ImageOut->pData[indice] = Q8_ONE;
 								continue;
 							}
 						}
@@ -361,7 +361,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 						{
 							if(Img_tmp_mag->pData[((x-3)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-3)%3) * (ImageIn->width)+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-3)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold)||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold))
 							{
-								ImageOut->pData[indice] = Q15_ONE;
+								ImageOut->pData[indice] = Q8_ONE;
 								continue;
 							}
 							else
@@ -372,7 +372,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 						}
 						else
 						{
-							ImageOut->pData[indice] = Q15_ONE;
+							ImageOut->pData[indice] = Q8_ONE;
 							continue;
 						}
 					}
@@ -422,7 +422,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 					{
 						if(Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold))
 						{
-							ImageOut->pData[indice] = Q15_ONE;
+							ImageOut->pData[indice] = Q8_ONE;
 							continue;
 						}
 						else
@@ -433,7 +433,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 					}
 					else
 					{
-						ImageOut->pData[indice] = Q15_ONE;
+						ImageOut->pData[indice] = Q8_ONE;
 						continue;
 					}
 				}
@@ -452,7 +452,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 						{
 							if (Img_tmp_mag->pData[((x-2)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-2)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold)||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold))
 							{
-								ImageOut->pData[indice] = Q15_ONE;
+								ImageOut->pData[indice] = Q8_ONE;
 								continue;
 							}
 							else
@@ -463,7 +463,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 						}
 						else
 						{
-							ImageOut->pData[indice] = Q15_ONE;
+							ImageOut->pData[indice] = Q8_ONE;
 							continue;
 						}
 					}
@@ -483,7 +483,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 					{
 						if (Img_tmp_mag->pData[((x-2)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-2)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold)||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold))
 						{
-							ImageOut->pData[indice] = Q15_ONE;
+							ImageOut->pData[indice] = Q8_ONE;
 							continue;
 						}
 						else
@@ -494,7 +494,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 					}
 					else
 					{
-						ImageOut->pData[indice] = Q15_ONE;
+						ImageOut->pData[indice] = Q8_ONE;
 						continue;
 					}
 				}
@@ -514,7 +514,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 						{
 							if (Img_tmp_mag->pData[((x-2)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-2)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold))
 							{
-								ImageOut->pData[indice] = Q15_ONE;
+								ImageOut->pData[indice] = Q8_ONE;
 								continue;
 							}
 							else
@@ -525,7 +525,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 						}
 						else
 						{
-							ImageOut->pData[indice] = Q15_ONE;
+							ImageOut->pData[indice] = Q8_ONE;
 							continue;
 						}
 					}
@@ -544,7 +544,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 					{
 						if(Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[((x-1)%3) * (ImageIn->width)+y-1]>=(int)(high_threshold))
 						{
-							ImageOut->pData[indice] = Q15_ONE;
+							ImageOut->pData[indice] = Q8_ONE;
 							continue;
 						}
 						else
@@ -555,7 +555,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 					}
 					else
 					{
-						ImageOut->pData[indice] = Q15_ONE;
+						ImageOut->pData[indice] = Q8_ONE;
 						continue;
 					}
 				}
@@ -568,7 +568,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 #else
 
 void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn, 
-                                     arm_cv_image_q15_t* ImageOut, 
+                                     arm_cv_image_gray8_t* ImageOut, 
                                      arm_cv_image_gradient_q15_t* Img_tmp_grad1, 
                                      arm_cv_image_q15_t* Img_tmp_mag, 
                                      arm_cv_image_gradient_q15_t* Img_tmp_grad2,
@@ -1031,7 +1031,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
         {
 			int indice = (x-2)*ImageIn->width +y;
             vect_mag = vld1q(&Img_tmp_mag->pData[((x-2)%3) * (ImageIn->width)+y]);
-			q15x8_t vect_out;
+			uint8x16_t vect_out;
             int16x8x2_t vect_grad = vld2q_s16(&Img_tmp_grad1->pData[((x-2)%3)*ImageIn->width+y].x);
 			for(int j =0; j< 8; j+=1)
             {
@@ -1068,7 +1068,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 							{
 								if(Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y-1+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+1+j]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j-1]>=(int)(high_threshold))
 								{
-									vect_out[j] = Q15_ONE;
+									vect_out[j] = Q8_ONE;
 									continue;
 								}
 								else
@@ -1079,7 +1079,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 							}
 							else
 							{
-								vect_out[j] = Q15_ONE;
+								vect_out[j] = Q8_ONE;
 								continue;
 							}
 						}
@@ -1099,7 +1099,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 								{
 									if (Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-2)%3*ImageIn->width+y+j-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-2)%3*ImageIn->width+y+j+1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j-1]>=(int)(high_threshold))
 									{
-										vect_out[j] = Q15_ONE;
+										vect_out[j] = Q8_ONE;
 										continue;
 									}
 									else
@@ -1110,7 +1110,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 								}
 								else
 								{
-									vect_out[j] = Q15_ONE;
+									vect_out[j] = Q8_ONE;
 									continue;
 								}
 							}
@@ -1130,7 +1130,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 							{
 								if (Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j-1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-2)%3*ImageIn->width+y+j-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-2)%3*ImageIn->width+y+j+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j+1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j-1]>=(int)(high_threshold))
 								{
-									vect_out[j] = Q15_ONE;
+									vect_out[j] = Q8_ONE;
 									continue;
 								}
 								else
@@ -1141,7 +1141,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 							}
 							else
 							{
-								vect_out[j] = Q15_ONE;
+								vect_out[j] = Q8_ONE;
 								continue;
 							}
 						}
@@ -1160,7 +1160,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 								{
 									if (Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-2)%3*ImageIn->width+y+j-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-2)%3*ImageIn->width+y+j+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j-1]>=(int)(high_threshold))
 									{
-										vect_out[j] = Q15_ONE;
+										vect_out[j] = Q8_ONE;
 										continue;
 									}
 									else
@@ -1171,7 +1171,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 								}
 								else
 								{
-									vect_out[j] = Q15_ONE;
+									vect_out[j] = Q8_ONE;
 									continue;
 								}
 							}
@@ -1190,7 +1190,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 							{
 								if(Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j+1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j-1]>=(int)(high_threshold))
 								{
-									vect_out[j] = Q15_ONE;
+									vect_out[j] = Q8_ONE;
 									continue;
 								}
 								else
@@ -1201,7 +1201,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 							}
 							else
 							{
-								vect_out[j] = Q15_ONE;
+								vect_out[j] = Q8_ONE;
 								continue;
 							}
 						}
@@ -1209,7 +1209,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 					}
 				}
             }
-			vst1q(&ImageOut->pData[indice], vect_out);
+			vst1q((uint8_t*)&ImageOut->pData[indice], vect_out);
         }
 		//This is the tail of the computation of the output value
 		for(int y= ((ImageIn-> width-1)&0xFFF0); y < ImageIn-> width; y++)
@@ -1244,7 +1244,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 {
                                     if(Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y-1]>=(int)(high_threshold))
                                     {
-                                        ImageOut->pData[indice] = Q15_ONE;
+                                        ImageOut->pData[indice] = Q8_ONE;
                                     	continue;
 									}
                                     else
@@ -1255,7 +1255,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 								}
                                 else
                                 {
-                                    ImageOut->pData[indice] = Q15_ONE;
+                                    ImageOut->pData[indice] = Q8_ONE;
                                 	continue;
 								}
                             }
@@ -1274,7 +1274,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                     {
                                         if (Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y]>=(int)(high_threshold)||Img_tmp_mag->pData[indicepcent-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent+1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y-1]>=(int)(high_threshold))
                                         {
-                                            ImageOut->pData[indice] = Q15_ONE;
+                                            ImageOut->pData[indice] = Q8_ONE;
                                         	continue;
 										}
                                         else
@@ -1285,7 +1285,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                     }
                                     else
                                     {
-                                        ImageOut->pData[indice] = Q15_ONE;
+                                        ImageOut->pData[indice] = Q8_ONE;
                                     	continue;
 									}
                                 }
@@ -1304,7 +1304,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 {
                                     if (Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y-1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y-1]>=(int)(high_threshold))
                                     {
-                                        ImageOut->pData[indice] = Q15_ONE;
+                                        ImageOut->pData[indice] = Q8_ONE;
 										continue;
 									}
                                     else
@@ -1315,7 +1315,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 }
                                 else
                                 {
-                                    ImageOut->pData[indice] = Q15_ONE;
+                                    ImageOut->pData[indice] = Q8_ONE;
 									continue;
 								}
                             }
@@ -1334,7 +1334,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                     {
                                         if (Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y-1]>=(int)(high_threshold))
                                         {
-                                            ImageOut->pData[indice] = Q15_ONE;
+                                            ImageOut->pData[indice] = Q8_ONE;
                                         	continue;
 										}
                                         else
@@ -1345,7 +1345,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                     }
                                     else
                                     {
-                                        ImageOut->pData[indice] = Q15_ONE;
+                                        ImageOut->pData[indice] = Q8_ONE;
                                     	continue;
 									}
                                 }
@@ -1365,7 +1365,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 {
                                     if(Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y-1]>=(int)(high_threshold))
                                     {
-                                        ImageOut->pData[indice] = Q15_ONE;
+                                        ImageOut->pData[indice] = Q8_ONE;
                                     	continue;
 									}
                                     else
@@ -1376,7 +1376,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 }
                                 else
                                 {
-                                    ImageOut->pData[indice] = Q15_ONE;
+                                    ImageOut->pData[indice] = Q8_ONE;
                                 	continue;
 								}
                             }
@@ -1403,7 +1403,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 			int indice = (x-2)*ImageIn->width +y;
 			int indicepcent = (x-2)%3*ImageIn->width+y;
 			vect_mag = vld1q(&Img_tmp_mag->pData[((x-2)%3) * (ImageIn->width)+y]);
-			q15x8_t vect_out;
+			uint8x16_t vect_out;
 			int16x8x2_t vect_grad = vld2q_s16(&Img_tmp_grad1->pData[((x-2)%3)*ImageIn->width+y].x);
 			for(int j =0; j< 8; j++)
 			{
@@ -1435,7 +1435,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 {
                                     if(Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y-1+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+1+j]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j-1]>=(int)(high_threshold))
                                     {
-                                        vect_out[j] = Q15_ONE;
+                                        vect_out[j] = Q8_ONE;
                                     	continue;
 									}
                                     else
@@ -1446,7 +1446,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 								}
                                 else
                                 {
-                                    vect_out[j] = Q15_ONE;
+                                    vect_out[j] = Q8_ONE;
                                 	continue;
 								}
                             }
@@ -1465,7 +1465,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                     {
                                         if (Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j]>=(int)(high_threshold)||Img_tmp_mag->pData[indicepcent+j-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent+j+1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j-1]>=(int)(high_threshold))
                                         {
-                                            vect_out[j] = Q15_ONE;
+                                            vect_out[j] = Q8_ONE;
                                         	continue;
 										}
                                         else
@@ -1476,7 +1476,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                     }
                                     else
                                     {
-                                        vect_out[j] = Q15_ONE;
+                                        vect_out[j] = Q8_ONE;
                                     	continue;
 									}
                                 }
@@ -1496,7 +1496,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 {
                                     if (Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j-1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent+j-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent+j+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j+1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j-1]>=(int)(high_threshold))
                                     {
-                                        vect_out[j] = Q15_ONE;
+                                        vect_out[j] = Q8_ONE;
                                     	continue;
 									}
                                     else
@@ -1507,7 +1507,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 }
                                 else
                                 {
-                                    vect_out[j] = Q15_ONE;
+                                    vect_out[j] = Q8_ONE;
                                 	continue;
 								}
                             }   
@@ -1526,7 +1526,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                     {
                                         if (Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent+j-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent+j+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j-1]>=(int)(high_threshold))
                                         {
-                                            vect_out[j] = Q15_ONE;
+                                            vect_out[j] = Q8_ONE;
                                         	continue;
 										}
                                         else
@@ -1537,7 +1537,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                     }
                                     else
                                     {
-                                        vect_out[j] = Q15_ONE;
+                                        vect_out[j] = Q8_ONE;
                                     	continue;
 									}
                                 }
@@ -1556,7 +1556,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 {
                                     if(Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+j+1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+j-1]>=(int)(high_threshold))
                                     {
-                                        vect_out[j] = Q15_ONE;
+                                        vect_out[j] = Q8_ONE;
                                     	continue;
 									}
                                     else
@@ -1567,7 +1567,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 }
                                 else
                                 {
-                                    vect_out[j] = Q15_ONE;
+                                    vect_out[j] = Q8_ONE;
                                 	continue;
 								}
                             }   
@@ -1580,7 +1580,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 					vect_out[j] = 0;
 				}
 			}
-			vst1q(&ImageOut->pData[indice], vect_out);
+			vst1q((uint8_t*)&ImageOut->pData[indice], vect_out);
         }
 		//tail computation
 		for(int y= ((ImageIn-> width-1)&0xFFF0); y < ImageIn-> width; y++)
@@ -1615,7 +1615,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 {
                                     if(Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y-1]>=(int)(high_threshold))
                                     {
-                                        ImageOut->pData[indice] = Q15_ONE;
+                                        ImageOut->pData[indice] = Q8_ONE;
                                     	continue;
 									}
                                     else
@@ -1626,7 +1626,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 								}
                                 else
                                 {
-                                    ImageOut->pData[indice] = Q15_ONE;
+                                    ImageOut->pData[indice] = Q8_ONE;
                                 	continue;
 								}
                             }
@@ -1645,7 +1645,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                     {
                                         if (Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y]>=(int)(high_threshold)||Img_tmp_mag->pData[indicepcent-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent+1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y-1]>=(int)(high_threshold))
                                         {
-                                            ImageOut->pData[indice] = Q15_ONE;
+                                            ImageOut->pData[indice] = Q8_ONE;
                                         	continue;
 										}
                                         else
@@ -1656,7 +1656,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                     }
                                     else
                                     {
-                                        ImageOut->pData[indice] = Q15_ONE;
+                                        ImageOut->pData[indice] = Q8_ONE;
                                     	continue;
 									}
                                 }
@@ -1677,7 +1677,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 {
                                     if (Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y-1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y-1]>=(int)(high_threshold))
                                     {
-                                        ImageOut->pData[indice] = Q15_ONE;
+                                        ImageOut->pData[indice] = Q8_ONE;
 										continue;
 									}
                                     else
@@ -1688,7 +1688,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 }
                                 else
                                 {
-                                    ImageOut->pData[indice] = Q15_ONE;
+                                    ImageOut->pData[indice] = Q8_ONE;
 									continue;
 								}
                             }   
@@ -1707,7 +1707,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                     {
                                         if (Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[indicepcent+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y-1]>=(int)(high_threshold))
                                         {
-                                            ImageOut->pData[indice] = Q15_ONE;
+                                            ImageOut->pData[indice] = Q8_ONE;
                                         	continue;
 										}
                                         else
@@ -1718,7 +1718,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                     }
                                     else
                                     {
-                                        ImageOut->pData[indice] = Q15_ONE;
+                                        ImageOut->pData[indice] = Q8_ONE;
                                     	continue;
 									}
                                 }
@@ -1739,7 +1739,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 {
                                     if(Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y-1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-3)%3*ImageIn->width+y+1]>=(int)(high_threshold)||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y+1]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y]>=(int)(high_threshold) ||Img_tmp_mag->pData[(x-1)%3*ImageIn->width+y-1]>=(int)(high_threshold))
                                     {
-                                        ImageOut->pData[indice] = Q15_ONE;
+                                        ImageOut->pData[indice] = Q8_ONE;
                                     	continue;
 									}
                                     else
@@ -1750,7 +1750,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
                                 }
                                 else
                                 {
-                                    ImageOut->pData[indice] = Q15_ONE;
+                                    ImageOut->pData[indice] = Q8_ONE;
                                 	continue;
 								}
                             }   

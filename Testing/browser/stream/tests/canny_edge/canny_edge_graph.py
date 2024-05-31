@@ -24,7 +24,8 @@ def mk_canny_edge(W=640,H=480,OPENCV=True):
     to_gray8 = RGBA32ToGray8("to_gray8",W,H)
     gaussian = GaussianFilter("gaussian",W,H)
     
-    cv_to_rgba = Gray8ToRGBA32("cv_to_rgba",W,H)
+    cv_to_rgba1 = Gray8ToRGBA32("cv_to_rgba",W,H)
+    cv_to_rgba2 = Gray8ToRGBA32("u8_to_rgba",W,H)
     canny_edge = CannyEdge("canny",W,H,config=True)
     to_rgba = Gray16ToRGBA32("to_rgba",W,H)
     
@@ -38,10 +39,10 @@ def mk_canny_edge(W=640,H=480,OPENCV=True):
         
     gauss = gaussian(to_gray8(camera(the_graph)))
     
-    display1(to_rgba(canny_edge(gauss)))
+    display1(cv_to_rgba2(canny_edge(gauss)))
 
     if OPENCV:
-       display2(cv_to_rgba(canny_edge_cv(gauss)))
+       display2(cv_to_rgba1(canny_edge_cv(gauss)))
 
     return(the_graph)
 
