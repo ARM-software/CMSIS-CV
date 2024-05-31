@@ -31,7 +31,7 @@ allSuites = [
                    path="Patterns/Mandrill.tiff"),
                    ],
         "tests":
-          [linear_gaussian_test(imgid+len(STANDARD_IMG_SIZES)+len(STANDARD_RGB_IMG_SIZES), imgdim, funcid=2) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]
+          [linear_gaussian_test(imgid, imgdim, funcid=2) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]
     },
     {
         "name" : "Color conversions",
