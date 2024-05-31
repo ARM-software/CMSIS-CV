@@ -226,21 +226,10 @@ typedef struct {
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *cv_to_rgba;
     WebDisplay<int8_t,307200> *display1;
     WebDisplay<int8_t,307200> *display2;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    Duplicate<int8_t,153600,int8_t,153600> *dup0;
-    Gray16ToGray8<int8_t,153600,int8_t,76800> *g16_to_g8;
-    GaussianFilter<int8_t,76800,int8_t,153600> *gaussian;
-    RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
-    Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
-=======
-=======
->>>>>>> b6dcc048cf255b882b2e93faa3648ec9512cf12d
     Duplicate<int8_t,76800,int8_t,76800> *dup0;
     GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
-    RGBAToGray8<int8_t,307200,int8_t,76800> *to_gray8;
-    Gray16ToRGBA<int8_t,153600,int8_t,307200> *to_rgba;
->>>>>>> c84958d (commit before merging with update)
+    RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
+    Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
 } nodes_t;
 
 CG_BEFORE_BUFFER
@@ -321,15 +310,7 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-    nodes.cv_to_rgba = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo5),*(fifos.fifo6));
-=======
-    nodes.cv_to_rgba = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo4),*(fifos.fifo5));
->>>>>>> c84958d (commit before merging with update)
-=======
-    nodes.cv_to_rgba = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo4),*(fifos.fifo5));
->>>>>>> b6dcc048cf255b882b2e93faa3648ec9512cf12d
+    nodes.cv_to_rgba = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo4),*(fifos.fifo5));
     if (nodes.cv_to_rgba==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);

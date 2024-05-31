@@ -43,8 +43,8 @@ class CannyEdge(GenericNode):
     def params(self):
         return {"name":"CMSIS-CV Canny Edge", 
                 "values":
-                  [{"value":108,"name":"low","min":0,"max":255,"step":1},
-                   {"value":95,"name":"high","min":0,"max":255,"step":1}
+                  [{"value":78,"name":"low","min":0,"max":255,"step":1},
+                   {"value":33,"name":"high","min":0,"max":255,"step":1}
                   ]
                 }
 

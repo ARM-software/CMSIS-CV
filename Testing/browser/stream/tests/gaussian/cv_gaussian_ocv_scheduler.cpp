@@ -224,8 +224,8 @@ typedef struct {
     GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
     OpenCVGaussian<int8_t,76800,int8_t,76800> *gaussian_cv;
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
-    Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
-    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv;
+    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv1;
+    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv2;
 } nodes_t;
 
 CG_BEFORE_BUFFER
