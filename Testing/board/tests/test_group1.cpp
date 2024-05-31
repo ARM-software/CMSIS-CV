@@ -8,8 +8,8 @@ extern "C" {
     #include "cv/color_transforms.h"
 }
 
-#if defined(TESTGROUP1)
 
+#if defined(TESTGROUP1)
 
 // arm_yuv420_to_gray8
 void test0(const unsigned char* inputs,

@@ -119,7 +119,7 @@ Internal ID identification for the nodes
 #define DUP0_INTERNAL_ID 6
 #define GAUSSIAN_INTERNAL_ID 7
 #define TO_GRAY8_INTERNAL_ID 8
-#define TO_RGBA_INTERNAL_ID 9
+#define U8_TO_RGBA_INTERNAL_ID 9
 
 /* For callback management */
 
@@ -155,7 +155,7 @@ FIFO buffers
 ************/
 #define FIFOSIZE0 307200
 #define FIFOSIZE1 76800
-#define FIFOSIZE2 153600
+#define FIFOSIZE2 76800
 #define FIFOSIZE3 307200
 #define FIFOSIZE4 76800
 #define FIFOSIZE5 307200
@@ -177,7 +177,7 @@ int init_buffer_cv_canny_edge_ocv_scheduler(unsigned char * src,
                               uint32_t* params1,
                               uint32_t* params2)
 {
-    buffers.buf0 = (uint8_t *)CG_MALLOC(153600 * sizeof(uint8_t));
+    buffers.buf0 = (uint8_t *)CG_MALLOC(76800 * sizeof(uint8_t));
     if (buffers.buf0==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
@@ -221,7 +221,7 @@ ImageFIFO<int8_t,FIFOSIZE8,1,0> *fifo8;
 
 typedef struct {
     WebCamera<int8_t,307200> *camera;
-    CannyEdge<int8_t,76800,int8_t,153600> *canny;
+    CannyEdge<int8_t,76800,int8_t,76800> *canny;
     OpenCVCanny<int8_t,76800,int8_t,76800> *canny_cv;
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *cv_to_rgba;
     WebDisplay<int8_t,307200> *display1;
@@ -229,7 +229,7 @@ typedef struct {
     Duplicate<int8_t,76800,int8_t,76800> *dup0;
     GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
-    Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
+    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *u8_to_rgba;
 } nodes_t;
 
 CG_BEFORE_BUFFER
@@ -300,7 +300,7 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.canny = new CannyEdge<int8_t,76800,int8_t,153600>(*(fifos.fifo7),*(fifos.fifo2),params1);
+    nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo7),*(fifos.fifo2),params1);
     if (nodes.canny==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
@@ -340,8 +340,8 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.to_rgba = new Gray16ToRGBA32<int8_t,153600,int8_t,307200>(*(fifos.fifo2),*(fifos.fifo3));
-    if (nodes.to_rgba==NULL)
+    nodes.u8_to_rgba = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo2),*(fifos.fifo3));
+    if (nodes.u8_to_rgba==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
@@ -429,9 +429,9 @@ void free_cv_canny_edge_ocv_scheduler(unsigned char * src,
     {
         delete nodes.to_gray8;
     }
-    if (nodes.to_rgba!=NULL)
+    if (nodes.u8_to_rgba!=NULL)
     {
-        delete nodes.to_rgba;
+        delete nodes.u8_to_rgba;
     }
 }
 
@@ -536,8 +536,8 @@ CG_RESTORE_STATE_MACHINE_STATE;
 
                 case 9:
                 {
-                    nodes.to_rgba->setExecutionStatus(cb_state.running);
-                   cgStaticError = nodes.to_rgba->run();
+                    nodes.u8_to_rgba->setExecutionStatus(cb_state.running);
+                   cgStaticError = nodes.u8_to_rgba->run();
                 }
                 break;
 
