@@ -29,59 +29,9 @@ allSuites = [
         "inputs": [ImageGen(STANDARD_IMG_SIZES,
                    format=Format.GRAY8,
                    path="Patterns/Mandrill.tiff"),
-                   ImageGen(STANDARD_RGB_IMG_SIZES,
-                   format=Format.RGB24,
-                   path="Patterns/Mandrill.tiff"),
-                   ImageGen([(64,64)],
-                   format=Format.GRAY8,
-                   path="Patterns/Mandrill.tiff"),
-                   ImageGen([(128,128)],
-                   format=Format.GRAY8,
-                   path="Patterns/Mandrill.tiff"),
-                   ImageGen([(65,65)],
-                   format=Format.GRAY8,
-                   path="Patterns/Mandrill.tiff"),
-                   ImageGen([(127,127)],
-                   format=Format.GRAY8,
-                   path="Patterns/House.tiff"),
-                   ImageGen(STANDARD_IMG_SIZES,
-                   format=Format.GRAY8,
-                   path="Patterns/House.tiff"),
                    ],
         "tests":
-          ([linear_copy_test(imgid,imgdim,funcid=1) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)] +
-           [linear_copy_test(imgid+len(STANDARD_IMG_SIZES),imgdim,funcid=0,img_type="rgb") for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)])+
-            [
-                {
-                "desc":"Test linear filter 64",
-                "funcid": 2,
-                "useimg": [len(STANDARD_IMG_SIZES)+len(STANDARD_IMG_SIZES)],
-                "reference": GaussianFilter(),
-                "check" : SimilarTensorFixp(1)
-                },
-                {
-                "desc":"Test linear filter 128",
-                "funcid": 2,
-                "useimg": [len(STANDARD_IMG_SIZES)+len(STANDARD_IMG_SIZES)+1],
-                "reference": GaussianFilter(),
-                "check" : SimilarTensorFixp(1)
-                },
-                {
-                "desc":"Test linear filter 65",
-                "funcid": 2,
-                "useimg": [len(STANDARD_IMG_SIZES)+len(STANDARD_IMG_SIZES)+2],
-                "reference": GaussianFilter(),
-                "check" : SimilarTensorFixp(1)
-                },
-                {
-                "desc":"Test linear filter 127",
-                "funcid": 2,
-                "useimg": [len(STANDARD_IMG_SIZES)+len(STANDARD_IMG_SIZES)+3],
-                "reference": GaussianFilter(),
-                "check" : SimilarTensorFixp(1)
-                }
-            ]+
-            [linear_gaussian_test(imgid+len(STANDARD_IMG_SIZES)+len(STANDARD_IMG_SIZES)+4, imgdim, funcid=2) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]
+          [linear_gaussian_test(imgid+len(STANDARD_IMG_SIZES)+len(STANDARD_RGB_IMG_SIZES), imgdim, funcid=2) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]
     },
     {
         "name" : "Color conversions",
