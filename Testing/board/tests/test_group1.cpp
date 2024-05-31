@@ -14,6 +14,7 @@ extern "C" {
 }
 #if defined(TESTGROUP1)
 
+
 // arm_yuv420_to_gray8
 void test0(const unsigned char* inputs,
                  unsigned char* &outputs,
