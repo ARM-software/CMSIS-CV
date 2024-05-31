@@ -48,12 +48,17 @@ class CannyEdge(GenericNode):
         return {"name":"CMSIS-CV Canny Edge", 
                 "values":
 <<<<<<< HEAD
+<<<<<<< HEAD
                   [{"value":78,"name":"low","min":0,"max":255,"step":1},
                    {"value":33,"name":"high","min":0,"max":255,"step":1}
 =======
                   [{"value":108,"name":"low","min":0,"max":255,"step":1},
                    {"value":95,"name":"high","min":0,"max":255,"step":1}
 >>>>>>> 0eb2bec (update type for gaussian and cannyedge)
+=======
+                  [{"value":78,"name":"low","min":0,"max":255,"step":1},
+                   {"value":33,"name":"high","min":0,"max":255,"step":1}
+>>>>>>> caadad4 (test browser)
                   ]
                 }
 

@@ -226,6 +226,7 @@ typedef struct {
 <<<<<<< HEAD
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
 <<<<<<< HEAD
+<<<<<<< HEAD
     Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv;
 =======
@@ -246,6 +247,10 @@ typedef struct {
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv1;
+    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv2;
+>>>>>>> caadad4 (test browser)
 } nodes_t;
 
 CG_BEFORE_BUFFER

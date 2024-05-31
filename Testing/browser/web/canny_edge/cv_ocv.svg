@@ -12,6 +12,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <svg width="1774pt" height="127pt"
  viewBox="0.00 0.00 1773.85 127.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 123)">
@@ -73,6 +74,13 @@
 <title>structs</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-123 1434.85,-123 1434.85,4 -4,4"/>
 >>>>>>> c84958d (commit before merging with update)
+=======
+<svg width="1490pt" height="127pt"
+ viewBox="0.00 0.00 1489.85 127.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 123)">
+<title>structs</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-123 1485.85,-123 1485.85,4 -4,4"/>
+>>>>>>> caadad4 (test browser)
 <!-- camera -->
 <g id="node1" class="node">
 <title>camera</title>
@@ -101,6 +109,7 @@
 <!-- canny -->
 <g id="node2" class="node">
 <title>canny</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -140,16 +149,22 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 =======
+=======
+>>>>>>> caadad4 (test browser)
 <polygon fill="none" stroke="none" points="874.47,-73.5 874.47,-115 957.97,-115 957.97,-73.5 874.47,-73.5"/>
 <polygon fill="none" stroke="black" points="874.47,-73.5 874.47,-115 957.97,-115 957.97,-73.5 874.47,-73.5"/>
 <text text-anchor="start" x="899.72" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">canny</text>
 <text text-anchor="start" x="879.47" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(CannyEdge)</text>
+<<<<<<< HEAD
+>>>>>>> caadad4 (test browser)
+=======
 >>>>>>> caadad4 (test browser)
 </g>
 <!-- u8_to_rgba -->
 <g id="node10" class="node">
 <<<<<<< HEAD
 <title>to_rgba</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -194,10 +209,13 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 =======
+=======
+>>>>>>> caadad4 (test browser)
 <polygon fill="none" stroke="none" points="1113.1,-73.5 1113.1,-115 1242.35,-115 1242.35,-73.5 1113.1,-73.5"/>
 <polygon fill="none" stroke="black" points="1113.1,-73.5 1113.1,-115 1242.35,-115 1242.35,-73.5 1113.1,-73.5"/>
 <text text-anchor="start" x="1155.97" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">to_rgba</text>
 <text text-anchor="start" x="1118.1" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(Gray16ToRGBA32)</text>
+<<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
 <title>u8_to_rgba</title>
@@ -210,11 +228,14 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> caadad4 (test browser)
 </g>
 <!-- canny&#45;&gt;u8_to_rgba -->
 <g id="edge3" class="edge">
 <<<<<<< HEAD
 <title>canny:i&#45;&gt;to_rgba:i</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -256,11 +277,14 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 =======
+=======
+>>>>>>> caadad4 (test browser)
 <path fill="none" stroke="black" d="M957.77,-94.25C997.61,-94.25 1059.19,-94.25 1106.9,-94.25"/>
 <polygon fill="black" stroke="black" points="1106.73,-96 1111.73,-94.25 1106.73,-92.5 1106.73,-96"/>
 <text text-anchor="start" x="994.85" y="-97.1" font-family="Times New Roman,serif" font-size="12.00">GRAY16_320_240</text>
 <text text-anchor="start" x="1071.24" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">153600</text>
 <text text-anchor="start" x="963.77" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">153600</text>
+<<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
 <title>canny:i&#45;&gt;u8_to_rgba:i</title>
@@ -274,10 +298,13 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> caadad4 (test browser)
 </g>
 <!-- canny_cv -->
 <g id="node3" class="node">
 <title>canny_cv</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -317,19 +344,25 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 =======
+=======
+>>>>>>> caadad4 (test browser)
 <polygon fill="none" stroke="none" points="863.6,-5.5 863.6,-47 968.85,-47 968.85,-5.5 863.6,-5.5"/>
 <polygon fill="none" stroke="black" points="863.6,-5.5 863.6,-47 968.85,-47 968.85,-5.5 863.6,-5.5"/>
 <text text-anchor="start" x="889.22" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">canny_cv</text>
 <text text-anchor="start" x="868.6" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(OpenCVCanny)</text>
+<<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> caadad4 (test browser)
 </g>
 <!-- cv_to_rgba -->
 <g id="node4" class="node">
 <title>cv_to_rgba</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -370,10 +403,13 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 =======
+=======
+>>>>>>> caadad4 (test browser)
 <polygon fill="none" stroke="none" points="1116.47,-5.5 1116.47,-47 1238.97,-47 1238.97,-5.5 1116.47,-5.5"/>
 <polygon fill="none" stroke="black" points="1116.47,-5.5 1116.47,-47 1238.97,-47 1238.97,-5.5 1116.47,-5.5"/>
 <text text-anchor="start" x="1145.47" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">cv_to_rgba</text>
 <text text-anchor="start" x="1121.47" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(Gray8ToRGBA32)</text>
+<<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
 <polygon fill="none" stroke="none" points="1107.1,-5.5 1107.1,-47 1229.6,-47 1229.6,-5.5 1107.1,-5.5"/>
@@ -385,10 +421,13 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> caadad4 (test browser)
 </g>
 <!-- canny_cv&#45;&gt;cv_to_rgba -->
 <g id="edge5" class="edge">
 <title>canny_cv:i&#45;&gt;cv_to_rgba:i</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -431,11 +470,14 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 =======
+=======
+>>>>>>> caadad4 (test browser)
 <path fill="none" stroke="black" d="M968.8,-26.25C1009.38,-26.25 1066.21,-26.25 1110.21,-26.25"/>
 <polygon fill="black" stroke="black" points="1110.09,-28 1115.09,-26.25 1110.09,-24.5 1110.09,-28"/>
 <text text-anchor="start" x="997.85" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="1080.6" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 <text text-anchor="start" x="974.8" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
 <path fill="none" stroke="black" d="M968.75,-26.25C1007.11,-26.25 1059.78,-26.25 1101.25,-26.25"/>
@@ -448,10 +490,13 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> caadad4 (test browser)
 </g>
 <!-- display2 -->
 <g id="node6" class="node">
 <title>display2</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -492,10 +537,13 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 =======
+=======
+>>>>>>> caadad4 (test browser)
 <polygon fill="none" stroke="none" points="1385.85,-5.5 1385.85,-47 1473.85,-47 1473.85,-5.5 1385.85,-5.5"/>
 <polygon fill="none" stroke="black" points="1385.85,-5.5 1385.85,-47 1473.85,-47 1473.85,-5.5 1385.85,-5.5"/>
 <text text-anchor="start" x="1406.6" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">display2</text>
 <text text-anchor="start" x="1390.85" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
+<<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
 <polygon fill="none" stroke="none" points="1373.1,-5.5 1373.1,-47 1461.1,-47 1461.1,-5.5 1373.1,-5.5"/>
@@ -507,10 +555,13 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> caadad4 (test browser)
 </g>
 <!-- cv_to_rgba&#45;&gt;display2 -->
 <g id="edge6" class="edge">
 <title>cv_to_rgba:i&#45;&gt;display2:i</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -553,11 +604,14 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 =======
+=======
+>>>>>>> caadad4 (test browser)
 <path fill="none" stroke="black" d="M1238.95,-26.25C1282.04,-26.25 1339.31,-26.25 1379.66,-26.25"/>
 <polygon fill="black" stroke="black" points="1379.47,-28 1384.47,-26.25 1379.47,-24.5 1379.47,-28"/>
 <text text-anchor="start" x="1268.35" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">RGBA32_320_240</text>
 <text text-anchor="start" x="1343.98" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="1244.95" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
 <path fill="none" stroke="black" d="M1229.4,-26.25C1271.64,-26.25 1327.48,-26.25 1367.06,-26.25"/>
@@ -570,10 +624,13 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> caadad4 (test browser)
 </g>
 <!-- display1 -->
 <g id="node5" class="node">
 <title>display1</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -614,10 +671,13 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 =======
+=======
+>>>>>>> caadad4 (test browser)
 <polygon fill="none" stroke="none" points="1385.85,-73.5 1385.85,-115 1473.85,-115 1473.85,-73.5 1385.85,-73.5"/>
 <polygon fill="none" stroke="black" points="1385.85,-73.5 1385.85,-115 1473.85,-115 1473.85,-73.5 1385.85,-73.5"/>
 <text text-anchor="start" x="1406.6" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">display1</text>
 <text text-anchor="start" x="1390.85" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
+<<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
 <polygon fill="none" stroke="none" points="1373.1,-73.5 1373.1,-115 1461.1,-115 1461.1,-73.5 1373.1,-73.5"/>
@@ -629,10 +689,13 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> caadad4 (test browser)
 </g>
 <!-- dup0 -->
 <g id="node7" class="node">
 <title>dup0</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -662,10 +725,14 @@
 =======
 <ellipse fill="black" stroke="black" cx="706.05" cy="-59.25" rx="1.8" ry="1.8"/>
 >>>>>>> c84958d (commit before merging with update)
+=======
+<ellipse fill="black" stroke="black" cx="731.55" cy="-59.25" rx="1.8" ry="1.8"/>
+>>>>>>> caadad4 (test browser)
 </g>
 <!-- dup0&#45;&gt;canny -->
 <g id="edge8" class="edge">
 <title>dup0&#45;&gt;canny:i</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -771,15 +838,28 @@
 <!-- dup0&#45;&gt;canny_cv -->
 <g id="edge9" class="edge">
 <title>dup0&#45;&gt;canny_cv:i</title>
+=======
+<path fill="none" stroke="black" d="M733.56,-59.55C736.37,-60.37 744.5,-62.71 751.35,-64.25 790.51,-73.03 835.36,-81.1 868.23,-86.66"/>
+<polygon fill="black" stroke="black" points="867.92,-88.38 873.15,-87.49 868.5,-84.93 867.92,-88.38"/>
+<text text-anchor="start" x="751.35" y="-83.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
+<text text-anchor="start" x="838.64" y="-70.34" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+</g>
+<!-- dup0&#45;&gt;canny_cv -->
+<g id="edge9" class="edge">
+<title>dup0&#45;&gt;canny_cv:i</title>
+>>>>>>> caadad4 (test browser)
 <path fill="none" stroke="black" d="M733.52,-58.63C736.23,-56.95 744.12,-52.24 751.35,-50 785.72,-39.35 825.65,-33.43 857.49,-30.17"/>
 <polygon fill="black" stroke="black" points="857.44,-31.94 862.24,-29.7 857.09,-28.45 857.44,-31.94"/>
 <text text-anchor="start" x="751.35" y="-52.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="827.75" y="-12.15" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> caadad4 (test browser)
 </g>
 <!-- gaussian -->
 <g id="node8" class="node">
@@ -792,6 +872,7 @@
 <!-- gaussian&#45;&gt;dup0 -->
 <g id="edge7" class="edge">
 <title>gaussian:i&#45;&gt;dup0</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -831,15 +912,20 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 =======
+=======
+>>>>>>> caadad4 (test browser)
 <path fill="none" stroke="black" d="M599.3,-59.25C642.5,-59.25 702.27,-59.25 723.06,-59.25"/>
 <polygon fill="black" stroke="black" points="722.91,-61 727.91,-59.25 722.91,-57.5 722.91,-61"/>
 <text text-anchor="start" x="625.5" y="-62.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="605.3" y="-41.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> caadad4 (test browser)
 </g>
 <!-- to_gray8&#45;&gt;gaussian -->
 <g id="edge2" class="edge">
@@ -854,6 +940,7 @@
 <g id="edge4" class="edge">
 <<<<<<< HEAD
 <title>to_rgba:i&#45;&gt;display1:i</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -895,11 +982,14 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 =======
+=======
+>>>>>>> caadad4 (test browser)
 <path fill="none" stroke="black" d="M1242.17,-94.25C1284.89,-94.25 1340.41,-94.25 1379.76,-94.25"/>
 <polygon fill="black" stroke="black" points="1379.42,-96 1384.42,-94.25 1379.42,-92.5 1379.42,-96"/>
 <text text-anchor="start" x="1268.35" y="-97.1" font-family="Times New Roman,serif" font-size="12.00">RGBA32_320_240</text>
 <text text-anchor="start" x="1343.94" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="1248.17" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
 =======
 <title>u8_to_rgba:i&#45;&gt;display1:i</title>
@@ -913,6 +1003,8 @@
 >>>>>>> ab9c6f0 (commit before merging with update)
 =======
 >>>>>>> c84958d (commit before merging with update)
+=======
+>>>>>>> caadad4 (test browser)
 </g>
 </g>
 </svg>

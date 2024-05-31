@@ -224,6 +224,7 @@ typedef struct {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     GaussianFilter<int8_t,76800,int8_t,153600> *gaussian;
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
     Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
@@ -253,6 +254,11 @@ typedef struct {
 =======
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *u8_to_rgba;
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+    GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
+    RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
+    Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
+>>>>>>> caadad4 (test browser)
 } nodes_t;
 
 CG_BEFORE_BUFFER
