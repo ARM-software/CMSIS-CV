@@ -96,8 +96,8 @@ public:
         uint32_t low,high;
         if (mParams == nullptr)
         {
-           low = 2500;
-           high = 1060;
+           low = 78;
+           high = 33;
         }
         else
         {
