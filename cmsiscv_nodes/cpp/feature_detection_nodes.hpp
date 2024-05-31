@@ -83,7 +83,7 @@ public:
         }
 
         arm_cv_image_gray8_t input;
-        arm_cv_image_q15_t output;
+        arm_cv_image_gray8_t output;
 
         input.height=this->inputHeight();
         input.width=this->inputWidth();
@@ -91,7 +91,7 @@ public:
 
         output.height=this->inputHeight();
         output.width=this->inputWidth();
-        output.pData = (q15_t*)o;
+        output.pData = (uint8_t*)o;
 
         uint32_t low,high;
         if (mParams == nullptr)
