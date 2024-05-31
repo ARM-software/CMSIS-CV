@@ -39,10 +39,17 @@
 #endif
 
 /**     
- * @brief      Unpacked BGR 8U3C to Grayscale
+ * @brief      RGB24 to Grayscale
  *
  * @param[in]  ImageIn   The input image
  * @param      ImageOut  The output image
+ * 
+ * @par  Formula used
+ * 
+ * \f[
+ * gray = 0.299  * red + 0.587 * green + 0.114 * blue ;
+ * \f]
+ * 
  */
 #if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
 void arm_rgb24_to_gray8(const arm_cv_image_rgb24_t* ImageIn,
@@ -190,8 +197,6 @@ void arm_rgb24_to_gray8(const arm_cv_image_rgb24_t* ImageIn,
 
   uint8_t r,g,b;
   q15_t gray;
-  //float gr;
-
 
   for(uint32_t height=0; height<ImageIn->height;height++)
   {
@@ -204,9 +209,6 @@ void arm_rgb24_to_gray8(const arm_cv_image_rgb24_t* ImageIn,
          gray = (q15_t) (RED_FACTOR_Q7) * (r);
          gray += (q15_t) (GREEN_FACTOR_Q7) * (g);
          gray += (q15_t) (BLUE_FACTOR_Q7) * (b);
-         //
-         //gr = 0.299  * r + 0.587*g+0.114*b ;
-         //*pOut++ = (uint8_t)gr;
          
          *pOut++ = (q7_t) __USAT((gray + 0x7F)>> 7, 8);
      }

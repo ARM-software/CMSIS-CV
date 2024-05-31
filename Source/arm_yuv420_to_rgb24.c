@@ -32,25 +32,6 @@
 
 #if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
 #include "arm_cv_common.h"
-#endif
-
-/**     
- * @brief      Unpacked YUV420 to packed RGB24
- *
- * @param[in]  ImageIn   The input image
- * @param      ImageOut  The output image
- * 
- * @par Details about the transform ITU-R BT.601
- *
- * \f[
- *   r = 1.16414 * (y-16) - 0.0017889 * (u-128) + 1.59579    * (v-128) \\
- *   g = 1.16414 * (y-16) - 0.391443  * (u-128) - 0.813482   * (v-128) \\
- *   b = 1.16414 * (y-16) + 2.01783   * (u-128) - 0.00124584 * (v-128) \\
- * \f]
- *
-
- */
-#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
 
 #define COMP(A,B,FA,FB,FC)                                    \
         tmp_half = vmovl##A##q_u8(y);                         \
@@ -109,10 +90,28 @@
         res = vld1q_u8((uint8_t*)cv_sgbuf+32);                           \
         vst1q(OUT, res);                                                 \
         OUT += 16;
+#endif
 
+/**     
+ * @brief      YUV420 to packed RGB24
+ *
+ * @param[in]  ImageIn   The input image
+ * @param      ImageOut  The output image
+ * 
+ * @par YUV format
+ * Y,U and V are in different planes with different dimensions
+ *      
+ * @par Details about the transform ITU-R BT.601
+ *
+ * \f[
+ *   r = 1.16414 * (y-16) - 0.0017889 * (u-128) + 1.59579    * (v-128) \\
+ *   g = 1.16414 * (y-16) - 0.391443  * (u-128) - 0.813482   * (v-128) \\
+ *   b = 1.16414 * (y-16) + 2.01783   * (u-128) - 0.00124584 * (v-128) \\
+ * \f]
+ *
 
-
-
+ */
+#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
 void arm_yuv420_to_rgb24(const arm_cv_image_yuv420_t* ImageIn,
                                arm_cv_image_rgb24_t* ImageOut)
 {
@@ -192,7 +191,7 @@ void arm_yuv420_to_rgb24(const arm_cv_image_yuv420_t* ImageIn,
         vst1q((uint8_t*)cv_sgbuf,rv);
         v = vldrbq_gather_offset_u8((uint8_t*)cv_sgbuf,offsetV);
 
-
+        // Fixed point coefficients are in Q17 format
         COMPRES(152586,-234,209163);
         redV=res;
 
@@ -291,6 +290,8 @@ void arm_yuv420_to_rgb24(const arm_cv_image_yuv420_t* ImageIn,
         //float r = 1.16414f * y00 - 0.0017889f * u + 1.59579f * v;
         //float g = 1.16414f * y00 - 0.391443f  * u - 0.813482f * v;
         //float b = 1.16414f * y00 + 2.01783f   * u - 0.00124584f * v;
+        //
+        // Fixed point coefficients are in Q17 format
         tmp = 0;
         tmp += (int32_t)152586 * y00;
         tmp -= (int32_t)234 * u;
@@ -429,6 +430,8 @@ void arm_yuv420_to_rgb24(const arm_cv_image_yuv420_t* ImageIn,
         //float r = 1.16414f * y00 - 0.0017889f * u + 1.59579f * v;
         //float g = 1.16414f * y00 - 0.391443f  * u - 0.813482f * v;
         //float b = 1.16414f * y00 + 2.01783f   * u - 0.00124584f * v;
+        //
+        // Fixed point coefficients are in Q17 format
         tmp = 0;
         tmp += (int32_t)152586 * y00;
         tmp -= (int32_t)234 * u;

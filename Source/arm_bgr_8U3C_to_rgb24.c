@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------
  * Project:      CMSIS CV Library
  * Title:        arm_bgr_8U3C_to_rgb24
- * Description:  Convertion of planar RGB to RGB24
+ * Description:  Convertion of planar BGR to RGB24
  *
  * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */

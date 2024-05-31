@@ -40,7 +40,7 @@ extern "C"
 
 
 /**     
- * @brief      Unpacked YUV420 to Grayscale
+ * @brief      YUV420 to Grayscale
  *
  * @param[in]  ImageIn   The input image
  * @param      ImageOut  The output image
@@ -49,7 +49,7 @@ extern void arm_yuv420_to_gray8(const arm_cv_image_yuv420_t* ImageIn,
                                       arm_cv_image_gray8_t* ImageOut);
 
 /**     
- * @brief      Unpacked YUV420 to packed RGB24
+ * @brief      YUV420 to packed RGB24
  *
  * @param[in]  ImageIn   The input image
  * @param      ImageOut  The output image
@@ -89,7 +89,7 @@ extern void arm_gray8_to_rgb24(const arm_cv_image_gray8_t* ImageIn,
 
 
 /**     
- * @brief      Packed RGB24 to Grayscale
+ * @brief      RGB24 to Grayscale
  *
  * @param[in]  ImageIn   The input image
  * @param      ImageOut  The output image

@@ -30,10 +30,13 @@
 
 
 /**     
- * @brief      Unpacked YUV420 to Grayscale
+ * @brief      YUV420 to Grayscale
  *
  * @param[in]  ImageIn   The input image
  * @param      ImageOut  The output image
+ * 
+ * @par YUV Format
+ * Y,U and V are in different planes with different dimensions
  */
 
 #if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
