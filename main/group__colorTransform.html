@@ -146,13 +146,13 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga6d43604f7745cd4e9a262fdf2a451ba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grayscale to RGB24.  <br /></td></tr>
 <tr class="separator:ga6d43604f7745cd4e9a262fdf2a451ba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga94ca812d8c008d7d0b3b0eff04add26c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__colorTransform.html#ga94ca812d8c008d7d0b3b0eff04add26c">arm_rgb24_to_gray8</a> (const <a class="el" href="structarm__cv__image__rgb24__t.html">arm_cv_image_rgb24_t</a> *ImageIn, <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *ImageOut)</td></tr>
-<tr class="memdesc:ga94ca812d8c008d7d0b3b0eff04add26c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unpacked BGR 8U3C to Grayscale.  <br /></td></tr>
+<tr class="memdesc:ga94ca812d8c008d7d0b3b0eff04add26c"><td class="mdescLeft">&#160;</td><td class="mdescRight">RGB24 to Grayscale.  <br /></td></tr>
 <tr class="separator:ga94ca812d8c008d7d0b3b0eff04add26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga51cbce87004264db0909acb540623937"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__colorTransform.html#ga51cbce87004264db0909acb540623937">arm_yuv420_to_gray8</a> (const <a class="el" href="structarm__cv__image__yuv420__t.html">arm_cv_image_yuv420_t</a> *ImageIn, <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *ImageOut)</td></tr>
-<tr class="memdesc:ga51cbce87004264db0909acb540623937"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unpacked YUV420 to Grayscale.  <br /></td></tr>
+<tr class="memdesc:ga51cbce87004264db0909acb540623937"><td class="mdescLeft">&#160;</td><td class="mdescRight">YUV420 to Grayscale.  <br /></td></tr>
 <tr class="separator:ga51cbce87004264db0909acb540623937"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaac0536e8c3a0647d87910e66674313dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__colorTransform.html#gaac0536e8c3a0647d87910e66674313dd">arm_yuv420_to_rgb24</a> (const <a class="el" href="structarm__cv__image__yuv420__t.html">arm_cv_image_yuv420_t</a> *ImageIn, <a class="el" href="structarm__cv__image__rgb24__t.html">arm_cv_image_rgb24_t</a> *ImageOut)</td></tr>
-<tr class="memdesc:gaac0536e8c3a0647d87910e66674313dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unpacked YUV420 to packed RGB24.  <br /></td></tr>
+<tr class="memdesc:gaac0536e8c3a0647d87910e66674313dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">YUV420 to packed RGB24.  <br /></td></tr>
 <tr class="separator:gaac0536e8c3a0647d87910e66674313dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
@@ -187,11 +187,17 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">ImageIn</td><td>The input image </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">ImageOut</td><td>The output image </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">ImageOut</td><td>The output image</td></tr>
   </table>
   </dd>
 </dl>
-
+<dl class="section user"><dt>Formula used</dt><dd></dd></dl>
+<p class="formulaDsp">
+\[
+gray = 0.299  * red + 0.587 * green + 0.114 * blue ;
+\]
+</p>
+ 
 </div>
 </div>
 <a id="gaafc1b7621ca698739547137c28df2630" name="gaafc1b7621ca698739547137c28df2630"></a>
@@ -294,16 +300,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Unpacked BGR 8U3C to Grayscale. </p>
-<p>Packed RGB24 to Grayscale.</p>
+<p>RGB24 to Grayscale. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">ImageIn</td><td>The input image </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">ImageOut</td><td>The output image </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">ImageOut</td><td>The output image</td></tr>
   </table>
   </dd>
 </dl>
-
+<dl class="section user"><dt>Formula used</dt><dd></dd></dl>
+<p class="formulaDsp">
+\[
+gray = 0.299  * red + 0.587 * green + 0.114 * blue ;
+\]
+</p>
+ 
 </div>
 </div>
 <a id="ga51cbce87004264db0909acb540623937" name="ga51cbce87004264db0909acb540623937"></a>
@@ -332,14 +343,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Unpacked YUV420 to Grayscale. </p>
+<p>YUV420 to Grayscale. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">ImageIn</td><td>The input image </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">ImageOut</td><td>The output image </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">ImageOut</td><td>The output image</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section user"><dt>YUV Format</dt><dd>Y,U and V are in different planes with different dimensions </dd></dl>
 
 </div>
 </div>
@@ -369,7 +381,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Unpacked YUV420 to packed RGB24. </p>
+<p>YUV420 to packed RGB24. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">ImageIn</td><td>The input image </td></tr>
@@ -377,6 +389,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section user"><dt>YUV format</dt><dd>Y,U and V are in different planes with different dimensions</dd></dl>
 <dl class="section user"><dt>Details about the transform ITU-R BT.601</dt><dd></dd></dl>
 <p class="formulaDsp">
 \[
