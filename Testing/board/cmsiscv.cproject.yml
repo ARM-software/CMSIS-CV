@@ -2,8 +2,8 @@ project:
   groups:
     - group: cmsiscv
       files:
-        - file: ../../Source/cannysobel.c  
-        - file: ../../Source/gaussian.c
+        - file: ../../Source/arm_cannysobel.c  
+        - file: ../../Source/arm_gaussian.c
         - file: ../../Source/arm_yuv420_to_gray8.c
         - file: ../../Source/arm_bgr_8U3C_to_gray8.c
         - file: ../../Source/arm_gray8_to_rgb24.c
