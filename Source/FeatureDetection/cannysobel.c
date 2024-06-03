@@ -74,7 +74,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 	q63_t gradx;
 	q63_t grady;
 	int x = 0;
-	//Initialisation steps
+	//Shifting the value of threshold to have them in q15
 	low_threshold = low_threshold <<5;
 	high_threshold = high_threshold <<5;
 	//ensure the buffers are empty
@@ -84,7 +84,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 		Img_tmp_mag->pData[t]=0;
 		Img_tmp_grad2->pData[t].x=0;
 	}
-	//first initialisation of the temporary buffer, for the first line we cannot compute the composant on y, so we only do the composant on x 
+	//first initialisation of the temporary buffer, for the first line we cannot compute the component on y, so we only do the component on x 
 	for(int y = 1; y<ImageIn -> width- 1; y++)
 	{
 		Img_tmp_grad2->pData[x*Img_tmp_grad2->width +y].x = (ImageIn->pData[x*ImageIn->width+(y-1)] + (ImageIn->pData[x*ImageIn->width+(y)]<<1) + ImageIn->pData[x*ImageIn->width+(y+1)])<<5;
@@ -98,12 +98,12 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 		Img_tmp_grad2->pData[x*Img_tmp_grad2->width +y].x = (ImageIn->pData[x*ImageIn->width+(y-1)] + (ImageIn->pData[x*ImageIn->width+(y)]<<1) + ImageIn->pData[x*ImageIn->width+(y+1)])<<5;
 	}
 	Img_tmp_grad2->pData[x*Img_tmp_grad2->width+Img_tmp_grad2->width-1].y = (ImageIn->pData[(x-1)*ImageIn->width+Img_tmp_grad2->width-1] + (ImageIn->pData[x*ImageIn->width+Img_tmp_grad2->width-1]<<1) + ImageIn->pData[(x+1)*ImageIn->width+Img_tmp_grad2->width-1])<<5;
-	//third line, we compute a third line for the temporary buffer, so it is now full and we are now able to start the computation of the gradient buffer so we also compute teh first line of the gradient buffer
+	//third line, we compute a third line for the temporary buffer, so it is now full and we are now able to start the computation of the gradient buffer so we also compute the first line of the gradient buffer
 	//also if we have the gradient, we can compute the magnitude too
 	x=2;
 	for( int y =0; y < ImageIn->width; y++)
 	{
-		//Cmputation of the temporary intermediate computation 
+		//Computation of the edge case
 		int xm = x%3;
 		if((y==0||y == ImageIn->width-1)&& x != ImageIn->height-1)
 		{
@@ -112,6 +112,7 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 			ImageOut->pData[indice] = 0;
 			continue;
 		}
+		//Computation of the intermediate gradient buffer
 		Img_tmp_grad2->pData[xm*Img_tmp_grad2->width +y].y = (ImageIn->pData[(x-1)*ImageIn->width+y] + (ImageIn->pData[x*ImageIn->width+y]<<1) + ImageIn->pData[(x+1)*ImageIn->width+y])<<5;
 		Img_tmp_grad2->pData[xm*Img_tmp_grad2->width +y].x = (ImageIn->pData[x*ImageIn->width+(y-1)] + (ImageIn->pData[x*ImageIn->width+(y)]<<1) + ImageIn->pData[x*ImageIn->width+(y+1)])<<5;
 
@@ -136,9 +137,9 @@ void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn,
 		//multiplication of two q15 give a q31 in output
 		out2[0]=(in[0]*in[0]);
 		out2[1]=(in[1]*in[1]);
-		//addition of two q1.1.30 give a q1.2.29 shift by one a q1.1.30
+		//addition of two q1.30 give a q2.29 shift by one a q1.30
 		out3 = (out2[0]+out2[1])>>1;
-		//root q3 give in output a q1.31 shit by 15, back to a q1.15 because of the previous shift by one 
+		//root q31 give in output a q31 shit by 15, back to a q15 because of the previous shift by one 
 		arm_sqrt_q31(out3, &root);
 		out = root>>15;
 		Img_tmp_grad1->pData[(x-1)%3 * Img_tmp_grad2->width + y].y = grady;
