@@ -14,8 +14,8 @@ add_library(CMSISCV STATIC)
 
 target_include_directories(CMSISCV PUBLIC "${ROOT}/Include")
 
-target_sources(CMSISCV PRIVATE cannysobel.c 
-    gaussian.c
+target_sources(CMSISCV PRIVATE arm_cannysobel.c 
+    arm_gaussian.c
     arm_yuv420_to_gray8.c
     arm_bgr_8U3C_to_gray8.c
     arm_gray8_to_rgb24.c
