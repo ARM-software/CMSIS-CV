@@ -28,6 +28,7 @@ default:
         - -Wno-parentheses-equality 
         - -Wno-reserved-identifier
         - -ffunction-sections
+        - -Wno-nan-infinity-disabled
         - -DARM_MATH_LOOPUNROLL
         - -g
       CPP:
