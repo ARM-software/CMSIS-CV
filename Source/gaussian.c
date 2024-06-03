@@ -27,8 +27,8 @@
 #include "dsp/basic_math_functions.h"
 
 static const uint8_t gaussian_kernel[9] = {   0x08, 0x10, 0x08,
-                                            0x10, 0x20, 0x10,
-                                            0x08, 0x10, 0x08
+                                              0x10, 0x20, 0x10,
+                                              0x08, 0x10, 0x08
                                         };
 
 
@@ -73,13 +73,6 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
         
     }
     
-    /*
-
-    To rework. Incorrect padding.
-
-    */
-    
-    
     int x = 0;
     int y = 0;
     //top left corner
@@ -98,7 +91,6 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
     ImageOut->pData[y*ImageOut->width +x] = (ImageIn->pData[y*ImageOut->width +x] + ImageIn->pData[(y+1)*ImageOut->width +x] + ImageIn->pData[y*ImageOut->width +(x-1)] + ImageIn->pData[(y+1)*ImageOut->width +(x-1)])>>2;
     y = 0;
     x = 0;
-    // x0y0
     if(ImageIn->width==1)
     {
         if(ImageIn->height==1)
@@ -109,7 +101,7 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
         {
             y = 0;
             x = 0;
-            //lack top and bot alues
+            //left border
             for( int y =1; y < ImageIn->height-1; y++)
 	        {
                 indice = y*ImageIn->width+x;
@@ -132,7 +124,7 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
         {
             x = 0;
             y = 0;
-            //bottom line
+            //top line
             for( int x =1; x < ImageIn->width-1; x++)
             {
                 indice = y*ImageIn->width+x;
@@ -152,7 +144,7 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
         {
             x = 0;
             y=0;
-            //top part
+            //top border
             for( int x =1; x < ImageIn->width-1; x++)
             {
                 indice = y*ImageIn->width+x;
@@ -169,7 +161,7 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
             }
             x = 0;
             y = ImageIn->height-1;
-            //bottom line
+            //bottom border
             for( int x =1; x < ImageIn->width-1; x++)
             {
                 indice = y*ImageIn->width+x;
@@ -186,7 +178,7 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
             }
             y = 0;
             x = 0;
-            //left border else width 1
+            //left border
             for( int y =1; y < ImageIn->height-1; y++)
 	        {
                 indice = y*ImageIn->width+x;
@@ -202,7 +194,7 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
                 ImageOut->pData[y*ImageOut->width +x] = res;
 	        }
 	        x = ImageIn->width-1;
-            //right border else width 1
+            //right border
             for( int y =1; y < ImageIn->height-1; y++)
 	        {
 	        	indice = y*ImageIn->width+x;
@@ -244,13 +236,6 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
         
     }
     
-    /*
-
-    To rework. Incorrect padding.
-
-    */
-    
-    
     int x = 0;
     int y = 0;
     //top left corner
@@ -269,7 +254,6 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
     ImageOut->pData[y*ImageOut->width +x] = (ImageIn->pData[y*ImageOut->width +x] + ImageIn->pData[(y+1)*ImageOut->width +x] + ImageIn->pData[y*ImageOut->width +(x-1)] + ImageIn->pData[(y+1)*ImageOut->width +(x-1)])>>2;
     y = 0;
     x = 0;
-    // x0y0
     if(ImageIn->width==1)
     {
         if(ImageIn->height==1)
@@ -280,7 +264,7 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
         {
             y = 0;
             x = 0;
-            //lack top and bot alues
+            //top border
             for( int y =1; y < ImageIn->height-1; y++)
 	        {
                 indice = y*ImageIn->width+x;
@@ -300,7 +284,7 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
         {
             x = 0;
             y = 0;
-            //bottom line
+            //bottom border
             for( int x =1; x < ImageIn->width-1; x++)
             {
                 indice = y*ImageIn->width+x;
@@ -317,7 +301,7 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
         {
             x = 0;
             y=0;
-            //top part
+            //top border
             for( int x =1; x < ImageIn->width-1; x++)
             {
                 indice = y*ImageIn->width+x;
@@ -331,7 +315,7 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
             }
             x = 0;
             y = ImageIn->height-1;
-            //bottom line
+            //bottom border
             for( int x =1; x < ImageIn->width-1; x++)
             {
                 indice = y*ImageIn->width+x;
@@ -345,7 +329,7 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
             }
             y = 0;
             x = 0;
-            //left border else width 1
+            //left border
             for( int y =1; y < ImageIn->height-1; y++)
 	        {
                 indice = y*ImageIn->width+x;
@@ -358,7 +342,7 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
                 ImageOut->pData[y*ImageOut->width +x] = res;
 	        }
 	        x = ImageIn->width-1;
-            //right border else width 1
+            //right border
             for( int y =1; y < ImageIn->height-1; y++)
 	        {
 	        	indice = y*ImageIn->width+x;
