@@ -8,6 +8,9 @@
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2014 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2024 Himax Technologies, Inc. or its affiliates. All rights reserved.
+ *
+ * (Copyright details are available in each C source file for each function)
  *
  * SPDX-License-Identifier: Apache-2.0
  *
