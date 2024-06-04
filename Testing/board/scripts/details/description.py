@@ -57,3 +57,19 @@ def rgb_to_gray_test(imgid,imgdim,funcid=0):
             "reference": RGBToGray(),
             "check" : SimilarTensorFixp(1)
            }
+
+def gray8_crop_test(imgdim,funcid,left,top,right,bottom):
+    return {"desc":f"Gray 8 crop test {imgdim[0]}x{imgdim[1]} -> {right-left}x{bottom-top} ",
+            "funcid": funcid,
+            "useimg": [0],
+            "reference": CropGray8((left,right),(top,bottom)),
+            "check" : SimilarTensorFixp(0)
+           }
+
+def rgb_crop_test(imgdim,funcid,left,top,right,bottom):
+    return {"desc":f"RGB crop test {imgdim[0]}x{imgdim[1]} -> {right-left}x{bottom-top} ",
+            "funcid": funcid,
+            "useimg": [1],
+            "reference": CropRGB((left,right),(top,bottom)),
+            "check" : SimilarTensorFixp(0)
+           }

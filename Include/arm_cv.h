@@ -33,6 +33,11 @@
  */
 #include "cv/color_transforms.h"
 
+/**
+ * @defgroup imageTransform Image Transformations
+ */
+#include "cv/image_transforms.h"
+
 
 /**
  * @defgroup linearFilter Linear Filters

@@ -61,6 +61,32 @@ allSuites = [
            )
            
     },
+    {
+        "name" : "Image Transforms",
+        "define": "TESTGROUP2",
+        "inputs": [ImageGen([(128,128)],
+                   format=Format.GRAY8,
+                   path="Patterns/JellyBeans.tiff"),
+                   ImageGen([(128,128)],
+                   format=Format.RGB24,
+                   path="Patterns/JellyBeans.tiff")
+        ],
+        "tests":
+          [gray8_crop_test((128,128),0,15,15,113,113),
+           gray8_crop_test((128,128),1,16,16,112,112),
+           gray8_crop_test((128,128),2,32,32,96,96),
+           gray8_crop_test((128,128),3,47,47,81,81),
+           gray8_crop_test((128,128),4,60,60,68,68),
+           gray8_crop_test((128,128),5,16,60,112,68),
+           rgb_crop_test  ((128,128),6,15,15,113,113),
+           rgb_crop_test  ((128,128),7,16,16,112,112),
+           rgb_crop_test  ((128,128),8,32,32,96,96),
+           rgb_crop_test  ((128,128),9,47,47,81,81),
+           rgb_crop_test  ((128,128),10,60,60,68,68),
+           rgb_crop_test  ((128,128),11,16,60,112,68),
+          ]
+        
+    },
 ]
 
 #print(allSuites[1]["tests"][78])
@@ -71,11 +97,11 @@ allSuites = [
 # But generally the test will use only one input image
 devTest = {
         "inputs": [ImageGen([(128,128)],
-                   format=Format.YUV420,
+                   format=Format.GRAY8,
                    path="Patterns/JellyBeans.tiff")],
         #"inputs": [UniformYUV420ImageGen([(32,32)],
         #           yuv=(161,99,183))],
         #
-        "reference": YUV420ToRGB(),
-        "check" : SimilarTensorFixp(1)
+        "reference": CropGray8(width=(15,128-15),height=(15,128-15)),
+        "check" : SimilarTensorFixp(0)
 }

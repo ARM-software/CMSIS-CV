@@ -11,6 +11,8 @@ project:
         - file: ../../Source/arm_cv_common.c
         - file: ../../Source/arm_yuv420_to_rgb24.c
         - file: ../../Source/arm_rgb24_to_gray8.c
+        - file: ../../Source/arm_crop_gray8.c
+        - file: ../../Source/arm_crop_rgb24.c
     - group: Tests
       files:
         - file: src/common.c
@@ -18,6 +20,7 @@ project:
         - file: cinput.c
         - file: tests/test_group0.cpp
         - file: tests/test_group1.cpp
+        - file: tests/test_group2.cpp
         - file: tests/test_dev.cpp
         - file: clang_sse300.c
           for-context: 

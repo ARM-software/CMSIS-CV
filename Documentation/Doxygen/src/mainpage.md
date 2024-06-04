@@ -15,6 +15,7 @@ The CMSIS-CV is provided free of charge under the [Apache 2.0 License](https://r
 The library is divided into a number of functions each covering a specific category:
 
  - \ref colorTransform "Color Transformations"
+ - \ref imageTransform "Image Transformations"
  - \ref linearFilter "Linear filters"
  - \ref featureDetection "Feature detection"
  

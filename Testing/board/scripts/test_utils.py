@@ -236,7 +236,7 @@ def validate_test_group(args,compiler,target,group_id,test,imgs,report_file):
                    print(f'<p>Passed : {t["desc"]} (Test ID = {test_id})</p>',file=report_file)
 
            except Exception as e:
-                print(f'''<p><font color=\"red\">Exception running {t["desc"]}</font> </p><p>Exception raised</p><PRE>
+                print(f'''<p><font color=\"red\">Exception running {t["desc"]} (Test ID = {test_id})</font> </p><p>Exception raised</p><PRE>
 {str(e)}
 </PRE>
 ''',file=report_file)

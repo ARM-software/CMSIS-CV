@@ -23,6 +23,8 @@ target_sources(CMSISCV PRIVATE cannysobel.c
     arm_cv_common.c
     arm_yuv420_to_rgb24.c
     arm_rgb24_to_gray8.c
+    arm_crop_gray8.c
+    arm_crop_rgb24.c
     )
 
 if (HOST)

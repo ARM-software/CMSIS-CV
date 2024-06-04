@@ -121,7 +121,53 @@ class YUV420ToRGB:
     def nb_references(self,srcs):
         return len(srcs)
 
+class CropGray8:
+    def __init__(self,width=None,height=None):
+        self._width = width # pair 
+        self._height = height # pair 
 
+    def __call__(self,args,group_id,test_id,srcs):
+        filtered = []
+        for i in srcs:
+            #print(i.tensor.shape)
+            w = self._width
+            h = self._height
+
+            cropped = i.tensor[h[0]:h[1],w[0]:w[1]]
+
+            img = PIL.Image.fromarray(cropped).convert('L')
+            filtered.append(AlgoImage(img))
+
+        # Record the filtered images
+        for image_id,img in enumerate(filtered):
+            record_reference_img(args,group_id,test_id,image_id,img)
+
+    def nb_references(self,srcs):
+        return len(srcs)
+
+class CropRGB:
+    def __init__(self,width=None,height=None):
+        self._width = width # pair 
+        self._height = height # pair 
+
+    def __call__(self,args,group_id,test_id,srcs):
+        filtered = []
+        for i in srcs:
+            #print(i.tensor.shape)
+            w = self._width
+            h = self._height
+
+            cropped = i.tensor[h[0]:h[1],w[0]:w[1],:]
+
+            img = PIL.Image.fromarray(cropped).convert('RGB')
+            filtered.append(AlgoImage(img))
+
+        # Record the filtered images
+        for image_id,img in enumerate(filtered):
+            record_reference_img(args,group_id,test_id,image_id,img)
+
+    def nb_references(self,srcs):
+        return len(srcs)
 
 class GaussianFilter:
     def __call__(self,args,group_id,test_id,srcs):

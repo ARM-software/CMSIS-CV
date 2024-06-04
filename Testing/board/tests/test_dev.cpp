@@ -4,7 +4,7 @@
 #include <vector>
 
 extern "C" {
-    #include "cv/color_transforms.h"
+    #include "cv/image_transforms.h"
 }
 
 #if defined(TESTDEV)
@@ -18,15 +18,11 @@ void test_dev(const unsigned char* inputs,
     long start,end;
     uint32_t width,height;
     int bufid = TENSOR_START + 0;
-    // YUV is recorded as a bidimensional tensor
     get_img_dims(inputs,bufid,&width,&height);
 
-    // Convert to image height from YUV height
-    height = height * 2 / 3;
 
-
-    std::vector<BufferDescription> desc = {BufferDescription(Shape(height,width)
-                                                            ,kIMG_RGB_TYPE)
+    std::vector<BufferDescription> desc = {BufferDescription(Shape(height-30,width-30)
+                                                            ,kIMG_GRAY8_TYPE)
                                           };
 
     outputs = create_write_buffer(desc,total_bytes);
@@ -34,18 +30,18 @@ void test_dev(const unsigned char* inputs,
     const uint8_t *src = Buffer<uint8_t>::read(inputs,bufid);
     uint8_t *dst = Buffer<uint8_t>::write(outputs,0);
 
-    const arm_cv_image_yuv420_t input={(uint16_t)width,
+    const arm_cv_image_gray8_t input={(uint16_t)width,
                                        (uint16_t)height,
                                        (uint8_t*)src};
 
-    arm_cv_image_rgb24_t output;
-    output.width=width;
-    output.height=height;
+    arm_cv_image_gray8_t output;
+    output.width=width-30;
+    output.height=height-30;
     output.pData=dst;
     
     // The test to run is executed with some timing code.
     start = time_in_cycles();
-    arm_yuv420_to_rgb24(&input,&output);
+    arm_crop_gray8(&input,&output,15,15,113,113);
     end = time_in_cycles();
     cycles = end - start;
 }

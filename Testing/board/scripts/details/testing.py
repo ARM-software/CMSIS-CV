@@ -119,17 +119,29 @@ class SimilarTensorFixp(Comparison):
                # Remove the channel to get the indice of the pixel
                # and remove duplicates in case there may be errors for
                # several channels of the same pixel
-               indices = list(set([tuple(x)[:-1] for x in list(np.argwhere(tooBig))]))
+               tooBigPos = list(np.argwhere(tooBig))
+               hasSeveralChannels = False
+               if len(tooBigPos[0])>2:
+                  hasSeveralChannels = True
+                  indices = list(set([tuple(x)[:-1] for x in tooBigPos]))
+               else:
+                  indices = list(set([tuple(x) for x in tooBigPos]))
+
                allErrors = [diff[x] for x in indices] 
                nb_errors = len(allErrors)
                indices = indices[:MAXNB]
                allErrors = allErrors[:MAXNB]
-               
-               ref = [list(st[x]) for x in indices] 
-               result = [list(dt[x]) for x in indices] 
-              
+
+               if hasSeveralChannels:
+                  ref = [list(st[x]) for x in indices] 
+                  result = [list(dt[x]) for x in indices] 
+               else:
+                  ref = [st[x] for x in indices] 
+                  result = [dt[x] for x in indices] 
+
                ref=ref[:MAXNB]
                result=result[:MAXNB]
+
                self.add_error(f"Latest {MAXNB} error indices: {indices}")
                self.add_error(f"References : {ref}")
                self.add_error(f"Results : {result}")
