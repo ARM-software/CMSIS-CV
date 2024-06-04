@@ -75,6 +75,29 @@ extern void arm_crop_rgb24(const arm_cv_image_rgb24_t* ImageIn,
                            const uint32_t bottom
                            );
 
+/**     
+ * @brief      resize BGR 8U3C image
+ *
+ * @param[in]  ImageIn   The input image
+ * @param      ImageOut  The output image
+ * @param[in,out]  p_img   Temporary buffer
+ */
+extern void arm_image_resize_bgr_8U3C(const arm_cv_image_bgr_8U3C_t* ImageIn,
+                                            arm_cv_image_bgr_8U3C_t* ImageOut,
+                                            uint8_t *p_img);
+
+
+/**     
+ * @brief      resize gray image
+ *
+ * @param[in]  ImageIn   The input image
+ * @param      ImageOut  The output image
+ * @param[in,out]  p_img   Temporary buffer
+ */
+extern void arm_image_resize_gray8(const arm_cv_image_gray8_t* ImageIn,
+                                         arm_cv_image_gray8_t* ImageOut,
+                                         uint8_t *p_img);
+
 #ifdef   __cplusplus
 }
 #endif

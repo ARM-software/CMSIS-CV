@@ -2,6 +2,7 @@
 #include "load.hpp"
 #include "test_config.h"
 #include <vector>
+#include <stdlib.h>
 
 extern "C" {
     #include "cv/image_transforms.h"
@@ -20,8 +21,11 @@ void test_dev(const unsigned char* inputs,
     int bufid = TENSOR_START + 0;
     get_img_dims(inputs,bufid,&width,&height);
 
+    uint8_t *p_img = (uint8_t*)malloc(2*32);                               \
 
-    std::vector<BufferDescription> desc = {BufferDescription(Shape(height-30,width-30)
+
+
+    std::vector<BufferDescription> desc = {BufferDescription(Shape(32,32)
                                                             ,kIMG_GRAY8_TYPE)
                                           };
 
@@ -35,15 +39,17 @@ void test_dev(const unsigned char* inputs,
                                        (uint8_t*)src};
 
     arm_cv_image_gray8_t output;
-    output.width=width-30;
-    output.height=height-30;
+    output.width=32;
+    output.height=32;
     output.pData=dst;
     
     // The test to run is executed with some timing code.
     start = time_in_cycles();
-    arm_crop_gray8(&input,&output,15,15,113,113);
+    arm_image_resize_gray8(&input,&output,p_img);
     end = time_in_cycles();
     cycles = end - start;
+
+    free(p_img);
 }
 
 void run_test(const unsigned char* inputs,

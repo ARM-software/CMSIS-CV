@@ -25,6 +25,8 @@ target_sources(CMSISCV PRIVATE arm_cv_common.c
     ColorTransforms/arm_rgb24_to_gray8.c
     ImageTransforms/arm_crop_gray8.c
     ImageTransforms/arm_crop_rgb24.c
+    ImageTransforms/arm_image_resize_bgr_8U3C.c
+    ImageTransforms/arm_image_resize_gray8.c
     )
 
 if (HOST)

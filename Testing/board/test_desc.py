@@ -69,6 +69,9 @@ allSuites = [
                    path="Patterns/JellyBeans.tiff"),
                    ImageGen([(128,128)],
                    format=Format.RGB24,
+                   path="Patterns/JellyBeans.tiff"),
+                   ImageGen([(128,128)],
+                   format=Format.BGR8U3C,
                    path="Patterns/JellyBeans.tiff")
         ],
         "tests":
@@ -84,6 +87,18 @@ allSuites = [
            rgb_crop_test  ((128,128),9,47,47,81,81),
            rgb_crop_test  ((128,128),10,60,60,68,68),
            rgb_crop_test  ((128,128),11,16,60,112,68),
+           gray8_resize_test((128,128),12,64,64),
+           gray8_resize_test((128,128),13,16,16),
+           gray8_resize_test((128,128),14,15,15),
+           gray8_resize_test((128,128),15,47,17),
+           gray8_resize_test((128,128),16,150,150),
+           gray8_resize_test((128,128),17,256,256),
+           bgr8U3C_resize_test((128,128),18,64,64),
+           bgr8U3C_resize_test((128,128),19,16,16),
+           bgr8U3C_resize_test((128,128),20,15,15),
+           bgr8U3C_resize_test((128,128),21,47,17),
+           bgr8U3C_resize_test((128,128),22,150,150),
+           bgr8U3C_resize_test((128,128),23,256,256),
           ]
         
     },
@@ -102,6 +117,6 @@ devTest = {
         #"inputs": [UniformYUV420ImageGen([(32,32)],
         #           yuv=(161,99,183))],
         #
-        "reference": CropGray8(width=(15,128-15),height=(15,128-15)),
-        "check" : SimilarTensorFixp(0)
+        "reference": ResizeGray8(32,32),
+        "check" : SimilarTensorFixp(1)
 }

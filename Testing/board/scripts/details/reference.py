@@ -169,6 +169,56 @@ class CropRGB:
     def nb_references(self,srcs):
         return len(srcs)
 
+class ResizeGray8:
+    def __init__(self,w,h):
+        self._dst_width = w  
+        self._dst_height = h  
+
+    def __call__(self,args,group_id,test_id,srcs):
+        filtered = []
+        for i in srcs:
+            #print(i.tensor.shape)
+            w = self._dst_width
+            h = self._dst_height
+
+            resized = cv.resize(i.tensor,(w,h),interpolation=cv.INTER_LINEAR)
+
+            img = PIL.Image.fromarray(resized).convert('L')
+            filtered.append(AlgoImage(img))
+
+        # Record the filtered images
+        for image_id,img in enumerate(filtered):
+            record_reference_img(args,group_id,test_id,image_id,img)
+
+    def nb_references(self,srcs):
+        return len(srcs)
+
+class ResizeBGR_8U3C:
+    def __init__(self,w,h):
+        self._dst_width = w  
+        self._dst_height = h  
+
+    def __call__(self,args,group_id,test_id,srcs):
+        filtered = []
+        for i in srcs:
+            #print(i.tensor.shape)
+            w = self._dst_width
+            h = self._dst_height
+
+            resized_b = cv.resize(i.tensor[0],(w,h),interpolation=cv.INTER_LINEAR)
+            resized_g = cv.resize(i.tensor[1],(w,h),interpolation=cv.INTER_LINEAR)
+            resized_r = cv.resize(i.tensor[2],(w,h),interpolation=cv.INTER_LINEAR)
+            resized = np.stack((resized_b,resized_g,resized_r))
+
+            filtered.append(AlgoImage(resized))
+
+        # Record the filtered images
+        for image_id,img in enumerate(filtered):
+            record_reference_img(args,group_id,test_id,image_id,img)
+
+    def nb_references(self,srcs):
+        return len(srcs)
+
 class GaussianFilter:
     def __call__(self,args,group_id,test_id,srcs):
         filtered = []

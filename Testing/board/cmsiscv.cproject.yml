@@ -13,6 +13,8 @@ project:
         - file: ../../Source/ColorTransforms/arm_rgb24_to_gray8.c
         - file: ../../Source/ImageTransforms/arm_crop_gray8.c
         - file: ../../Source/ImageTransforms/arm_crop_rgb24.c
+        - file: ../../Source/ImageTransforms/arm_image_resize_bgr_8U3C.c
+        - file: ../../Source/ImageTransforms/arm_image_resize_gray8.c
     - group: Tests
       files:
         - file: src/common.c

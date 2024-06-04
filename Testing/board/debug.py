@@ -8,22 +8,26 @@ import scripts.export
 from scripts.export import YUV420,AlgoImage,serialize_tensors,read_tensors
 from scripts.details.input_generator import *
 
+ref = AlgoImage.open("references/group_2/test_23_img_0.npy").tensor
+print(ref.shape)
+img = PIL.Image.fromarray(ref[1]).convert('L')
+img.show()
 
 #yuv=ImageGen([(128,128)],
 #                   format=Format.YUV420,
 #                   path="Patterns/JellyBeans.tiff")()[0].img
-yuv = AlgoImage.open("inputs/dev/img_0_yuv420.npy").img
-
-print(yuv.planes[0][15,21])
-print(yuv.planes[1][15//2,21//2])
-print(yuv.planes[2][15//2,21//2])
-
-x = yuv.tensor
-rgb = cv.cvtColor(x, cv.COLOR_YUV2RGB_I420)
-print(rgb[0,0])
-
-yuv2 = cv.cvtColor(rgb, cv.COLOR_RGB2YUV_I420)
-print(yuv2)
+#yuv = AlgoImage.open("inputs/dev/img_0_yuv420.npy").img
+#
+#print(yuv.planes[0][15,21])
+#print(yuv.planes[1][15//2,21//2])
+#print(yuv.planes[2][15//2,21//2])
+#
+#x = yuv.tensor
+#rgb = cv.cvtColor(x, cv.COLOR_YUV2RGB_I420)
+#print(rgb[0,0])
+#
+#yuv2 = cv.cvtColor(rgb, cv.COLOR_RGB2YUV_I420)
+#print(yuv2)
 
 #with open("test.dat","rb") as f:
 #    r = read_tensors(f)

@@ -51,6 +51,20 @@ extern int8_t cv_sgbuf[16*3];
 
 #endif
 
+__STATIC_FORCEINLINE uint32x4_t get_image_pixel_index(int32x4_t x_s32, int32x4_t y_s32, float32_t w, float c_offset)
+{
+    uint32x4_t pixel_u32;
+    float32x4_t x_f32, y_f32 , pixel_f32;
+
+    x_f32 = vcvtq_f32_s32(x_s32);
+    y_f32 = vcvtq_f32_s32(y_s32);
+    y_f32 = vmulq_n_f32(y_f32, w);
+    pixel_f32 = vaddq_f32(x_f32, y_f32);
+    pixel_f32 = vaddq_n_f32(pixel_f32, c_offset);
+    pixel_u32 = vcvtq_u32_f32(pixel_f32);
+    return pixel_u32;
+}
+
 #ifdef   __cplusplus
 }
 #endif
