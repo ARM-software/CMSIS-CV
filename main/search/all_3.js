@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['linear_20filters_0',['Linear Filters',['../group__linearFilter.html',1,'']]]
+  ['image_20transformations_0',['Image Transformations',['../group__imageTransform.html',1,'']]]
 ];
