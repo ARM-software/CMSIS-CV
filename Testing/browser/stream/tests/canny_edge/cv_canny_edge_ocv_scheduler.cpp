@@ -230,6 +230,7 @@ typedef struct {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     Duplicate<int8_t,153600,int8_t,153600> *dup0;
     Gray16ToGray8<int8_t,153600,int8_t,76800> *g16_to_g8;
     GaussianFilter<int8_t,76800,int8_t,153600> *gaussian;
@@ -242,6 +243,8 @@ typedef struct {
 >>>>>>> c84958d (commit before merging with update)
 =======
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
     Duplicate<int8_t,76800,int8_t,76800> *dup0;
     GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
@@ -330,6 +333,7 @@ init_cb_state();
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     nodes.cv_to_rgba = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo5),*(fifos.fifo6));
 =======
     nodes.cv_to_rgba = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo4),*(fifos.fifo5));
@@ -343,6 +347,9 @@ init_cb_state();
 =======
     nodes.cv_to_rgba = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo4),*(fifos.fifo5));
 >>>>>>> caadad4 (test browser)
+=======
+    nodes.cv_to_rgba = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo4),*(fifos.fifo5));
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
     if (nodes.cv_to_rgba==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);

@@ -8,6 +8,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <svg width="1121pt" height="59pt"
  viewBox="0.00 0.00 1120.50 59.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 55)">
@@ -41,6 +42,13 @@
 <title>structs</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-55 1103.75,-55 1103.75,4 -4,4"/>
 >>>>>>> caadad4 (test browser)
+=======
+<svg width="1108pt" height="59pt"
+ viewBox="0.00 0.00 1107.75 59.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 55)">
+<title>structs</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-55 1103.75,-55 1103.75,4 -4,4"/>
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
 <!-- camera -->
 <g id="node1" class="node">
 <title>camera</title>
@@ -73,6 +81,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <polygon fill="none" stroke="none" points="1016.5,-5.5 1016.5,-47 1104.5,-47 1104.5,-5.5 1016.5,-5.5"/>
 <polygon fill="none" stroke="black" points="1016.5,-5.5 1016.5,-47 1104.5,-47 1104.5,-5.5 1016.5,-5.5"/>
 <text text-anchor="start" x="1037.25" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">display1</text>
@@ -94,11 +103,16 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 =======
+=======
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
 <polygon fill="none" stroke="none" points="1003.75,-5.5 1003.75,-47 1091.75,-47 1091.75,-5.5 1003.75,-5.5"/>
 <polygon fill="none" stroke="black" points="1003.75,-5.5 1003.75,-47 1091.75,-47 1091.75,-5.5 1003.75,-5.5"/>
 <text text-anchor="start" x="1024.5" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">display1</text>
 <text text-anchor="start" x="1008.75" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
+<<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
 </g>
 <!-- gaussian -->
 <g id="node3" class="node">
@@ -110,6 +124,7 @@
 </g>
 <!-- to_rgba_cv1 -->
 <g id="node5" class="node">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -160,12 +175,26 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 =======
+=======
+<title>to_rgba_cv1</title>
+<polygon fill="none" stroke="none" points="737.75,-5.5 737.75,-47 860.25,-47 860.25,-5.5 737.75,-5.5"/>
+<polygon fill="none" stroke="black" points="737.75,-5.5 737.75,-47 860.25,-47 860.25,-5.5 737.75,-5.5"/>
+<text text-anchor="start" x="763.38" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">to_rgba_cv1</text>
+<text text-anchor="start" x="742.75" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(Gray8ToRGBA32)</text>
+</g>
+<!-- gaussian&#45;&gt;to_rgba_cv1 -->
+<g id="edge3" class="edge">
+<title>gaussian:i&#45;&gt;to_rgba_cv1:i</title>
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
 <path fill="none" stroke="black" d="M599.41,-26.25C637.16,-26.25 690.11,-26.25 731.84,-26.25"/>
 <polygon fill="black" stroke="black" points="731.66,-28 736.66,-26.25 731.66,-24.5 731.66,-28"/>
 <text text-anchor="start" x="625.5" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="702.18" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 <text text-anchor="start" x="605.41" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
 </g>
 <!-- to_gray8&#45;&gt;gaussian -->
 <g id="edge2" class="edge">
@@ -178,6 +207,7 @@
 </g>
 <!-- to_rgba_cv1&#45;&gt;display1 -->
 <g id="edge4" class="edge">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -201,13 +231,18 @@
 =======
 >>>>>>> c84958d (commit before merging with update)
 =======
+=======
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
 <title>to_rgba_cv1:i&#45;&gt;display1:i</title>
 <path fill="none" stroke="black" d="M860.05,-26.25C902.29,-26.25 958.13,-26.25 997.71,-26.25"/>
 <polygon fill="black" stroke="black" points="997.4,-28 1002.4,-26.25 997.4,-24.5 997.4,-28"/>
 <text text-anchor="start" x="886.25" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">RGBA32_320_240</text>
 <text text-anchor="start" x="961.91" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="866.05" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
+=======
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
 </g>
 </g>
 </svg>

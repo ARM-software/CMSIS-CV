@@ -10,9 +10,6 @@ extern "C" {
 
 <<<<<<< HEAD
 
-extern "C" {
-    #include "cv/linear_filters.h"
-}
 #if defined(TESTGROUP1)
 =======
 >>>>>>> 62e9e18 (changed output datatype for sobel)

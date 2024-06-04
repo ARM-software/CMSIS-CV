@@ -226,6 +226,7 @@ typedef struct {
 <<<<<<< HEAD
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
 <<<<<<< HEAD
+<<<<<<< HEAD
     Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv;
 =======
@@ -240,6 +241,10 @@ typedef struct {
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv1;
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv2;
 >>>>>>> caadad4 (test browser)
+=======
+    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv1;
+    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv2;
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
 } nodes_t;
 
 CG_BEFORE_BUFFER

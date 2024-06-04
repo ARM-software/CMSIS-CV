@@ -68,7 +68,6 @@ allSuites = [
 # If more than one image is passed, they are assumed to be all input of the test
 # But generally the test will use only one input image
 devTest = {
-<<<<<<< HEAD
         "inputs": [ImageGen([(128,128)],
                    format=Format.YUV420,
                    path="Patterns/JellyBeans.tiff")],
@@ -76,11 +75,5 @@ devTest = {
         #           yuv=(161,99,183))],
         #
         "reference": YUV420ToRGB(),
-=======
-        "inputs": [ImageGen([(64,64)],
-                   format=Format.GRAY8,
-                   path="Patterns/Mandrill.tiff")],
-        "reference": GaussianFilter(),
->>>>>>> 814543b (bug issue white image)
         "check" : SimilarTensorFixp(1)
 }

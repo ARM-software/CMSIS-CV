@@ -59,6 +59,7 @@ to_rgba_cv1 [label=<
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba<BR/>(Gray16ToRGBA32)</FONT></TD>
 =======
     <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba_cv1<BR/>(Gray8ToRGBA)</FONT></TD>
@@ -69,12 +70,16 @@ to_rgba_cv1 [label=<
 =======
     <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba_cv1<BR/>(Gray8ToRGBA32)</FONT></TD>
 >>>>>>> caadad4 (test browser)
+=======
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba_cv1<BR/>(Gray8ToRGBA32)</FONT></TD>
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
   </TR>
 </TABLE>>];
 
 to_rgba_cv2 [label=<
 <TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
   <TR>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -88,6 +93,9 @@ to_rgba_cv2 [label=<
 =======
     <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba_cv2<BR/>(Gray8ToRGBA32)</FONT></TD>
 >>>>>>> caadad4 (test browser)
+=======
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba_cv2<BR/>(Gray8ToRGBA32)</FONT></TD>
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
   </TR>
 </TABLE>>];
 
@@ -99,6 +107,7 @@ camera:i -> to_gray8:i [style="solid",color="black",fontsize="12.0",fontcolor="b
 ,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
 </TD></TR></TABLE>>]
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -124,11 +133,15 @@ gaussian:i -> to_rgba_cv1:i [style="solid",color="black",fontsize="12.0",fontcol
 =======
 gaussian:i -> to_rgba_cv1:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY8_320_240>
 >>>>>>> caadad4 (test browser)
+=======
+gaussian:i -> to_rgba_cv1:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY8_320_240>
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
 ,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >76800</FONT>
 </TD></TR></TABLE>>
 ,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >76800</FONT>
 </TD></TR></TABLE>>]
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -140,6 +153,9 @@ to_rgba_cv1:i -> display1:i [style="solid",color="black",fontsize="12.0",fontcol
 =======
 to_rgba_cv1:i -> display1:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA32_320_240>
 >>>>>>> caadad4 (test browser)
+=======
+to_rgba_cv1:i -> display1:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA32_320_240>
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
 ,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
 </TD></TR></TABLE>>
 ,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
@@ -152,6 +168,7 @@ gaussian_cv:i -> to_rgba_cv2:i [style="solid",color="black",fontsize="12.0",font
 </TD></TR></TABLE>>]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 to_rgba_cv2:i -> display2:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA_320_240>
 <<<<<<< HEAD
 >>>>>>> ab9c6f0 (commit before merging with update)
@@ -160,6 +177,9 @@ to_rgba_cv2:i -> display2:i [style="solid",color="black",fontsize="12.0",fontcol
 =======
 to_rgba_cv2:i -> display2:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA32_320_240>
 >>>>>>> caadad4 (test browser)
+=======
+to_rgba_cv2:i -> display2:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA32_320_240>
+>>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
 ,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
 </TD></TR></TABLE>>
 ,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
