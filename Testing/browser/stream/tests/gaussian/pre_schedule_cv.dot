@@ -34,23 +34,7 @@ gaussian [label=<
 to_rgba_cv1 [label=<
 <TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
   <TR>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba<BR/>(Gray16ToRGBA32)</FONT></TD>
-=======
-    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba_cv1<BR/>(Gray8ToRGBA)</FONT></TD>
->>>>>>> ab9c6f0 (commit before merging with update)
-=======
-    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba_cv1<BR/>(Gray8ToRGBA)</FONT></TD>
->>>>>>> c84958d (commit before merging with update)
-=======
     <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba_cv1<BR/>(Gray8ToRGBA32)</FONT></TD>
->>>>>>> caadad4 (test browser)
-=======
-    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba_cv1<BR/>(Gray8ToRGBA32)</FONT></TD>
->>>>>>> 3970a7ee7f578a692ad6b21ff46262d6d88d586e
   </TR>
 </TABLE>>];
 
