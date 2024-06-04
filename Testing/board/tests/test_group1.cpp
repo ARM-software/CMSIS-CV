@@ -8,9 +8,6 @@ extern "C" {
     #include "cv/color_transforms.h"
 }
 
-extern "C" {
-    #include "cv/linear_filters.h"
-}
 #if defined(TESTGROUP1)
 
 // arm_yuv420_to_gray8
@@ -278,36 +275,6 @@ void test5(const unsigned char* inputs,
     cycles = end - start;
 }
 
-void test_gauss(const unsigned char* inputs,
-                 unsigned char* &outputs,
-                 uint32_t &total_bytes,
-                 uint32_t test_id,
-                 long &cycles)
-{
-    long start,end;
-    uint32_t width,height;
-    int bufid = TENSOR_START + test_id;
-
-    get_img_dims(inputs,bufid,&width,&height);
-    std::vector<BufferDescription> desc = {BufferDescription(Shape(height,width)
-                                                            ,kIMG_GRAY8_TYPE)
-                                          };
-
-    outputs = create_write_buffer(desc,total_bytes);
-
-    const uint8_t *src = Buffer<uint8_t>::read(inputs,bufid);
-    uint8_t *dst = Buffer<uint8_t>::write(outputs,0);
-
-    const arm_cv_image_gray8_t input={(uint16_t)width,(uint16_t)height,(uint8_t*)src};
-    arm_cv_image_gray8_t output={(uint16_t)width,(uint16_t)height,(uint8_t*)dst};
-    
-    // The test to run is executed with some timing code.
-    start = time_in_cycles();
-    arm_gaussian_filter_3x3_fixp(&input,&output);
-    end = time_in_cycles();
-    cycles = end - start;
-}
-
 void run_test(const unsigned char* inputs,
               const uint32_t testid,
               const uint32_t funcid,
@@ -322,7 +289,11 @@ void run_test(const unsigned char* inputs,
             // arm_yuv420_to_gray8
             test0(inputs,wbuf,total_bytes,testid,cycles);
             break;
+<<<<<<< HEAD
         case 1: 
+=======
+        case 1:
+>>>>>>> d2e7bc4 (fix the merge)
             // arm_bgr_8U3C_to_gray8
             test1(inputs,wbuf,total_bytes,testid,cycles);
         break;

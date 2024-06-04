@@ -20,6 +20,7 @@ extern "C"
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define NB_CINPUT 65768
 =======
 <<<<<<< HEAD
@@ -72,6 +73,9 @@ extern "C"
 =======
 #define NB_CINPUT 85065
 >>>>>>> b6dcc04 (remaining files before merge)
+=======
+#define NB_CINPUT 70203
+>>>>>>> d2e7bc4 (fix the merge)
 extern const uint8_t cinput[NB_CINPUT];
 
 #endif
