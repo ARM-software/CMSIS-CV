@@ -51,17 +51,17 @@
         <file category="include"  name="Include/"/>
 
         <!-- CV sources (core) -->
-        <file category="source"   name="Source/cannysobel.c"/>
-        <file category="source"   name="Source/gaussian.c"/>
-        <file category="source"   name="Source/arm_yuv420_to_gray8.c"/>
-        <file category="source"   name="Source/arm_bgr_8U3C_to_gray8.c"/>
-        <file category="source"   name="Source/arm_gray8_to_rgb24.c"/>
-        <file category="source"   name="Source/arm_bgr_8U3C_to_rgb24.c"/>
         <file category="source"   name="Source/arm_cv_common.c"/>
-        <file category="source"   name="Source/arm_yuv420_to_rgb24.c"/>
-        <file category="source"   name="Source/arm_rgb24_to_gray8.c"/>
-        <file category="source"   name="Source/arm_crop_gray8.c"/>
-        <file category="source"   name="Source/arm_crop_rgb24.c"/>
+        <file category="source"   name="Source/FeatureDetection/cannysobel.c"/>
+        <file category="source"   name="Source/LinearFilters/gaussian.c"/>
+        <file category="source"   name="Source/ColorTransforms/arm_yuv420_to_gray8.c"/>
+        <file category="source"   name="Source/ColorTransforms/arm_bgr_8U3C_to_gray8.c"/>
+        <file category="source"   name="Source/ColorTransforms/arm_gray8_to_rgb24.c"/>
+        <file category="source"   name="Source/ColorTransforms/arm_bgr_8U3C_to_rgb24.c"/>
+        <file category="source"   name="Source/ColorTransforms/arm_yuv420_to_rgb24.c"/>
+        <file category="source"   name="Source/ColorTransforms/arm_rgb24_to_gray8.c"/>
+        <file category="source"   name="Source/ImageTransforms/arm_crop_gray8.c"/>
+        <file category="source"   name="Source/ImageTransforms/arm_crop_rgb24.c"/>
       </files>
     </component>
 

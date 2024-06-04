@@ -14,17 +14,17 @@ add_library(CMSISCV STATIC)
 
 target_include_directories(CMSISCV PUBLIC "${ROOT}/Include")
 
-target_sources(CMSISCV PRIVATE cannysobel.c 
-    gaussian.c
-    arm_yuv420_to_gray8.c
-    arm_bgr_8U3C_to_gray8.c
-    arm_gray8_to_rgb24.c
-    arm_bgr_8U3C_to_rgb24.c
-    arm_cv_common.c
-    arm_yuv420_to_rgb24.c
-    arm_rgb24_to_gray8.c
-    arm_crop_gray8.c
-    arm_crop_rgb24.c
+target_sources(CMSISCV PRIVATE arm_cv_common.c
+    FeatureDetection/cannysobel.c 
+    LinearFilters/gaussian.c
+    ColorTransforms/arm_yuv420_to_gray8.c
+    ColorTransforms/arm_bgr_8U3C_to_gray8.c
+    ColorTransforms/arm_gray8_to_rgb24.c
+    ColorTransforms/arm_bgr_8U3C_to_rgb24.c
+    ColorTransforms/arm_yuv420_to_rgb24.c
+    ColorTransforms/arm_rgb24_to_gray8.c
+    ImageTransforms/arm_crop_gray8.c
+    ImageTransforms/arm_crop_rgb24.c
     )
 
 if (HOST)

@@ -2,17 +2,17 @@ project:
   groups:
     - group: cmsiscv
       files:
-        - file: ../../Source/cannysobel.c  
-        - file: ../../Source/gaussian.c
-        - file: ../../Source/arm_yuv420_to_gray8.c
-        - file: ../../Source/arm_bgr_8U3C_to_gray8.c
-        - file: ../../Source/arm_gray8_to_rgb24.c
-        - file: ../../Source/arm_bgr_8U3C_to_rgb24.c
         - file: ../../Source/arm_cv_common.c
-        - file: ../../Source/arm_yuv420_to_rgb24.c
-        - file: ../../Source/arm_rgb24_to_gray8.c
-        - file: ../../Source/arm_crop_gray8.c
-        - file: ../../Source/arm_crop_rgb24.c
+        - file: ../../Source/FeatureDetection/cannysobel.c  
+        - file: ../../Source/LinearFilters/gaussian.c
+        - file: ../../Source/ColorTransforms/arm_yuv420_to_gray8.c
+        - file: ../../Source/ColorTransforms/arm_bgr_8U3C_to_gray8.c
+        - file: ../../Source/ColorTransforms/arm_gray8_to_rgb24.c
+        - file: ../../Source/ColorTransforms/arm_bgr_8U3C_to_rgb24.c
+        - file: ../../Source/ColorTransforms/arm_yuv420_to_rgb24.c
+        - file: ../../Source/ColorTransforms/arm_rgb24_to_gray8.c
+        - file: ../../Source/ImageTransforms/arm_crop_gray8.c
+        - file: ../../Source/ImageTransforms/arm_crop_rgb24.c
     - group: Tests
       files:
         - file: src/common.c
