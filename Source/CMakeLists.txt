@@ -13,6 +13,7 @@ SET(ROOT ${CMAKE_CURRENT_SOURCE_DIR}/..)
 add_library(CMSISCV STATIC)
 
 target_include_directories(CMSISCV PUBLIC "${ROOT}/Include")
+target_include_directories(CMSISCV PRIVATE "${ROOT}/PrivateInclude")
 
 target_sources(CMSISCV PRIVATE arm_cv_common.c
     FeatureDetection/cannysobel.c 
@@ -25,8 +26,9 @@ target_sources(CMSISCV PRIVATE arm_cv_common.c
     ColorTransforms/arm_rgb24_to_gray8.c
     ImageTransforms/arm_crop_gray8.c
     ImageTransforms/arm_crop_rgb24.c
-    ImageTransforms/arm_image_resize_bgr_8U3C.c
-    ImageTransforms/arm_image_resize_gray8.c
+    ImageTransforms/arm_image_resize_bgr_8U3C_f32.c
+    ImageTransforms/arm_image_resize_gray8_f32.c
+    ImageTransforms/arm_image_resize_common_f32.c
     )
 
 if (HOST)

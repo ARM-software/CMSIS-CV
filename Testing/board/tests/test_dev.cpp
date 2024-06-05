@@ -60,7 +60,7 @@ void test_dev(const unsigned char* inputs,
     // The test to run is executed with some timing code.
     start = time_in_cycles();
     //uint8_t *p = dst;
-    arm_image_resize_bgr_8U3C(&input,&output,p_img);
+    arm_image_resize_bgr_8U3C_f32(&input,&output,p_img);
     
     //arm_image_resize_gray8(&tmpin,&tmpout,p_img);
 //

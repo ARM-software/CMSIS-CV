@@ -126,7 +126,7 @@ void test##TESTID(const unsigned char* inputs,                               \
     output.pData=dst;                                                        \
                                                                              \
     start = time_in_cycles();                                                \
-    arm_image_resize_gray8(&input,&output,p_img);                            \
+    arm_image_resize_gray8_f32(&input,&output,p_img);                            \
     end = time_in_cycles();                                                  \
     cycles = end - start;                                                    \
                                                                              \
@@ -168,7 +168,7 @@ void test##TESTID(const unsigned char* inputs,                                  
     output.pData=dst;                                                              \
                                                                                    \
     start = time_in_cycles();                                                      \
-    arm_image_resize_bgr_8U3C(&input,&output,p_img);                               \
+    arm_image_resize_bgr_8U3C_f32(&input,&output,p_img);                               \
     end = time_in_cycles();                                                        \
     cycles = end - start;                                                          \
                                                                                    \
