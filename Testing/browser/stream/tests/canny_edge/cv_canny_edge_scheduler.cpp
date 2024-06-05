@@ -152,22 +152,7 @@ FIFO buffers
 #define FIFOSIZE0 307200
 #define FIFOSIZE1 76800
 #define FIFOSIZE2 76800
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 #define FIFOSIZE3 76800
-=======
-=======
->>>>>>> c84958d (commit before merging with update)
-#define FIFOSIZE3 153600
->>>>>>> ab9c6f0 (commit before merging with update)
-=======
-#define FIFOSIZE3 76800
->>>>>>> 62e9e18 (changed output datatype for sobel)
-=======
-#define FIFOSIZE3 76800
->>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 #define FIFOSIZE4 307200
 
 typedef struct {
@@ -224,71 +209,11 @@ ImageFIFO<int8_t,FIFOSIZE4,1,0> *fifo4;
 
 typedef struct {
     WebCamera<int8_t,307200> *camera;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    CannyEdge<int8_t,76800,int8_t,76800> *canny;
-    WebDisplay<int8_t,307200> *display1;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    GaussianFilter<int8_t,76800,int8_t,153600> *gaussian;
-    RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
-    Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
-=======
-=======
->>>>>>> ab9c6f0 (commit before merging with update)
-=======
->>>>>>> c84958d (commit before merging with update)
-=======
-    CannyEdge<int8_t,76800,int8_t,153600> *canny;
-=======
-    CannyEdge<int8_t,76800,int8_t,76800> *canny;
->>>>>>> 62e9e18 (changed output datatype for sobel)
-    WebDisplay<int8_t,307200> *display1;
->>>>>>> ab9c6f0 (commit before merging with update)
-=======
-    CannyEdge<int8_t,76800,int8_t,153600> *canny;
-    WebDisplay<int8_t,307200> *display1;
->>>>>>> c84958d (commit before merging with update)
-    GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
-    RGBAToGray8<int8_t,307200,int8_t,76800> *to_gray8;
-    Gray16ToRGBA<int8_t,153600,int8_t,307200> *to_rgba;
->>>>>>> c84958d (commit before merging with update)
-=======
-    GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
-    RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
-<<<<<<< HEAD
-    Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
->>>>>>> caadad4 (test browser)
-=======
-    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *u8_to_rgba;
->>>>>>> 62e9e18 (changed output datatype for sobel)
-=======
-=======
->>>>>>> d2e7bc4 (fix the merge)
-    GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
-    RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
-<<<<<<< HEAD
-    Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
->>>>>>> caadad4 (test browser)
-=======
-    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *u8_to_rgba;
-<<<<<<< HEAD
->>>>>>> 62e9e18 (changed output datatype for sobel)
-=======
->>>>>>> d2e7bc4 (fix the merge)
-=======
     CannyEdge<int8_t,76800,int8_t,76800> *canny;
     WebDisplay<int8_t,307200> *display1;
     GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *u8_to_rgba;
->>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 } nodes_t;
 
 CG_BEFORE_BUFFER
@@ -339,23 +264,7 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo2),*(fifos.fifo3),params1);
-=======
-    nodes.canny = new CannyEdge<int8_t,76800,int8_t,153600>(*(fifos.fifo2),*(fifos.fifo3),params1);
->>>>>>> ab9c6f0 (commit before merging with update)
-=======
-    nodes.canny = new CannyEdge<int8_t,76800,int8_t,153600>(*(fifos.fifo2),*(fifos.fifo3),params1);
->>>>>>> c84958d (commit before merging with update)
-=======
-    nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo2),*(fifos.fifo3),params1);
->>>>>>> 62e9e18 (changed output datatype for sobel)
-=======
-    nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo2),*(fifos.fifo3),params1);
->>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
     if (nodes.canny==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);

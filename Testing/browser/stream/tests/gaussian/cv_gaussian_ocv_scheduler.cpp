@@ -224,42 +224,8 @@ typedef struct {
     GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
     OpenCVGaussian<int8_t,76800,int8_t,76800> *gaussian_cv;
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
-    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv;
-=======
-    RGBAToGray8<int8_t,307200,int8_t,76800> *to_gray8;
-    Gray8ToRGBA<int8_t,76800,int8_t,307200> *to_rgba_cv1;
-    Gray8ToRGBA<int8_t,76800,int8_t,307200> *to_rgba_cv2;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> ab9c6f0 (commit before merging with update)
-=======
->>>>>>> c84958d (commit before merging with update)
-=======
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv1;
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv2;
->>>>>>> caadad4 (test browser)
-=======
->>>>>>> ab9c6f0 (commit before merging with update)
-=======
->>>>>>> c84958d (commit before merging with update)
-=======
-    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv1;
-    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv2;
->>>>>>> caadad4 (test browser)
-=======
-    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv1;
-    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv2;
->>>>>>> d2e7bc4 (fix the merge)
-=======
-    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv1;
-    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv2;
->>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 } nodes_t;
 
 CG_BEFORE_BUFFER
@@ -355,60 +321,12 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     nodes.to_rgba_cv1 = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo1),*(fifos.fifo2));
-=======
-    nodes.to_rgba_cv1 = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo1),*(fifos.fifo2));
->>>>>>> ab9c6f0 (commit before merging with update)
-=======
-    nodes.to_rgba_cv1 = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo1),*(fifos.fifo2));
->>>>>>> c84958d (commit before merging with update)
-=======
-    nodes.to_rgba_cv1 = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo1),*(fifos.fifo2));
->>>>>>> ab9c6f0 (commit before merging with update)
-=======
-    nodes.to_rgba_cv1 = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo1),*(fifos.fifo2));
->>>>>>> c84958d (commit before merging with update)
-=======
-    nodes.to_rgba_cv1 = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo1),*(fifos.fifo2));
->>>>>>> d2e7bc4 (fix the merge)
-=======
-    nodes.to_rgba_cv1 = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo1),*(fifos.fifo2));
->>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
     if (nodes.to_rgba_cv1==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     nodes.to_rgba_cv2 = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
-=======
-    nodes.to_rgba_cv2 = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
->>>>>>> ab9c6f0 (commit before merging with update)
-=======
-    nodes.to_rgba_cv2 = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
->>>>>>> c84958d (commit before merging with update)
-=======
-    nodes.to_rgba_cv2 = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
->>>>>>> ab9c6f0 (commit before merging with update)
-=======
-    nodes.to_rgba_cv2 = new Gray8ToRGBA<int8_t,76800,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
->>>>>>> c84958d (commit before merging with update)
-=======
-    nodes.to_rgba_cv2 = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
->>>>>>> d2e7bc4 (fix the merge)
-=======
-    nodes.to_rgba_cv2 = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo3),*(fifos.fifo4));
->>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
     if (nodes.to_rgba_cv2==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);

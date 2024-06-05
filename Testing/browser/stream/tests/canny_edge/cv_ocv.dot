@@ -88,11 +88,6 @@ to_gray8:i -> gaussian:i [style="solid",color="black",fontsize="12.0",fontcolor=
 ,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >76800</FONT>
 </TD></TR></TABLE>>]
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 canny:i -> u8_to_rgba:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY8_320_240>
 ,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >76800</FONT>
 </TD></TR></TABLE>>
@@ -100,26 +95,6 @@ canny:i -> u8_to_rgba:i [style="solid",color="black",fontsize="12.0",fontcolor="
 </TD></TR></TABLE>>]
 
 u8_to_rgba:i -> display1:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA32_320_240>
-<<<<<<< HEAD
-=======
-canny:i -> to_rgba:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY16_320_240>
-,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >153600</FONT>
-=======
-canny:i -> u8_to_rgba:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY8_320_240>
-,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >76800</FONT>
->>>>>>> 62e9e18 (changed output datatype for sobel)
-</TD></TR></TABLE>>
-,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >76800</FONT>
-</TD></TR></TABLE>>]
-
-<<<<<<< HEAD
-to_rgba:i -> display1:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA_320_240>
->>>>>>> ab9c6f0 (commit before merging with update)
-=======
-u8_to_rgba:i -> display1:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA32_320_240>
->>>>>>> 62e9e18 (changed output datatype for sobel)
-=======
->>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 ,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
 </TD></TR></TABLE>>
 ,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
