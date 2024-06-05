@@ -169,6 +169,72 @@ class CropRGB:
     def nb_references(self,srcs):
         return len(srcs)
 
+# Himax is not using the same algorithm as OpenCV
+# To be able to do regression testibng and generate test patterns
+# here is a Python function behaving as the Himax C function
+def _Himax_resize(input,output_w,output_h):
+    tmp = np.zeros((2,output_w),dtype=np.uint8)
+    result = np.zeros((output_h,output_w),dtype=np.uint8)
+    input_h,input_w = input.shape 
+    w_scale = (input_w - 1) / (output_w - 1)
+    h_scale = (input_h - 1) / (output_h - 1)
+
+
+    # DEBUG
+    dy,iy = np.modf(h_scale*np.array(range(output_h),dtype=np.float32))
+    iy = iy.astype(dtype=np.int32)
+    pre_iy = np.hstack((-1,iy))
+    #print(dy)
+    #exit(0)
+
+
+    dx,ix=np.modf(w_scale*np.array(range(output_w),dtype=np.float32))
+    ix = ix.astype(dtype=np.int32)
+
+    for row in range(output_h-1):
+        if iy[row] != pre_iy[row-1]:
+           tmp[:,0:output_w-1] = ((1-dx[:-1])*input[iy[row]:iy[row]+2,ix[:-1]] + dx[:-1] * input[iy[row]:iy[row]+2,ix[:-1]+1] + 0.5)
+           tmp[:,output_w-1] = input[iy[row]:iy[row]+2,input_w-1]
+
+        result[row,:] = np.floor(((1-dy[row])*tmp[0,:]).astype(np.uint8) + dy[row]*tmp[1,:] + np.float32(0.5))
+
+
+    row = output_h - 1
+
+    if iy[row] != pre_iy[row-1]:
+           tmp[0,0:output_w-1] = ((1-dx[:-1])*input[iy[row],ix[:-1]] + dx[:-1] * input[iy[row],ix[:-1]+1] + 0.5)
+           tmp[0,output_w-1] = input[iy[row],input_w-1]
+
+    result[row,:] = ((1-dy[row])*tmp[0,:] + np.float32(0.5))
+
+
+    return(result)
+
+# Resizing using Himax algorithm
+class HimaxResizeGray8:
+    def __init__(self,w,h):
+        self._dst_width = w  
+        self._dst_height = h  
+
+    def __call__(self,args,group_id,test_id,srcs):
+        filtered = []
+        for i in srcs:
+            #print(i.tensor.shape)
+            w = self._dst_width
+            h = self._dst_height
+
+            resized = _Himax_resize(i.tensor,w,h)
+
+            img = PIL.Image.fromarray(resized).convert('L')
+            filtered.append(AlgoImage(img))
+
+        # Record the filtered images
+        for image_id,img in enumerate(filtered):
+            record_reference_img(args,group_id,test_id,image_id,img)
+
+    def nb_references(self,srcs):
+        return len(srcs)
+
 class ResizeGray8:
     def __init__(self,w,h):
         self._dst_width = w  
@@ -185,6 +251,32 @@ class ResizeGray8:
 
             img = PIL.Image.fromarray(resized).convert('L')
             filtered.append(AlgoImage(img))
+
+        # Record the filtered images
+        for image_id,img in enumerate(filtered):
+            record_reference_img(args,group_id,test_id,image_id,img)
+
+    def nb_references(self,srcs):
+        return len(srcs)
+
+class HimaxResizeBGR_8U3C:
+    def __init__(self,w,h):
+        self._dst_width = w  
+        self._dst_height = h  
+
+    def __call__(self,args,group_id,test_id,srcs):
+        filtered = []
+        for i in srcs:
+            #print(i.tensor.shape)
+            w = self._dst_width
+            h = self._dst_height
+
+            resized_b = _Himax_resize(i.tensor[0],w,h)
+            resized_g = _Himax_resize(i.tensor[1],w,h)
+            resized_r = _Himax_resize(i.tensor[2],w,h)
+            resized = np.stack((resized_b,resized_g,resized_r))
+
+            filtered.append(AlgoImage(resized))
 
         # Record the filtered images
         for image_id,img in enumerate(filtered):

@@ -28,7 +28,7 @@
   @ingroup imageTransform
  */
 
-#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
+#if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
 #include "arm_cv_common.h"
 #endif
 /**     
@@ -45,8 +45,7 @@
  *     2 * output_w*sizeof(uint8_t)
  */
 
-#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
-
+#if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
 void arm_image_resize_gray8(const arm_cv_image_gray8_t* ImageIn,
                                   arm_cv_image_gray8_t* ImageOut,
                                   uint8_t *p_img)
@@ -350,6 +349,7 @@ static inline void set_image_pixel(uint8_t* m, int x, int y, int c, float val, i
 	m[c*h*w + y * w + x] = (uint8_t)(val+0.5f);
 }
 
+
 void arm_image_resize_gray8(const arm_cv_image_gray8_t* ImageIn,
                                  arm_cv_image_gray8_t* ImageOut,
 								 uint8_t *p_img)
@@ -358,8 +358,8 @@ void arm_image_resize_gray8(const arm_cv_image_gray8_t* ImageIn,
     const int input_w = ImageIn->width;
     const int input_h = ImageIn->height;
 
-    const int output_w = ImageOut->height;
-    const int output_h = ImageOut->width;
+    const int output_w = ImageOut->width;
+    const int output_h = ImageOut->height;
 
  
     channel_uint8_t *pIn  = ImageIn->pData;
@@ -388,7 +388,6 @@ void arm_image_resize_gray8(const arm_cv_image_gray8_t* ImageIn,
 			sy = row * h_scale;
 			iy = (int)sy;
 			dy = sy - iy;	
-
 			if(iy != pre_iy){
 				for(d = 0; d < 2; ++d)
 				{
@@ -440,7 +439,6 @@ void arm_image_resize_gray8(const arm_cv_image_gray8_t* ImageIn,
 			set_image_pixel(pOut, col, output_h - 1, ch_cnt, re_v, output_w, output_h);
 		}	
 	}
-
 
 }
 

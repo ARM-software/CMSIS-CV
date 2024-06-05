@@ -141,12 +141,12 @@ void test##TESTID(const unsigned char* inputs,                                  
                         long &cycles)                                              \
 {                                                                                  \
     long start,end;                                                                \
-    uint32_t width,height;                                                         \
+    uint32_t nb,channels,width,height,misc;                                        \
     int bufid = TENSOR_START + 2;                                                  \
     (void)testid;                                                                  \
     uint8_t *p_img = (uint8_t*)malloc(2*DSTW);                                     \
                                                                                    \
-    get_img_dims(inputs,bufid,&width,&height);                                     \
+    get_buffer_shape(inputs,bufid,&nb,&channels,&height,&width,&misc);             \
                                                                                    \
     std::vector<BufferDescription> desc = {BufferDescription(Shape(3,DSTH,DSTW)    \
                                                             ,kIMG_NUMPY_TYPE_UINT8)\

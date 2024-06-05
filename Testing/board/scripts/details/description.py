@@ -78,7 +78,7 @@ def gray8_resize_test(imgdim,funcid,dst_w,dst_h):
     return {"desc":f"Gray 8 resize test {imgdim[0]}x{imgdim[1]} -> {dst_w}x{dst_h} ",
             "funcid": funcid,
             "useimg": [0],
-            "reference": ResizeGray8(dst_w,dst_h),
+            "reference": HimaxResizeGray8(dst_w,dst_h),
             "check" : SimilarTensorFixp(20)
            }
 
@@ -86,6 +86,6 @@ def bgr8U3C_resize_test(imgdim,funcid,dst_w,dst_h):
     return {"desc":f"BGR 8U3C resize_test{imgdim[0]}x{imgdim[1]} -> {dst_w}x{dst_h} ",
             "funcid": funcid,
             "useimg": [2],
-            "reference": ResizeBGR_8U3C(dst_w,dst_h),
+            "reference": HimaxResizeBGR_8U3C(dst_w,dst_h),
             "check" : SimilarTensorFixp(20)
            }

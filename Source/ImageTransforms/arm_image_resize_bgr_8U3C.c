@@ -28,7 +28,7 @@
   @ingroup imageTransform
  */
 
-#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
+#if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
 #include "arm_cv_common.h"
 #endif
 /**     
@@ -45,8 +45,8 @@
  *     2 * output_w*sizeof(uint8_t)
  */
 
-#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
-
+//#if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
+#if 0
 
 void arm_image_resize_bgr_8U3C(const arm_cv_image_bgr_8U3C_t* ImageIn,
                                      arm_cv_image_bgr_8U3C_t* ImageOut,
@@ -359,13 +359,14 @@ void arm_image_resize_bgr_8U3C(const arm_cv_image_bgr_8U3C_t* ImageIn,
     const int input_w = ImageIn->width;
     const int input_h = ImageIn->height;
 
-    const int output_w = ImageOut->height;
-    const int output_h = ImageOut->width;
+    const int output_w = ImageOut->width;
+    const int output_h = ImageOut->height;
 
  
     channel_uint8_t *pIn  = ImageIn->pData;
 
     channel_uint8_t *pOut = ImageOut->pData;
+
 
 	float w_scale ;
 	float h_scale ;	
