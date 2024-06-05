@@ -121,6 +121,7 @@ Internal ID identification for the nodes
 #define TO_GRAY8_INTERNAL_ID 8
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define U8_TO_RGBA_INTERNAL_ID 9
 =======
 #define TO_RGBA_INTERNAL_ID 9
@@ -128,6 +129,9 @@ Internal ID identification for the nodes
 =======
 #define U8_TO_RGBA_INTERNAL_ID 9
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+#define U8_TO_RGBA_INTERNAL_ID 9
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 
 /* For callback management */
 
@@ -231,6 +235,7 @@ typedef struct {
     WebCamera<int8_t,307200> *camera;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     CannyEdge<int8_t,76800,int8_t,76800> *canny;
 =======
     CannyEdge<int8_t,76800,int8_t,153600> *canny;
@@ -238,10 +243,14 @@ typedef struct {
 =======
     CannyEdge<int8_t,76800,int8_t,76800> *canny;
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+    CannyEdge<int8_t,76800,int8_t,76800> *canny;
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
     OpenCVCanny<int8_t,76800,int8_t,76800> *canny_cv;
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *cv_to_rgba;
     WebDisplay<int8_t,307200> *display1;
     WebDisplay<int8_t,307200> *display2;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -286,6 +295,12 @@ typedef struct {
 =======
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *u8_to_rgba;
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+    Duplicate<int8_t,76800,int8_t,76800> *dup0;
+    GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
+    RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
+    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *u8_to_rgba;
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 } nodes_t;
 
 CG_BEFORE_BUFFER
@@ -359,6 +374,7 @@ init_cb_state();
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo7),*(fifos.fifo2),params1);
 =======
     nodes.canny = new CannyEdge<int8_t,76800,int8_t,153600>(*(fifos.fifo7),*(fifos.fifo2),params1);
@@ -369,6 +385,9 @@ init_cb_state();
 =======
     nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo7),*(fifos.fifo2),params1);
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+    nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo7),*(fifos.fifo2),params1);
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
     if (nodes.canny==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
@@ -378,6 +397,7 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -411,6 +431,9 @@ init_cb_state();
 =======
     nodes.cv_to_rgba = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo4),*(fifos.fifo5));
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+    nodes.cv_to_rgba = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo4),*(fifos.fifo5));
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
     if (nodes.cv_to_rgba==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);

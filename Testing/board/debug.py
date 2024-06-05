@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import cv2 as cv
 import numpy as np 
 from PIL import ImageOps
@@ -131,3 +132,4 @@ print(yuv2)
 #print("kernel", kernel)
 #print(input[0,0], input[0,1], input[1,0], input[1,1])
 #print(ref[0,0])
+

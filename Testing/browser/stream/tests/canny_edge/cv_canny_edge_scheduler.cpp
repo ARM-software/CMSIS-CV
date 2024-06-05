@@ -155,6 +155,7 @@ FIFO buffers
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FIFOSIZE3 76800
 =======
 =======
@@ -164,6 +165,9 @@ FIFO buffers
 =======
 #define FIFOSIZE3 76800
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+#define FIFOSIZE3 76800
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 #define FIFOSIZE4 307200
 
 typedef struct {
@@ -223,6 +227,7 @@ typedef struct {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     CannyEdge<int8_t,76800,int8_t,76800> *canny;
     WebDisplay<int8_t,307200> *display1;
 <<<<<<< HEAD
@@ -277,6 +282,13 @@ typedef struct {
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+    CannyEdge<int8_t,76800,int8_t,76800> *canny;
+    WebDisplay<int8_t,307200> *display1;
+    GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
+    RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
+    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *u8_to_rgba;
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 } nodes_t;
 
 CG_BEFORE_BUFFER
@@ -330,6 +342,7 @@ init_cb_state();
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo2),*(fifos.fifo3),params1);
 =======
     nodes.canny = new CannyEdge<int8_t,76800,int8_t,153600>(*(fifos.fifo2),*(fifos.fifo3),params1);
@@ -340,6 +353,9 @@ init_cb_state();
 =======
     nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo2),*(fifos.fifo3),params1);
 >>>>>>> 62e9e18 (changed output datatype for sobel)
+=======
+    nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo2),*(fifos.fifo3),params1);
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
     if (nodes.canny==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);

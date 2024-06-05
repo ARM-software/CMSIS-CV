@@ -15,6 +15,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <svg width="1774pt" height="127pt"
  viewBox="0.00 0.00 1773.85 127.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 123)">
@@ -95,6 +96,13 @@
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+<svg width="1477pt" height="127pt"
+ viewBox="0.00 0.00 1477.10 127.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 123)">
+<title>structs</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-123 1473.1,-123 1473.1,4 -4,4"/>
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 <!-- camera -->
 <g id="node1" class="node">
 <title>camera</title>
@@ -123,6 +131,7 @@
 <!-- canny -->
 <g id="node2" class="node">
 <title>canny</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -168,10 +177,13 @@
 >>>>>>> caadad4 (test browser)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 <polygon fill="none" stroke="none" points="874.47,-73.5 874.47,-115 957.97,-115 957.97,-73.5 874.47,-73.5"/>
 <polygon fill="none" stroke="black" points="874.47,-73.5 874.47,-115 957.97,-115 957.97,-73.5 874.47,-73.5"/>
 <text text-anchor="start" x="899.72" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">canny</text>
 <text text-anchor="start" x="879.47" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(CannyEdge)</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
@@ -325,12 +337,26 @@
 <!-- canny&#45;&gt;u8_to_rgba -->
 <g id="edge3" class="edge">
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+</g>
+<!-- u8_to_rgba -->
+<g id="node10" class="node">
+<title>u8_to_rgba</title>
+<polygon fill="none" stroke="none" points="1107.1,-73.5 1107.1,-115 1229.6,-115 1229.6,-73.5 1107.1,-73.5"/>
+<polygon fill="none" stroke="black" points="1107.1,-73.5 1107.1,-115 1229.6,-115 1229.6,-73.5 1107.1,-73.5"/>
+<text text-anchor="start" x="1136.1" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">u8_to_rgba</text>
+<text text-anchor="start" x="1112.1" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(Gray8ToRGBA32)</text>
+</g>
+<!-- canny&#45;&gt;u8_to_rgba -->
+<g id="edge3" class="edge">
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 <title>canny:i&#45;&gt;u8_to_rgba:i</title>
 <path fill="none" stroke="black" d="M957.97,-94.25C996.71,-94.25 1055.65,-94.25 1101.13,-94.25"/>
 <polygon fill="black" stroke="black" points="1100.95,-96 1105.95,-94.25 1100.95,-92.5 1100.95,-96"/>
 <text text-anchor="start" x="994.85" y="-97.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="1071.46" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 <text text-anchor="start" x="963.97" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
@@ -344,10 +370,13 @@
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 </g>
 <!-- canny_cv -->
 <g id="node3" class="node">
 <title>canny_cv</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -393,10 +422,13 @@
 >>>>>>> caadad4 (test browser)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 <polygon fill="none" stroke="none" points="863.6,-5.5 863.6,-47 968.85,-47 968.85,-5.5 863.6,-5.5"/>
 <polygon fill="none" stroke="black" points="863.6,-5.5 863.6,-47 968.85,-47 968.85,-5.5 863.6,-5.5"/>
 <text text-anchor="start" x="889.22" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">canny_cv</text>
 <text text-anchor="start" x="868.6" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(OpenCVCanny)</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
@@ -408,10 +440,13 @@
 >>>>>>> caadad4 (test browser)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 </g>
 <!-- cv_to_rgba -->
 <g id="node4" class="node">
 <title>cv_to_rgba</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -468,10 +503,13 @@
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 <polygon fill="none" stroke="none" points="1107.1,-5.5 1107.1,-47 1229.6,-47 1229.6,-5.5 1107.1,-5.5"/>
 <polygon fill="none" stroke="black" points="1107.1,-5.5 1107.1,-47 1229.6,-47 1229.6,-5.5 1107.1,-5.5"/>
 <text text-anchor="start" x="1136.1" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">cv_to_rgba</text>
 <text text-anchor="start" x="1112.1" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(Gray8ToRGBA32)</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
@@ -485,10 +523,13 @@
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 </g>
 <!-- canny_cv&#45;&gt;cv_to_rgba -->
 <g id="edge5" class="edge">
 <title>canny_cv:i&#45;&gt;cv_to_rgba:i</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -548,11 +589,14 @@
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 <path fill="none" stroke="black" d="M968.75,-26.25C1007.11,-26.25 1059.78,-26.25 1101.25,-26.25"/>
 <polygon fill="black" stroke="black" points="1101.03,-28 1106.03,-26.25 1101.03,-24.5 1101.03,-28"/>
 <text text-anchor="start" x="994.85" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="1071.54" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
 <text text-anchor="start" x="974.75" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
@@ -566,10 +610,13 @@
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 </g>
 <!-- display2 -->
 <g id="node6" class="node">
 <title>display2</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -626,10 +673,13 @@
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 <polygon fill="none" stroke="none" points="1373.1,-5.5 1373.1,-47 1461.1,-47 1461.1,-5.5 1373.1,-5.5"/>
 <polygon fill="none" stroke="black" points="1373.1,-5.5 1373.1,-47 1461.1,-47 1461.1,-5.5 1373.1,-5.5"/>
 <text text-anchor="start" x="1393.85" y="-28.7" font-family="Times New Roman,serif" font-size="14.00">display2</text>
 <text text-anchor="start" x="1378.1" y="-12.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
@@ -643,10 +693,13 @@
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 </g>
 <!-- cv_to_rgba&#45;&gt;display2 -->
 <g id="edge6" class="edge">
 <title>cv_to_rgba:i&#45;&gt;display2:i</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -706,11 +759,14 @@
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 <path fill="none" stroke="black" d="M1229.4,-26.25C1271.64,-26.25 1327.48,-26.25 1367.06,-26.25"/>
 <polygon fill="black" stroke="black" points="1366.75,-28 1371.75,-26.25 1366.75,-24.5 1366.75,-28"/>
 <text text-anchor="start" x="1255.6" y="-29.1" font-family="Times New Roman,serif" font-size="12.00">RGBA32_320_240</text>
 <text text-anchor="start" x="1331.26" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="1235.4" y="-8.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
@@ -724,10 +780,13 @@
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 </g>
 <!-- display1 -->
 <g id="node5" class="node">
 <title>display1</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -784,10 +843,13 @@
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 <polygon fill="none" stroke="none" points="1373.1,-73.5 1373.1,-115 1461.1,-115 1461.1,-73.5 1373.1,-73.5"/>
 <polygon fill="none" stroke="black" points="1373.1,-73.5 1373.1,-115 1461.1,-115 1461.1,-73.5 1373.1,-73.5"/>
 <text text-anchor="start" x="1393.85" y="-96.7" font-family="Times New Roman,serif" font-size="14.00">display1</text>
 <text text-anchor="start" x="1378.1" y="-80.95" font-family="Times New Roman,serif" font-size="14.00">(WebDisplay)</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
@@ -801,10 +863,13 @@
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 </g>
 <!-- dup0 -->
 <g id="node7" class="node">
 <title>dup0</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -842,10 +907,14 @@
 =======
 <ellipse fill="black" stroke="black" cx="731.55" cy="-59.25" rx="1.8" ry="1.8"/>
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+<ellipse fill="black" stroke="black" cx="731.55" cy="-59.25" rx="1.8" ry="1.8"/>
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 </g>
 <!-- dup0&#45;&gt;canny -->
 <g id="edge8" class="edge">
 <title>dup0&#45;&gt;canny:i</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -968,10 +1037,21 @@
 >>>>>>> caadad4 (test browser)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+<path fill="none" stroke="black" d="M733.56,-59.55C736.37,-60.37 744.5,-62.71 751.35,-64.25 790.51,-73.03 835.36,-81.1 868.23,-86.66"/>
+<polygon fill="black" stroke="black" points="867.92,-88.38 873.15,-87.49 868.5,-84.93 867.92,-88.38"/>
+<text text-anchor="start" x="751.35" y="-83.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
+<text text-anchor="start" x="838.64" y="-70.34" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+</g>
+<!-- dup0&#45;&gt;canny_cv -->
+<g id="edge9" class="edge">
+<title>dup0&#45;&gt;canny_cv:i</title>
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 <path fill="none" stroke="black" d="M733.52,-58.63C736.23,-56.95 744.12,-52.24 751.35,-50 785.72,-39.35 825.65,-33.43 857.49,-30.17"/>
 <polygon fill="black" stroke="black" points="857.44,-31.94 862.24,-29.7 857.09,-28.45 857.44,-31.94"/>
 <text text-anchor="start" x="751.35" y="-52.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="827.75" y="-12.15" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
@@ -983,6 +1063,8 @@
 >>>>>>> caadad4 (test browser)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 </g>
 <!-- gaussian -->
 <g id="node8" class="node">
@@ -995,6 +1077,7 @@
 <!-- gaussian&#45;&gt;dup0 -->
 <g id="edge7" class="edge">
 <title>gaussian:i&#45;&gt;dup0</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1040,10 +1123,13 @@
 >>>>>>> caadad4 (test browser)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 <path fill="none" stroke="black" d="M599.3,-59.25C642.5,-59.25 702.27,-59.25 723.06,-59.25"/>
 <polygon fill="black" stroke="black" points="722.91,-61 727.91,-59.25 722.91,-57.5 722.91,-61"/>
 <text text-anchor="start" x="625.5" y="-62.1" font-family="Times New Roman,serif" font-size="12.00">GRAY8_320_240</text>
 <text text-anchor="start" x="605.3" y="-41.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">76800</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> caadad4 (test browser)
@@ -1055,6 +1141,8 @@
 >>>>>>> caadad4 (test browser)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 </g>
 <!-- to_gray8&#45;&gt;gaussian -->
 <g id="edge2" class="edge">
@@ -1067,6 +1155,7 @@
 </g>
 <!-- u8_to_rgba&#45;&gt;display1 -->
 <g id="edge4" class="edge">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1127,12 +1216,15 @@
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 <title>u8_to_rgba:i&#45;&gt;display1:i</title>
 <path fill="none" stroke="black" d="M1229.4,-94.25C1271.64,-94.25 1327.48,-94.25 1367.06,-94.25"/>
 <polygon fill="black" stroke="black" points="1366.75,-96 1371.75,-94.25 1366.75,-92.5 1366.75,-96"/>
 <text text-anchor="start" x="1255.6" y="-97.1" font-family="Times New Roman,serif" font-size="12.00">RGBA32_320_240</text>
 <text text-anchor="start" x="1331.26" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
 <text text-anchor="start" x="1235.4" y="-76.85" font-family="Times New Roman,serif" font-size="12.00" fill="blue">307200</text>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 62e9e18 (changed output datatype for sobel)
@@ -1146,6 +1238,8 @@
 >>>>>>> 62e9e18 (changed output datatype for sobel)
 =======
 >>>>>>> d2e7bc4 (fix the merge)
+=======
+>>>>>>> d2e7bc4b87236bb96f26f61ce9d7fc3ead707d35
 </g>
 </g>
 </svg>
