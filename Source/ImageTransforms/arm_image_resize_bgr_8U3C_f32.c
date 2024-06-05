@@ -31,7 +31,7 @@
 
 
 /**     
- * @brief      resize BGR 8U3C (float implementation)
+ * @brief      Resize BGR 8U3C image (float implementation)
  *
  * @param[in]  ImageIn   The input image
  * @param      ImageOut  The output image
@@ -41,7 +41,7 @@
  * 
  * Size of temporary buffers:
  *   - p_img\n
- *     2 * output_w*sizeof(uint8_t)
+ *     2 * ImageOut->width*sizeof(uint8_t)
  */
 void arm_image_resize_bgr_8U3C_f32(const arm_cv_image_bgr_8U3C_t* ImageIn,
                                          arm_cv_image_bgr_8U3C_t* ImageOut,
