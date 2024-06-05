@@ -289,11 +289,7 @@ void run_test(const unsigned char* inputs,
             // arm_yuv420_to_gray8
             test0(inputs,wbuf,total_bytes,testid,cycles);
             break;
-<<<<<<< HEAD
         case 1: 
-=======
-        case 1:
->>>>>>> d2e7bc4 (fix the merge)
             // arm_bgr_8U3C_to_gray8
             test1(inputs,wbuf,total_bytes,testid,cycles);
         break;

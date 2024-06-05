@@ -358,4 +358,3 @@ void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn,
     }
 }
 #endif
-

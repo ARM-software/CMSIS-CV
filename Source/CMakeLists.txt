@@ -15,8 +15,8 @@ add_library(CMSISCV STATIC)
 target_include_directories(CMSISCV PUBLIC "${ROOT}/Include")
 
 target_sources(CMSISCV PRIVATE arm_cv_common.c
-    FeatureDetection/cannysobel.c 
-    LinearFilters/gaussian.c
+    FeatureDetection/arm_cannysobel.c 
+    LinearFilters/arm_gaussian.c
     ColorTransforms/arm_yuv420_to_gray8.c
     ColorTransforms/arm_bgr_8U3C_to_gray8.c
     ColorTransforms/arm_gray8_to_rgb24.c
