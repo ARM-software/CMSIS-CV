@@ -327,65 +327,65 @@ void arm_image_resize_common_f32(const _common_resize_t *common,
     float w_scale = common->w_scale;
     float h_scale = common->h_scale;  
 
-    int r,c, d;
+    int row,col, d;
 
     if(input_w == 1 || input_h == 1)
         return;
 
-    float val = 0;
+    float re_v = 0;
     float sy;
     int iy, pre_iy = -1;
     float dy;
-    for (r = 0; r < output_h - 1 ; ++r) {
-        sy = r * h_scale;
+    for (row = 0; row < output_h - 1 ; ++row) {
+        sy = row * h_scale;
         iy = (int)sy;
         dy = sy - iy;   
         if(iy != pre_iy){
             for(d = 0; d < 2; ++d){
-                for(c = 0; c < output_w - 1; ++c)
+                for(col = 0; col < output_w - 1; ++col)
                 {
-                    float val = 0;
-                    float sx = c * w_scale;
+                    float re_v = 0;
+                    float sx = col * w_scale;
                     int ix = (int)sx;
                     float dx = sx - ix;     
-                    val = (1 - dx) * get_image_pixel(pIn, ix, iy + d, 0, input_w, input_h) + dx * get_image_pixel(pIn, ix + 1, iy + d, 0, input_w, input_h);
-                    set_image_pixel(p_img, c, d, 0, val, output_w, 2);
+                    re_v = (1 - dx) * get_image_pixel(pIn, ix, iy + d, input_w) + dx * get_image_pixel(pIn, ix + 1, iy + d, input_w);
+                    set_image_pixel(p_img, col, d, re_v, output_w);
                 }
-                val = get_image_pixel(pIn, input_w - 1, iy + d, 0, input_w, input_h);
-                set_image_pixel(p_img, c, d, 0, val, output_w, 2);
+                re_v = get_image_pixel(pIn, input_w - 1, iy + d, input_w);
+                set_image_pixel(p_img, col, d, re_v, output_w);
             }               
         }
         
-        for (c = 0; c < output_w; ++c){
-            val = (1 - dy) * get_image_pixel(p_img, c, 0, 0, output_w, 2);
-            val = (uint8_t)val + dy * get_image_pixel(p_img, c, 1, 0, output_w, 2);
-            set_image_pixel(pOut, c, r, 0, val, output_w, output_h);
+        for (col = 0; col < output_w; ++col){
+            re_v = (1 - dy) * get_image_pixel(p_img, col, 0, output_w);
+            re_v = (uint8_t)re_v + dy * get_image_pixel(p_img, col, 1, output_w);
+            set_image_pixel(pOut, col, row, re_v, output_w);
         }   
         pre_iy = iy;        
     }
     
-    r = output_h - 1;
-    sy = r * h_scale;
+    row = output_h - 1;
+    sy = row * h_scale;
     //iy = (int)sy;
     iy = (int)floor((double)sy);
     dy = sy - iy;   
     if(iy != pre_iy){
-        for(c = 0; c < output_w - 1; ++c)
+        for(col = 0; col < output_w - 1; ++col)
         {
-            float val = 0;
-            float sx = c * w_scale;
+            float re_v = 0;
+            float sx = col * w_scale;
             int ix = (int)sx;
             float dx = sx - ix;     
-            val = (1 - dx) * get_image_pixel(pIn, ix, iy, 0, input_w, input_h) + dx * get_image_pixel(pIn, ix + 1, iy, 0, input_w, input_h);
-            set_image_pixel(p_img, c, 0, 0, val, output_w, 2);
+            re_v = (1 - dx) * get_image_pixel(pIn, ix, iy, input_w) + dx * get_image_pixel(pIn, ix + 1, iy, input_w);
+            set_image_pixel(p_img, col, 0, re_v, output_w);
         }
-        val = get_image_pixel(pIn, input_w - 1, iy, 0, input_w, input_h);
-        set_image_pixel(p_img, c, 0, 0, val, output_w, 2);          
+        re_v = get_image_pixel(pIn, input_w - 1, iy, input_w);
+        set_image_pixel(p_img, col, 0, re_v, output_w);          
     }
-    for (c = 0; c < output_w; ++c){
+    for (col = 0; col < output_w; ++col){
         float temp = (1 - dy);
-        val = temp * (get_image_pixel(p_img, c, 0, 0, output_w, 2));
-        set_image_pixel(pOut, c, output_h - 1, 0, val, output_w, output_h);
+        re_v = temp * (get_image_pixel(p_img, col, 0, output_w));
+        set_image_pixel(pOut, col, output_h - 1, re_v, output_w);
     }   
 }
 #endif

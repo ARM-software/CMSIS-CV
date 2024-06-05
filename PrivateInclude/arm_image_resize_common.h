@@ -52,15 +52,15 @@ typedef struct {
 extern void arm_image_resize_common_f32(const _common_resize_t *common,
                                         uint8_t *p_img);
 
-__STATIC_FORCEINLINE float get_image_pixel(uint8_t* m, int x, int y, int c, int w, int h)
+__STATIC_FORCEINLINE float get_image_pixel(uint8_t* m, int x, int y, int w)
 {
-    return m[c*h*w + y * w + x];
+    return m[y * w + x];
 }
 
-__STATIC_FORCEINLINE void set_image_pixel(uint8_t* m, int x, int y, int c, float val, int w, int h)
+__STATIC_FORCEINLINE void set_image_pixel(uint8_t* m, int x, int y, float val, int w)
 {
     /* x, y, c are already validated by upper layers */
-    m[c*h*w + y * w + x] = (uint8_t)(val+0.5f);
+    m[y * w + x] = (uint8_t)(val+0.5f);
 }
 
 
