@@ -8,6 +8,7 @@ extern "C" {
     #include "cv/color_transforms.h"
 }
 
+
 #if defined(TESTGROUP1)
 
 // arm_yuv420_to_gray8
@@ -289,7 +290,7 @@ void run_test(const unsigned char* inputs,
             // arm_yuv420_to_gray8
             test0(inputs,wbuf,total_bytes,testid,cycles);
             break;
-        case 1: 
+        case 1:
             // arm_bgr_8U3C_to_gray8
             test1(inputs,wbuf,total_bytes,testid,cycles);
         break;
