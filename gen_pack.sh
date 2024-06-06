@@ -31,6 +31,7 @@ DEFAULT_ARGS=(-c "v")
 PACK_DIRS="
   Documentation
   Include
+  PrivateInclude
   Source
 "
 
