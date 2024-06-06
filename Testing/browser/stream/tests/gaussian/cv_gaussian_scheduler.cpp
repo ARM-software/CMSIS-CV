@@ -114,7 +114,7 @@ Internal ID identification for the nodes
 #define DISPLAY1_INTERNAL_ID 1
 #define GAUSSIAN_INTERNAL_ID 2
 #define TO_GRAY8_INTERNAL_ID 3
-#define TO_RGBA_INTERNAL_ID 4
+#define TO_RGBA_CV1_INTERNAL_ID 4
 
 /* For callback management */
 
@@ -150,7 +150,7 @@ FIFO buffers
 ************/
 #define FIFOSIZE0 307200
 #define FIFOSIZE1 76800
-#define FIFOSIZE2 153600
+#define FIFOSIZE2 76800
 #define FIFOSIZE3 307200
 
 typedef struct {
@@ -172,7 +172,7 @@ int init_buffer_cv_gaussian_scheduler(unsigned char * src,
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    buffers.buf1 = (uint8_t *)CG_MALLOC(153600 * sizeof(uint8_t));
+    buffers.buf1 = (uint8_t *)CG_MALLOC(76800 * sizeof(uint8_t));
     if (buffers.buf1==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
@@ -207,9 +207,9 @@ ImageFIFO<int8_t,FIFOSIZE3,1,0> *fifo3;
 typedef struct {
     WebCamera<int8_t,307200> *camera;
     WebDisplay<int8_t,307200> *display1;
-    GaussianFilter<int8_t,76800,int8_t,153600> *gaussian;
+    GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
-    Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
+    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *to_rgba_cv1;
 } nodes_t;
 
 CG_BEFORE_BUFFER
@@ -260,7 +260,7 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.gaussian = new GaussianFilter<int8_t,76800,int8_t,153600>(*(fifos.fifo1),*(fifos.fifo2));
+    nodes.gaussian = new GaussianFilter<int8_t,76800,int8_t,76800>(*(fifos.fifo1),*(fifos.fifo2));
     if (nodes.gaussian==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
@@ -270,8 +270,8 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.to_rgba = new Gray16ToRGBA32<int8_t,153600,int8_t,307200>(*(fifos.fifo2),*(fifos.fifo3));
-    if (nodes.to_rgba==NULL)
+    nodes.to_rgba_cv1 = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo2),*(fifos.fifo3));
+    if (nodes.to_rgba_cv1==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
@@ -319,9 +319,9 @@ void free_cv_gaussian_scheduler(unsigned char * src,
     {
         delete nodes.to_gray8;
     }
-    if (nodes.to_rgba!=NULL)
+    if (nodes.to_rgba_cv1!=NULL)
     {
-        delete nodes.to_rgba;
+        delete nodes.to_rgba_cv1;
     }
 }
 
@@ -391,8 +391,8 @@ CG_RESTORE_STATE_MACHINE_STATE;
 
                 case 4:
                 {
-                    nodes.to_rgba->setExecutionStatus(cb_state.running);
-                   cgStaticError = nodes.to_rgba->run();
+                    nodes.to_rgba_cv1->setExecutionStatus(cb_state.running);
+                   cgStaticError = nodes.to_rgba_cv1->run();
                 }
                 break;
 

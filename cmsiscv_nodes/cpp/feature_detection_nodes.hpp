@@ -82,22 +82,22 @@ public:
             return(CG_MEMORY_ALLOCATION_FAILURE);
         }
 
-        arm_cv_image_q15_t input;
-        arm_cv_image_q15_t output;
+        arm_cv_image_gray8_t input;
+        arm_cv_image_gray8_t output;
 
         input.height=this->inputHeight();
         input.width=this->inputWidth();
-        input.pData = (q15_t*)i;
+        input.pData = (uint8_t*)i;
 
         output.height=this->inputHeight();
         output.width=this->inputWidth();
-        output.pData = (q15_t*)o;
+        output.pData = (uint8_t*)o;
 
         uint32_t low,high;
         if (mParams == nullptr)
         {
-           low = 2500;
-           high = 1060;
+           low = 78;
+           high = 33;
         }
         else
         {

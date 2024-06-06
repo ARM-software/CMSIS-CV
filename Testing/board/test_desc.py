@@ -26,14 +26,12 @@ allSuites = [
     {
         "name" : "Linear Filters",
         "define": "TESTGROUP0",
-        "inputs": [ImageGen(STANDARD_GRAY_IMG_SIZES,format=Format.GRAY8,
+        "inputs": [ImageGen(STANDARD_IMG_SIZES,
+                   format=Format.GRAY8,
                    path="Patterns/Mandrill.tiff"),
-                   ImageGen(STANDARD_RGB_IMG_SIZES,
-                   format=Format.RGB24,
-                   path="Patterns/Mandrill.tiff")],
+                   ],
         "tests":
-          ([linear_copy_test(imgid,imgdim,funcid=1) for imgid,imgdim in enumerate(STANDARD_GRAY_IMG_SIZES)] +
-           [linear_copy_test(imgid+len(STANDARD_GRAY_IMG_SIZES),imgdim,funcid=0,img_type="rgb") for imgid,imgdim in enumerate(STANDARD_RGB_IMG_SIZES)])
+          [linear_gaussian_test(imgid, imgdim, funcid=2) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]
     },
     {
         "name" : "Color conversions",

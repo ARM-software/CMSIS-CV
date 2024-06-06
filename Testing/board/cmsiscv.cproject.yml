@@ -3,8 +3,8 @@ project:
     - group: cmsiscv
       files:
         - file: ../../Source/arm_cv_common.c
-        - file: ../../Source/FeatureDetection/cannysobel.c  
-        - file: ../../Source/LinearFilters/gaussian.c
+        - file: ../../Source/FeatureDetection/arm_cannysobel.c  
+        - file: ../../Source/LinearFilters/arm_gaussian.c
         - file: ../../Source/ColorTransforms/arm_yuv420_to_gray8.c
         - file: ../../Source/ColorTransforms/arm_bgr_8U3C_to_gray8.c
         - file: ../../Source/ColorTransforms/arm_gray8_to_rgb24.c

@@ -53,13 +53,6 @@ display2 [label=<
 
 dup0 [shape=point,label="dup0"]
 
-g16_to_g8 [label=<
-<TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
-  <TR>
-    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">g16_to_g8<BR/>(Gray16ToGray8)</FONT></TD>
-  </TR>
-</TABLE>>];
-
 gaussian [label=<
 <TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
   <TR>
@@ -74,10 +67,10 @@ to_gray8 [label=<
   </TR>
 </TABLE>>];
 
-to_rgba [label=<
+u8_to_rgba [label=<
 <TABLE color="black" bgcolor="none" BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
   <TR>
-    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">to_rgba<BR/>(Gray16ToRGBA32)</FONT></TD>
+    <TD ALIGN="CENTER" PORT="i"><FONT COLOR="black" POINT-SIZE="14.0">u8_to_rgba<BR/>(Gray8ToRGBA32)</FONT></TD>
   </TR>
 </TABLE>>];
 
@@ -95,22 +88,16 @@ to_gray8:i -> gaussian:i [style="solid",color="black",fontsize="12.0",fontcolor=
 ,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >76800</FONT>
 </TD></TR></TABLE>>]
 
-canny:i -> to_rgba:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY16_320_240>
-,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >153600</FONT>
-</TD></TR></TABLE>>
-,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >153600</FONT>
-</TD></TR></TABLE>>]
-
-to_rgba:i -> display1:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA32_320_240>
-,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
-</TD></TR></TABLE>>
-,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
-</TD></TR></TABLE>>]
-
-g16_to_g8:i -> canny_cv:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY8_320_240>
+canny:i -> u8_to_rgba:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY8_320_240>
 ,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >76800</FONT>
 </TD></TR></TABLE>>
 ,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >76800</FONT>
+</TD></TR></TABLE>>]
+
+u8_to_rgba:i -> display1:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<RGBA32_320_240>
+,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
+</TD></TR></TABLE>>
+,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >307200</FONT>
 </TD></TR></TABLE>>]
 
 canny_cv:i -> cv_to_rgba:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY8_320_240>
@@ -126,20 +113,20 @@ cv_to_rgba:i -> display2:i [style="solid",color="black",fontsize="12.0",fontcolo
 </TD></TR></TABLE>>]
 
 gaussian:i ->  
-dup0 [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY16_320_240>
+dup0 [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY8_320_240>
 
-,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >153600</FONT>
+,taillabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >76800</FONT>
 </TD></TR></TABLE>>]
 
  
-dup0 -> canny:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY16_320_240>
-,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >153600</FONT>
+dup0 -> canny:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY8_320_240>
+,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >76800</FONT>
 </TD></TR></TABLE>>
 ]
 
  
-dup0 -> g16_to_g8:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY16_320_240>
-,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >153600</FONT>
+dup0 -> canny_cv:i [style="solid",color="black",fontsize="12.0",fontcolor="black",label=<GRAY8_320_240>
+,headlabel=<<TABLE BORDER="0" CELLPADDING="4"><TR><TD><FONT COLOR="blue" POINT-SIZE="12.0" >76800</FONT>
 </TD></TR></TABLE>>
 ]
 

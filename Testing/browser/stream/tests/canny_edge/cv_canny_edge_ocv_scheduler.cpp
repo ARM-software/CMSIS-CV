@@ -100,9 +100,9 @@ using namespace arm_cmsis_stream;
 Description of the scheduling. 
 
 */
-static uint8_t schedule[11]=
+static uint8_t schedule[10]=
 { 
-0,9,8,6,1,10,4,7,2,3,5,
+0,8,7,6,1,9,4,2,3,5,
 };
 
 /*
@@ -117,10 +117,9 @@ Internal ID identification for the nodes
 #define DISPLAY1_INTERNAL_ID 4
 #define DISPLAY2_INTERNAL_ID 5
 #define DUP0_INTERNAL_ID 6
-#define G16_TO_G8_INTERNAL_ID 7
-#define GAUSSIAN_INTERNAL_ID 8
-#define TO_GRAY8_INTERNAL_ID 9
-#define TO_RGBA_INTERNAL_ID 10
+#define GAUSSIAN_INTERNAL_ID 7
+#define TO_GRAY8_INTERNAL_ID 8
+#define U8_TO_RGBA_INTERNAL_ID 9
 
 /* For callback management */
 
@@ -156,14 +155,13 @@ FIFO buffers
 ************/
 #define FIFOSIZE0 307200
 #define FIFOSIZE1 76800
-#define FIFOSIZE2 153600
+#define FIFOSIZE2 76800
 #define FIFOSIZE3 307200
 #define FIFOSIZE4 76800
-#define FIFOSIZE5 76800
-#define FIFOSIZE6 307200
-#define FIFOSIZE7 153600
-#define FIFOSIZE8 153600
-#define FIFOSIZE9 153600
+#define FIFOSIZE5 307200
+#define FIFOSIZE6 76800
+#define FIFOSIZE7 76800
+#define FIFOSIZE8 76800
 
 typedef struct {
 uint8_t  *buf0;
@@ -179,12 +177,12 @@ int init_buffer_cv_canny_edge_ocv_scheduler(unsigned char * src,
                               uint32_t* params1,
                               uint32_t* params2)
 {
-    buffers.buf0 = (uint8_t *)CG_MALLOC(153600 * sizeof(uint8_t));
+    buffers.buf0 = (uint8_t *)CG_MALLOC(76800 * sizeof(uint8_t));
     if (buffers.buf0==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    buffers.buf1 = (uint8_t *)CG_MALLOC(153600 * sizeof(uint8_t));
+    buffers.buf1 = (uint8_t *)CG_MALLOC(76800 * sizeof(uint8_t));
     if (buffers.buf1==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
@@ -219,21 +217,19 @@ ImageFIFO<int8_t,FIFOSIZE5,1,0> *fifo5;
 ImageFIFO<int8_t,FIFOSIZE6,1,0> *fifo6;
 ImageFIFO<int8_t,FIFOSIZE7,1,0> *fifo7;
 ImageFIFO<int8_t,FIFOSIZE8,1,0> *fifo8;
-ImageFIFO<int8_t,FIFOSIZE9,1,0> *fifo9;
 } fifos_t;
 
 typedef struct {
     WebCamera<int8_t,307200> *camera;
-    CannyEdge<int8_t,153600,int8_t,153600> *canny;
+    CannyEdge<int8_t,76800,int8_t,76800> *canny;
     OpenCVCanny<int8_t,76800,int8_t,76800> *canny_cv;
     Gray8ToRGBA32<int8_t,76800,int8_t,307200> *cv_to_rgba;
     WebDisplay<int8_t,307200> *display1;
     WebDisplay<int8_t,307200> *display2;
-    Duplicate<int8_t,153600,int8_t,153600> *dup0;
-    Gray16ToGray8<int8_t,153600,int8_t,76800> *g16_to_g8;
-    GaussianFilter<int8_t,76800,int8_t,153600> *gaussian;
+    Duplicate<int8_t,76800,int8_t,76800> *dup0;
+    GaussianFilter<int8_t,76800,int8_t,76800> *gaussian;
     RGBA32ToGray8<int8_t,307200,int8_t,76800> *to_gray8;
-    Gray16ToRGBA32<int8_t,153600,int8_t,307200> *to_rgba;
+    Gray8ToRGBA32<int8_t,76800,int8_t,307200> *u8_to_rgba;
 } nodes_t;
 
 CG_BEFORE_BUFFER
@@ -277,12 +273,12 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    fifos.fifo5 = new ImageFIFO<int8_t,FIFOSIZE5,1,0>(buffers.buf1,0,320,240);
+    fifos.fifo5 = new ImageFIFO<int8_t,FIFOSIZE5,1,0>(dst2,0,320,240);
     if (fifos.fifo5==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    fifos.fifo6 = new ImageFIFO<int8_t,FIFOSIZE6,1,0>(dst2,0,320,240);
+    fifos.fifo6 = new ImageFIFO<int8_t,FIFOSIZE6,1,0>(buffers.buf1,0,320,240);
     if (fifos.fifo6==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
@@ -297,11 +293,6 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    fifos.fifo9 = new ImageFIFO<int8_t,FIFOSIZE9,1,0>(buffers.buf1,0,320,240);
-    if (fifos.fifo9==NULL)
-    {
-        return(CG_MEMORY_ALLOCATION_FAILURE);
-    }
 
     CG_BEFORE_NODE_INIT;
     nodes.camera = new WebCamera<int8_t,307200>(*(fifos.fifo0));
@@ -309,17 +300,17 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.canny = new CannyEdge<int8_t,153600,int8_t,153600>(*(fifos.fifo8),*(fifos.fifo2),params1);
+    nodes.canny = new CannyEdge<int8_t,76800,int8_t,76800>(*(fifos.fifo7),*(fifos.fifo2),params1);
     if (nodes.canny==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.canny_cv = new OpenCVCanny<int8_t,76800,int8_t,76800>(*(fifos.fifo4),*(fifos.fifo5),params2);
+    nodes.canny_cv = new OpenCVCanny<int8_t,76800,int8_t,76800>(*(fifos.fifo8),*(fifos.fifo4),params2);
     if (nodes.canny_cv==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.cv_to_rgba = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo5),*(fifos.fifo6));
+    nodes.cv_to_rgba = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo4),*(fifos.fifo5));
     if (nodes.cv_to_rgba==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
@@ -329,22 +320,17 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.display2 = new WebDisplay<int8_t,307200>(*(fifos.fifo6));
+    nodes.display2 = new WebDisplay<int8_t,307200>(*(fifos.fifo5));
     if (nodes.display2==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.dup0 = new Duplicate<int8_t,153600,int8_t,153600>(*(fifos.fifo7),{});
+    nodes.dup0 = new Duplicate<int8_t,76800,int8_t,76800>(*(fifos.fifo6),{});
     if (nodes.dup0==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.g16_to_g8 = new Gray16ToGray8<int8_t,153600,int8_t,76800>(*(fifos.fifo9),*(fifos.fifo4));
-    if (nodes.g16_to_g8==NULL)
-    {
-        return(CG_MEMORY_ALLOCATION_FAILURE);
-    }
-    nodes.gaussian = new GaussianFilter<int8_t,76800,int8_t,153600>(*(fifos.fifo1),*(fifos.fifo7));
+    nodes.gaussian = new GaussianFilter<int8_t,76800,int8_t,76800>(*(fifos.fifo1),*(fifos.fifo6));
     if (nodes.gaussian==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
@@ -354,8 +340,8 @@ init_cb_state();
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
-    nodes.to_rgba = new Gray16ToRGBA32<int8_t,153600,int8_t,307200>(*(fifos.fifo2),*(fifos.fifo3));
-    if (nodes.to_rgba==NULL)
+    nodes.u8_to_rgba = new Gray8ToRGBA32<int8_t,76800,int8_t,307200>(*(fifos.fifo2),*(fifos.fifo3));
+    if (nodes.u8_to_rgba==NULL)
     {
         return(CG_MEMORY_ALLOCATION_FAILURE);
     }
@@ -406,10 +392,6 @@ void free_cv_canny_edge_ocv_scheduler(unsigned char * src,
     {
        delete fifos.fifo8;
     }
-    if (fifos.fifo9!=NULL)
-    {
-       delete fifos.fifo9;
-    }
 
     if (nodes.camera!=NULL)
     {
@@ -439,10 +421,6 @@ void free_cv_canny_edge_ocv_scheduler(unsigned char * src,
     {
         delete nodes.dup0;
     }
-    if (nodes.g16_to_g8!=NULL)
-    {
-        delete nodes.g16_to_g8;
-    }
     if (nodes.gaussian!=NULL)
     {
         delete nodes.gaussian;
@@ -451,9 +429,9 @@ void free_cv_canny_edge_ocv_scheduler(unsigned char * src,
     {
         delete nodes.to_gray8;
     }
-    if (nodes.to_rgba!=NULL)
+    if (nodes.u8_to_rgba!=NULL)
     {
-        delete nodes.to_rgba;
+        delete nodes.u8_to_rgba;
     }
 }
 
@@ -488,7 +466,7 @@ CG_RESTORE_STATE_MACHINE_STATE;
             id = cb_state.scheduleStateID;
             cb_state.status = CG_SCHEDULER_RUNNING_ID;
         }
-        for(; id < 11; id++)
+        for(; id < 10; id++)
         {
             CG_BEFORE_NODE_EXECUTION(schedule[id]);
             switch(schedule[id])
@@ -544,29 +522,22 @@ CG_RESTORE_STATE_MACHINE_STATE;
 
                 case 7:
                 {
-                    nodes.g16_to_g8->setExecutionStatus(cb_state.running);
-                   cgStaticError = nodes.g16_to_g8->run();
-                }
-                break;
-
-                case 8:
-                {
                     nodes.gaussian->setExecutionStatus(cb_state.running);
                    cgStaticError = nodes.gaussian->run();
                 }
                 break;
 
-                case 9:
+                case 8:
                 {
                     nodes.to_gray8->setExecutionStatus(cb_state.running);
                    cgStaticError = nodes.to_gray8->run();
                 }
                 break;
 
-                case 10:
+                case 9:
                 {
-                    nodes.to_rgba->setExecutionStatus(cb_state.running);
-                   cgStaticError = nodes.to_rgba->run();
+                    nodes.u8_to_rgba->setExecutionStatus(cb_state.running);
+                   cgStaticError = nodes.u8_to_rgba->run();
                 }
                 break;
 
