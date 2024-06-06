@@ -33,7 +33,7 @@ extern "C"
 {
 #endif
 
-#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
+#if (defined(ARM_MATH_MVEI) || defined(ARM_MATH_MVEF)) && !defined(ARM_MATH_AUTOVECTORIZE)
 
 /*
 
@@ -50,6 +50,7 @@ CV_FAST_MEMORY
 extern int8_t cv_sgbuf[16*3];
 
 #endif
+
 
 #ifdef   __cplusplus
 }

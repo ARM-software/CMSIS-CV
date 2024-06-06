@@ -49,6 +49,7 @@
         <file category="header"   name="Include/arm_cv_types.h"/>
 
         <file category="include"  name="Include/"/>
+        <file category="include"  name="PrivateInclude/"/>
 
         <!-- CV sources (core) -->
         <file category="source"   name="Source/arm_cv_common.c"/>
@@ -62,6 +63,10 @@
         <file category="source"   name="Source/ColorTransforms/arm_rgb24_to_gray8.c"/>
         <file category="source"   name="Source/ImageTransforms/arm_crop_gray8.c"/>
         <file category="source"   name="Source/ImageTransforms/arm_crop_rgb24.c"/>
+        <file category="source"   name="Source/ImageTransforms/arm_image_resize_bgr_8U3C_f32.c"/>
+        <file category="source"   name="Source/ImageTransforms/arm_image_resize_gray8_f32.c"/>
+        <file category="source"   name="Source/ImageTransforms/arm_image_resize_common_f32.c"/>
+
       </files>
     </component>
 

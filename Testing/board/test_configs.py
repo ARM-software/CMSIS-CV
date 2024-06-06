@@ -23,8 +23,9 @@ compiler={
 
 #compiler={
 #    'AC6':[
-#      ("VHT-Corstone-300","CS300"),
+#      #("VHT-Corstone-300","CS300"),
 #      #("MPS3-Corstone-300",),
 #      #("MPS3-Corstone-300-NOMVE",),
+#     ("VHT-M7","M7DP"),
 #    ],
 #}

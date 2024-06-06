@@ -8,6 +8,9 @@
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2014 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2024 Himax Technologies, Inc. or its affiliates. All rights reserved.
+ *
+ * (Copyright details are available in each C source file for each function)
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -35,7 +38,6 @@
 extern "C"
 {
 #endif
-
 
 
 
@@ -74,6 +76,29 @@ extern void arm_crop_rgb24(const arm_cv_image_rgb24_t* ImageIn,
                            const uint32_t right,
                            const uint32_t bottom
                            );
+
+/**     
+ * @brief      Resize BGR 8U3C image (float implementation)
+ *
+ * @param[in]  ImageIn   The input image
+ * @param      ImageOut  The output image
+ * @param[in,out]  p_img   Temporary buffer
+ */
+extern void arm_image_resize_bgr_8U3C_f32(const arm_cv_image_bgr_8U3C_t* ImageIn,
+                                                arm_cv_image_bgr_8U3C_t* ImageOut,
+                                                uint8_t *p_img);
+
+
+/**     
+ * @brief      Resize gray image (float implementation)
+ *
+ * @param[in]  ImageIn   The input image
+ * @param      ImageOut  The output image
+ * @param[in,out]  p_img   Temporary buffer
+ */
+extern void arm_image_resize_gray8_f32(const arm_cv_image_gray8_t* ImageIn,
+                                             arm_cv_image_gray8_t* ImageOut,
+                                             uint8_t *p_img);
 
 #ifdef   __cplusplus
 }
