@@ -142,6 +142,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga2cbe0effbae1c66ff941c293b89969b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__imageTransform.html#ga2cbe0effbae1c66ff941c293b89969b4">arm_crop_rgb24</a> (const <a class="el" href="structarm__cv__image__rgb24__t.html">arm_cv_image_rgb24_t</a> *ImageIn, <a class="el" href="structarm__cv__image__rgb24__t.html">arm_cv_image_rgb24_t</a> *ImageOut, const uint32_t left, const uint32_t top, const uint32_t right, const uint32_t bottom)</td></tr>
 <tr class="memdesc:ga2cbe0effbae1c66ff941c293b89969b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">RGB24 image cropping.  <br /></td></tr>
 <tr class="separator:ga2cbe0effbae1c66ff941c293b89969b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga334ae1347ae91beeb280620d7945c8c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__imageTransform.html#ga334ae1347ae91beeb280620d7945c8c5">arm_image_resize_bgr_8U3C_f32</a> (const <a class="el" href="structarm__cv__image__bgr__8U3C__t.html">arm_cv_image_bgr_8U3C_t</a> *ImageIn, <a class="el" href="structarm__cv__image__bgr__8U3C__t.html">arm_cv_image_bgr_8U3C_t</a> *ImageOut, uint8_t *p_img)</td></tr>
+<tr class="memdesc:ga334ae1347ae91beeb280620d7945c8c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resize BGR 8U3C image (float implementation)  <br /></td></tr>
+<tr class="separator:ga334ae1347ae91beeb280620d7945c8c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga894ee15b6cd7b5a807bfca79b6f862c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__imageTransform.html#ga894ee15b6cd7b5a807bfca79b6f862c0">arm_image_resize_gray8_f32</a> (const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *ImageIn, <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *ImageOut, uint8_t *p_img)</td></tr>
+<tr class="memdesc:ga894ee15b6cd7b5a807bfca79b6f862c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resize gray image (float implementation)  <br /></td></tr>
+<tr class="separator:ga894ee15b6cd7b5a807bfca79b6f862c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -272,6 +278,104 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ga334ae1347ae91beeb280620d7945c8c5" name="ga334ae1347ae91beeb280620d7945c8c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga334ae1347ae91beeb280620d7945c8c5">&#9670;&#160;</a></span>arm_image_resize_bgr_8U3C_f32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arm_image_resize_bgr_8U3C_f32 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structarm__cv__image__bgr__8U3C__t.html">arm_cv_image_bgr_8U3C_t</a> *&#160;</td>
+          <td class="paramname"><em>ImageIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarm__cv__image__bgr__8U3C__t.html">arm_cv_image_bgr_8U3C_t</a> *&#160;</td>
+          <td class="paramname"><em>ImageOut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>p_img</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resize BGR 8U3C image (float implementation) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ImageIn</td><td>The input image </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">ImageOut</td><td>The output image </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">p_img</td><td>Temporary buffer</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Temporary buffer sizing:</dt><dd></dd></dl>
+<p>Size of temporary buffers:</p><ul>
+<li>p_img<br  />
+ 2 * ImageOut-&gt;width*sizeof(uint8_t) </li>
+</ul>
+
+</div>
+</div>
+<a id="ga894ee15b6cd7b5a807bfca79b6f862c0" name="ga894ee15b6cd7b5a807bfca79b6f862c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga894ee15b6cd7b5a807bfca79b6f862c0">&#9670;&#160;</a></span>arm_image_resize_gray8_f32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arm_image_resize_gray8_f32 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *&#160;</td>
+          <td class="paramname"><em>ImageIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *&#160;</td>
+          <td class="paramname"><em>ImageOut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>p_img</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resize gray image (float implementation) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ImageIn</td><td>The input image </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">ImageOut</td><td>The output image </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">p_img</td><td>Temporary buffer</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Temporary buffer sizing:</dt><dd></dd></dl>
+<p>Size of temporary buffers:</p><ul>
+<li>p_img<br  />
+ 2 * ImageOut-&gt;width*sizeof(uint8_t) </li>
+</ul>
 
 </div>
 </div>

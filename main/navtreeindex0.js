@@ -12,6 +12,8 @@ var NAVTREEINDEX0 =
 "group__featureDetection.html#ga1d3b3dd433579015e60a7e51c35e94f5":[2,3,0],
 "group__imageTransform.html":[2,1],
 "group__imageTransform.html#ga2cbe0effbae1c66ff941c293b89969b4":[2,1,1],
+"group__imageTransform.html#ga334ae1347ae91beeb280620d7945c8c5":[2,1,2],
+"group__imageTransform.html#ga894ee15b6cd7b5a807bfca79b6f862c0":[2,1,3],
 "group__imageTransform.html#gaa9732be7e079a6a5b7d357d6622455ce":[2,1,0],
 "group__linearFilter.html":[2,2],
 "group__linearFilter.html#ga79a6efb6ca7408a1b349bd163e0a943f":[2,2,0],
