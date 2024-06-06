@@ -33,7 +33,7 @@ class _ImgCropping(GenericNode):
         else:
             self.addVariableArg(bottom)
 
-     def __call__(self, i):
+    def __call__(self, i):
         g,n = i 
         k = next(iter(n._outputs))
         o = n._outputs[k]
