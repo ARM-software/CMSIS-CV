@@ -205,7 +205,8 @@ def _Himax_resize(input,output_w,output_h):
            tmp[0,0:output_w-1] = ((1-dx[:-1])*input[iy[row],ix[:-1]] + dx[:-1] * input[iy[row],ix[:-1]+1] + 0.5)
            tmp[0,output_w-1] = input[iy[row],input_w-1]
 
-    result[row,:] = ((1-dy[row])*tmp[0,:] + np.float32(0.5))
+    #let the latest row be exactly the same with lastest tmp buffer
+    result[row,:] = (tmp[0,:] + np.float32(0.5))
 
 
     return(result)

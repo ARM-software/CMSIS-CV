@@ -291,14 +291,11 @@ void arm_image_resize_common_f32(const _common_resize_t *common,
             temp_u32 = vreinterpretq_u32_s32(temp_s32);
             pixel_u32 = vaddq_u32(index_u32, temp_u32);
 
-            /*val += (1 - dy) * pixel' 
-                pixel' loc= p_img[0][c,...,c+3]*/
-            temp_f32 = vdupq_n_f32(1.0f);
-            dy_f32 = vdupq_n_f32(dy);
-            weight_f32 = vsubq_f32(temp_f32, dy_f32);       
+            ////let the latest row be exactly the same with lastest tmp buffer
+             /*val += pixel' 
+                pixel' loc= p_img[0][c,...,c+3]*/    
             temp_u32 = vldrbq_gather_offset(&(p_img[0]), pixel_u32);
-            val_f32 = vcvtq_f32_u32(temp_u32);
-            val_f32 = vmulq_f32(val_f32, weight_f32);   
+            val_f32 = vcvtq_f32_u32(temp_u32); 
             
             loc = proc_y_offset + c;
             // val_f32 = vrndnq_f32(val_f32);
@@ -383,8 +380,8 @@ void arm_image_resize_common_f32(const _common_resize_t *common,
         set_image_pixel(p_img, col, 0, re_v, output_w);          
     }
     for (col = 0; col < output_w; ++col){
-        float temp = (1 - dy);
-        re_v = temp * (get_image_pixel(p_img, col, 0, output_w));
+        ////let the latest row be exactly the same with lastest tmp buffer
+        re_v = get_image_pixel(p_img, col, 0, output_w);
         set_image_pixel(pOut, col, output_h - 1, re_v, output_w);
     }   
 }
