@@ -97,6 +97,12 @@ allSuites = [
            bgr8U3C_resize_test((128,128),21,47,17),
            bgr8U3C_resize_test((128,128),22,150,150),
            bgr8U3C_resize_test((128,128),23,256,256),
+           bgr8U3C_resize_to_rgb_test((128,128),24,64,64),
+           bgr8U3C_resize_to_rgb_test((128,128),25,16,16),
+           bgr8U3C_resize_to_rgb_test((128,128),26,15,15),
+           bgr8U3C_resize_to_rgb_test((128,128),27,47,17),
+           bgr8U3C_resize_to_rgb_test((128,128),28,150,150),
+           bgr8U3C_resize_to_rgb_test((128,128),29,256,256),
           ]
         
     },

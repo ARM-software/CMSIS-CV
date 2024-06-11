@@ -100,6 +100,18 @@ extern void arm_image_resize_gray8_f32(const arm_cv_image_gray8_t* ImageIn,
                                              arm_cv_image_gray8_t* ImageOut,
                                              uint8_t *p_img);
 
+/**     
+ * @brief      Resize BGR 8U3C image and convert to RGB24 (float implementation)
+ *
+ * @param[in]  ImageIn   The input image
+ * @param      ImageOut  The output image
+ * @param[in,out]  p_img   Temporary buffer
+ * 
+ */
+extern void arm_image_resize_bgr_8U3C_to_rgb24_f32(const arm_cv_image_bgr_8U3C_t* ImageIn,
+                                         arm_cv_image_rgb24_t* ImageOut,
+                                         uint8_t *p_img);
+                                         
 #ifdef   __cplusplus
 }
 #endif

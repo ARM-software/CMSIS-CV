@@ -89,3 +89,11 @@ def bgr8U3C_resize_test(imgdim,funcid,dst_w,dst_h):
             "reference": HimaxResizeBGR_8U3C(dst_w,dst_h),
             "check" : SimilarTensorFixp(20)
            }
+
+def bgr8U3C_resize_to_rgb_test(imgdim,funcid,dst_w,dst_h):
+    return {"desc":f"BGR 8U3C resize to_RGB24_test{imgdim[0]}x{imgdim[1]} -> {dst_w}x{dst_h} ",
+            "funcid": funcid,
+            "useimg": [2],
+            "reference": HimaxResizeBGR_8U3C_to_RGB24(dst_w,dst_h),
+            "check" : SimilarTensorFixp(20)
+           }

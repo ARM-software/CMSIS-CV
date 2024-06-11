@@ -1,0 +1,4 @@
+CompileFlags:
+  CompilationDatabase: >-
+    /home/kris/Desktop/2024/0523_cmsis_cv/CMSIS-CV/Testing/board/tmp/cmsiscv/MPS3-Corstone-300/Release
+  Add: []

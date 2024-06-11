@@ -175,6 +175,49 @@ void test##TESTID(const unsigned char* inputs,                                  
     free(p_img);                                                                   \
 }
 
+
+#define RESIZE_BGR_to_RGB(TESTID,DSTW,DSTH)                                               \
+void test##TESTID(const unsigned char* inputs,                                     \
+                        unsigned char* &outputs,                                   \
+                        uint32_t &total_bytes,                                     \
+                        uint32_t testid,                                           \
+                        long &cycles)                                              \
+{                                                                                  \
+    long start,end;                                                                \
+    uint32_t nb,channels,width,height,misc;                                        \
+    int bufid = TENSOR_START + 2;                                                  \
+    (void)testid;                                                                  \
+    uint8_t *p_img = (uint8_t*)malloc(2*DSTW);                                     \
+                                                                                   \
+    get_buffer_shape(inputs,bufid,&nb,&channels,&height,&width,&misc);             \
+                                                                                   \
+    std::vector<BufferDescription> desc = {BufferDescription(Shape(DSTH,DSTW)    \
+                                                            ,kIMG_RGB_TYPE)\
+                                          };                                       \
+                                                                                   \
+                                                                                   \
+    outputs = create_write_buffer(desc,total_bytes);                               \
+                                                                                   \
+    const uint8_t *src = Buffer<uint8_t>::read(inputs,bufid);                      \
+    uint8_t *dst = Buffer<uint8_t>::write(outputs,0);                              \
+                                                                                   \
+    const arm_cv_image_bgr_8U3C_t input={(uint16_t)width,                          \
+                                       (uint16_t)height,                           \
+                                       (uint8_t*)src};                             \
+                                                                                   \
+    arm_cv_image_rgb24_t output;                                                \
+    output.width=DSTW;                                                             \
+    output.height=DSTH;                                                            \
+    output.pData=dst;                                                              \
+                                                                                   \
+    start = time_in_cycles();                                                      \
+    arm_image_resize_bgr_8U3C_to_rgb24_f32(&input,&output,p_img);                               \
+    end = time_in_cycles();                                                        \
+    cycles = end - start;                                                          \
+                                                                                   \
+    free(p_img);                                                                   \
+}
+
 GRAY8_CROP(0,15,15,113,113);
 GRAY8_CROP(1,16,16,112,112);
 GRAY8_CROP(2,32,32,96,96);
@@ -202,6 +245,13 @@ RESIZE_BGR(20,15,15);
 RESIZE_BGR(21,47,17);
 RESIZE_BGR(22,150,150);
 RESIZE_BGR(23,256,256);
+
+RESIZE_BGR_to_RGB(24,64,64);
+RESIZE_BGR_to_RGB(25,16,16);
+RESIZE_BGR_to_RGB(26,15,15);
+RESIZE_BGR_to_RGB(27,47,17);
+RESIZE_BGR_to_RGB(28,150,150);
+RESIZE_BGR_to_RGB(29,256,256);
 
 void run_test(const unsigned char* inputs,
               const uint32_t testid,
@@ -323,6 +373,39 @@ void run_test(const unsigned char* inputs,
         case 23:
             // bgr 8U3C resize
             test23(inputs,wbuf,total_bytes,testid,cycles);
+            break;
+
+        
+
+        case 24:
+            // bgr 8U3C resize to rgb24
+            test24(inputs,wbuf,total_bytes,testid,cycles);
+            break;
+
+        case 25:
+            // bgr 8U3C resize to rgb24
+            test25(inputs,wbuf,total_bytes,testid,cycles);
+            break;
+
+        case 26:
+            // bgr 8U3C resize to rgb24
+            test26(inputs,wbuf,total_bytes,testid,cycles);
+            break;
+
+        case 27:
+            // bgr 8U3C resize to rgb24
+            test27(inputs,wbuf,total_bytes,testid,cycles);
+            break;
+
+
+        case 28:
+            // bgr 8U3C resize to rgb24
+            test28(inputs,wbuf,total_bytes,testid,cycles);
+            break;
+
+        case 29:
+            // bgr 8U3C resize to rgb24
+            test29(inputs,wbuf,total_bytes,testid,cycles);
             break;
     }
 
