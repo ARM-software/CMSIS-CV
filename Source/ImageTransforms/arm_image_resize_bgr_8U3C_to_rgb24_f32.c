@@ -24,6 +24,39 @@
  */
 #include "cv/image_transforms.h"
 #include "arm_image_resize_common.h"
+
+#if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
+inline uint32x4_t get_pixel_index(int32x4_t x_s32, int32x4_t y_s32, float32_t w, float c_offset)
+{
+  uint32x4_t pixel_u32;
+  float32x4_t x_f32, y_f32 , pixel_f32;
+
+  x_f32 = vcvtq_f32_s32(x_s32);
+  y_f32 = vcvtq_f32_s32(y_s32);
+  y_f32 = vmulq_n_f32(y_f32, w);
+  pixel_f32 = vaddq_f32(x_f32, y_f32);
+  pixel_f32 = vaddq_n_f32(pixel_f32, c_offset);
+  pixel_u32 = vcvtq_u32_f32(pixel_f32);
+  return pixel_u32;
+}
+
+#else
+static inline float get_bgr_8U3C_image_pixel(uint8_t* m, int x, int y, int c, int w, int h)
+{
+  return m[c*h*w + y * w + x];
+}
+static inline void set_tmp_image_pixel(uint8_t* m, int x, int y, int c, float val, int w)
+{
+  /* x, y, c are already validated by upper layers */
+  m[c*2*w + y * w + x] = (uint8_t)(val+0.5f);
+}
+
+static inline void set_rgb24_image_pixel(uint8_t* m, int x, int y, int c, float val, int w)
+{
+  /* x, y, c are already validated by upper layers */
+  m[(y * w + x) * 3 + (2 - c) ] = (uint8_t)(val+0.5f);
+}
+#endif
 /**
   @ingroup imageTransform
  */
@@ -43,19 +76,6 @@
  *     2 * ImageOut->width*sizeof(uint8_t)
  */
 #if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
-inline uint32x4_t get_pixel_index(int32x4_t x_s32, int32x4_t y_s32, float32_t w, float c_offset)
-{
-	uint32x4_t pixel_u32;
-	float32x4_t x_f32, y_f32 , pixel_f32;
-
-	x_f32 = vcvtq_f32_s32(x_s32);
-	y_f32 = vcvtq_f32_s32(y_s32);
-	y_f32 = vmulq_n_f32(y_f32, w);
-	pixel_f32 = vaddq_f32(x_f32, y_f32);
-	pixel_f32 = vaddq_n_f32(pixel_f32, c_offset);
-	pixel_u32 = vcvtq_u32_f32(pixel_f32);
-	return pixel_u32;
-}
 void arm_image_resize_bgr_8U3C_to_rgb24_f32(const arm_cv_image_bgr_8U3C_t* ImageIn,
                                          arm_cv_image_rgb24_t* ImageOut,
                                          uint8_t *p_img)
@@ -346,21 +366,6 @@ void arm_image_resize_bgr_8U3C_to_rgb24_f32(const arm_cv_image_bgr_8U3C_t* Image
     }	
 }
 #else
-static inline float get_bgr_8U3C_image_pixel(uint8_t* m, int x, int y, int c, int w, int h)
-{
-	return m[c*h*w + y * w + x];
-}
-static inline void set_tmp_image_pixel(uint8_t* m, int x, int y, int c, float val, int w)
-{
-	/* x, y, c are already validated by upper layers */
-  m[c*2*w + y * w + x] = (uint8_t)(val+0.5f);
-}
-
-static inline void set_rgb24_image_pixel(uint8_t* m, int x, int y, int c, float val, int w)
-{
-	/* x, y, c are already validated by upper layers */
-  m[(y * w + x) * 3 + (2 - c) ] = (uint8_t)(val+0.5f);
-}
 void arm_image_resize_bgr_8U3C_to_rgb24_f32(const arm_cv_image_bgr_8U3C_t* ImageIn,
                                          arm_cv_image_rgb24_t* ImageOut,
                                          uint8_t *p_img)
