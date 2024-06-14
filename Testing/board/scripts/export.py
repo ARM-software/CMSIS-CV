@@ -1,5 +1,5 @@
 import numpy as np
-import struct 
+import struct
 import PIL
 import PIL.Image
 import numpy as np
@@ -10,110 +10,110 @@ import re
 def _serialize_u32(file, tensor):
     """ writes one uint32 tensor to file that is open in wb mode """
     tensor = tensor.astype(np.uint32).flatten()
-    b = struct.pack(f'{len(tensor)}L', *tensor)
+    b = struct.pack(f'<{len(tensor)}L', *tensor)
     file.write(b)
     return(len(b))
 
 def _serialize_u16(file, tensor):
     """ writes one uint32 tensor to file that is open in wb mode """
     tensor = tensor.astype(np.uint16).flatten()
-    b = struct.pack(f'{len(tensor)}H', *tensor)
+    b = struct.pack(f'<{len(tensor)}H', *tensor)
     file.write(b)
     return(len(b))
 
 def _serialize_u8(file, tensor):
     """ writes one f32 tensor to file that is open in wb mode """
     tensor = tensor.astype(np.uint8).flatten()
-    b = struct.pack(f'{len(tensor)}B', *tensor)
+    b = struct.pack(f'<{len(tensor)}B', *tensor)
     file.write(b)
     return(len(b))
 
 def _serialize_s32(file, tensor):
     """ writes one uint32 tensor to file that is open in wb mode """
     tensor = tensor.astype(np.uint32).flatten()
-    b = struct.pack(f'{len(tensor)}l', *tensor)
+    b = struct.pack(f'<{len(tensor)}l', *tensor)
     file.write(b)
     return(len(b))
 
 def _serialize_s16(file, tensor):
     """ writes one uint32 tensor to file that is open in wb mode """
     tensor = tensor.astype(np.uint16).flatten()
-    b = struct.pack(f'{len(tensor)}h', *tensor)
+    b = struct.pack(f'<{len(tensor)}h', *tensor)
     file.write(b)
     return(len(b))
 
 def _serialize_s8(file, tensor):
     """ writes one f32 tensor to file that is open in wb mode """
     tensor = tensor.astype(np.uint8).flatten()
-    b = struct.pack(f'{len(tensor)}b', *tensor)
+    b = struct.pack(f'<{len(tensor)}b', *tensor)
     file.write(b)
     return(len(b))
 
 def _serialize_f64(file, tensor):
     """ writes one f32 tensor to file that is open in wb mode """
     tensor = tensor.astype(np.double).flatten()
-    b = struct.pack(f'{len(tensor)}d', *tensor)
+    b = struct.pack(f'<{len(tensor)}d', *tensor)
     file.write(b)
     return(len(b))
 
 def _serialize_f32(file, tensor):
     """ writes one f32 tensor to file that is open in wb mode """
     tensor = tensor.astype(float).flatten()
-    b = struct.pack(f'{len(tensor)}f', *tensor)
+    b = struct.pack(f'<{len(tensor)}f', *tensor)
     file.write(b)
     return(len(b))
 
 def _serialize_f16(file, tensor):
     """ writes one f32 tensor to file that is open in wb mode """
     tensor = tensor.astype(np.float16).flatten()
-    b = struct.pack(f'{len(tensor)}e', *tensor)
+    b = struct.pack(f'<{len(tensor)}e', *tensor)
     file.write(b)
     return(len(b))
 
 
 def _read_uint32_array(file,nb):
     b = file.read(4*nb)
-    a = struct.unpack(f'{nb}L', b)
+    a = struct.unpack(f'<{nb}L', b)
     return(list(a))
 
 def _read_uint16_array(file,nb):
     b = file.read(2*nb)
-    a = struct.unpack(f'{nb}H', b)
+    a = struct.unpack(f'<{nb}H', b)
     return(list(a))
 
 def _read_uint8_array(file,nb):
     b = file.read(nb)
-    a = struct.unpack(f'{nb}B', b)
+    a = struct.unpack(f'<{nb}B', b)
     return(list(a))
 
 def _read_sint32_array(file,nb):
     b = file.read(4*nb)
-    a = struct.unpack(f'{nb}l', b)
+    a = struct.unpack(f'<{nb}l', b)
     return(list(a))
 
 def _read_sint16_array(file,nb):
     b = file.read(2*nb)
-    a = struct.unpack(f'{nb}h', b)
+    a = struct.unpack(f'<{nb}h', b)
     return(list(a))
 
 def _read_sint8_array(file,nb):
     b = file.read(nb)
-    a = struct.unpack(f'{nb}b', b)
+    a = struct.unpack(f'<{nb}b', b)
     return(list(a))
 
 def _read_f64_array(file,nb):
     b = file.read(8*nb)
-    a = struct.unpack(f'{nb}d', b)
+    a = struct.unpack(f'<{nb}d', b)
     return(list(a))
 
 def _read_f32_array(file,nb):
     b = file.read(4*nb)
-    a = struct.unpack(f'{nb}f', b)
+    a = struct.unpack(f'<{nb}f', b)
     return(list(a))
 
 def _read_f16_array(file,nb):
     b = file.read(2*nb)
-    a = struct.unpack(f'{nb}e', b)
+    a = struct.unpack(f'<{nb}e', b)
     return(list(a))
 
 # Class representing an YUV420 unpacked image
@@ -122,7 +122,7 @@ def _read_f16_array(file,nb):
 class YUV420:
     # Create object from the 3 y,u,v planes
     def __init__(self,*l):
-        self._planes = l 
+        self._planes = l
 
     # Create object from a byte stream.
     # The dimension of the bytstream is (h*1.5,w) where
@@ -171,7 +171,7 @@ class YUV420:
 
         return(res)
 
-    
+
 
 # This is the general image type used for the test
 # It can contain a Pillow RGB or GRAY8 image
@@ -228,17 +228,17 @@ class AlgoImage:
 
 
 
-    @property 
+    @property
     def is_image(self):
         return not isinstance(self._img,np.ndarray) and not isinstance(self._img,YUV420)
 
     # Planar images are exported as tensor of int8 for C code
-    @property 
+    @property
     def is_yuv420(self):
         return isinstance(self._img,YUV420)
 
 
-    @property 
+    @property
     def dtype(self):
         if self.is_image:
            if self._img.mode == "RGB":
@@ -268,12 +268,12 @@ class AlgoImage:
                 return AlgoImage.IMG_NUMPY_TYPE_F64
         elif self.is_yuv420:
                 return AlgoImage.IMG_YUV420_TYPE
-            
-    
+
+
         raise NameError(f"Unsupported datatype {self._img}")
 
 
-    @property 
+    @property
     def dim(self):
         t = list(self.tensor.shape)
         r = len(t)
@@ -283,7 +283,7 @@ class AlgoImage:
     def get_size(self):
         return self.tensor.nbytes
 
-    @property 
+    @property
     def tensor(self):
         if self.is_image:
            buf = np.array(self._img)
@@ -296,10 +296,10 @@ class AlgoImage:
     @property
     def img(self):
         return self._img
-    
+
 
     def serialize(self,file):
-        t = self.tensor 
+        t = self.tensor
         if t.dtype == np.uint8:
            return _serialize_u8(file,t)
         if t.dtype == np.uint16:
@@ -323,7 +323,7 @@ class AlgoImage:
 
         raise NameError(f"Unsupported NumPy datatype for serialization {t.dtype}")
 
-   
+
 def unserialize(file,dt,nbbytes,dims):
     a = bytes(_read_uint8_array(file,nbbytes))
     if dt == AlgoImage.IMG_NUMPY_TYPE_UINT8:
@@ -359,10 +359,10 @@ def unserialize(file,dt,nbbytes,dims):
 def _align(file,pos,alignment):
     r = pos % alignment
     if r != 0:
-       r = alignment - r 
+       r = alignment - r
        z = np.zeros(r,dtype=np.uint8)
        #z = np.ones(r,dtype=np.uint8)*255
-       res = struct.pack(f'{len(z)}B', *z)
+       res = struct.pack(f'<{len(z)}B', *z)
        file.write(res)
     return(r)
 
@@ -378,7 +378,7 @@ def serialize_tensors(file,tensors,alignment=8):
     has the knowledge of the shapes and strides.
 
     The format is:
-    Nb of tensors : uint32 
+    Nb of tensors : uint32
     Array of uint32 lengths for each tensor. Length expressed in bytes.
     Array of uint32 shape for each tensor. Shape is 5 word32
       Number of dimensions. The dimensions. Padded with 0 if less than 4 dimensions
@@ -401,11 +401,11 @@ def serialize_tensors(file,tensors,alignment=8):
         dims += x.dim
     dims=np.array(dims,dtype=np.uint32)
     #print(dims)
-    
+
     # Write dimensions of the images
     # 0,0 when it is not an image
     pos += _serialize_u32(file,dims)
-    
+
     # Write datatypes of tensors
     dt=np.array([x.dtype for x in tensors],dtype=np.uint32)
     pos += _serialize_u32(file,dt)
@@ -419,11 +419,11 @@ def serialize_tensors(file,tensors,alignment=8):
     pos += _align(file,pos,alignment)
 
     # Write tensors
-    k = 0 
+    k = 0
     for t in tensors:
-        offsets[k] = pos 
+        offsets[k] = pos
         pos += t.serialize(file)
-        
+
         k = k + 1
         if k != len(tensors):
            pos += _align(file,pos,alignment)
@@ -434,7 +434,7 @@ def serialize_tensors(file,tensors,alignment=8):
 
 def _read_uint32(file):
     b = file.read(4)
-    nb_tensors = struct.unpack(f'L', b)
+    nb_tensors = struct.unpack(f'<L', b)
     return(nb_tensors[0])
 
 
@@ -450,7 +450,7 @@ def read_tensors(file):
     shapes = shapes.reshape(nb,5)
     tensor_dims = [format_shape(s) for s in shapes]
     tensor_dt = _read_uint32_array(file,nb)
-    
+
     #print(nb)
     #print(tensor_sizes)
     #print(tensor_dims)
@@ -466,11 +466,11 @@ def read_tensors(file):
         file.seek(o)
 
         a = unserialize(file,dt,s,dims)
-        
+
         res.append(a)
 
     return(res)
-    
+
 
 if __name__ == "__main__":
     from pathlib import Path

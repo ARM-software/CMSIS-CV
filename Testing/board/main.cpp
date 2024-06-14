@@ -5,7 +5,7 @@
 #if defined(MPS3)
 #include "cmsis_driver_config.h"
 #include "stdout_USART.h"
-#endif 
+#endif
 
 #include <cstdint>
 #include "common.h"
@@ -23,9 +23,9 @@ extern "C" {
 }
 
 void SysTick_Handler(void)  {                               /* SysTick interrupt Handler. */
-  nb_sys_tick_round++;                                                /* See startup file startup_LPC17xx.s for SysTick vector */ 
+  nb_sys_tick_round++;                                                /* See startup file startup_LPC17xx.s for SysTick vector */
 }
-   
+
 
 extern "C" uint32_t SystemCoreClock;
 
@@ -60,10 +60,10 @@ void run_test_group()
     for(int i=0;i<10;i++)
     {
 #if defined (__ICACHE_PRESENT)
-          SCB_InvalidateICache();    
+          SCB_InvalidateICache();
 #endif
 #if defined (__DCACHE_PRESENT)
-          SCB_InvalidateDCache();
+          SCB_CleanInvalidateDCache();
 #endif
         start = time_in_cycles();
         stop = time_in_cycles();
@@ -72,7 +72,7 @@ void run_test_group()
 
     overhead = cycles / 10;
 
-    
+
     for(uint32_t id = 0;id < nb_tests; id++)
     {
       if (enabled[id])
@@ -80,17 +80,17 @@ void run_test_group()
           uint32_t func_id = tests_id[id];
           unsigned char *outputs = nullptr;
           uint32_t total_bytes;
-    
+
           printf("Test %d\r\n",id);
 #if defined (__ICACHE_PRESENT)
-          SCB_InvalidateICache();    
+          SCB_InvalidateICache();
 #endif
 #if defined (__DCACHE_PRESENT)
-          SCB_InvalidateDCache();
+          SCB_CleanInvalidateDCache();
 #endif
           run_test(inputs,id,func_id,outputs,total_bytes,cycles);
           printf("Cycles = %ld\r\n",cycles - overhead);
-   
+
           if (outputs)
           {
 #if !defined(NOOUTPUT)
@@ -99,7 +99,7 @@ void run_test_group()
              save_mem(out.str().c_str(),outputs,total_bytes);
 #endif
              aligned_free((void*)outputs);
-    
+
           }
           else
           {
