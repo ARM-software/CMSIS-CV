@@ -1,0 +1,72 @@
+name: Compile and Run
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions: 
+  actions: read
+  security-events: write
+
+jobs:
+   CI_test_run: 
+    runs-on: ubuntu-latest    
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'    
+
+      - name: Install system packages
+        run: |
+          sudo add-apt-repository ppa:deadsnakes/ppa
+          sudo apt-get install libpython3.9 libtinfo5
+
+      - name: Activate vcpkg
+        uses: ARM-software/cmsis-actions/vcpkg@v1
+
+      - name: Activate Arm tool license
+        uses: ARM-software/cmsis-actions/armlm@v1
+  
+      - name: Prepare framework
+        run: |
+          cd Testing/board
+
+          echo "Install missing python packages"
+          pip install -r requirements.txt
+
+          echo "Generate reference patterns"
+          python runall.py --gen --norun --nobuild
+
+          echo "Load missing pack"
+          csolution list packs -s  cmsiscv.csolution.yml -m > required_packs.txt
+          
+          cat required_packs.txt
+          cpackget add -a -f required_packs.txt
+
+      - name: Execute
+        run: |
+          cd Testing/board
+          echo "Running tests"
+
+          python runall.py -avh $AVH_FVP_PLUGINS/../bin
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: Testing/board/summary.html
+
+      
+      - name: Check error
+        run: |
+          cd Testing/board
+          
+          echo "Checking output..."
+          test "$(grep "Error" summary.html | wc -l)" -eq 0
