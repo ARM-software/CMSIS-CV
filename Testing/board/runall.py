@@ -89,6 +89,7 @@ def getError(l,s):
 def getMessage(l,s):
     return(f"\n[bold cyan]{s}[/bold cyan]")
 
+
 class Result:
     def __init__(self,msg,error=False):
         self._error = error
@@ -275,6 +276,11 @@ if not args.group is None:
 
 # Run the tests and log the result
 # in a summary.html file
+# 
+
+def live_display(live,latest):
+    if not GHACTION:
+        live.update(renderable=gen_table(latest))
 
 MAX_ROWS=4
 latest=[]
@@ -337,25 +343,25 @@ with Live(gen_table([]), refresh_per_second=4) as live:
                                 #live.console.print("Incremental build")
                                 msg += " Incremental build"
                                 latest[-1][-1]=msg
-                                live.update(renderable=gen_table(latest))
+                                live_display(live,latest)
                                 res=run("cbuild","-O" ,"cprj",'cmsiscv.csolution.yml',"--toolchain" ,c,"-c",buildFile,live=live)
                              else:
                                 #live.console.print("Rebuild all (and RTE update)")
                                 msg += " Rebuild all (and RTE update)"
                                 latest[-1][-1]=msg
-                                live.update(renderable=gen_table(latest))
+                                live_display(live,latest)
                                 res=run("cbuild","-O" ,"cprj",'cmsiscv.csolution.yml',"--update-rte","-r","--toolchain" ,c,"-c",buildFile,live=live)
                           else:
                              #live.console.print("Incremental build")
                              msg += " Incremental build"
                              latest[-1][-1]=msg
-                             live.update(renderable=gen_table(latest))
+                             live_display(live,latest)
                              res=run("cbuild","-O" ,"cprj",'cmsiscv.csolution.yml',"--toolchain" ,c,"-c",buildFile,live=live)
                        
                        
                           if res.error:
                               latest[-1][-1]="[red]Error cbuild"
-                              live.update(renderable=gen_table(latest))
+                              live_display(live,latest)
                               #printError(live,"Error cbuild")
                               print(f'<p><font color="red">Error building {testSuite["name"]}</font></p><PRE>',file=f)
                               print(res.msg,file=f)
@@ -363,15 +369,15 @@ with Live(gen_table([]), refresh_per_second=4) as live:
                               continue
                        if not args.norun and (not core is None):
                            latest[-1][-1]="Run AVH"
-                           live.update(renderable=gen_table(latest))
+                           live_display(live,latest)
                            #printSubTitle(live,"Run AVH")
                            clean_old_results()
                            res=runAVH(live,build,core)
                            if res.error:
                                latest[-1][-1]="[red]Error running AVH"
-                               live.update(renderable=gen_table(latest))
+                               live_display(live,latest)
                                #printError(live,"Error running AVH")
-                               print(f'<p><font color="red">Error running {testSuite["name"]} with {avhExe[core]}</font></p><PRE>',file=f)
+                               print(f'<p><font color="red">Error running {testSuite["name"]} with {avhUnixExe[core]}</font></p><PRE>',file=f)
                                print(res.msg,file=f)
                                print("</PRE>",file=f)
                                continue
@@ -380,12 +386,12 @@ with Live(gen_table([]), refresh_per_second=4) as live:
                                if had_error:
                                    ERROR_OCCURED = True
                                    latest[-1][-1]="[red]Failed"
-                                   live.update(renderable=gen_table(latest))
+                                   live_display(live,latest)
                                    continue
                        # In case of no issue, we drop the status
                        # Status table only contain failure
                        latest=latest[:-1]
-                       live.update(renderable=gen_table(latest))
+                       live_display(live,latest)
                        
                    
         print(HTMLFOOTER,file=f)

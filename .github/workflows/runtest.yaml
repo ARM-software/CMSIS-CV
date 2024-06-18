@@ -45,7 +45,7 @@ jobs:
           python runall.py --gen --norun --nobuild
 
           echo "Load missing pack"
-          csolution list packs -s  cmsiscv.csolution -m > required_packs.txt
+          csolution list packs -s  cmsiscv.csolution.yml -m > required_packs.txt
           
           cat required_packs.txt
           cpackget add -f required_packs.txt
