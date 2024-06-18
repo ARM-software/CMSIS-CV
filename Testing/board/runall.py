@@ -5,6 +5,8 @@ import subprocess
 import os 
 import glob
 import sys 
+from os import environ
+
 
 # Description of all configurations compiler / cores are defined
 # in this file
@@ -26,6 +28,11 @@ from pathlib import Path
 Path("references").mkdir(parents=True, exist_ok=True)
 Path("inputs").mkdir(parents=True, exist_ok=True)
 Path("results/img").mkdir(parents=True, exist_ok=True)
+
+GHACTION = False 
+
+if "AVH_FVP_PLUGINS" in os.environ:
+    GHACTION = True
 
 parser = argparse.ArgumentParser(description='Parse test description')
 parser.add_argument('-avh', nargs='?',type = str, default="C:/Keil_v5/ARM/VHT", help="AVH folder")
@@ -140,7 +147,19 @@ configFiles={
 # Windows executable
 # (At some point this script will also support
 # unix)
-avhExe={
+avhUnixExe={
+    "CS310":"FVP_Corstone_SSE-310_Ethos-U65",
+    "CS300":"FVP_Corstone_SSE-300_Ethos-U55",
+    "M55":"FVP_MPS2_Cortex-M55",
+    "M33_DSP_FP":"FVP_MPS2_Cortex-M33",
+    "M7DP":"FVP_MPS2_Cortex-M7",
+    "M4FP":"FVP_MPS2_Cortex-M4",
+    "M3":"FVP_MPS2_Cortex-M3",
+    "M23":"FVP_MPS2_Cortex-M23",
+    "M0plus":"FVP_MPS2_Cortex-M0plus",
+}
+
+avhWindowsExe={
     "CS310":"VHT_Corstone_SSE-310.exe",
     "CS300":"VHT_Corstone_SSE-300_Ethos-U55.exe",
     "M55":"VHT_MPS2_Cortex-M55.exe",
@@ -164,7 +183,18 @@ def runAVH(live,build,core):
     if os.path.exists(elf):
         app = elf
     config = os.path.join("fvp_configs",configFiles[core])
-    avh = os.path.join(AVHROOT,avhExe[core])
+
+    if AVHROOT:
+       avhAttempt = os.path.join(AVHROOT,avhWindowsExe[core])
+       if os.path.exists(avhAttempt):
+          avh = avhAttempt
+   
+       avhAttempt = os.path.join(AVHROOT,avhUnixExe[core])
+       if os.path.exists(avhAttempt):
+          avh = avhAttempt
+    else:
+       avh = avhUnixExe[core]
+
     res=run(avh,"-f",config,app,live=live)
     return(res)
    
@@ -363,10 +393,14 @@ with Live(gen_table([]), refresh_per_second=4) as live:
 # Refresh cursor
 oldprint('\033[?25h', end="")
 
-if ERROR_OCCURED:
-    sys.exit("Error occurred")
-else:
-    sys.exit(0)
+# When github action, error is tested by greping the summary html
+# like that the github action is not interrupted before uploading the
+# test report as an artifact.
+if not GHACTION:
+   if ERROR_OCCURED:
+       sys.exit("Error occurred")
+   else:
+       sys.exit(0)
 
 
 
