@@ -35,26 +35,30 @@
 extern "C"
 {
 #endif
+/**
+ * @brief      Function returning the scratch size for canny sobel
+ *
+ * @param[in]     imageIn         The input image
+ * @return		  Scratch size in bytes
+ *
+ */
+uint16_t arm_cv_get_scratch_size_canny_sobel(int width);
 
 /**
  * @brief      Canny edge with sobel integrated
  *
- * @param[in]     ImageIn         The input image
- * @param[out]    ImageOut        The output image
- * @param[in,out] Img_tmp_grad1   Temporary buffer gradient 1
- * @param[in,out] Img_tmp_mag     Temporary magnitude buffer
- * @param[in,out] Img_tmp_grad2   Temporary buffer gradient 2
- * @param[in]     low_threshold   The low threshold
- * @param[in]     high_threshold  The high threshold
+ * @param[in]     imageIn         The input image
+ * @param[out]    imageOut        The output image
+ * @param[in,out] scratch   Temporary buffer 
+ * @param[in]     lowThreshold   The low threshold
+ * @param[in]     highThreshold  The high threshold
  *
  */
-extern void arm_canny_edge_sobel_fixp(const arm_cv_image_gray8_t* ImageIn, 
+extern void arm_cv_canny_edge_sobel(const arm_cv_image_gray8_t* ImageIn, 
                                             arm_cv_image_gray8_t* ImageOut, 
-                                            arm_cv_image_gradient_q15_t* Img_tmp_grad1, 
-                                            arm_cv_image_q15_t* Img_tmp_mag, 
-                                            arm_cv_image_gradient_q15_t* Img_tmp_grad2,
-                                            int low_threshold,
-                                            int high_threshold);
+                                            q15_t* Buffer,
+                                            uint8_t low_threshold,
+                                            uint8_t high_threshold);
 
 #ifdef   __cplusplus
 }

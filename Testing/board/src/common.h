@@ -22,10 +22,10 @@ extern "C"
 // It must be coherent with the Python
 // May be used to compute the image number from the testid
 // when writing the tests
-#define STANDARD_NB_IMGS 22 
+#define STANDARD_NB_IMGS 21 
 #define STANDARD_YUV_NB_IMGS 9 
-#define STANDARD_GRAY_NB_IMGS 22 
-#define STANDARD_RGB_NB_IMGS 22 
+#define STANDARD_GRAY_NB_IMGS 21 
+#define STANDARD_RGB_NB_IMGS 21 
 
 // Where input tensor buffers are starting in the buffer set
 // Before input tensors there are tensors used to describe

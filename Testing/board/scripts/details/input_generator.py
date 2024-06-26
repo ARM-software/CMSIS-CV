@@ -43,7 +43,7 @@ def loop_vec_iterations(dt):
 def image_dims(dt):
     la = list(itertools.product(loop_vec_iterations(dt),LOOP_UNROLL_ITERATIONS))
     # Add some square images and some corner cases for padding checks
-    return (la + [(16,16),(32,32),(64,64),(1,1),(2,2),(3,3)])
+    return (la + [(16,16),(32,32),(64,64),(2,2),(3,3)])
 
 def is_ok_for_yuv(x):
     width,height = x

@@ -25,6 +25,7 @@ project:
         - file: tests/test_group0.cpp
         - file: tests/test_group1.cpp
         - file: tests/test_group2.cpp
+        - file: tests/test_group3.cpp
         - file: tests/test_dev.cpp
         - file: clang_sse300.c
           for-context: 

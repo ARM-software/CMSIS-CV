@@ -8,85 +8,85 @@ import scripts.export
 from scripts.export import YUV420,AlgoImage,serialize_tensors,read_tensors
 from scripts.details.input_generator import *
 
-#with open("results/output_0.dat","rb") as f:
-#     t = read_tensors(f)
-#alg = t[0].tensor
-#print(alg)
-
-output = AlgoImage.open("results/img/AC6/VHT-Corstone-300/dev/test_0_img_0.npy").tensor
-
-#print(output)
-#exit(0)
-
-ref = AlgoImage.open("references/dev/test_0_img_0.npy").tensor
-
-
-input = AlgoImage.open("inputs/dev/img_0.npy").tensor
-
-
+##with open("results/output_0.dat","rb") as f:
+##     t = read_tensors(f)
+##alg = t[0].tensor
+##print(alg)
+#
+#output = AlgoImage.open("results/img/AC6/VHT-Corstone-300/dev/test_0_img_0.npy").tensor
+#
+##print(output)
+##exit(0)
+#
+#ref = AlgoImage.open("references/dev/test_0_img_0.npy").tensor
+#
+#
+#input = AlgoImage.open("inputs/dev/img_0.npy").tensor
+#
+#
+##print(ref.shape)
+##img = PIL.Image.fromarray(ref).convert('L')
+##img.show()
+##
+##print(input.shape)
+##img = PIL.Image.fromarray(input).convert('L')
+##img.show()
+##
+#
+#def Himax_resize(input,output_w,output_h):
+#    tmp = np.zeros((2,output_w),dtype=np.uint8)
+#    result = np.zeros((output_h,output_w),dtype=np.uint8)
+#    input_h,input_w = input.shape 
+#    w_scale = (input_w - 1) / (output_w - 1)
+#    h_scale = (input_h - 1) / (output_h - 1)
+#
+#
+#    # DEBUG
+#    dy,iy = np.modf(h_scale*np.array(range(output_h),dtype=np.float32))
+#    iy = iy.astype(dtype=np.int32)
+#    pre_iy = np.hstack((-1,iy))
+#    #print(dy)
+#    #exit(0)
+#
+#
+#    dx,ix=np.modf(w_scale*np.array(range(output_w),dtype=np.float32))
+#    ix = ix.astype(dtype=np.int32)
+#
+#    for row in range(output_h-1):
+#        if iy[row] != pre_iy[row-1]:
+#           tmp[:,0:output_w-1] = ((1-dx[:-1])*input[iy[row]:iy[row]+2,ix[:-1]] + dx[:-1] * input[iy[row]:iy[row]+2,ix[:-1]+1] + 0.5)
+#           tmp[:,output_w-1] = input[iy[row]:iy[row]+2,input_w-1]
+#
+#        result[row,:] = np.floor(((1-dy[row])*tmp[0,:]).astype(np.uint8) + dy[row]*tmp[1,:] + np.float32(0.5))
+#
+#
+#    row = output_h - 1
+#
+#    if iy[row] != pre_iy[row-1]:
+#           tmp[0,0:output_w-1] = ((1-dx[:-1])*input[iy[row],ix[:-1]] + dx[:-1] * input[iy[row],ix[:-1]+1] + 0.5)
+#           tmp[0,output_w-1] = input[iy[row],input_w-1]
+#
+#    result[row,:] = ((1-dy[row])*tmp[0,:] + np.float32(0.5))
+#
+#
+#    return(result)
+#
+#
+#print(output.shape)
 #print(ref.shape)
-#img = PIL.Image.fromarray(ref).convert('L')
+#print(input[0].shape)
+##print(ref[0])
+##result=Himax_resize(input[0],32,16)
+##print(result[0])
+##
+#img = PIL.Image.fromarray(output[0]).convert('L')
 #img.show()
 #
-#print(input.shape)
-#img = PIL.Image.fromarray(input).convert('L')
-#img.show()
+#exit(0)
 #
-
-def Himax_resize(input,output_w,output_h):
-    tmp = np.zeros((2,output_w),dtype=np.uint8)
-    result = np.zeros((output_h,output_w),dtype=np.uint8)
-    input_h,input_w = input.shape 
-    w_scale = (input_w - 1) / (output_w - 1)
-    h_scale = (input_h - 1) / (output_h - 1)
-
-
-    # DEBUG
-    dy,iy = np.modf(h_scale*np.array(range(output_h),dtype=np.float32))
-    iy = iy.astype(dtype=np.int32)
-    pre_iy = np.hstack((-1,iy))
-    #print(dy)
-    #exit(0)
-
-
-    dx,ix=np.modf(w_scale*np.array(range(output_w),dtype=np.float32))
-    ix = ix.astype(dtype=np.int32)
-
-    for row in range(output_h-1):
-        if iy[row] != pre_iy[row-1]:
-           tmp[:,0:output_w-1] = ((1-dx[:-1])*input[iy[row]:iy[row]+2,ix[:-1]] + dx[:-1] * input[iy[row]:iy[row]+2,ix[:-1]+1] + 0.5)
-           tmp[:,output_w-1] = input[iy[row]:iy[row]+2,input_w-1]
-
-        result[row,:] = np.floor(((1-dy[row])*tmp[0,:]).astype(np.uint8) + dy[row]*tmp[1,:] + np.float32(0.5))
-
-
-    row = output_h - 1
-
-    if iy[row] != pre_iy[row-1]:
-           tmp[0,0:output_w-1] = ((1-dx[:-1])*input[iy[row],ix[:-1]] + dx[:-1] * input[iy[row],ix[:-1]+1] + 0.5)
-           tmp[0,output_w-1] = input[iy[row],input_w-1]
-
-    result[row,:] = ((1-dy[row])*tmp[0,:] + np.float32(0.5))
-
-
-    return(result)
-
-
-print(output.shape)
-print(ref.shape)
-print(input[0].shape)
-#print(ref[0])
-#result=Himax_resize(input[0],32,16)
-#print(result[0])
+#err = np.abs(ref.astype(float)-output.astype(float))
 #
-img = PIL.Image.fromarray(output[0]).convert('L')
-img.show()
-
-exit(0)
-
-err = np.abs(ref.astype(float)-output.astype(float))
-
-err[np.abs(err) < 1] = 0
+#err[np.abs(err) < 1] = 0
 
 #print(err)
 
@@ -188,3 +188,48 @@ err[np.abs(err) < 1] = 0
 
 #gray = cv.cvtColor(rgb, cv.COLOR_RGB2GRAY)
 #print(gray)
+
+
+input =   AlgoImage.open("inputs/dev/img_0.tiff").tensor
+ref = AlgoImage.open("references/dev/test_0_img_0.tiff").tensor
+refauto = AlgoImage.open("RefPatterns/test_2_img_0.tiff").tensor
+out2 = AlgoImage.open("results/img/AC6/VHT-M7/group_3/test_2_img_0.tiff").tensor 
+out = AlgoImage.open("results/img/AC6/VHT-Corstone-300/group_3/test_2_img_0.tiff").tensor
+mv = AlgoImage.open("references/dev/output.tif").tensor
+# 
+#print(ref-out)
+# 
+#print("out", out[0,0])
+#print("ref", ref[0,0])
+c = 0
+t = np.array([])
+ref = ref.astype(dtype=np.int16)
+out = out.astype(dtype=np.int16)
+diff = np.array(abs(refauto-out))
+#for i in range(0, 512):
+#    for j in range(0, 512):
+#        if(abs(ref[i,j]- out[i,j]) >1):
+#            if(c == 0):
+#                print(i,j)
+#            c+=1
+#            np.append(t,abs(ref[i,j]- out[i,j]))
+img = PIL.Image.fromarray(diff)
+img.show()
+#def custom_filter(image):
+#    return((image[0]+(image[1])*2+image[2]+(image[3])*2+(image[4])*4+(image[5])*2+image[6]+(image[7])*2+image[8])/16)
+##footprint = np.ones((3,3))
+#blur = scipy.ndimage.generic_filter(input,custom_filter, [3,3],mode='reflect')
+##blur = scipy.ndimage.gaussian_filter(input, 0)
+#print(c)
+#print(t)
+#c=0
+#t2=[]
+#for i in range(0, 64):
+#    for j in range(0, 64):
+#        if(abs(blur[i,j]- out[i,j]) >1):
+#            if(c == 0):
+#                print(i,j)
+#            c+=1
+#            t2.append((blur[i,j]- out[i,j]))
+#print(c)
+#print(t2)

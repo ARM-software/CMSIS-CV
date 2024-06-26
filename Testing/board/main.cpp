@@ -99,7 +99,6 @@ void run_test_group()
              save_mem(out.str().c_str(),outputs,total_bytes);
 #endif
              aligned_free((void*)outputs);
-
           }
           else
           {
