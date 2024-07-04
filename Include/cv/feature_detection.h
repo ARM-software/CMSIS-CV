@@ -42,7 +42,7 @@ extern "C"
  * @return		  Scratch size in bytes
  *
  */
-uint16_t arm_cv_get_scratch_size_canny_sobel(int width);
+extern uint16_t arm_cv_get_scratch_size_canny_sobel(int width);
 
 /**
  * @brief      Canny edge with sobel integrated
@@ -54,11 +54,11 @@ uint16_t arm_cv_get_scratch_size_canny_sobel(int width);
  * @param[in]     highThreshold  The high threshold
  *
  */
-extern void arm_cv_canny_edge_sobel(const arm_cv_image_gray8_t* ImageIn, 
-                                            arm_cv_image_gray8_t* ImageOut, 
-                                            q15_t* Buffer,
-                                            uint8_t low_threshold,
-                                            uint8_t high_threshold);
+extern void arm_cv_canny_edge_sobel(const arm_cv_image_gray8_t* imageIn, 
+                                            arm_cv_image_gray8_t* imageOut, 
+                                            q15_t* scratch,
+                                            uint8_t lowThreshold,
+                                            uint8_t highThreshold);
 
 #ifdef   __cplusplus
 }

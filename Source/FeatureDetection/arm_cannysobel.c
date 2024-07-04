@@ -24,7 +24,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 #include "cv/feature_detection.h"
 #include "dsp/basic_math_functions.h"
 #include "dsp/fast_math_functions.h"
@@ -112,7 +111,7 @@ The different values of x are angle dependent see helper below, and relative to 
     }                                                                                                                  \
     continue;
 
-//Helpers for different decision
+// Helpers for different decision
 #define VERTICAL_CASE(threshold, width, datain, dataout, idx, mag, col, row)                                           \
     DECISION(2, 2, 3, 3, 3, 1, 1, 1, 1, threshold, width, datain, dataout, idx, mag, col, row)
 #define DIAGONAL_45_CASE(threshold, width, datain, dataout, idx, mag, col, row)                                        \
@@ -187,7 +186,7 @@ The different values of x are angle dependent see helper below, and relative to 
  */
 uint16_t arm_cv_get_scratch_size_canny_sobel(int width)
 {
-    return ((NB_LINE_BUF + 2*NB_LINE_BUF + 2*NB_LINE_BUF) * width * sizeof(q15_t));
+    return ((NB_LINE_BUF + 2 * NB_LINE_BUF + 2 * NB_LINE_BUF) * width * sizeof(q15_t));
 }
 
 #if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
@@ -366,6 +365,7 @@ static void arm_cv_compute_buffer_line_canny_sobel(const arm_cv_image_gray8_t *i
     uint8_t *data_in = imageIn->pData;
     uint8_t *data_out = imageOut->pData;
 
+    grad2[xm * width].x = 0;
     grad2[xm * width].y =
         Q5_10_TO_Q15((data_in[(rowIdx - 1) * width] + (data_in[rowIdx * width] << 1) + data_in[(rowIdx + 1) * width]));
     data_out[(rowIdx - 1) * width] = 0;
@@ -378,7 +378,6 @@ static void arm_cv_compute_buffer_line_canny_sobel(const arm_cv_image_gray8_t *i
         grad2[xm * width + y].x =
             Q5_10_TO_Q15(data_in[rowIdx * width + (y - 1)] + (data_in[rowIdx * width + (y)] << 1) +
                          data_in[rowIdx * width + (y + 1)]);
-
         q15_t gradx = grad2[((rowIdx - 2) % NB_LINE_BUF) * width + y].x - grad2[(xm)*width + y].x;
         q15_t grady = grad2[((rowIdx - 1) % NB_LINE_BUF) * width + (y - 1)].y -
                       grad2[((rowIdx - 1) % NB_LINE_BUF) * width + (y + 1)].y;
@@ -401,6 +400,7 @@ static void arm_cv_compute_buffer_line_canny_sobel(const arm_cv_image_gray8_t *i
         grad1[(rowIdx - 1) % NB_LINE_BUF * width + y].x = gradx;
         magOut[(rowIdx - 1) % NB_LINE_BUF * width + y] = (q15_t)out;
     }
+    grad2[xm * width].x = 0;
     grad2[xm * width + width - 1].y =
         Q5_10_TO_Q15(data_in[(rowIdx - 1) * width + width - 1] + (data_in[rowIdx * width + width - 1] << 1) +
                      data_in[(rowIdx + 1) * width + width - 1]);
@@ -422,9 +422,9 @@ static void arm_cv_compute_buffer_line_canny_sobel(const arm_cv_image_gray8_t *i
  *
  * @par  Temporary buffer sizing:
  *
- * Will use a temporary buffer to store intermediate values of gradient and magnitude. 
- * 
- * Size of temporary buffer is given by 
+ * Will use a temporary buffer to store intermediate values of gradient and magnitude.
+ *
+ * Size of temporary buffer is given by
  * arm_cv_get_scratch_size_canny_sobel(int width)
  */
 #if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
@@ -502,7 +502,8 @@ void arm_cv_canny_edge_sobel(const arm_cv_image_gray8_t *imageIn, arm_cv_image_g
     x = 1;
     data_grad2[x * width].x = 0;
     data_out[x * width] = 0;
-    data_grad2[x * width].y = (data_in[(x - 1) * width] + (data_in[x * width] << 1) + data_in[(x + 1) * width]) << 5;
+    data_grad2[x * width].y =
+        Q5_10_TO_Q15(data_in[(x - 1) * width] + (data_in[x * width] << 1) + data_in[(x + 1) * width]);
     for (int y = 1; y < ((width) >> 4) + 1; y++)
     {
         int idx = width + ((y - 1) << 4) + 1;
@@ -691,9 +692,9 @@ void arm_cv_canny_edge_sobel(const arm_cv_image_gray8_t *imageIn, arm_cv_image_g
     q31_t low_threshold = U8_TO_Q2_13(lowThreshold);
     q31_t high_threshold = U8_TO_Q2_13(highThreshold);
 
-    arm_cv_gradient_q15_t *data_grad2 = (arm_cv_gradient_q15_t *)&scratch[NB_LINE_BUF * width];
-    q15_t *data_mag = scratch;
     arm_cv_gradient_q15_t *data_grad1 = (arm_cv_gradient_q15_t *)&scratch[3 * NB_LINE_BUF * width];
+	arm_cv_gradient_q15_t *data_grad2 = (arm_cv_gradient_q15_t *)&scratch[NB_LINE_BUF * width];
+    q15_t *data_mag = scratch;
     uint8_t *data_in = imageIn->pData;
     uint8_t *data_out = imageOut->pData;
     int x = 0;
@@ -713,7 +714,8 @@ void arm_cv_canny_edge_sobel(const arm_cv_image_gray8_t *imageIn, arm_cv_image_g
     }
     data_out[x * width + width - 1] = 0;
     x = 1;
-    data_grad2[x * width].y = (data_in[(x - 1) * width] + (data_in[x * width] << 1) + data_in[(x + 1) * width]);
+    data_grad2[x * width].y =
+        Q5_10_TO_Q15(data_in[(x - 1) * width] + (data_in[x * width] << 1) + data_in[(x + 1) * width]);
     data_out[x * width] = 0;
     for (int y = 1; y < width - 1; y++)
     {
@@ -755,7 +757,7 @@ void arm_cv_canny_edge_sobel(const arm_cv_image_gray8_t *imageIn, arm_cv_image_g
     }
     // last line
     x = imageIn->height;
-    data_out[x * width] = 0;
+    data_out[(x - 1) * width] = 0;
     for (int y = 1; y < width - 1; y++)
     {
         int idx = (x - 2) * width + y;
@@ -780,6 +782,6 @@ void arm_cv_canny_edge_sobel(const arm_cv_image_gray8_t *imageIn, arm_cv_image_g
             THRESHOLDING_HYSTERESIS_BOTTOM_BORDER(angle, high_threshold, width, data_mag, data_out, idx, mag, x, y)
         }
     }
-    data_out[x * width + width - 1] = 0;
+    data_out[(x - 1) * width + width - 1] = 0;
 }
 #endif
