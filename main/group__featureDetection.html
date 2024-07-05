@@ -136,59 +136,50 @@ $(document).ready(function(){initNavTree('group__featureDetection.html',''); ini
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga8d2fb9b903e7cabd25cd773c585f4792"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__featureDetection.html#ga8d2fb9b903e7cabd25cd773c585f4792">arm_canny_edge_sobel_fixp</a> (const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *ImageIn, <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *ImageOut, <a class="el" href="structarm__cv__image__gradient__q15__t.html">arm_cv_image_gradient_q15_t</a> *Img_tmp_grad1, <a class="el" href="structarm__cv__image__q15__t.html">arm_cv_image_q15_t</a> *Img_tmp_mag, <a class="el" href="structarm__cv__image__gradient__q15__t.html">arm_cv_image_gradient_q15_t</a> *Img_tmp_grad2, int low_threshold, int high_threshold)</td></tr>
-<tr class="memdesc:ga8d2fb9b903e7cabd25cd773c585f4792"><td class="mdescLeft">&#160;</td><td class="mdescRight">Canny edge with sobel integrated.  <br /></td></tr>
-<tr class="separator:ga8d2fb9b903e7cabd25cd773c585f4792"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9601fd4d084cb3b57f0611bf5363ef42"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__featureDetection.html#ga9601fd4d084cb3b57f0611bf5363ef42">arm_cv_get_scratch_size_canny_sobel</a> (int width)</td></tr>
+<tr class="memdesc:ga9601fd4d084cb3b57f0611bf5363ef42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the scratch size for canny_sobel function.  <br /></td></tr>
+<tr class="separator:ga9601fd4d084cb3b57f0611bf5363ef42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga77a8e8f001c339142012abbc380b323d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__featureDetection.html#ga77a8e8f001c339142012abbc380b323d">arm_cv_canny_edge_sobel</a> (const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *imageIn, <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *imageOut, q15_t *scratch, uint8_t lowThreshold, uint8_t highThreshold)</td></tr>
+<tr class="memdesc:ga77a8e8f001c339142012abbc380b323d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Canny edge with sobel integrated.  <br /></td></tr>
+<tr class="separator:ga77a8e8f001c339142012abbc380b323d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga8d2fb9b903e7cabd25cd773c585f4792" name="ga8d2fb9b903e7cabd25cd773c585f4792"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8d2fb9b903e7cabd25cd773c585f4792">&#9670;&#160;</a></span>arm_canny_edge_sobel_fixp()</h2>
+<a id="ga77a8e8f001c339142012abbc380b323d" name="ga77a8e8f001c339142012abbc380b323d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga77a8e8f001c339142012abbc380b323d">&#9670;&#160;</a></span>arm_cv_canny_edge_sobel()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void arm_canny_edge_sobel_fixp </td>
+          <td class="memname">void arm_cv_canny_edge_sobel </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *&#160;</td>
-          <td class="paramname"><em>ImageIn</em>, </td>
+          <td class="paramname"><em>imageIn</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *&#160;</td>
-          <td class="paramname"><em>ImageOut</em>, </td>
+          <td class="paramname"><em>imageOut</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structarm__cv__image__gradient__q15__t.html">arm_cv_image_gradient_q15_t</a> *&#160;</td>
-          <td class="paramname"><em>Img_tmp_grad1</em>, </td>
+          <td class="paramtype">q15_t *&#160;</td>
+          <td class="paramname"><em>scratch</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structarm__cv__image__q15__t.html">arm_cv_image_q15_t</a> *&#160;</td>
-          <td class="paramname"><em>Img_tmp_mag</em>, </td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>lowThreshold</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structarm__cv__image__gradient__q15__t.html">arm_cv_image_gradient_q15_t</a> *&#160;</td>
-          <td class="paramname"><em>Img_tmp_grad2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>low_threshold</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>high_threshold</em>&#160;</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>highThreshold</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -201,25 +192,44 @@ Functions</h2></td></tr>
 <p>Canny edge with sobel integrated. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">ImageIn</td><td>The input image </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">ImageOut</td><td>The output image </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">Img_tmp_grad1</td><td>Temporary buffer gradient 1 </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">Img_tmp_mag</td><td>Temporary magnitude buffer </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">Img_tmp_grad2</td><td>Temporary buffer gradient 2 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">low_threshold</td><td>The low threshold </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">high_threshold</td><td>The high threshold</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">imageIn</td><td>The input image </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">imageOut</td><td>The output image </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">scratch</td><td>Temporary buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lowThreshold</td><td>The low threshold </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">highThreshold</td><td>The high threshold</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section user"><dt>Temporary buffer sizing:</dt><dd></dd></dl>
-<p>Size of temporary buffers:</p><ul>
-<li>Img_tmp_grad1<br  />
- 3*w*sizeof(<a class="el" href="structarm__cv__gradient__q15__t.html" title="Gradient in q15.">arm_cv_gradient_q15_t</a>) where w is the input image width</li>
-<li>Img_tmp_mag<br  />
- 3*w*sizeof(q15_t)</li>
-<li>Img_tmp_grad2<br  />
- 3*w*sizeof(<a class="el" href="structarm__cv__gradient__q15__t.html" title="Gradient in q15.">arm_cv_gradient_q15_t</a>) </li>
-</ul>
+<p>Will use a temporary buffer to store intermediate values of gradient and magnitude.</p>
+<p>Size of temporary buffer is given by <a class="el" href="group__featureDetection.html#ga9601fd4d084cb3b57f0611bf5363ef42" title="Return the scratch size for canny_sobel function.">arm_cv_get_scratch_size_canny_sobel(int width)</a> </p>
+
+</div>
+</div>
+<a id="ga9601fd4d084cb3b57f0611bf5363ef42" name="ga9601fd4d084cb3b57f0611bf5363ef42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9601fd4d084cb3b57f0611bf5363ef42">&#9670;&#160;</a></span>arm_cv_get_scratch_size_canny_sobel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t arm_cv_get_scratch_size_canny_sobel </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the scratch size for canny_sobel function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>The width of the image </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Scratch size in bytes </dd></dl>
 
 </div>
 </div>
