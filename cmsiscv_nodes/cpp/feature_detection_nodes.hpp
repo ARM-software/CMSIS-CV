@@ -23,6 +23,7 @@ public:
             
             cannyBuffer = (q15_t*)CG_MALLOC(arm_cv_get_scratch_size_canny_sobel(src.width()));
 
+            mInitErrorOccured = false;
             if (cannyBuffer == nullptr)
             {
                 mInitErrorOccured = true;
