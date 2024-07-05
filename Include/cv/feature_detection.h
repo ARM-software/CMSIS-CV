@@ -36,11 +36,10 @@ extern "C"
 {
 #endif
 /**
- * @brief      Function returning the scratch size for canny sobel
+ * @brief      Return the scratch size for canny_sobel function
  *
- * @param[in]     imageIn         The input image
+ * @param[in]     width         The width of the image
  * @return		  Scratch size in bytes
- *
  */
 extern uint16_t arm_cv_get_scratch_size_canny_sobel(int width);
 
@@ -49,10 +48,16 @@ extern uint16_t arm_cv_get_scratch_size_canny_sobel(int width);
  *
  * @param[in]     imageIn         The input image
  * @param[out]    imageOut        The output image
- * @param[in,out] scratch   Temporary buffer 
+ * @param[in,out] scratch   Temporary buffer
  * @param[in]     lowThreshold   The low threshold
  * @param[in]     highThreshold  The high threshold
  *
+ * @par  Temporary buffer sizing:
+ *
+ * Will use a temporary buffer to store intermediate values of gradient and magnitude.
+ *
+ * Size of temporary buffer is given by
+ * arm_cv_get_scratch_size_canny_sobel(int width)
  */
 extern void arm_cv_canny_edge_sobel(const arm_cv_image_gray8_t* imageIn, 
                                             arm_cv_image_gray8_t* imageOut, 
