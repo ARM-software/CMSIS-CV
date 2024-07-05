@@ -106,6 +106,76 @@ allSuites = [
           ]
         
     },
+    {
+        "name" : "Feature Detection",
+        "define": "TESTGROUP3",
+        "inputs": [ImageGen(STANDARD_IMG_SIZES,
+                   format=Format.GRAY8,
+                   path="Patterns/Mandrill.tiff"),
+                   ImageGen([(512,512)],
+                   format=Format.GRAY8,
+                   path="Patterns/Ruler.tiff"),
+                   ImageGen([(64,64)],
+                   format=Format.GRAY8,
+                   path="Patterns/Mandrill.tiff"),
+                   ImageGen([(500,500)],
+                   format=Format.GRAY8,
+                   path="Patterns/Peppers.tiff"),
+                   ImageGen([(250,250)],
+                   format=Format.GRAY8,
+                   path="Patterns/House2.tiff"),
+                   ImageGen([(200,200)],
+                   format=Format.GRAY8,
+                   path="Patterns/House.tiff"),
+                   ImageGen(STANDARD_IMG_SIZES,
+                   format=Format.GRAY8,
+                   path="Patterns/Girl3.tiff"),
+                   ImageGen(STANDARD_IMG_SIZES,
+                   format=Format.GRAY8,
+                   path="Patterns/Gray21.tiff"),
+                   ImageGen(STANDARD_IMG_SIZES,
+                   format=Format.GRAY8,
+                   path="Patterns/House.tiff"),
+                   ImageGen(STANDARD_IMG_SIZES,
+                   format=Format.GRAY8,
+                   path="Patterns/House2.tiff"),
+                   ImageGen(STANDARD_IMG_SIZES,
+                   format=Format.GRAY8,
+                   path="Patterns/JellyBeans.tiff"),
+                   ImageGen(STANDARD_IMG_SIZES,
+                   format=Format.GRAY8,
+                   path="Patterns/JellyBeans2.tiff"),
+                   ImageGen(STANDARD_IMG_SIZES,
+                   format=Format.GRAY8,
+                   path="Patterns/Moon.tiff"),
+                   ImageGen(STANDARD_IMG_SIZES,
+                   format=Format.GRAY8,
+                   path="Patterns/Peppers.tiff"),
+                   ImageGen(STANDARD_IMG_SIZES,
+                   format=Format.GRAY8,
+                   path="Patterns/ResolutionChart.tiff"),
+                   ImageGen(STANDARD_IMG_SIZES,
+                   format=Format.GRAY8,
+                   path="Patterns/Ruler.tiff"),
+                   ],
+        "tests":
+          [canny_sobel_test_autoref(imgid, imgdim) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]+
+           [canny_sobel_test_autoref(0+len(STANDARD_IMG_SIZES), [512,512])]+
+           [canny_sobel_test_autoref(1+len(STANDARD_IMG_SIZES), [64,64])]+
+           [canny_sobel_test_autoref(2+len(STANDARD_IMG_SIZES), [500,500])]+
+           [canny_sobel_test_autoref(3+len(STANDARD_IMG_SIZES), [250,250])]+
+           [canny_sobel_test_autoref(4+len(STANDARD_IMG_SIZES), [200,200])]+
+           [canny_sobel_test_autoref(imgid+5+len(STANDARD_IMG_SIZES), imgdim) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]+
+           [canny_sobel_test_autoref(imgid+5+2*len(STANDARD_IMG_SIZES), imgdim) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]+
+           [canny_sobel_test_autoref(imgid+5+3*len(STANDARD_IMG_SIZES), imgdim) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]+
+           [canny_sobel_test_autoref(imgid+5+4*len(STANDARD_IMG_SIZES), imgdim) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]+
+           [canny_sobel_test_autoref(imgid+5+5*len(STANDARD_IMG_SIZES), imgdim) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]+
+           [canny_sobel_test_autoref(imgid+5+6*len(STANDARD_IMG_SIZES), imgdim) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]+
+           [canny_sobel_test_autoref(imgid+5+7*len(STANDARD_IMG_SIZES), imgdim) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]+
+           [canny_sobel_test_autoref(imgid+5+8*len(STANDARD_IMG_SIZES), imgdim) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]+
+           [canny_sobel_test_autoref(imgid+5+9*len(STANDARD_IMG_SIZES), imgdim) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]+
+           [canny_sobel_test_autoref(imgid+5+10*len(STANDARD_IMG_SIZES), imgdim) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]
+    },
 ]
 
 #print(allSuites[1]["tests"][78])
@@ -115,13 +185,9 @@ allSuites = [
 # If more than one image is passed, they are assumed to be all input of the test
 # But generally the test will use only one input image
 devTest = {
-        "inputs": [ImageGen([(128,128)],
-                   format=Format.BGR8U3C,
-                   path="Patterns/JellyBeans.tiff")],
-        #"inputs": [UniformColorImageGen([(128,128)],
-        #           rgb_color=(50,100,200),
-        #           format=Format.BGR8U3C)],
-        #
-        "reference": HimaxResizeBGR_8U3C(32,16),
+        "inputs": [ImageGen([(15,3)],
+                   format=Format.GRAY8,
+                   path="Patterns/Mandrill.tiff")],
+        "reference": CannyEdgeAutoRef(),
         "check" : SimilarTensorFixp(1)
 }

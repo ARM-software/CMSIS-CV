@@ -20,28 +20,10 @@ public:
                 uint32_t *params):
     GenericNode<int8_t,inputSize,int8_t,outputSize>(src,dst),
     mParams(params){
-            mInitErrorOccured = false;
-            img_tmp_grad1.height=3;
-            img_tmp_grad1.width=src.width();
-            img_tmp_grad1.pData = (arm_cv_gradient_q15_t*) CG_MALLOC(3*src.width()*sizeof(arm_cv_gradient_q15_t));
-            if (img_tmp_grad1.pData == nullptr)
-            {
-                mInitErrorOccured = true;
-            }
+            
+            cannyBuffer = (q15_t*)CG_MALLOC(arm_cv_get_scratch_size_canny_sobel(src.width()));
 
-            img_tmp_grad2.height=3;
-            img_tmp_grad2.width=src.width();
-            img_tmp_grad2.pData = (arm_cv_gradient_q15_t*)CG_MALLOC(3*src.width()*sizeof(arm_cv_gradient_q15_t));
-            if (img_tmp_grad2.pData == nullptr)
-            {
-                mInitErrorOccured = true;
-            }
-
-            img_tmp.height=3;
-            img_tmp.width=src.width();
-            img_tmp.pData = (q15_t*)CG_MALLOC(3*src.width()*sizeof(q15_t));
-
-            if (img_tmp.pData == nullptr)
+            if (cannyBuffer == nullptr)
             {
                 mInitErrorOccured = true;
             }
@@ -49,9 +31,7 @@ public:
 
     ~CannyEdge()
     {
-       CG_FREE(img_tmp_grad1.pData);
-       CG_FREE(img_tmp_grad2.pData);
-       CG_FREE(img_tmp.pData);
+       CG_FREE(cannyBuffer);
     }
 
     /* In asynchronous mode, node execution will be 
@@ -104,11 +84,9 @@ public:
            low = mParams[0];
            high = mParams[1];
         }
-        arm_canny_edge_sobel_fixp(&input, 
+        arm_cv_canny_edge_sobel(&input, 
                                   &output, 
-                                  &img_tmp_grad1, 
-                                  &img_tmp, 
-                                  &img_tmp_grad2,
+                                  cannyBuffer,
                                   low, 
                                   high);
        
@@ -116,9 +94,7 @@ public:
         return(0);
     };
 protected:
-    arm_cv_image_gradient_q15_t img_tmp_grad1;
-    arm_cv_image_gradient_q15_t img_tmp_grad2;
-    arm_cv_image_q15_t img_tmp;
+    q15_t* cannyBuffer;
     bool mInitErrorOccured;
     uint32_t *mParams;
 };

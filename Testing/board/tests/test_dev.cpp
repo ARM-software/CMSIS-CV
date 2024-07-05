@@ -5,11 +5,11 @@
 #include <stdlib.h>
 
 extern "C" {
-    #include "cv/image_transforms.h"
+    #include "cv/feature_detection.h"
+    #include "cv/linear_filters.h"
 }
 
 #if defined(TESTDEV)
-
 
 void test_dev(const unsigned char* inputs,
                  unsigned char* &outputs,
@@ -17,19 +17,12 @@ void test_dev(const unsigned char* inputs,
                  long &cycles)
 {
     long start,end;
-    uint32_t nb,channels,width,height,misc;
-    int bufid = TENSOR_START + 0;
+    uint32_t width,height;
+    int bufid = TENSOR_START;
 
-    // BGR_8U3C has dimension [3,H,W]
-    get_buffer_shape(inputs,bufid,&nb,&channels,&height,&width,&misc);
-
-    uint8_t *p_img = (uint8_t*)malloc(2*32);
-    //printf("%d %d\r\n",width,height);
-
-
-
-    std::vector<BufferDescription> desc = {BufferDescription(Shape(3,16,32)
-                                                            ,kIMG_NUMPY_TYPE_UINT8)
+    get_img_dims(inputs,bufid,&width,&height);
+    std::vector<BufferDescription> desc = {BufferDescription(Shape(height,width)
+                                                            ,kIMG_GRAY8_TYPE)
                                           };
 
     outputs = create_write_buffer(desc,total_bytes);
@@ -37,56 +30,20 @@ void test_dev(const unsigned char* inputs,
     const uint8_t *src = Buffer<uint8_t>::read(inputs,bufid);
     uint8_t *dst = Buffer<uint8_t>::write(outputs,0);
 
-    const arm_cv_image_bgr_8U3C_t input={(uint16_t)width,
-                                       (uint16_t)height,
-                                       (uint8_t*)src};
+    const arm_cv_image_gray8_t input={(uint16_t)width,(uint16_t)height,(uint8_t*)src};
+    arm_cv_image_gray8_t output={(uint16_t)width,(uint16_t)height,(uint8_t*)dst};
 
-    (void)input;
-    arm_cv_image_bgr_8U3C_t output;
-    output.width=32;
-    output.height=16;
-    output.pData=dst;
+    q15_t* Buffer_tmp_mag = (q15_t*)malloc(arm_cv_get_scratch_size_canny_sobel(input.width));
 
-    //arm_cv_image_gray8_t tmpin;
-    //tmpin.width=width;
-    //tmpin.height=height;
-    //tmpin.pData=(uint8_t*)src;
-//
-    //arm_cv_image_gray8_t tmpout;
-    //tmpout.width=32;
-    //tmpout.height=16;
-    //tmpout.pData=(uint8_t*)dst;
-    
     // The test to run is executed with some timing code.
     start = time_in_cycles();
-    //uint8_t *p = dst;
-    arm_image_resize_bgr_8U3C_f32(&input,&output,p_img);
+    arm_cv_canny_edge_sobel(&input,&output, Buffer_tmp_mag, 78,33);
     
-    //arm_image_resize_gray8(&tmpin,&tmpout,p_img);
-//
-    //tmpin.pData=(uint8_t*)src + (width*height);
-    //tmpout.pData=dst + (32*16);
-    //arm_image_resize_gray8(&tmpin,&tmpout,p_img);
-//
-    //tmpin.pData=(uint8_t*)src + 2*(width*height);
-    //tmpout.pData=dst + 2*(32*16);
-    //arm_image_resize_gray8(&tmpin,&tmpout,p_img);
-    //for(int ch=0;ch<3;ch++)
-    //{
-    //    for(int row =0 ;row < 16;row ++)
-    //    {
-    //        for(int col = 0;col < 32;col++)
-    //        {
-    //            *p++ = ch+row;
-    //        }
-    //    }
-    //}
     end = time_in_cycles();
     cycles = end - start;
 
-    free(p_img);
+    free(Buffer_tmp_mag);
 }
-
 void run_test(const unsigned char* inputs,
               const uint32_t testid,
               const uint32_t funcid,
