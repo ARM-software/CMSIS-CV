@@ -26,6 +26,7 @@ extern "C"
 #define STANDARD_YUV_NB_IMGS 9 
 #define STANDARD_GRAY_NB_IMGS 21 
 #define STANDARD_RGB_NB_IMGS 21 
+#define STANDART_NB_GRAY_SIZES 11
 
 // Where input tensor buffers are starting in the buffer set
 // Before input tensors there are tensors used to describe

@@ -26,7 +26,7 @@
 #include "arm_image_resize_common.h"
 
 #if defined(ARM_MATH_MVEF) && !defined(ARM_MATH_AUTOVECTORIZE)
-inline uint32x4_t get_pixel_index(int32x4_t x_s32, int32x4_t y_s32, float32_t w, float c_offset)
+__STATIC_INLINE uint32x4_t get_pixel_index(int32x4_t x_s32, int32x4_t y_s32, float32_t w, float c_offset)
 {
   uint32x4_t pixel_u32;
   float32x4_t x_f32, y_f32 , pixel_f32;
@@ -41,17 +41,17 @@ inline uint32x4_t get_pixel_index(int32x4_t x_s32, int32x4_t y_s32, float32_t w,
 }
 
 #else
-static inline float get_bgr_8U3C_image_pixel(uint8_t* m, int x, int y, int c, int w, int h)
+__STATIC_INLINE float get_bgr_8U3C_image_pixel(uint8_t* m, int x, int y, int c, int w, int h)
 {
   return m[c*h*w + y * w + x];
 }
-static inline void set_tmp_image_pixel(uint8_t* m, int x, int y, int c, float val, int w)
+__STATIC_INLINE void set_tmp_image_pixel(uint8_t* m, int x, int y, int c, float val, int w)
 {
   /* x, y, c are already validated by upper layers */
   m[c*2*w + y * w + x] = (uint8_t)(val+0.5f);
 }
 
-static inline void set_rgb24_image_pixel(uint8_t* m, int x, int y, int c, float val, int w)
+__STATIC_INLINE void set_rgb24_image_pixel(uint8_t* m, int x, int y, int c, float val, int w)
 {
   /* x, y, c are already validated by upper layers */
   m[(y * w + x) * 3 + (2 - c) ] = (uint8_t)(val+0.5f);

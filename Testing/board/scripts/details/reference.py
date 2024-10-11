@@ -1,6 +1,6 @@
 import cv2 as cv
 from ..test_utils import *
-
+import scipy
 #############################
 # Generation of references
 #
@@ -312,6 +312,7 @@ class ResizeBGR_8U3C:
     def nb_references(self,srcs):
         return len(srcs)
 
+
 class HimaxResizeBGR_8U3C_to_RGB24:
     def __init__(self,w,h):
         self._dst_width = w  
@@ -342,27 +343,48 @@ class HimaxResizeBGR_8U3C_to_RGB24:
 
     def nb_references(self,srcs):
         return len(srcs)
-    
+        
+def custom_filter(image):
+    return((image[0]+(image[1])*2+image[2]+(image[3])*2+(image[4])*4+(image[5])*2+image[6]+(image[7])*2+image[8])/16)    
+
+def custom_filter5(image):
+    return((image[ 0]   + image[ 1]*4 + image[ 2]*6 + image[ 3]*4 + image[ 4]   + 
+            image[ 5]*4 + image[ 6]*16+ image[ 7]*24+ image[ 8]*16+ image[ 9]*4 + 
+            image[10]*6 + image[11]*24+ image[12]*36+ image[13]*24+ image[14]*6 + 
+            image[15]*4 + image[16]*16+ image[17]*24+ image[18]*16+ image[19]*4 + 
+            image[20]   + image[21]*4 + image[22]*6 + image[23]*4 + image[24]  )/256)  
+
+def custom_filter7(image):
+    return((image[ 0]* 4+ image[ 1]* 14+ image[ 2]* 28+ image[ 3]* 36+ image[ 4]* 28+ image[ 5]* 14+image[ 6]* 4 +
+            image[ 7]*14+ image[ 8]* 49+ image[ 9]* 98+ image[10]*126+ image[11]* 98+ image[12]* 49+image[13]*14 +
+            image[14]*28+ image[15]* 98+ image[16]*196+ image[17]*252+ image[18]*196+ image[19]* 98+image[20]*28 +
+            image[21]*36+ image[22]*126+ image[23]*252+ image[24]*324+ image[25]*252+ image[26]*126+image[27]*36 +
+            image[28]*28+ image[29]* 98+ image[30]*196+ image[31]*252+ image[32]*196+ image[33]* 98+image[34]*28 +
+            image[35]*14+ image[36]* 49+ image[37]* 98+ image[38]*126+ image[39]* 98+ image[40]* 49+image[41]*14 +
+            image[42]* 4+ image[43]* 14+ image[44]* 28+ image[45]* 36+ image[46]* 28+ image[47]* 14+image[48]* 4 )/4096) 
+
 class GaussianFilter:
+    def __init__(self, mode_select, kernel_size):
+        self._mode = mode_select
+        self._kernel_size = kernel_size
+
     def __call__(self,args,group_id,test_id,srcs):
         filtered = []
         for i in srcs:
             # Extract the image from the AlgoImage and blur it
-            # OpenCv can work with NumPy array but not with Pillow image
-            #blur = cv.GaussianBlur(i.tensor,(3,3),0,0,cv.BORDER_REPLICATE)
-            kernel = np.array([[1,2,1],[2,4,2],[1,2,1]])/16
-            blur = cv.filter2D(i.tensor, -1, kernel,cv.BORDER_REPLICATE)
+            if(self._kernel_size == 3):
+                blur = scipy.ndimage.generic_filter(i.tensor,custom_filter, [self._kernel_size,self._kernel_size],mode = self._mode)
+            elif(self._kernel_size == 5):
+                blur = scipy.ndimage.generic_filter(i.tensor,custom_filter5, [self._kernel_size,self._kernel_size],mode = self._mode)
+            elif(self._kernel_size == 7):
+                blur = scipy.ndimage.generic_filter(i.tensor,custom_filter7, [self._kernel_size,self._kernel_size],mode = self._mode)                
+            else:
+                print("error kernel size not supported")
             # Pack the image in an AlgoImage and add it to the reference patterns
             # If we get the blur as it is, it will be recorded as an .npy file
-            # It would be simpler with a gray8 as tiff image 
             # So we need to convert back to Pillow
             pil = PIL.Image.fromarray(blur)
             filtered.append(AlgoImage(pil))
-            #
-            # Our gaussian return a q15 so we can't use a Pillow picture.
-            # We convert the result and write is as .npy
-            #blur= blur.astype(np.int16)
-            #filtered.append(AlgoImage(blur))
 
         # Record the filtered images
         for image_id,img in enumerate(filtered):
@@ -371,6 +393,29 @@ class GaussianFilter:
     def nb_references(self,srcs):
         return len(srcs)
 
+class SobelFilter:
+    def __init__(self, mode_select, axis_select):
+        self._mode = mode_select
+        self.axis = axis_select
+    
+    def __call__(self,args,group_id,test_id,srcs):
+        filtered = []
+        for i in srcs:
+            # Extract the image from the AlgoImage and apply sobel on it, in the direction difined by axis
+            #0 for vertical and 1 for horizontal
+            sobel = scipy.ndimage.sobel(i.tensor.astype('int16'),self.axis,mode = self._mode)
+            # Pack the image in an AlgoImage and add it to the reference patterns
+            # Our gaussian return a q15 so we can't use a Pillow picture.
+            # We convert the result and write is as .npy
+            filtered.append(AlgoImage(sobel))
+
+        # Record the filtered images
+        for image_id,img in enumerate(filtered):
+            record_reference_img(args,group_id,test_id,image_id,img)
+
+    def nb_references(self,srcs):
+        return len(srcs)
+    
 class CannyEdge:
     def __call__(self,args,group_id,test_id,srcs):
         procesed = []

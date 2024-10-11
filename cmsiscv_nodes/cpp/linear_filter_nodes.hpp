@@ -53,9 +53,13 @@ public:
         dst.width=this->inputWidth();
         dst.pData = (uint8_t*)o;
         
-        arm_gaussian_filter_3x3_fixp(&src,&dst);
+        q15_t *buff = (q15_t *)malloc(arm_get_linear_scratch_size_buffer_15(src.width));
 
-        
+        int bordertype = ARM_CV_BORDER_NEAREST;
+
+        arm_gaussian_filter_3x3_fixp(&src,&dst, buff, bordertype);
+
+        free(buff);
         return(0);
     };
    
