@@ -26,7 +26,7 @@
 #ifndef ARM_CV_LINEAR_FILTER_COMMON_H
 #define ARM_CV_LINEAR_FILTER_COMMON_H
 
-#include "cv\linear_filters.h"
+#include "cv/linear_filters.h"
 #ifdef __cplusplus
 extern "C"
 {
