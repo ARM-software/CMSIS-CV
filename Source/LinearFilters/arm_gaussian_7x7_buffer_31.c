@@ -228,7 +228,7 @@
  * arm_cv_get_scratch_size_generic(int width)
  */
 void arm_gaussian_filter_7x7_buffer_31_fixp(const arm_cv_image_gray8_t *imageIn, arm_cv_image_gray8_t *imageOut,
-                                     BUFFER_TYPE *scratch, const int8_t borderType)
+                                     q31_t *scratch, const int8_t borderType)
 {
     _ARM_LINEAR_GENERIC(imageIn, imageOut, scratch, borderType)
 }
