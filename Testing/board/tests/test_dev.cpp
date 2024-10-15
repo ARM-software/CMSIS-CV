@@ -3,9 +3,8 @@
 #include "test_config.h"
 #include <vector>
 #include <stdlib.h>
-
+#include <stdio.h>
 extern "C" {
-    #include "cv/feature_detection.h"
     #include "cv/linear_filters.h"
 }
 
@@ -20,29 +19,28 @@ void test_dev(const unsigned char* inputs,
     uint32_t width,height;
     int bufid = TENSOR_START;
 
+    //int8_t border_type = ARM_CV_BORDER_REFLECT;
+    int8_t border_type = ARM_CV_BORDER_NEAREST;
+    //int8_t border_type = ARM_CV_BORDER_WRAP;
     get_img_dims(inputs,bufid,&width,&height);
     std::vector<BufferDescription> desc = {BufferDescription(Shape(height,width)
                                                             ,kIMG_GRAY8_TYPE)
                                           };
 
     outputs = create_write_buffer(desc,total_bytes);
-
+    q31_t* Buffer_tmp = (q31_t*)malloc(arm_get_scratch_size_generic_31(width));
     const uint8_t *src = Buffer<uint8_t>::read(inputs,bufid);
     uint8_t *dst = Buffer<uint8_t>::write(outputs,0);
 
     const arm_cv_image_gray8_t input={(uint16_t)width,(uint16_t)height,(uint8_t*)src};
     arm_cv_image_gray8_t output={(uint16_t)width,(uint16_t)height,(uint8_t*)dst};
-
-    q15_t* Buffer_tmp_mag = (q15_t*)malloc(arm_cv_get_scratch_size_canny_sobel(input.width));
-
+    
     // The test to run is executed with some timing code.
     start = time_in_cycles();
-    arm_cv_canny_edge_sobel(&input,&output, Buffer_tmp_mag, 78,33);
-    
+    arm_gaussian_filter_7x7_32_fixp(&input,&output, Buffer_tmp, border_type);
     end = time_in_cycles();
     cycles = end - start;
-
-    free(Buffer_tmp_mag);
+    free(Buffer_tmp);
 }
 void run_test(const unsigned char* inputs,
               const uint32_t testid,

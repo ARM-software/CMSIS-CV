@@ -55,6 +55,12 @@
         <file category="source"   name="Source/arm_cv_common.c"/>
         <file category="source"   name="Source/FeatureDetection/arm_cannysobel.c"/>
         <file category="source"   name="Source/LinearFilters/arm_gaussian.c"/>
+        <file category="source"   name="Source/LinearFilters/arm_sobel_vertical.c"/>
+        <file category="source"   name="Source/LinearFilters/arm_sobel_horizontal.c"/>
+        <file category="source"   name="Source/LinearFilters/arm_linear_common.c"/>
+        <file category="source"   name="Source/LinearFilters/arm_gaussian_5x5.c"/>
+        <file category="source"   name="Source/LinearFilters/arm_gaussian_7x7_buffer_15.c"/>
+        <file category="source"   name="Source/LinearFilters/arm_gaussian_7x7_buffer_31.c"/>
         <file category="source"   name="Source/ColorTransforms/arm_yuv420_to_gray8.c"/>
         <file category="source"   name="Source/ColorTransforms/arm_bgr_8U3C_to_gray8.c"/>
         <file category="source"   name="Source/ColorTransforms/arm_gray8_to_rgb24.c"/>

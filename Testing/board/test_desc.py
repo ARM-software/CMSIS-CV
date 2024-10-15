@@ -10,14 +10,17 @@ STANDARD_IMG_SIZES = image_dims(np.int8)
 STANDARD_YUV_IMG_SIZES = yuv_image_dims(np.int8)
 STANDARD_GRAY_IMG_SIZES = image_dims(np.int8)
 STANDARD_RGB_IMG_SIZES = image_dims(np.int8)
+STANDART_GRAY_SIZES = [(15, 8), (15, 11), (16, 8), (16, 11), (32, 8), (32, 11), (47, 8), (47, 11), (16, 16), (32, 32), (64, 64)]
 
+VERTICAL = 0
+HORIZONTAL = 1
 #print(len(STANDARD_IMG_SIZES))
 #print(len(STANDARD_YUV_IMG_SIZES))
 #print(len(STANDARD_GRAY_IMG_SIZES))
 #print(len(STANDARD_RGB_IMG_SIZES))
 
 
-# The tests are written using the fuction linear_copy to show how one can use
+# The tests are written using the function linear_copy to show how one can use
 # a function to make it easier to define a list of tests in a shorter way
 # The C code must of course be able to identify the image input
 # from the testid which is a bit hidden when writing the Python with abstractions
@@ -26,12 +29,29 @@ allSuites = [
     {
         "name" : "Linear Filters",
         "define": "TESTGROUP0",
-        "inputs": [ImageGen(STANDARD_IMG_SIZES,
+        "inputs": [ImageGen(STANDART_GRAY_SIZES,
                    format=Format.GRAY8,
-                   path="Patterns/Mandrill.tiff"),
+                   path="Patterns/Mandrill.tiff")
                    ],
         "tests":
-          [linear_gaussian_test(imgid, imgdim, funcid=2) for imgid,imgdim in enumerate(STANDARD_IMG_SIZES)]
+           [gaussian_test(imgid, imgdim, funcid=0, border_type='nearest') for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [gaussian_test(imgid, imgdim, funcid=1, border_type='mirror')for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [gaussian_test(imgid, imgdim, funcid=2, border_type='wrap') for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [sobel_test(imgid, imgdim, funcid=3, axis=VERTICAL, border_type='nearest') for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [sobel_test(imgid, imgdim, funcid=4, axis=VERTICAL, border_type='mirror') for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [sobel_test(imgid, imgdim, funcid=5, axis=VERTICAL, border_type='wrap') for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [sobel_test(imgid, imgdim, funcid=6, axis=HORIZONTAL, border_type='nearest') for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [sobel_test(imgid, imgdim, funcid=7, axis=HORIZONTAL, border_type='mirror') for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [sobel_test(imgid, imgdim, funcid=8, axis=HORIZONTAL, border_type='wrap') for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [gaussian_test(imgid, imgdim, funcid=9 , border_type='nearest', kernel_size = 5) for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [gaussian_test(imgid, imgdim, funcid=10, border_type='mirror', kernel_size = 5)for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [gaussian_test(imgid, imgdim, funcid=11, border_type='wrap', kernel_size = 5) for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [gaussian_test(imgid, imgdim, funcid=12 , border_type='nearest', kernel_size = 7, threshold = 1) for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [gaussian_test(imgid, imgdim, funcid=13, border_type='mirror', kernel_size = 7, threshold = 1) for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [gaussian_test(imgid, imgdim, funcid=14, border_type='wrap', kernel_size = 7, threshold = 1) for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)]+
+           [gaussian_test_32(imgid, imgdim, funcid=15 , border_type='nearest', kernel_size = 7, threshold = 0) for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [gaussian_test_32(imgid, imgdim, funcid=16, border_type='mirror', kernel_size = 7, threshold = 0) for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)] +
+           [gaussian_test_32(imgid, imgdim, funcid=17, border_type='wrap', kernel_size = 7, threshold = 0) for imgid,imgdim in enumerate(STANDART_GRAY_SIZES)]
     },
     {
         "name" : "Color conversions",
@@ -185,9 +205,12 @@ allSuites = [
 # If more than one image is passed, they are assumed to be all input of the test
 # But generally the test will use only one input image
 devTest = {
-        "inputs": [ImageGen([(15,3)],
+        "name" : "Linear Filters",
+        "define": "TESTGROUP0",
+        "inputs": [ImageGen([(32,8)],
                    format=Format.GRAY8,
-                   path="Patterns/Mandrill.tiff")],
-        "reference": CannyEdgeAutoRef(),
-        "check" : SimilarTensorFixp(1)
+                   path="Patterns/Mandrill.tiff")
+                   ],
+        "reference": GaussianFilter('nearest', 7),
+        "check" : SimilarTensorFixp(0)
 }

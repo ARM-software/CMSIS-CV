@@ -65,13 +65,21 @@ def rgb_crop_test(imgdim,funcid,left,top,right,bottom):
             "reference": CropRGB((left,right),(top,bottom)),
             "check" : SimilarTensorFixp(0)
            }
-           
-def linear_gaussian_test(imgid, imgdim, funcid=2, img_type="gray8"):
-    return {"desc":f"Gauss {img_type} image {imgdim[0]}x{imgdim[1]}",
+
+def gaussian_test(imgid, imgdim, funcid=2, img_type="gray8", border_type = 'reflect', kernel_size = 3, threshold = 0):
+    return {"desc":f"Gauss {kernel_size}x{kernel_size} {img_type} image {imgdim[0]}x{imgdim[1]}",
             "funcid": funcid,
             "useimg": [imgid],
-            "reference": GaussianFilter(),
-            "check" : SimilarTensorFixp(1)
+            "reference": GaussianFilter(border_type, kernel_size),
+            "check" : SimilarTensorFixp(threshold)
+            }
+
+def sobel_test(imgid, imgdim, funcid=0, img_type="gray8", axis=0, border_type='reflect'):
+    return {"desc":f"Sobel {img_type} image {imgdim[0]}x{imgdim[1]}",
+            "funcid": funcid,
+            "useimg": [imgid],
+            "reference": SobelFilter(border_type,axis),
+            "check" : SimilarTensorFixp(0)
             }
 
 def gray8_resize_test(imgdim,funcid,dst_w,dst_h):
@@ -112,4 +120,12 @@ def canny_sobel_test_autoref(imgid, imgdim, funcid=0, img_type="gray8"):
             "useimg": [imgid],
             "reference": CannyEdgeAutoRef(),
             "check" : SimilarTensorFixp(0)
+            }
+
+def gaussian_test_32(imgid, imgdim, funcid=2, img_type="gray8", border_type = 'reflect', kernel_size = 3, threshold = 0):
+    return {"desc":f"Gauss {kernel_size}x{kernel_size} {img_type} image {imgdim[0]}x{imgdim[1]}",
+            "funcid": funcid,
+            "useimg": [imgid],
+            "reference": GaussianFilter(border_type, kernel_size),
+            "check" : SimilarTensorFixp(threshold)
             }

@@ -2,7 +2,6 @@
 #include "load.hpp"
 #include "test_config.h"
 #include <vector>
-#include <stdio.h>
 
 extern "C" {
     #include "cv/feature_detection.h"

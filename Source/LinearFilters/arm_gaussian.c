@@ -1,7 +1,8 @@
 /* ----------------------------------------------------------------------
  * Project:      CMSIS CV Library
- * Title:        gaussian.c
- * Description:  Gaussian filter CMSIS-CV
+ * Title:        arm_gaussian.c
+ * Description:  Generic template for linear filter, this one doing a Gaussian
+ * filter
  *
  *
  * Target Processor: Cortex-M and Cortex-A cores
@@ -23,338 +24,98 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #include "cv/linear_filters.h"
 #include "dsp/basic_math_functions.h"
+#include "arm_acle.h"
+// The kernel applied by this filter is [1,2,1]
+//                                      [2,4,2]
+//                                      [1,2,1]
+// it also can be seen as applying the kernel [1,2,1] one time on the line and one time on the column
 
-static const uint8_t gaussian_kernel[9] = {   0x08, 0x10, 0x08,
-                                              0x10, 0x20, 0x10,
-                                              0x08, 0x10, 0x08
-                                        };
+// Convert the q6 value from the buffer back to an uint8 value
+// This macro is in fact two operation at once,
+// first the conversion from q6 to uint8/q0
+// second the division per 16, necessary to have the sum of the coeficients in our gaussian equal to 1
+#define CONVERSION_GAUSSIAN_Q6TO_U8_AND_DIV_16(a) __ssat(((a) >> 10),16)
 
+// Apply a kernel [1,2,1] in q3 so [0x08,0x10,0x08] to the input data
+// This macro will be applied two time on each pixel.
+// the first time it will convert the value from u8 to q3, the second time from q3 to q6
+#define VERTICAL_COMPUTE_SCALAR(data_0, data_1, data_2) (data_0 * 0x08 + (data_1 * 0x10) + data_2 * 0x08)
+// Gaussian is a symetrical filter, so the vertical and horizontal part of the filter are the same
+// but to keep precision we have done the intermediate compute in q3, so basicaly int16 but the output of the filter is
+// gray uint8 so we need to add an extra step of conversion for the second application of the filter
+#define HORIZONTAL_COMPUTE_SCALAR(data_0, data_1, data_2)                                                              \
+    CONVERSION_GAUSSIAN_Q6TO_U8_AND_DIV_16(VERTICAL_COMPUTE_SCALAR(data_0, data_1, data_2))
 
+#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
+
+// vec 1,2 and 3 are vector containing lines of the input image
+// Apply a kernel [1,2,1] to the input vectors and convert them into q3
+#define VERTICAL_COMPUTE_VECTOR(vect_1, vect_2, vect_3, vect_res)                                                      \
+    int16x8x2_t vect_1x2;                                                                                              \
+    int16x8x2_t vect_3x2;                                                                                              \
+    vect_1x2.val[0] = vshllbq(vect_1, 3);                                                                              \
+    vect_3x2.val[0] = vshllbq(vect_3, 3);                                                                              \
+    vect_1x2.val[0] = vaddq(vect_1x2.val[0], vect_3x2.val[0]);                                                         \
+    vect_1x2.val[1] = vshlltq(vect_1, 3);                                                                              \
+    vect_3x2.val[1] = vshlltq(vect_3, 3);                                                                              \
+    vect_1x2.val[1] = vaddq(vect_1x2.val[1], vect_3x2.val[1]);                                                         \
+    vect_res.val[0] = vshllbq(vect_2, 4);                                                                              \
+    vect_res.val[0] = vaddq(vect_res.val[0], vect_1x2.val[0]);                                                         \
+    vect_res.val[1] = vshlltq(vect_2, 4);                                                                              \
+    vect_res.val[1] = vaddq(vect_res.val[1], vect_1x2.val[1]);
+
+// vec 1,2 and 3 are vector containing columns of the input image
+// Apply a kernel [1,2,1] to the input vectors and convert them back to uint8, so a shift to the right by three, and in
+// order to have the sum of the coefficients of the filter equal to 1
+// the shift need to be increase to 7 (divided by 16, shift to 4)
+#define HORIZONTAL_COMPUTE_VECTOR(vect_1, vect_2, vect_3, vect_out)                                                    \
+    vect_out = vdupq_n_s16(0);                                                                                         \
+    vect_2.val[0] = vshlq_n_s16(vect_2.val[0], 1);                                                                     \
+    vect_2.val[0] = vaddq_s16(vect_2.val[0], vect_1.val[0]);                                                           \
+    vect_2.val[1] = vshlq_n_s16(vect_2.val[1], 1);                                                                     \
+    vect_2.val[0] = vaddq_s16(vect_2.val[0], vect_3.val[0]);                                                           \
+    vect_2.val[0] = vshrq(vect_2.val[0], 7);                                                                           \
+    vect_2.val[1] = vaddq_s16(vect_2.val[1], vect_1.val[1]);                                                           \
+    vect_2.val[1] = vaddq_s16(vect_2.val[1], vect_3.val[1]);                                                           \
+    vect_2.val[1] = vshrq(vect_2.val[1], 7);                                                                           \
+    vect_out = vmovntq(vect_out, vect_2.val[1]);                                                                       \
+    vect_out = vmovnbq(vect_out, vect_2.val[0]);
+
+#endif
+
+// ARM_CV_LINEAR_OUTPUT_UINT_8 is defined in arm_linear_filter_common.h
+// It is used in arm_linear_filter_common.c to modulate the function generated depending on the output data type
+// if needed to add an other output data type, modification will be needed in the file in order to treat the new case
+#define ARM_CV_LINEAR_OUTPUT_TYPE ARM_CV_LINEAR_OUTPUT_UINT_8
+#define BUFFER_15
+
+#include "arm_linear_filter_common.h"
+#include "arm_linear_filter_generator.h"
 
 /**
   @ingroup linearFilter
  */
 
-/**     
- * @brief      Gaussian filter for grayscale data computing in q15
+/**
+ * @brief          Gaussian filter applying a 3x3 kernel and using q15 as intermediate values
  *
- * @param[in]  ImageIn   The input image
- * @param      ImageOut  The output image
+ * @param[in]      imageIn     The input image
+ * @param[out]     imageOut    The output image
+ * @param[in,out]  scratch     Temporary buffer
+ * @param[in]      borderType  Type of border to use, supported are Replicate Wrap and Reflect
+ *
+ * @par Temporary buffer sizing:
+ *
+ * Will use a temporary buffer to store intermediate values of gradient and magnitude.
+ *
+ * Size of temporary buffer is given by
+ * arm_cv_get_scratch_size_generic(int width)
  */
-#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
-void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn, 
-                                        arm_cv_image_gray8_t* ImageOut)
+void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t *imageIn, arm_cv_image_gray8_t *imageOut, q15_t *scratch,
+                                  const int8_t borderType)
 {
-    /* To be optimized */
-    const int w =ImageIn->width;
-    int indice;
-    mve_pred16_t p0 = vctp8q(9);
-    uint32_t res;
-    for( int y = 1; y< ImageIn -> height- 1; y++)
-    {
-        for( int x = 1; x< ImageIn-> width- 1; x++)
-        {
-            indice = y*ImageIn->width+x;
-            res = 0;
-            uint8_t matrix_in[9] = { ImageIn->pData[indice-w-1], ImageIn->pData[indice-w], ImageIn->pData[indice-w+1], ImageIn->pData[indice - 1], ImageIn->pData[indice], ImageIn->pData[indice + 1], ImageIn->pData[indice +w -1], ImageIn->pData[ indice + w], ImageIn->pData[indice + w+1]};
-            
-            uint8x16_t vecA = vld1q(gaussian_kernel);
-            uint8x16_t vecB = vld1q(matrix_in);
-            
-            res = vmladavaq_p(res, vecA, vecB, p0);
-            //this dot product output on 2.14, so we need to shift by 7 after to return to uint8 values
-            res = res + 0x7F;
-            res = __USAT(res>>(7),8);
-            ImageOut->pData[indice] =(uint8_t)(res);
-        }
-        
-        
-    }
-    
-    int x = 0;
-    int y = 0;
-    //top left corner
-    ImageOut->pData[y*ImageOut->width +x] = (ImageIn->pData[0] + ImageIn->pData[0 + 1] + ImageIn->pData[0 + w] + ImageIn->pData[0 + w + 1])>>2;
-    x = ImageIn->width-1;
-    y = ImageIn->height-1;
-    //bottom right corner
-    ImageOut->pData[y*ImageOut->width +x] = (ImageIn->pData[y*ImageOut->width +x] + ImageIn->pData[(y-1)*ImageOut->width +x] + ImageIn->pData[y*ImageOut->width +(x-1)] + ImageIn->pData[(y-1)*ImageOut->width +(x-1)])>>2;
-    y = ImageIn->height-1;
-    x = 0;
-    //bottom left corner
-    ImageOut->pData[y*ImageOut->width +x] = (ImageIn->pData[y*ImageOut->width +x] + ImageIn->pData[(y-1)*ImageOut->width +x] + ImageIn->pData[y*ImageOut->width +(x+1)] + ImageIn->pData[(y-1)*ImageOut->width +(x+1)])>>2;
-    y = 0;
-	x = ImageIn->width-1;
-    //top right corner
-    ImageOut->pData[y*ImageOut->width +x] = (ImageIn->pData[y*ImageOut->width +x] + ImageIn->pData[(y+1)*ImageOut->width +x] + ImageIn->pData[y*ImageOut->width +(x-1)] + ImageIn->pData[(y+1)*ImageOut->width +(x-1)])>>2;
-    y = 0;
-    x = 0;
-    if(ImageIn->width==1)
-    {
-        if(ImageIn->height==1)
-        {
-            ImageOut->pData[0] = ImageIn->pData[0];
-        }
-        else
-        {
-            y = 0;
-            x = 0;
-            //left border
-            for( int y =1; y < ImageIn->height-1; y++)
-	        {
-                indice = y*ImageIn->width+x;
-                res = 0;
-                uint8_t matrix_in[9] = { ImageIn->pData[indice-w], ImageIn->pData[indice-w], ImageIn->pData[indice-w], ImageIn->pData[indice ], ImageIn->pData[indice], ImageIn->pData[indice], ImageIn->pData[indice +w], ImageIn->pData[ indice + w], ImageIn->pData[indice + w]};
-
-                uint8x16_t vecA = vld1q(gaussian_kernel);
-                uint8x16_t vecB = vld1q(matrix_in);
-
-                res = vmladavaq_p(res, vecA, vecB, p0);
-                res = __USAT(res>>(7),8);
-
-                ImageOut->pData[y*ImageOut->width +x] = res;
-	        }
-        }
-    }
-    else
-    {
-        if(ImageIn->height==1)
-        {
-            x = 0;
-            y = 0;
-            //top line
-            for( int x =1; x < ImageIn->width-1; x++)
-            {
-                indice = y*ImageIn->width+x;
-                res = 0;
-                uint8_t matrix_in[9] = { ImageIn->pData[indice-1], ImageIn->pData[indice], ImageIn->pData[indice+1], ImageIn->pData[indice - 1], ImageIn->pData[indice], ImageIn->pData[indice + 1], ImageIn->pData[indice -1], ImageIn->pData[ indice], ImageIn->pData[indice -+1]};
-
-                uint8x16_t vecA = vld1q(gaussian_kernel);
-                uint8x16_t vecB = vld1q(matrix_in);
-
-                res = vmladavaq_p(res, vecA, vecB, p0);
-                res = __USAT(res>>(7),8);
-
-                ImageOut->pData[y*ImageOut->width +x] = res;
-            }
-        }
-        else
-        {
-            x = 0;
-            y=0;
-            //top border
-            for( int x =1; x < ImageIn->width-1; x++)
-            {
-                indice = y*ImageIn->width+x;
-                res = 0;
-                uint8_t matrix_in[9] = { ImageIn->pData[indice+w-1], ImageIn->pData[indice+w], ImageIn->pData[indice+w+1], ImageIn->pData[indice + 1], ImageIn->pData[indice], ImageIn->pData[indice - 1], ImageIn->pData[indice +w -1], ImageIn->pData[ indice + w], ImageIn->pData[indice + w+1]};
-
-                uint8x16_t vecA = vld1q(gaussian_kernel);
-                uint8x16_t vecB = vld1q(matrix_in);
-
-                res = vmladavaq_p(res, vecA, vecB, p0);
-                res = __USAT(res>>(7),8);
-
-                ImageOut->pData[y*ImageOut->width +x] = res;
-            }
-            x = 0;
-            y = ImageIn->height-1;
-            //bottom border
-            for( int x =1; x < ImageIn->width-1; x++)
-            {
-                indice = y*ImageIn->width+x;
-                res = 0;
-                uint8_t matrix_in[9] = { ImageIn->pData[indice-w-1], ImageIn->pData[indice-w], ImageIn->pData[indice-w+1], ImageIn->pData[indice - 1], ImageIn->pData[indice], ImageIn->pData[indice + 1], ImageIn->pData[indice -w -1], ImageIn->pData[ indice - w], ImageIn->pData[indice - w+1]};
-
-                uint8x16_t vecA = vld1q(gaussian_kernel);
-                uint8x16_t vecB = vld1q(matrix_in);
-
-                res = vmladavaq_p(res, vecA, vecB, p0);
-                res = __USAT(res>>(7),8);
-
-                ImageOut->pData[y*ImageOut->width +x] = res;
-            }
-            y = 0;
-            x = 0;
-            //left border
-            for( int y =1; y < ImageIn->height-1; y++)
-	        {
-                indice = y*ImageIn->width+x;
-                res = 0;
-                uint8_t matrix_in[9] = { ImageIn->pData[indice-w+1], ImageIn->pData[indice-w], ImageIn->pData[indice-w+1], ImageIn->pData[indice +1 ], ImageIn->pData[indice], ImageIn->pData[indice + 1], ImageIn->pData[indice +w +1], ImageIn->pData[ indice + w], ImageIn->pData[indice + w+1]};
-
-                uint8x16_t vecA = vld1q(gaussian_kernel);
-                uint8x16_t vecB = vld1q(matrix_in);
-
-                res = vmladavaq_p(res, vecA, vecB, p0);
-                res = __USAT(res>>(7),8);
-
-                ImageOut->pData[y*ImageOut->width +x] = res;
-	        }
-	        x = ImageIn->width-1;
-            //right border
-            for( int y =1; y < ImageIn->height-1; y++)
-	        {
-	        	indice = y*ImageIn->width+x;
-                res = 0;
-                uint8_t matrix_in[9] = { ImageIn->pData[indice-w-1], ImageIn->pData[indice-w], ImageIn->pData[indice-w-1], ImageIn->pData[indice - 1], ImageIn->pData[indice], ImageIn->pData[indice - 1], ImageIn->pData[indice +w -1], ImageIn->pData[ indice + w], ImageIn->pData[indice + w-1]};
-
-                uint8x16_t vecA = vld1q(gaussian_kernel);
-                uint8x16_t vecB = vld1q(matrix_in);
-
-                res = vmladavaq_p(res, vecA, vecB, p0);
-                res = __USAT(res>>(7),8);
-
-                ImageOut->pData[y*ImageOut->width +x] = res;
-	        }
-        }
-    }
+    _ARM_LINEAR_GENERIC(imageIn, imageOut, scratch, borderType)
 }
-#else
-void arm_gaussian_filter_3x3_fixp(const arm_cv_image_gray8_t* ImageIn, 
-                                        arm_cv_image_gray8_t* ImageOut)
-{
-    /* To be optimized */
-    const int w =ImageIn->width;
-    int indice;
-    uint32_t res;
-    for( int y = 1; y< ImageIn -> height- 1; y++)
-    {
-        for( int x = 1; x< ImageIn-> width- 1; x++)
-        {
-            indice = y*ImageIn->width+x;
-            uint8_t matrix_in[9] = { ImageIn->pData[indice-w-1], ImageIn->pData[indice-w], ImageIn->pData[indice-w+1], ImageIn->pData[indice - 1], ImageIn->pData[indice], ImageIn->pData[indice + 1], ImageIn->pData[indice +w -1], ImageIn->pData[ indice + w], ImageIn->pData[indice + w+1]};
-            res = gaussian_kernel[0]*matrix_in[0]+gaussian_kernel[1]*matrix_in[1]+gaussian_kernel[2]*matrix_in[2]+gaussian_kernel[3]*matrix_in[3]+gaussian_kernel[4]*matrix_in[4]+gaussian_kernel[5]*matrix_in[5]+gaussian_kernel[6]*matrix_in[6]+gaussian_kernel[7]*matrix_in[7]+gaussian_kernel[8]*matrix_in[8];
-
-            res = res + 0x7F;
-            res = __USAT(res>>(7),8);
-            ImageOut->pData[indice] =(uint8_t)(res);
-        }
-        
-        
-    }
-    
-    int x = 0;
-    int y = 0;
-    //top left corner
-    ImageOut->pData[y*ImageOut->width +x] = (ImageIn->pData[0] + ImageIn->pData[0 + 1] + ImageIn->pData[0 + w] + ImageIn->pData[0 + w + 1])>>2;
-    x = ImageIn->width-1;
-    y = ImageIn->height-1;
-    //bottom right corner
-    ImageOut->pData[y*ImageOut->width +x] = (ImageIn->pData[y*ImageOut->width +x] + ImageIn->pData[(y-1)*ImageOut->width +x] + ImageIn->pData[y*ImageOut->width +(x-1)] + ImageIn->pData[(y-1)*ImageOut->width +(x-1)])>>2;
-    y = ImageIn->height-1;
-    x = 0;
-    //bottom left corner
-    ImageOut->pData[y*ImageOut->width +x] = (ImageIn->pData[y*ImageOut->width +x] + ImageIn->pData[(y-1)*ImageOut->width +x] + ImageIn->pData[y*ImageOut->width +(x+1)] + ImageIn->pData[(y-1)*ImageOut->width +(x+1)])>>2;
-    y = 0;
-	x = ImageIn->width-1;
-    //top right corner
-    ImageOut->pData[y*ImageOut->width +x] = (ImageIn->pData[y*ImageOut->width +x] + ImageIn->pData[(y+1)*ImageOut->width +x] + ImageIn->pData[y*ImageOut->width +(x-1)] + ImageIn->pData[(y+1)*ImageOut->width +(x-1)])>>2;
-    y = 0;
-    x = 0;
-    if(ImageIn->width==1)
-    {
-        if(ImageIn->height==1)
-        {
-            ImageOut->pData[0] = ImageIn->pData[0];
-        }
-        else
-        {
-            y = 0;
-            x = 0;
-            //top border
-            for( int y =1; y < ImageIn->height-1; y++)
-	        {
-                indice = y*ImageIn->width+x;
-                res = 0;
-                uint8_t matrix_in[9] = { ImageIn->pData[indice-w], ImageIn->pData[indice-w], ImageIn->pData[indice-w], ImageIn->pData[indice ], ImageIn->pData[indice], ImageIn->pData[indice], ImageIn->pData[indice +w], ImageIn->pData[ indice + w], ImageIn->pData[indice + w]};
-                res = gaussian_kernel[0]*matrix_in[0]+gaussian_kernel[1]*matrix_in[1]+gaussian_kernel[2]*matrix_in[2]+gaussian_kernel[3]*matrix_in[3]+gaussian_kernel[4]*matrix_in[4]+gaussian_kernel[5]*matrix_in[5]+gaussian_kernel[6]*matrix_in[6]+gaussian_kernel[7]*matrix_in[7]+gaussian_kernel[8]*matrix_in[8];
-
-                res = __USAT(res>>(7),8);
-
-                ImageOut->pData[y*ImageOut->width +x] = res;
-	        }
-        }
-    }
-    else
-    {
-        if(ImageIn->height==1)
-        {
-            x = 0;
-            y = 0;
-            //bottom border
-            for( int x =1; x < ImageIn->width-1; x++)
-            {
-                indice = y*ImageIn->width+x;
-                res = 0;
-                uint8_t matrix_in[9] = { ImageIn->pData[indice-1], ImageIn->pData[indice], ImageIn->pData[indice+1], ImageIn->pData[indice - 1], ImageIn->pData[indice], ImageIn->pData[indice + 1], ImageIn->pData[indice -1], ImageIn->pData[ indice], ImageIn->pData[indice -+1]};
-                res = gaussian_kernel[0]*matrix_in[0]+gaussian_kernel[1]*matrix_in[1]+gaussian_kernel[2]*matrix_in[2]+gaussian_kernel[3]*matrix_in[3]+gaussian_kernel[4]*matrix_in[4]+gaussian_kernel[5]*matrix_in[5]+gaussian_kernel[6]*matrix_in[6]+gaussian_kernel[7]*matrix_in[7]+gaussian_kernel[8]*matrix_in[8];
-
-                res = __USAT(res>>(7),8);
-
-                ImageOut->pData[y*ImageOut->width +x] = res;
-            }
-        }
-        else
-        {
-            x = 0;
-            y=0;
-            //top border
-            for( int x =1; x < ImageIn->width-1; x++)
-            {
-                indice = y*ImageIn->width+x;
-                res = 0;
-                uint8_t matrix_in[9] = { ImageIn->pData[indice+w-1], ImageIn->pData[indice+w], ImageIn->pData[indice+w+1], ImageIn->pData[indice + 1], ImageIn->pData[indice], ImageIn->pData[indice - 1], ImageIn->pData[indice +w -1], ImageIn->pData[ indice + w], ImageIn->pData[indice + w+1]};
-                res = gaussian_kernel[0]*matrix_in[0]+gaussian_kernel[1]*matrix_in[1]+gaussian_kernel[2]*matrix_in[2]+gaussian_kernel[3]*matrix_in[3]+gaussian_kernel[4]*matrix_in[4]+gaussian_kernel[5]*matrix_in[5]+gaussian_kernel[6]*matrix_in[6]+gaussian_kernel[7]*matrix_in[7]+gaussian_kernel[8]*matrix_in[8];
-
-                res = __USAT(res>>(7),8);
-
-                ImageOut->pData[y*ImageOut->width +x] = res;
-            }
-            x = 0;
-            y = ImageIn->height-1;
-            //bottom border
-            for( int x =1; x < ImageIn->width-1; x++)
-            {
-                indice = y*ImageIn->width+x;
-                res = 0;
-                uint8_t matrix_in[9] = { ImageIn->pData[indice-w-1], ImageIn->pData[indice-w], ImageIn->pData[indice-w+1], ImageIn->pData[indice - 1], ImageIn->pData[indice], ImageIn->pData[indice + 1], ImageIn->pData[indice -w -1], ImageIn->pData[ indice - w], ImageIn->pData[indice - w+1]};
-                res = gaussian_kernel[0]*matrix_in[0]+gaussian_kernel[1]*matrix_in[1]+gaussian_kernel[2]*matrix_in[2]+gaussian_kernel[3]*matrix_in[3]+gaussian_kernel[4]*matrix_in[4]+gaussian_kernel[5]*matrix_in[5]+gaussian_kernel[6]*matrix_in[6]+gaussian_kernel[7]*matrix_in[7]+gaussian_kernel[8]*matrix_in[8];
-
-                res = __USAT(res>>(7),8);
-
-                ImageOut->pData[y*ImageOut->width +x] = res;
-            }
-            y = 0;
-            x = 0;
-            //left border
-            for( int y =1; y < ImageIn->height-1; y++)
-	        {
-                indice = y*ImageIn->width+x;
-                res = 0;
-                uint8_t matrix_in[9] = { ImageIn->pData[indice-w+1], ImageIn->pData[indice-w], ImageIn->pData[indice-w+1], ImageIn->pData[indice +1 ], ImageIn->pData[indice], ImageIn->pData[indice + 1], ImageIn->pData[indice +w +1], ImageIn->pData[ indice + w], ImageIn->pData[indice + w+1]};
-                res = gaussian_kernel[0]*matrix_in[0]+gaussian_kernel[1]*matrix_in[1]+gaussian_kernel[2]*matrix_in[2]+gaussian_kernel[3]*matrix_in[3]+gaussian_kernel[4]*matrix_in[4]+gaussian_kernel[5]*matrix_in[5]+gaussian_kernel[6]*matrix_in[6]+gaussian_kernel[7]*matrix_in[7]+gaussian_kernel[8]*matrix_in[8];
-
-                res = __USAT(res>>(7),8);
-
-                ImageOut->pData[y*ImageOut->width +x] = res;
-	        }
-	        x = ImageIn->width-1;
-            //right border
-            for( int y =1; y < ImageIn->height-1; y++)
-	        {
-	        	indice = y*ImageIn->width+x;
-                res = 0;
-                uint8_t matrix_in[9] = { ImageIn->pData[indice-w-1], ImageIn->pData[indice-w], ImageIn->pData[indice-w-1], ImageIn->pData[indice - 1], ImageIn->pData[indice], ImageIn->pData[indice - 1], ImageIn->pData[indice +w -1], ImageIn->pData[ indice + w], ImageIn->pData[indice + w-1]};
-                res = gaussian_kernel[0]*matrix_in[0]+gaussian_kernel[1]*matrix_in[1]+gaussian_kernel[2]*matrix_in[2]+gaussian_kernel[3]*matrix_in[3]+gaussian_kernel[4]*matrix_in[4]+gaussian_kernel[5]*matrix_in[5]+gaussian_kernel[6]*matrix_in[6]+gaussian_kernel[7]*matrix_in[7]+gaussian_kernel[8]*matrix_in[8];
-
-                res = __USAT(res>>(7),8);
-
-                ImageOut->pData[y*ImageOut->width +x] = res;
-	        }
-        }
-    }
-}
-#endif
