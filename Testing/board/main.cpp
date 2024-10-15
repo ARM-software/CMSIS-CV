@@ -81,7 +81,7 @@ void run_test_group()
           unsigned char *outputs = nullptr;
           uint32_t total_bytes;
 
-          printf("Test %d\r\n",id);
+          printf("Test %ld\r\n",id);
 #if defined (__ICACHE_PRESENT)
           SCB_InvalidateICache();
 #endif
@@ -102,7 +102,7 @@ void run_test_group()
           }
           else
           {
-             printf("No output generated for %d\r\n",id);
+             printf("No output generated for %ld\r\n",id);
           }
           printf("\r\n");
       }
