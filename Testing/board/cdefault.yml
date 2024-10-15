@@ -94,7 +94,6 @@ default:
       ASM:
         - -masm=auto
       Link:
-        - --specs=nano.specs
         - -Wl,-Map=$elf()$.map
         - -lm
         - -Wl,--wrap=SysTick_Handler
