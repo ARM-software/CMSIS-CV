@@ -136,14 +136,38 @@ $(document).ready(function(){initNavTree('group__linearFilter.html',''); initRes
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga56b26f0772421254ff11e51173f439a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__linearFilter.html#ga56b26f0772421254ff11e51173f439a4">arm_gaussian_filter_3x3_fixp</a> (const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *ImageIn, <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *ImageOut)</td></tr>
-<tr class="memdesc:ga56b26f0772421254ff11e51173f439a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gaussian filter for grayscale data computing in q15.  <br /></td></tr>
-<tr class="separator:ga56b26f0772421254ff11e51173f439a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab7e13f921c15f9e005b8c274663b8fb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__linearFilter.html#gab7e13f921c15f9e005b8c274663b8fb9">arm_gaussian_filter_3x3_fixp</a> (const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *imageIn, <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *imageOut, q15_t *scratch, const int8_t borderType)</td></tr>
+<tr class="memdesc:gab7e13f921c15f9e005b8c274663b8fb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gaussian filter applying a 3x3 kernel and using q15 as intermediate values.  <br /></td></tr>
+<tr class="separator:gab7e13f921c15f9e005b8c274663b8fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga221ebed3617ee91dbd973adae95e3adf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__linearFilter.html#ga221ebed3617ee91dbd973adae95e3adf">arm_gaussian_filter_5x5_fixp</a> (const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *imageIn, <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *imageOut, q15_t *scratch, const int8_t borderType)</td></tr>
+<tr class="memdesc:ga221ebed3617ee91dbd973adae95e3adf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gaussian filter applying a 5x5 kernel and using q15 as intermediate values.  <br /></td></tr>
+<tr class="separator:ga221ebed3617ee91dbd973adae95e3adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacf99df4993ad2ae0306f98515a4e2fe4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__linearFilter.html#gacf99df4993ad2ae0306f98515a4e2fe4">arm_gaussian_filter_7x7_buffer_15_fixp</a> (const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *imageIn, <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *imageOut, q15_t *scratch, const int8_t borderType)</td></tr>
+<tr class="memdesc:gacf99df4993ad2ae0306f98515a4e2fe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gaussian filter applying a 7x7 kernel and using q15 as intermediate values.  <br /></td></tr>
+<tr class="separator:gacf99df4993ad2ae0306f98515a4e2fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0021cdab2f7a750bcf0d182a81156bce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__linearFilter.html#ga0021cdab2f7a750bcf0d182a81156bce">arm_gaussian_filter_7x7_buffer_31_fixp</a> (const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *imageIn, <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *imageOut, q31_t *scratch, const int8_t borderType)</td></tr>
+<tr class="memdesc:ga0021cdab2f7a750bcf0d182a81156bce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gaussian filter applying a 7x7 kernel and using q31 as intermediate values.  <br /></td></tr>
+<tr class="separator:ga0021cdab2f7a750bcf0d182a81156bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadb475cd3ea84abcb58745ec937857764"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__linearFilter.html#gadb475cd3ea84abcb58745ec937857764">arm_get_linear_scratch_size_buffer_15</a> (const int width)</td></tr>
+<tr class="memdesc:gadb475cd3ea84abcb58745ec937857764"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the scratch size for generic linear filter function using a q15 buffer.  <br /></td></tr>
+<tr class="separator:gadb475cd3ea84abcb58745ec937857764"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b7bcb61d0077bbce2692f5bae9939ea"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__linearFilter.html#ga9b7bcb61d0077bbce2692f5bae9939ea">arm_get_linear_scratch_size_buffer_31</a> (const int width)</td></tr>
+<tr class="memdesc:ga9b7bcb61d0077bbce2692f5bae9939ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the scratch size for generic linear filter function using a q31 buffer.  <br /></td></tr>
+<tr class="separator:ga9b7bcb61d0077bbce2692f5bae9939ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad6b6704479bda8218256574b9de248fa"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__linearFilter.html#gad6b6704479bda8218256574b9de248fa">arm_get_scratch_size_sobel</a> (const int width)</td></tr>
+<tr class="memdesc:gad6b6704479bda8218256574b9de248fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the scratch size for sobel functions using a q15 buffer.  <br /></td></tr>
+<tr class="separator:gad6b6704479bda8218256574b9de248fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga59296b71453283c353a40f31c878a5de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__linearFilter.html#ga59296b71453283c353a40f31c878a5de">arm_sobel_horizontal</a> (const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *imageIn, <a class="el" href="structarm__cv__image__q15__t.html">arm_cv_image_q15_t</a> *imageOut, q15_t *scratch, const int8_t borderType)</td></tr>
+<tr class="memdesc:ga59296b71453283c353a40f31c878a5de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sobel filter computing the gradient on the horizontal axis.  <br /></td></tr>
+<tr class="separator:ga59296b71453283c353a40f31c878a5de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga04ae3fa44c5ad3bdf42d7736fad83298"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__linearFilter.html#ga04ae3fa44c5ad3bdf42d7736fad83298">arm_sobel_vertical</a> (const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *imageIn, <a class="el" href="structarm__cv__image__q15__t.html">arm_cv_image_q15_t</a> *imageOut, q15_t *scratch, const int8_t borderType)</td></tr>
+<tr class="memdesc:ga04ae3fa44c5ad3bdf42d7736fad83298"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sobel filter computing the gradient on the vertical axis.  <br /></td></tr>
+<tr class="separator:ga04ae3fa44c5ad3bdf42d7736fad83298"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga56b26f0772421254ff11e51173f439a4" name="ga56b26f0772421254ff11e51173f439a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga56b26f0772421254ff11e51173f439a4">&#9670;&#160;</a></span>arm_gaussian_filter_3x3_fixp()</h2>
+<a id="gab7e13f921c15f9e005b8c274663b8fb9" name="gab7e13f921c15f9e005b8c274663b8fb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab7e13f921c15f9e005b8c274663b8fb9">&#9670;&#160;</a></span>arm_gaussian_filter_3x3_fixp()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -152,13 +176,25 @@ Functions</h2></td></tr>
           <td class="memname">void arm_gaussian_filter_3x3_fixp </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *&#160;</td>
-          <td class="paramname"><em>ImageIn</em>, </td>
+          <td class="paramname"><em>imageIn</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *&#160;</td>
-          <td class="paramname"><em>ImageOut</em>&#160;</td>
+          <td class="paramname"><em>imageOut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">q15_t *&#160;</td>
+          <td class="paramname"><em>scratch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int8_t&#160;</td>
+          <td class="paramname"><em>borderType</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -168,11 +204,364 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gaussian filter for grayscale data computing in q15. </p>
+<p>Gaussian filter applying a 3x3 kernel and using q15 as intermediate values. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">ImageIn</td><td>The input image </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">ImageOut</td><td>The output image </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">imageIn</td><td>The input image </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">imageOut</td><td>The output image </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">scratch</td><td>Temporary buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">borderType</td><td>Type of border to use, supported are Replicate Wrap and Reflect</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Temporary buffer sizing:</dt><dd></dd></dl>
+<p>Will use a temporary buffer to store intermediate values of gradient and magnitude.</p>
+<p>Size of temporary buffer is given by arm_cv_get_scratch_size_generic(int width) </p>
+
+</div>
+</div>
+<a id="ga221ebed3617ee91dbd973adae95e3adf" name="ga221ebed3617ee91dbd973adae95e3adf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga221ebed3617ee91dbd973adae95e3adf">&#9670;&#160;</a></span>arm_gaussian_filter_5x5_fixp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arm_gaussian_filter_5x5_fixp </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *&#160;</td>
+          <td class="paramname"><em>imageIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *&#160;</td>
+          <td class="paramname"><em>imageOut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">q15_t *&#160;</td>
+          <td class="paramname"><em>scratch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int8_t&#160;</td>
+          <td class="paramname"><em>borderType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gaussian filter applying a 5x5 kernel and using q15 as intermediate values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">imageIn</td><td>The input image </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">imageOut</td><td>The output image </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">scratch</td><td>Temporary buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">borderType</td><td>Type of border to use, supported are Replicate Wrap and Reflect</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Temporary buffer sizing:</dt><dd></dd></dl>
+<p>Will use a temporary buffer to store intermediate values of gradient and magnitude.</p>
+<p>Size of temporary buffer is given by arm_cv_get_scratch_size_generic(int width) </p>
+
+</div>
+</div>
+<a id="gacf99df4993ad2ae0306f98515a4e2fe4" name="gacf99df4993ad2ae0306f98515a4e2fe4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacf99df4993ad2ae0306f98515a4e2fe4">&#9670;&#160;</a></span>arm_gaussian_filter_7x7_buffer_15_fixp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arm_gaussian_filter_7x7_buffer_15_fixp </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *&#160;</td>
+          <td class="paramname"><em>imageIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *&#160;</td>
+          <td class="paramname"><em>imageOut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">q15_t *&#160;</td>
+          <td class="paramname"><em>scratch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int8_t&#160;</td>
+          <td class="paramname"><em>borderType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gaussian filter applying a 7x7 kernel and using q15 as intermediate values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">imageIn</td><td>The input image </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">imageOut</td><td>The output image </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">scratch</td><td>Temporary buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">borderType</td><td>Type of border to use, supported are Replicate Wrap and Reflect</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Temporary buffer sizing:</dt><dd></dd></dl>
+<p>Will use a temporary buffer to store intermediate values of gradient and magnitude.</p>
+<p>Size of temporary buffer is given by arm_cv_get_scratch_size_generic(int width) </p>
+
+</div>
+</div>
+<a id="ga0021cdab2f7a750bcf0d182a81156bce" name="ga0021cdab2f7a750bcf0d182a81156bce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0021cdab2f7a750bcf0d182a81156bce">&#9670;&#160;</a></span>arm_gaussian_filter_7x7_buffer_31_fixp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arm_gaussian_filter_7x7_buffer_31_fixp </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *&#160;</td>
+          <td class="paramname"><em>imageIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *&#160;</td>
+          <td class="paramname"><em>imageOut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">q31_t *&#160;</td>
+          <td class="paramname"><em>scratch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int8_t&#160;</td>
+          <td class="paramname"><em>borderType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gaussian filter applying a 7x7 kernel and using q31 as intermediate values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">imageIn</td><td>The input image </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">imageOut</td><td>The output image </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">scratch</td><td>Temporary buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">borderType</td><td>Type of border to use, supported are Replicate Wrap and Reflect</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Temporary buffer sizing:</dt><dd></dd></dl>
+<p>Will use a temporary buffer to store intermediate values of gradient and magnitude.</p>
+<p>Size of temporary buffer is given by arm_cv_get_scratch_size_generic(int width) </p>
+
+</div>
+</div>
+<a id="gadb475cd3ea84abcb58745ec937857764" name="gadb475cd3ea84abcb58745ec937857764"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadb475cd3ea84abcb58745ec937857764">&#9670;&#160;</a></span>arm_get_linear_scratch_size_buffer_15()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t arm_get_linear_scratch_size_buffer_15 </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>width</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the scratch size for generic linear filter function using a q15 buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>The width of the image in pixels </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Scratch size in bytes </dd></dl>
+
+</div>
+</div>
+<a id="ga9b7bcb61d0077bbce2692f5bae9939ea" name="ga9b7bcb61d0077bbce2692f5bae9939ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9b7bcb61d0077bbce2692f5bae9939ea">&#9670;&#160;</a></span>arm_get_linear_scratch_size_buffer_31()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t arm_get_linear_scratch_size_buffer_31 </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>width</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the scratch size for generic linear filter function using a q31 buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>The width of the image in pixels </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Scratch size in bytes </dd></dl>
+
+</div>
+</div>
+<a id="gad6b6704479bda8218256574b9de248fa" name="gad6b6704479bda8218256574b9de248fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad6b6704479bda8218256574b9de248fa">&#9670;&#160;</a></span>arm_get_scratch_size_sobel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t arm_get_scratch_size_sobel </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>width</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the scratch size for sobel functions using a q15 buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>The width of the image in pixels </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Scratch size in bytes </dd></dl>
+
+</div>
+</div>
+<a id="ga59296b71453283c353a40f31c878a5de" name="ga59296b71453283c353a40f31c878a5de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga59296b71453283c353a40f31c878a5de">&#9670;&#160;</a></span>arm_sobel_horizontal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arm_sobel_horizontal </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *&#160;</td>
+          <td class="paramname"><em>imageIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarm__cv__image__q15__t.html">arm_cv_image_q15_t</a> *&#160;</td>
+          <td class="paramname"><em>imageOut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">q15_t *&#160;</td>
+          <td class="paramname"><em>scratch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int8_t&#160;</td>
+          <td class="paramname"><em>borderType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sobel filter computing the gradient on the horizontal axis. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">imageIn</td><td>The input image </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">imageOut</td><td>The output image </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">scratch</td><td>Buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">borderType</td><td>Type of border to use, supported are Replicate Wrap and Reflect</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Temporary buffer sizing:</dt><dd></dd></dl>
+<p>Will use a temporary buffer to store intermediate values of gradient and magnitude.</p>
+<p>Size of temporary buffer is given by arm_cv_get_scratch_size_sobel_y(int width) </p>
+
+</div>
+</div>
+<a id="ga04ae3fa44c5ad3bdf42d7736fad83298" name="ga04ae3fa44c5ad3bdf42d7736fad83298"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga04ae3fa44c5ad3bdf42d7736fad83298">&#9670;&#160;</a></span>arm_sobel_vertical()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arm_sobel_vertical </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structarm__cv__image__gray8__t.html">arm_cv_image_gray8_t</a> *&#160;</td>
+          <td class="paramname"><em>imageIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structarm__cv__image__q15__t.html">arm_cv_image_q15_t</a> *&#160;</td>
+          <td class="paramname"><em>imageOut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">q15_t *&#160;</td>
+          <td class="paramname"><em>scratch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int8_t&#160;</td>
+          <td class="paramname"><em>borderType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sobel filter computing the gradient on the vertical axis. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">imageIn</td><td>The input image </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">imageOut</td><td>The output image </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">scratch</td><td>Buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">borderType</td><td>Type of border to use, supported are Replicate Wrap and Reflect </td></tr>
   </table>
   </dd>
 </dl>
