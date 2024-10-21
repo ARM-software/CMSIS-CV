@@ -2,6 +2,8 @@
 
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ARM-software/CMSIS-CV?include_prereleases) ![GitHub](https://img.shields.io/github/license/ARM-software/CMSIS-CV)
 
+[![C Tests](https://github.com/ARM-software/CMSIS-CV/actions/workflows/runtest.yaml/badge.svg)](https://github.com/ARM-software/CMSIS-CV/actions/workflows/runtest.yaml)
+
 
 ## About
 
