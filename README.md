@@ -15,7 +15,7 @@ Different variants are available according to the core and most of the functions
 
 CMSIS-CV is licensed under [Apache License 2.0](LICENSE).
 
-**It is a work in progress and has just started. API is not yet stable and will evolve for a few versions.**
+**It is a work in progress and has just started.**
 
 # Testing
 
