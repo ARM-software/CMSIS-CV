@@ -3,7 +3,7 @@
  * Title:        arm_image_resize_common.h
  * Description:  Common declarations for CMSIS-CV image resize functions
  *
- * Target Processor: Cortex-M and Cortex-A cores
+ * Target Processor: Cortex-M
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2024 Himax Technologies, Inc. or its affiliates. All rights reserved.

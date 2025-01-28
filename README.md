@@ -9,7 +9,7 @@
 
 CMSIS-CV is an optimized computer vision library for embedded systems.
 
-It provides optimized compute kernels for Cortex-M and for Cortex-A.
+It provides optimized compute kernels for Cortex-M.
 
 Different variants are available according to the core and most of the functions are using a vectorized version when the Helium or Neon extension is available.
 

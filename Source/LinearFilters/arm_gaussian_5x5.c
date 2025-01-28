@@ -5,7 +5,7 @@
  * filter
  *
  *
- * Target Processor: Cortex-M and Cortex-A cores
+ * Target Processor: Cortex-M
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2014 ARM Limited or its affiliates. All rights reserved.
@@ -27,7 +27,9 @@
 
 #include "cv/linear_filters.h"
 #include "dsp/basic_math_functions.h"
-#include "arm_acle.h"
+#include "dsp/none.h"
+
+
 // The kernel applied by this filter is [1, 4, 6, 4, 1] /256
 //                                      [4,16,24,16, 4]
 //                                      [6,24,36,24, 6]
@@ -36,7 +38,7 @@
 // it also can be seen as applying the kernel [1,4,6,4,1] one time on the line and one time on the column sum is 256
 
 // Macro dividing the input value by 256, necessary to normalise the kernel of the gaussian
-#define DIV_256(a) __ssat(((a) >> 8), 16)
+#define DIV_256(a) __SSAT(((a) >> 8), 16)
 
 // Apply the kernel [1, 4, 6, 4, 1] to the input values
 #define VERTICAL_COMPUTE_SCALAR(data_0, data_1, data_2, data_3, data_4)                                                \

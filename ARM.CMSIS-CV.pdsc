@@ -41,7 +41,7 @@
   <components>
     <!-- CMSIS-CV component -->
     <component Cclass="CMSIS" Cgroup="CV" Cvariant="Source"  Cversion="0.0.0" isDefaultVariant="true" condition="CMSISDSPLIB">
-      <description>CMSIS-CV Library for Cortex-M and Cortex-A</description>
+      <description>CMSIS-CV Library for Cortex-M</description>
       <files>
         <!-- CPU independent -->
         <file category="doc"      name="Documentation/html/index.html"/>

@@ -4,7 +4,7 @@
  * Description:  Color transforms for CMSIS-CV
  *
  *
- * Target Processor: Cortex-M and Cortex-A cores
+ * Target Processor: Cortex-M
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2014 ARM Limited or its affiliates. All rights reserved.

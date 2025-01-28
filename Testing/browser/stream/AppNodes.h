@@ -3,7 +3,7 @@
  * Title:        AppNodes.h
  * Description:  Application nodes for Example simple
  *
- * Target Processor: Cortex-M and Cortex-A cores
+ * Target Processor: Cortex-M
  * -------------------------------------------------------------------- 
 *
  * Copyright (C) 2021-2023 ARM Limited or its affiliates. All rights reserved.

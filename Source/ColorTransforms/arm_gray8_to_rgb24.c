@@ -3,7 +3,7 @@
  * Title:        arm_gray8_to_rgb24
  * Description:  Convertion of gray8 to rgb24
  *
- * Target Processor: Cortex-M and Cortex-A cores
+ * Target Processor: Cortex-M
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2024 ARM Limited or its affiliates. All rights reserved.
