@@ -5,7 +5,7 @@
  * filter
  *
  *
- * Target Processor: Cortex-M and Cortex-A cores
+ * Target Processor: Cortex-M
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2014 ARM Limited or its affiliates. All rights reserved.
@@ -27,7 +27,8 @@
 
 #include "cv/linear_filters.h"
 #include "dsp/basic_math_functions.h"
-#include "arm_acle.h"
+#include "dsp/none.h"
+
 // #define BUFFER_TYPE q15_t
 //  The kernel applied by this filter is [ 4, 14, 28, 36, 28, 14, 4] /4096
 //                                       [14, 49, 98,126, 98, 49,14]
@@ -41,7 +42,7 @@
 // 256
 
 // Macro dividing the input value by 256, necessary to normalise the kernel of the gaussian
-#define DIV_256(a) __ssat(((a) >> 8),16)
+#define DIV_256(a) __SSAT(((a) >> 8),16)
 
 // Apply the kernel [2, 7, 14, 18, 14, 7, 2] to the input values
 #define KERNEL_APPLICATION(data_0, data_1, data_2, data_3, data_4, data_5, data_6)                                     \
@@ -52,7 +53,7 @@
 // value of 64 * 255, the second application can lead to a max value of 64*64 ** 255 that can overflow int16 this shift
 // lead to a loss of precision in some cases
 #define VERTICAL_COMPUTE_SCALAR(data_0, data_1, data_2, data_3, data_4, data_5, data_6)                                \
-    __ssat(KERNEL_APPLICATION(data_0, data_1, data_2, data_3, data_4, data_5, data_6) >> 4, 16)
+    __SSAT(KERNEL_APPLICATION(data_0, data_1, data_2, data_3, data_4, data_5, data_6) >> 4, 16)
 
 // The horizontal computation consist of applying the kernel and shifting by 8 on the left. the sum of the coeficient of
 // the kernel is 4096, so shift by 12, but we already shifted by 4 in the vertical part

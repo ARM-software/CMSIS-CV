@@ -3,7 +3,7 @@
  * Title:        arm_bgr_8U3C_to_rgb24
  * Description:  Convertion of planar BGR to RGB24
  *
- * Target Processor: Cortex-M and Cortex-A cores
+ * Target Processor: Cortex-M
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2024 ARM Limited or its affiliates. All rights reserved.

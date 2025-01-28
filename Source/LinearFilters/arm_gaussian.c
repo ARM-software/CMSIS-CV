@@ -5,7 +5,7 @@
  * filter
  *
  *
- * Target Processor: Cortex-M and Cortex-A cores
+ * Target Processor: Cortex-M
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2014 ARM Limited or its affiliates. All rights reserved.
@@ -27,7 +27,9 @@
 
 #include "cv/linear_filters.h"
 #include "dsp/basic_math_functions.h"
-#include "arm_acle.h"
+#include "dsp/none.h"
+
+
 // The kernel applied by this filter is [1,2,1]
 //                                      [2,4,2]
 //                                      [1,2,1]
@@ -37,7 +39,7 @@
 // This macro is in fact two operation at once,
 // first the conversion from q6 to uint8/q0
 // second the division per 16, necessary to have the sum of the coeficients in our gaussian equal to 1
-#define CONVERSION_GAUSSIAN_Q6TO_U8_AND_DIV_16(a) __ssat(((a) >> 10),16)
+#define CONVERSION_GAUSSIAN_Q6TO_U8_AND_DIV_16(a) __SSAT(((a) >> 10),16)
 
 // Apply a kernel [1,2,1] in q3 so [0x08,0x10,0x08] to the input data
 // This macro will be applied two time on each pixel.

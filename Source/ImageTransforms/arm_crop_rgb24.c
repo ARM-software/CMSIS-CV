@@ -3,7 +3,7 @@
  * Title:        arm_crop_gray8
  * Description:  Cropping of grayscale image
  *
- * Target Processor: Cortex-M and Cortex-A cores
+ * Target Processor: Cortex-M
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2024 ARM Limited or its affiliates. All rights reserved.

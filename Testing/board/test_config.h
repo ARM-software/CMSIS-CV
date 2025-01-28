@@ -1,7 +1,7 @@
 #ifndef TEST_CONFIG_H
 #define TEST_CONFIG_H
 
-#define TESTGROUP3
+#define TESTGROUP0
 
 #endif
 

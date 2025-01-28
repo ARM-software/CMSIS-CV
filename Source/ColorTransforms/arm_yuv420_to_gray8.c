@@ -3,7 +3,7 @@
  * Title:        arm_yuv240_to_gray8
  * Description:  Convertion of yuv240 to gray8
  *
- * Target Processor: Cortex-M and Cortex-A cores
+ * Target Processor: Cortex-M
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2024 ARM Limited or its affiliates. All rights reserved.

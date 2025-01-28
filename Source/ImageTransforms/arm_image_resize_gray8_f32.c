@@ -3,7 +3,7 @@
  * Title:        arm_image_resize_gray8
  * Description:  image resize of gray8
  *
- * Target Processor: Cortex-M and Cortex-A cores
+ * Target Processor: Cortex-M
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2024 Himax Technologies, Inc. or its affiliates. All rights reserved.
