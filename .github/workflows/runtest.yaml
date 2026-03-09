@@ -58,7 +58,7 @@ jobs:
           python runall.py -avh $AVH_FVP_PLUGINS/../bin
 
       - name: Upload test report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: test-report
           path: Testing/board/summary.html
