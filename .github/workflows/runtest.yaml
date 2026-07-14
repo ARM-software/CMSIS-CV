@@ -12,11 +12,11 @@ permissions:
 
 jobs:
    CI_test_run: 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup Python 3.10
         uses: actions/setup-python@v6
@@ -58,7 +58,7 @@ jobs:
           python runall.py -avh $AVH_FVP_PLUGINS/../bin
 
       - name: Upload test report
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: test-report
           path: Testing/board/summary.html
