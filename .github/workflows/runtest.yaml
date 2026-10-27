@@ -16,17 +16,22 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
-      - name: Setup Python 3.10
-        uses: actions/setup-python@v6
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v7
         with:
-          python-version: '3.10'    
+          python-version: '3.12'
 
       - name: Install system packages
         run: |
           sudo add-apt-repository ppa:deadsnakes/ppa
-          sudo apt-get install libpython3.9 libtinfo5
+          sudo apt-get install libpython3.12 libtinfo5
+
+      - name: Setup vcpkg
+        uses: ARM-software/cmsis-actions/setup-vcpkg@v1
+        with:
+          version: 2026.04.27
 
       - name: Activate vcpkg
         uses: ARM-software/cmsis-actions/vcpkg@v1

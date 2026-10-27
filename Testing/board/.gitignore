@@ -7,3 +7,4 @@ cprj/
 disasm.s
 test.dat
 summary.html
+out/

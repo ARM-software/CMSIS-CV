@@ -35,7 +35,9 @@ if "AVH_FVP_PLUGINS" in os.environ:
     GHACTION = True
 
 parser = argparse.ArgumentParser(description='Parse test description')
-parser.add_argument('-avh', nargs='?',type = str, default="C:/Keil_v5/ARM/VHT", help="AVH folder")
+parser.add_argument('-avh', nargs='?',type = str,
+                    default=str(Path.home() / '.vcpkg' / 'artifacts' / '2139c4c6' / 'models.arm.avh.fvp' / '11.32.23' / 'bin'),
+                    help="AVH folder")
 parser.add_argument('-d', action='store_true', help="Debug log for command launch")
 parser.add_argument('-n', action='store_true', help="No force rebuild")
 parser.add_argument('--gen', action='store_true', help="Generate inputs and references")
@@ -127,6 +129,9 @@ def run(*args,mustPrint=False,dumpStdErr=True,live=None):
         if mustPrint:
             live.console.print(result.stdout)
         return(Result(result.stdout))
+    except FileNotFoundError as e:
+        ERROR_OCCURED = True
+        return Result(f"Could not start {args[0]!r}: executable not found. Check that it is on PATH. ({e})", error=True)
     except Exception as e:
         if DEBUG:
            printError(live,"Exception occured")
@@ -176,6 +181,7 @@ AVHROOT = args.avh
 
 # Run AVH
 def runAVH(live,build,core):
+    global ERROR_OCCURED
     axf="cprj/out/cmsiscv/%s/Release/cmsiscv.axf" % (build,)
     elf="cprj/out/cmsiscv/%s/Release/cmsiscv.elf" % (build,)
     app = axf 
@@ -186,13 +192,16 @@ def runAVH(live,build,core):
     config = os.path.join("fvp_configs",configFiles[core])
 
     if AVHROOT:
-       avhAttempt = os.path.join(AVHROOT,avhWindowsExe[core])
-       if os.path.exists(avhAttempt):
-          avh = avhAttempt
-   
-       avhAttempt = os.path.join(AVHROOT,avhUnixExe[core])
-       if os.path.exists(avhAttempt):
-          avh = avhAttempt
+       if os.name == "nt":
+          executable_names = (avhWindowsExe[core], avhUnixExe[core] + ".exe")
+       else:
+          executable_names = (avhUnixExe[core], os.path.splitext(avhWindowsExe[core])[0])
+       avh = next((os.path.join(AVHROOT, name) for name in executable_names
+                   if os.path.isfile(os.path.join(AVHROOT, name))), None)
+       if avh is None:
+          ERROR_OCCURED = True
+          return Result(f"No AVH executable for {core} found in {AVHROOT}. "
+                        f"Tried: {', '.join(executable_names)}. Check -avh.", error=True)
     else:
        avh = avhUnixExe[core]
 

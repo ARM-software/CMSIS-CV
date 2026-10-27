@@ -1,0 +1,9 @@
+{
+    "targetSet": {
+        "Testing/board/cmsiscv": {
+            "activeTargetType": "VHT-M7"
+        }
+    },
+    "activeSolution": "../Testing/board/cmsiscv.csolution.yml",
+    "activeTarget": "VHT-M7"
+}

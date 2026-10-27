@@ -1,0 +1,108 @@
+cmsis-tools-environment:
+  version: 1.0.0
+  generated-by: arm.cmsis-csolution version 1.72.0
+  solution: ../cmsiscv.csolution.yml
+  environment:
+    path:
+      - c:/Users/chrfav01/.vscode/extensions/arm.vscode-cmsis-debugger-1.10.0-win32-x64/tools/pyocd
+      - c:/Users/chrfav01/.vscode/extensions/arm.cmsis-csolution-1.72.0-win32-x64/tools/cmsis-toolbox/bin
+      - c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/tools.kitware.cmake/3.28.4/bin
+      - c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/tools.ninja.build.ninja/1.12.0
+      - c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/compilers.arm.armclang/6.24.0/bin
+      - c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/compilers.arm.arm.none.eabi.gcc/14.3.1/bin
+      - c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/compilers.arm.llvm.embedded/22.1.0/bin
+      - c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/models.arm.avh.fvp/11.31.28/bin
+      - c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/tools.arm.mdk.toolbox/1.1.0/bin
+      - c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/debuggers.arm.armdbg/6.9.0/bin
+      - c:/Users/chrfav01/.vscode/extensions/arm.vscode-cmsis-debugger-1.10.0-win32-x64/tools/gdb/bin
+    variables:
+      AC6_TOOLCHAIN_6_24_0: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/compilers.arm.armclang/6.24.0/bin/
+      AVH_FVP_PLUGINS: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/models.arm.avh.fvp/11.31.28/plugins/
+      CLANG_TOOLCHAIN_22_1_0: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/compilers.arm.llvm.embedded/22.1.0/bin/
+      cmake: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/tools.kitware.cmake/3.28.4/bin/cmake.exe
+      cmake_gui: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/tools.kitware.cmake/3.28.4/bin/cmake-gui.exe
+      CMSIS_PACK_ROOT: C:/ctools_pack
+      ctest: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/tools.kitware.cmake/3.28.4/bin/ctest.exe
+      GCC_TOOLCHAIN_14_3_1: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/compilers.arm.arm.none.eabi.gcc/14.3.1/bin
+      ninja: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/tools.ninja.build.ninja/1.12.0/ninja.exe
+  tools:
+    - name: pyOCD
+      version: 0.46.0
+      origin: built-in
+      provider:
+        type: vscode-extension
+        id: arm.vscode-cmsis-debugger
+      directory: c:/Users/chrfav01/.vscode/extensions/arm.vscode-cmsis-debugger-1.10.0-win32-x64/tools/pyocd
+      manual: https://pyocd.io/docs/
+    - name: CMSIS-Toolbox
+      version: 2.15.0
+      origin: built-in
+      provider:
+        type: vscode-extension
+        id: arm.cmsis-csolution
+      directory: c:/Users/chrfav01/.vscode/extensions/arm.cmsis-csolution-1.72.0-win32-x64/tools/cmsis-toolbox/bin
+      manual: https://open-cmsis-pack.github.io/cmsis-toolbox/
+    - name: tools.kitware.cmake
+      version: 3.28.4
+      origin: installed
+      provider:
+        type: vcpkg
+        id: arm.environment-manager
+      directory: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/tools.kitware.cmake/3.28.4
+    - name: tools.ninja.build.ninja
+      version: 1.12.0
+      origin: installed
+      provider:
+        type: vcpkg
+        id: arm.environment-manager
+      directory: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/tools.ninja.build.ninja/1.12.0
+    - name: compilers.arm.armclang
+      version: 6.24.0
+      origin: installed
+      provider:
+        type: vcpkg
+        id: arm.environment-manager
+      directory: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/compilers.arm.armclang/6.24.0
+    - name: compilers.arm.arm.none.eabi.gcc
+      version: 14.3.1
+      origin: installed
+      provider:
+        type: vcpkg
+        id: arm.environment-manager
+      directory: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/compilers.arm.arm.none.eabi.gcc/14.3.1
+    - name: compilers.arm.llvm.embedded
+      version: 22.1.0
+      origin: installed
+      provider:
+        type: vcpkg
+        id: arm.environment-manager
+      directory: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/compilers.arm.llvm.embedded/22.1.0
+    - name: models.arm.avh.fvp
+      version: 11.31.28
+      origin: installed
+      provider:
+        type: vcpkg
+        id: arm.environment-manager
+      directory: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/models.arm.avh.fvp/11.31.28
+    - name: tools.arm.mdk.toolbox
+      version: 1.1.0
+      origin: installed
+      provider:
+        type: vcpkg
+        id: arm.environment-manager
+      directory: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/tools.arm.mdk.toolbox/1.1.0
+    - name: debuggers.arm.armdbg
+      version: 6.9.0
+      origin: installed
+      provider:
+        type: vcpkg
+        id: arm.environment-manager
+      directory: c:/Users/chrfav01/.vcpkg/artifacts/2139c4c6/debuggers.arm.armdbg/6.9.0
+    - name: Arm GNU GDB
+      version: 15.3.1
+      origin: built-in
+      provider:
+        type: vscode-extension
+        id: arm.vscode-cmsis-debugger
+      directory: c:/Users/chrfav01/.vscode/extensions/arm.vscode-cmsis-debugger-1.10.0-win32-x64/tools/gdb/bin
+      manual: https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain

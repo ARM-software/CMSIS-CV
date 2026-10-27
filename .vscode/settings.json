@@ -1,0 +1,9 @@
+{
+    "cmake.sourceDirectory": "C:/Users/chrfav01/benchresults/CMSIS-CV/Source",
+    "debug.hideSlowPreLaunchWarning": true,
+    "debug.showInStatusBar": "never",
+    "memory-inspector.addressPadding": "32bit",
+    "memory-inspector.groupings.groupsPerRow": "Autofit",
+    "memory-inspector.groupings.MAUsPerGroup": 4,
+    "memory-inspector.scrollingBehavior": "Auto-Append"
+}

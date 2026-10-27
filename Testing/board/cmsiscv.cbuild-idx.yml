@@ -1,0 +1,20 @@
+build-idx:
+  generated-by: csolution version 2.15.1+p3-gf46d68bf
+  target: VHT-M7
+  cdefault: cdefault.yml
+  csolution: cmsiscv.csolution.yml
+  cbuild-run: out/cmsiscv+VHT-M7.cbuild-run.yml
+  tmpdir: tmp/VHT-M7/default
+  cprojects:
+    - cproject: cmsiscv.cproject.yml
+  cbuilds:
+    - cbuild: out/cmsiscv/VHT-M7/Release/cmsiscv.Release+VHT-M7.cbuild.yml
+      project: cmsiscv
+      configuration: .Release+VHT-M7
+      messages:
+        info:
+          - cmsiscv.cbuild-pack.yml - file is already up-to-date
+          - cmsiscv+VHT-M7.cbuild-run.yml - file generated successfully
+          - cmsiscv.Release+VHT-M7.cbuild.yml - file is already up-to-date
+      packs-unused:
+        - pack: ARM::V2M_MPS3_SSE_300_BSP@1.4.0
