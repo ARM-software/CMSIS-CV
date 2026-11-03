@@ -12,7 +12,7 @@ permissions:
 
 jobs:
    CI_test_run: 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
@@ -25,8 +25,9 @@ jobs:
 
       - name: Install system packages
         run: |
-          sudo add-apt-repository ppa:deadsnakes/ppa
-          sudo apt-get install libpython3.12 libtinfo5
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y libtinfo6
+          echo "LD_LIBRARY_PATH=${pythonLocation}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" >> "$GITHUB_ENV"
 
       - name: Setup vcpkg
         uses: ARM-software/cmsis-actions/setup-vcpkg@v1
